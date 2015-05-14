@@ -390,7 +390,8 @@ public class ApiCall implements Serializable
 
 	public enum UTILITY
 	{
-		STATUS("https://api.tradeking.com/v1/utility/status", "."), VERSION("https://api.tradeking.com/v1/utility/version", ".");
+		STATUS("https://api.tradeking.com/v1/utility/status", "."), 
+		VERSION("https://api.tradeking.com/v1/utility/version", ".");
 
 		private String[] urlStrings;
 
@@ -451,7 +452,12 @@ public class ApiCall implements Serializable
 
 	public enum WATCHLIST
 	{
-		GET_WATCHLISTS(Verb.GET, "https://api.tradeking.com/v1/watchlists", "."), POST_WATCHLISTS(Verb.POST, "https://api.tradeking.com/v1/watchlists", "."), GET_WATCHLIST_ID(Verb.GET, "https://api.tradeking.com/v1/watchlists/", "", "."), DELETE_WATCHLISTS_ID(Verb.DELETE, "https://api.tradeking.com/v1/watchlists/", "", "."), POST_SYMBOL_WATCHLIST_ID(Verb.POST, "https://api.tradeking.com/v1/watchlist/", "/symbols", "."), DELETE_SYMBOL_WATCHLIST(Verb.DELETE, "https://api.tradeking.com/v1/watchlists/", "/", ".", "");
+		GET_WATCHLISTS(Verb.GET, "https://api.tradeking.com/v1/watchlists", "."), 
+		POST_WATCHLISTS(Verb.POST, "https://api.tradeking.com/v1/watchlists", "."), 
+		GET_WATCHLIST_ID(Verb.GET, "https://api.tradeking.com/v1/watchlists/", "", "."), 
+		DELETE_WATCHLISTS_ID(Verb.DELETE, "https://api.tradeking.com/v1/watchlists/", "", "."), 
+		POST_SYMBOL_WATCHLIST_ID(Verb.POST, "https://api.tradeking.com/v1/watchlist/", "/symbols", "."), 
+		DELETE_SYMBOL_WATCHLIST(Verb.DELETE, "https://api.tradeking.com/v1/watchlists/", "/", ".", "");
 
 		private String[] urlStrings;
 		private Verb verb;
