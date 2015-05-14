@@ -1,4 +1,4 @@
-package com.excelsiorsoft.gatherer.tradeking.connector;
+package com.excelsior.gatherer.tradeking.connector;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,8 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.junit.Test;
+
+import com.excelsiorsoft.gatherer.tradeking.connector.TradekingApi;
 
 
 public class TradekingApiTest {
