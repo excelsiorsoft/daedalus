@@ -1,4 +1,4 @@
-package com.excelsiorsoft.gatherer.tradeking.connector;
+package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
 import java.io.Serializable;
 
