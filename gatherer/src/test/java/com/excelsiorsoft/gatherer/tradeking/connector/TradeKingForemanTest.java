@@ -1,6 +1,8 @@
 package com.excelsiorsoft.gatherer.tradeking.connector;
 
+
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketBuilder.getClock;
+
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.XML;
 import static org.junit.Assert.*;
 
@@ -26,7 +28,9 @@ public class TradeKingForemanTest {
 	{
 		TradeKingForeman foreman = new TradeKingForeman();
 		
+
 		System.out.println(foreman.makeAPICall(getClock(XML)).toString()); 
+
 		assertTrue("Foreman didn't recognize API reponse",foreman.makeAPICall(MarketBuilder.getClock(XML)).toString().contains("<message>"));
 	}	
 
