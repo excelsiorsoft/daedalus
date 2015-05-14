@@ -64,7 +64,12 @@ public class ApiCall implements Serializable
 
 	public enum Accounts
 	{
-		ACCOUNTS("https://api.tradeking.com/v1/accounts", "."), ACCOUNTS_BALANCES("https://api.tradeking.com/v1/accounts/balances", "."), ID("https://api.tradeking.com/v1/accounts/", "."), ID_BALANCES("https://api.tradeking.com/v1/accounts/", "/balances", "", "", ""), ID_HISTORY("https://api.tradeking.com/v1/accounts/", "/history", "."), ID_HOLDINGS("https://api.tradeking.com/v1/accounts/", "/holdings", ".");
+		ACCOUNTS("https://api.tradeking.com/v1/accounts", "."), 
+		ACCOUNTS_BALANCES("https://api.tradeking.com/v1/accounts/balances", "."), 
+		ID("https://api.tradeking.com/v1/accounts/", "."), 
+		ID_BALANCES("https://api.tradeking.com/v1/accounts/", "/balances", "", "",""),
+		ID_HISTORY("https://api.tradeking.com/v1/accounts/","/history", "."), 
+		ID_HOLDINGS("https://api.tradeking.com/v1/accounts/", "/holdings", ".");
 
 		private String[] urlStrings;
 
