@@ -7,7 +7,7 @@ import org.scribe.model.Response;
 
 /**
  * 
- * A holder for all the bits that come back through each REST call.<br>
+ * Encapsulates TradeKing response that comes back through each REST call.<br>
  * The important parts are the rate limits, which help you control how many
  * calls of that type you can use again.
  * 
@@ -23,23 +23,30 @@ public class TKResponse implements Serializable {
 	private int rateLimitRemaining = 0;
 
 	public TKResponse(Request req) {
+		
 		Response response = req.send();
+		
 		String limitUsed = response.getHeader("X-RateLimit-Used");
 		String limitExpire = response.getHeader("X-RateLimit-Expire");
 		String limitTotal = response.getHeader("X-RateLimit-Limit");
 		String limitRemain = response.getHeader("X-RateLimit-Remaining");
+		
 		if (limitUsed != null) {
 			rateLimitUsed = Integer.parseInt(limitUsed);
 		}
+		
 		if (limitExpire != null) {
 			rateLimitExpire = Long.parseLong(limitExpire);
 		}
+		
 		if (limitTotal != null) {
 			rateLimitTotal = Integer.parseInt(limitTotal);
 		}
+		
 		if (limitRemain != null) {
 			rateLimitRemaining = Integer.parseInt(limitRemain);
 		}
+		
 		this.response = response.getBody();
 	}
 
@@ -47,8 +54,7 @@ public class TKResponse implements Serializable {
 		this.response = req;
 	}
 
-	public TKResponse() {
-	}
+	public TKResponse() {}
 
 	public int getCallsUsed() {
 		return rateLimitUsed;
