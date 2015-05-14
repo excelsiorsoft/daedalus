@@ -1,5 +1,10 @@
 package com.excelsiorsoft.gatherer.tradeking.connector;
 
+import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.ACCESS_TOKEN;
+import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.ACCESS_TOKEN_SECRET;
+import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.API_KEY;
+import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.API_SECRET;
+
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,6 +17,10 @@ import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.excelsiorsoft.gatherer.tradeking.connector.api.ApiBuilder;
+import com.excelsiorsoft.gatherer.tradeking.connector.api.TKResponse;
+import com.excelsiorsoft.gatherer.tradeking.connector.api.TradekingApi;
 
 
 
@@ -74,9 +83,9 @@ public class TradeKingForeman implements Serializable {
 	private void connect() throws ForemanException
 	{
 		log.trace("Connecting to Tradeking");
-		srv = new ServiceBuilder().provider(TradekingApi.class).apiKey(ForemanConstants.API_KEY.toString()).apiSecret(ForemanConstants.API_SECRET.toString()).build();
+		srv = new ServiceBuilder().provider(TradekingApi.class).apiKey(API_KEY.toString()).apiSecret(API_SECRET.toString()).build();
 		log.trace("\t ... Service built!");
-		accessToken = new Token(ForemanConstants.ACCESS_TOKEN.toString(), ForemanConstants.ACCESS_TOKEN_SECRET.toString());
+		accessToken = new Token(ACCESS_TOKEN.toString(), ACCESS_TOKEN_SECRET.toString());
 		log.trace("\t ... Access Token built!");
 		log.trace("Connection Established");
 	}	

@@ -9,7 +9,7 @@ import java.net.URLConnection;
 
 import org.junit.Test;
 
-import com.excelsiorsoft.gatherer.tradeking.connector.TradekingApi;
+import com.excelsiorsoft.gatherer.tradeking.connector.api.TradekingApi;
 
 
 public class TradekingApiTest {
