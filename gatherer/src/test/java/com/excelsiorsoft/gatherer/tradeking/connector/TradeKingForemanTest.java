@@ -23,7 +23,7 @@ public class TradeKingForemanTest {
 	}
 	
 	@Test
-	public void apiCallTest() throws Throwable
+	public void marketClockApiCallTest() throws Throwable
 	{
 		TradeKingForeman foreman = new TradeKingForeman();
 		
