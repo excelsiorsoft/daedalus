@@ -37,7 +37,7 @@ public class TradeKingForemanTest {
 	public void marketExtQuotesApiCallTest() throws Throwable {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeAPICall(getExtQuotes(XML, "", "")).toString());
+		System.out.println(foreman.makeAPICall(getExtQuotes(XML, "slw, ibm", "")).toString());
 		
 	}	
 

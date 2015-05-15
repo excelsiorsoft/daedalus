@@ -8,6 +8,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.scribe.model.Verb;
@@ -42,18 +43,19 @@ public class ApiCalls {
 	/**
 	 * This call will return quotes for a symbol or list of symbols passed as a query parameter (see query parameters below). While this request type is GET, POST can also be used and is recommended
 	 * for larger lists of symbols.
+	 * @param symbolsLst 
 	 * @throws Throwable 
 	 */
-	public static String getExtQuotes(String format) throws Throwable 	{
+	public static String getExtQuotes(String format, List<String> symbolsLst) throws Throwable 	{
 		
-		Map<String, String> params = new HashMap<>();
-		params.put("symbols", "SLW");
+		Map<String, List<String>> params = new HashMap<>();
+		params.put("symbols", symbolsLst);
 
 		return resolveString(MARKET.EXT_QUOTES, params, format.toString());
 	}
 	
 	
-	public static String resolveString(CallType type, Map<String, String> params, String format) throws Throwable {
+	public static String resolveString(CallType type, Map<String, List<String>> params, String format) throws Throwable {
 
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);

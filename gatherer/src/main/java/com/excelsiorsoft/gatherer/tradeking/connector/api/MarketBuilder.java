@@ -6,7 +6,12 @@ import static com.excelsiorsoft.gatherer.tradeking.connector.api.model.MarketQuo
 import static org.scribe.model.Verb.GET;
 import static org.scribe.model.Verb.POST;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.scribe.model.Verb;
+
+
 
 
 
@@ -41,7 +46,8 @@ public class MarketBuilder extends ApiBuilder
 	
 	public static MarketBuilder getExtQuotes(ResponseFormat format, String symbols, String fields) throws Throwable{
 		MarketBuilder marketBuilder = new MarketBuilder(POST);
-		marketBuilder.resourceURL = ApiCalls.getExtQuotes(format.toString());
+		List<String> symbolsLst = Arrays.asList(symbols.split("\\s*,\\s*"));
+		marketBuilder.resourceURL = ApiCalls.getExtQuotes(format.toString(), symbolsLst);
 		return marketBuilder;
 	}
 

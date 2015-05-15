@@ -83,7 +83,9 @@ public class TradeKingForeman implements Serializable {
 	private void connect() throws ForemanException
 	{
 		log.trace("Connecting to Tradeking");
+
 		oauthService = new ServiceBuilder().provider(TradekingApi.class).apiKey(CONSUMER_KEY.toString()).apiSecret(CONSUMER_SECRET.toString()).build();
+
 		log.trace("\t ... Service built!");
 		accessToken = new Token(OAUTH_TOKEN.toString(), OAUTH_TOKEN_SECRET.toString());
 		log.trace("\t ... Access Token built!");
