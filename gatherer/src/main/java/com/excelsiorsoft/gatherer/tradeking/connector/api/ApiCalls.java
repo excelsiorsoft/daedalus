@@ -71,7 +71,7 @@ public class ApiCalls {
 	
 	public enum MARKET implements CallType	{
 		CLOCK(GET, "https://api.tradeking.com/v1/market/clock"), 
-		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes"), 
+		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes?symbols=${symbols}"), 
 		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
 		NEWS_SEARCH(GET, "https://api.tradeking.com/v1/market/news/search"), 
 		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 
