@@ -33,14 +33,12 @@ public class ApiCalls {
 		String getTemplate(); 
 	}
 
-	public static String getMarketClock(String format) throws Throwable
-	{
+	public static String getMarketClock(String format) throws Throwable	{
 		return resolveString( MARKET.CLOCK, null,format);
 	}
 	
 	
-	public static String resolveString(CallType type,
-			Map<String, String> params, String format) throws Throwable {
+	public static String resolveString(CallType type, Map<String, String> params, String format) throws Throwable {
 
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);
@@ -54,8 +52,7 @@ public class ApiCalls {
 		return out.toString();
 	}
 	
-	public enum MARKET implements CallType
-	{
+	public enum MARKET implements CallType	{
 		CLOCK(GET, "https://api.tradeking.com/v1/market/clock"), 
 		EXT_QUOTES(GET,"https://api.tradeking.com/v1/market/ext/quotes"), 
 		STREAM_EXT_QUOTES(GET,"https://stream.tradeking.com/v1/market/quotes"), 
