@@ -8,6 +8,7 @@ import static org.scribe.model.Verb.POST;
 import org.scribe.model.Verb;
 
 
+
 import com.excelsiorsoft.gatherer.tradeking.connector.api.model.MarketQuotesResponseField;
 
 
@@ -27,7 +28,7 @@ public class MarketBuilder extends ApiBuilder
 		verb = v;
 	}
 
-	public static MarketBuilder getClock(ResponseFormat format)
+	public static MarketBuilder getClock(ResponseFormat format) throws Throwable
 	{
 		MarketBuilder b = new MarketBuilder(Verb.GET);
 		//b.resourceURL = ApiCall.getMarketClock(format);

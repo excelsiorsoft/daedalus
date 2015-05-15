@@ -1,11 +1,21 @@
 package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
 
+import static freemarker.template.ObjectWrapper.BEANS_WRAPPER;
 import static org.scribe.model.Verb.GET;
 
+
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Map;
 
 import org.scribe.model.Verb;
+
+import freemarker.template.Configuration;
+
+import freemarker.template.Template;
+
 
 
 
@@ -18,17 +28,30 @@ import org.scribe.model.Verb;
 public class ApiCalls {
 	
 
-	public interface CallType {}
+	public interface CallType {
+		Verb getHttpMethod();
+		String getTemplate(); 
+	}
 
-	public static String getMarketClock(String format)
+	public static String getMarketClock(String format) throws Throwable
 	{
 		return resolveString( MARKET.CLOCK, null,format);
 	}
 	
 	
-	public static String resolveString(CallType type, Map<String, String> params, String format){
-	
-		return null;
+	public static String resolveString(CallType type,
+			Map<String, String> params, String format) throws Throwable {
+
+		Configuration cfg = new Configuration();
+		cfg.setObjectWrapper(BEANS_WRAPPER);
+
+		Template template = new Template("URLProducingTemplate",
+				new StringReader(type.getTemplate()), cfg);
+
+		Writer out = new StringWriter();
+		template.process(params, out);
+
+		return out.toString();
 	}
 	
 	public enum MARKET implements CallType

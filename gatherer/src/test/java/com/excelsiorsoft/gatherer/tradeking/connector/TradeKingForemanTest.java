@@ -2,7 +2,6 @@ package com.excelsiorsoft.gatherer.tradeking.connector;
 
 
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketBuilder.getClock;
-
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.XML;
 import static org.junit.Assert.*;
 
@@ -24,7 +23,7 @@ public class TradeKingForemanTest {
 	}
 	
 	@Test
-	public void apiCallTest() throws ForemanException
+	public void apiCallTest() throws Throwable
 	{
 		TradeKingForeman foreman = new TradeKingForeman();
 		
