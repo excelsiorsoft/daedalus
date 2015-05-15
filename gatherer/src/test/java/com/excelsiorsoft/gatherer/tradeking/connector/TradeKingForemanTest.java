@@ -23,14 +23,22 @@ public class TradeKingForemanTest {
 	}
 	
 	@Test
-	public void marketClockApiCallTest() throws Throwable
-	{
+	public void marketClockApiCallTest() throws Throwable {
+		
 		TradeKingForeman foreman = new TradeKingForeman();
 		
 
 		System.out.println(foreman.makeAPICall(getClock(XML)).toString()); 
 
 		assertTrue("Foreman didn't recognize API reponse",foreman.makeAPICall(MarketBuilder.getClock(XML)).toString().contains("<message>"));
+	}	
+	
+	@Test
+	public void marketExtQuotesApiCallTest() throws Throwable {
+		
+		TradeKingForeman foreman = new TradeKingForeman();
+		System.out.println(foreman.makeAPICall(getClock(XML)).toString());
+		
 	}	
 
 }

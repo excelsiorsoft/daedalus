@@ -44,10 +44,11 @@ public class ApiCalls {
 	 * for larger lists of symbols.
 	 * @throws Throwable 
 	 */
-	public static String getQuote(ResponseFormat format, String listOfSymbols) throws Throwable 	{
+	public static String getQuote(ResponseFormat format) throws Throwable 	{
 		
 		Map<String, String> params = new HashMap<>();
-		params.put("symbols", listOfSymbols);
+		params.put("symbols", "SLW");
+
 		return resolveString(MARKET.EXT_QUOTES, params, format.toString());
 	}
 	
