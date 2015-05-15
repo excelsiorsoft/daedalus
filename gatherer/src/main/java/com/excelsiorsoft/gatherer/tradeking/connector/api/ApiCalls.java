@@ -7,8 +7,11 @@ import static org.scribe.model.Verb.GET;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.Map;
+
 import org.scribe.model.Verb;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -29,8 +32,23 @@ public class ApiCalls {
 		String getTemplate(); 
 	}
 
+	/**
+	 * This call will return the current state of the market, the time of the next state change (if the market is open), and the current server timestamp.
+	 */	
 	public static String getMarketClock(String format) throws Throwable	{
 		return resolveString( MARKET.CLOCK, null,format);
+	}
+	
+	/**
+	 * This call will return quotes for a symbol or list of symbols passed as a query parameter (see query parameters below). While this request type is GET, POST can also be used and is recommended
+	 * for larger lists of symbols.
+	 * @throws Throwable 
+	 */
+	public static String getQuote(ResponseFormat format) throws Throwable 	{
+		
+		Map<String, String> params = new HashMap<>();
+		params.put("symbols", "SLW");
+		return resolveString(MARKET.EXT_QUOTES, params, format.toString());
 	}
 	
 	
