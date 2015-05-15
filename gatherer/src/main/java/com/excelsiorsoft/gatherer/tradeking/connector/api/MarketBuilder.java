@@ -3,9 +3,12 @@ package com.excelsiorsoft.gatherer.tradeking.connector.api;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.XML;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.model.MarketQuotesField.FIDS;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.model.MarketQuotesField.SYMBOLS;
+import static org.scribe.model.Verb.GET;
 import static org.scribe.model.Verb.POST;
 
 import org.scribe.model.Verb;
+
+
 
 
 
@@ -28,12 +31,18 @@ public class MarketBuilder extends ApiBuilder
 		verb = v;
 	}
 
-	public static MarketBuilder getClock(ResponseFormat format) throws Throwable
-	{
-		MarketBuilder b = new MarketBuilder(Verb.GET);
+	public static MarketBuilder getClock(ResponseFormat format) throws Throwable {
+		MarketBuilder marketBuilder = new MarketBuilder(GET);
 		//b.resourceURL = ApiCall.getMarketClock(format);
-		b.resourceURL = ApiCalls.getMarketClock(format.toString());
-		return b;
+		marketBuilder.resourceURL = ApiCalls.getMarketClock(format.toString());
+		return marketBuilder;
+	}
+	
+	
+	public static MarketBuilder getExtQuotes(ResponseFormat format, String symbols, String fields) throws Throwable{
+		MarketBuilder marketBuilder = new MarketBuilder(POST);
+		marketBuilder.resourceURL = ApiCalls.getExtQuotes(format.toString());
+		return marketBuilder;
 	}
 
 	public static MarketBuilder getQuotes(ResponseFormat format, String... symbols)

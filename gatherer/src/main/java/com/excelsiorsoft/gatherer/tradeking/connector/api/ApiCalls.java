@@ -44,7 +44,7 @@ public class ApiCalls {
 	 * for larger lists of symbols.
 	 * @throws Throwable 
 	 */
-	public static String getQuote(ResponseFormat format) throws Throwable 	{
+	public static String getExtQuotes(String format) throws Throwable 	{
 		
 		Map<String, String> params = new HashMap<>();
 		params.put("symbols", "SLW");

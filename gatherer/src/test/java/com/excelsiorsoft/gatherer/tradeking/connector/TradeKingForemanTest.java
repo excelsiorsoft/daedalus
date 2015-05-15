@@ -1,7 +1,7 @@
 package com.excelsiorsoft.gatherer.tradeking.connector;
 
 
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketBuilder.getClock;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketBuilder.*;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.XML;
 import static org.junit.Assert.*;
 
@@ -37,7 +37,7 @@ public class TradeKingForemanTest {
 	public void marketExtQuotesApiCallTest() throws Throwable {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeAPICall(getClock(XML)).toString());
+		System.out.println(foreman.makeAPICall(getExtQuotes(XML, "", "")).toString());
 		
 	}	
 

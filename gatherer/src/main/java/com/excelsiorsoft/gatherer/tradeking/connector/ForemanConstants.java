@@ -16,30 +16,28 @@ public enum ForemanConstants implements Serializable
 	/**
 	 * TradeKing's OAuth API Key
 	 */
-	API_KEY(System.getenv("API_KEY")),
+	CONSUMER_KEY(System.getenv("CONSUMER_KEY")),
 	/**
 	 * TradeKing's OAuth API Secret Key
 	 */
-	API_SECRET(System.getenv("API_SECRET")),
+	CONSUMER_SECRET(System.getenv("CONSUMER_SECRET")),
 	/**
 	 * TradeKing's OAuth Access Token Key
 	 */
-	ACCESS_TOKEN(System.getenv("ACCESS_TOKEN")),
+	OAUTH_TOKEN(System.getenv("OAUTH_TOKEN")),
 	/**
 	 * TradeKing's OAuth Access Token Secret Key
 	 */
-	ACCESS_TOKEN_SECRET(System.getenv("ACCESS_TOKEN_SECRET"));
+	OAUTH_TOKEN_SECRET(System.getenv("OAUTH_TOKEN_SECRET"));
 
 	private String value;
 
-	ForemanConstants(String value)
-	{
-		if (value == null)
-		{
+	ForemanConstants(String value) {
+		if (value == null) {
+			
 			this.value = "";
-		}
-		else
-		{
+		} else {
+			
 			this.value = value;
 		}
 	}

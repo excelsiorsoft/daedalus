@@ -11,10 +11,10 @@ public class ForemanConstantsTest {
 	@Test
 	public void test()
 	{
-		assertTrue(!API_KEY.toString().isEmpty());
-		assertTrue(!API_SECRET.toString().isEmpty());
-		assertTrue(!ACCESS_TOKEN.toString().isEmpty());
-		assertTrue(!ACCESS_TOKEN_SECRET.toString().isEmpty());
+		assertTrue(!CONSUMER_KEY.toString().isEmpty());
+		assertTrue(!CONSUMER_SECRET.toString().isEmpty());
+		assertTrue(!OAUTH_TOKEN.toString().isEmpty());
+		assertTrue(!OAUTH_TOKEN_SECRET.toString().isEmpty());
 	}
 
 }
