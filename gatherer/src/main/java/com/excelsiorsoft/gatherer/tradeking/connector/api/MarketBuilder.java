@@ -30,7 +30,8 @@ public class MarketBuilder extends ApiBuilder
 	public static MarketBuilder getClock(ResponseFormat format)
 	{
 		MarketBuilder b = new MarketBuilder(Verb.GET);
-		b.resourceURL = ApiCall.getMarketClock(format);
+		//b.resourceURL = ApiCall.getMarketClock(format);
+		b.resourceURL = ApiCalls.getMarketClock(format.toString());
 		return b;
 	}
 

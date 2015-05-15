@@ -1,12 +1,13 @@
 package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
+
 import static org.scribe.model.Verb.GET;
 
 import java.util.Map;
 
 import org.scribe.model.Verb;
 
-import com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET;
+
 
 /**
  * A builder for different sorts of TradeKing API calls - replacement for {@link ApiCall}
@@ -52,8 +53,7 @@ public class ApiCalls {
 		private Verb httpMethod;
 		private String template;
 
-		MARKET(Verb httpMethod, String template)
-		{
+		MARKET(Verb httpMethod, String template){
 			this.httpMethod = httpMethod;
 			this.template = template;
 		
@@ -67,13 +67,9 @@ public class ApiCalls {
 			return template;
 		}
 
-
+	}
+}
 		
 
-		public Verb getVerb()
-		{
-			return Verb.GET;
-		}
-	}	
 
-}
+
