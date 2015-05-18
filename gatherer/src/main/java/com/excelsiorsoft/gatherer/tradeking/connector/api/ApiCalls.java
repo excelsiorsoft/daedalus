@@ -60,6 +60,7 @@ public class ApiCalls {
 
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);
+		cfg.setURLEscapingCharset("UTF-8");
 
 		Template template = new Template("URLProducingTemplate",
 				new StringReader(type.getTemplate()), cfg);
@@ -72,7 +73,7 @@ public class ApiCalls {
 	
 	public enum MARKET implements CallType	{
 		CLOCK(GET, "https://api.tradeking.com/v1/market/clock"), 
-		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${format}?symbols=${symbols}"), 
+		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${format}?symbols=${symbols?url}"), 
 		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
 		NEWS_SEARCH(GET, "https://api.tradeking.com/v1/market/news/search"), 
 		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 
