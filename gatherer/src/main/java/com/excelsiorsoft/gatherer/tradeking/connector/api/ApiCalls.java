@@ -48,7 +48,7 @@ public class ApiCalls {
 	 */
 	public static String getExtQuotes(String format, String symbolsLst) throws Throwable 	{
 		
-		Map<String, Object/*List<String>*/> params = new HashMap<>();
+		Map<String, Object> params = new HashMap<>();
 		params.put("symbols", symbolsLst);
 		params.put("format", format);
 
@@ -56,7 +56,7 @@ public class ApiCalls {
 	}
 	
 	
-	public static String buildUri(CallType type, Map<String, Object/*List<String>*/> params, String format) throws Throwable {
+	public static String buildUri(CallType type, Map<String, Object> params, String format) throws Throwable {
 
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);
