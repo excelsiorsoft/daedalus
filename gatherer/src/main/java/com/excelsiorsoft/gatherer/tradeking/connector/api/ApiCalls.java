@@ -37,7 +37,7 @@ public class ApiCalls {
 	 * This call will return the current state of the market, the time of the next state change (if the market is open), and the current server timestamp.
 	 */	
 	public static String getMarketClock(String format) throws Throwable	{
-		return buildUri( MARKET.CLOCK, null,format);
+		return buildUri( MARKET.CLOCK, null/*,format*/);
 	}
 	
 	/**
@@ -52,11 +52,11 @@ public class ApiCalls {
 		params.put("symbols", symbolsLst);
 		params.put("format", format);
 
-		return buildUri(MARKET.EXT_QUOTES, params, format.toString());
+		return buildUri(MARKET.EXT_QUOTES, params/*, format.toString()*/);
 	}
 	
 	
-	public static String buildUri(CallType type, Map<String, Object> params, String format) throws Throwable {
+	public static String buildUri(CallType type, Map<String, Object> params/*, String format*/) throws Throwable {
 
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);
