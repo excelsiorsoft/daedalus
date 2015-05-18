@@ -37,7 +37,7 @@ public class ApiCalls {
 	 * This call will return the current state of the market, the time of the next state change (if the market is open), and the current server timestamp.
 	 */	
 	public static String getMarketClock(String format) throws Throwable	{
-		return resolveString( MARKET.CLOCK, null,format);
+		return buildUri( MARKET.CLOCK, null,format);
 	}
 	
 	/**
@@ -46,16 +46,17 @@ public class ApiCalls {
 	 * @param symbolsLst 
 	 * @throws Throwable 
 	 */
-	public static String getExtQuotes(String format, List<String> symbolsLst) throws Throwable 	{
+	public static String getExtQuotes(String format, String symbolsLst) throws Throwable 	{
 		
-		Map<String, List<String>> params = new HashMap<>();
+		Map<String, Object/*List<String>*/> params = new HashMap<>();
 		params.put("symbols", symbolsLst);
+		params.put("format", format);
 
-		return resolveString(MARKET.EXT_QUOTES, params, format.toString());
+		return buildUri(MARKET.EXT_QUOTES, params, format.toString());
 	}
 	
 	
-	public static String resolveString(CallType type, Map<String, List<String>> params, String format) throws Throwable {
+	public static String buildUri(CallType type, Map<String, Object/*List<String>*/> params, String format) throws Throwable {
 
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);
@@ -71,7 +72,7 @@ public class ApiCalls {
 	
 	public enum MARKET implements CallType	{
 		CLOCK(GET, "https://api.tradeking.com/v1/market/clock"), 
-		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes?symbols=${symbols}"), 
+		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${format}?symbols=${symbols}"), 
 		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
 		NEWS_SEARCH(GET, "https://api.tradeking.com/v1/market/news/search"), 
 		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 

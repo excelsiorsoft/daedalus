@@ -47,7 +47,7 @@ public class MarketBuilder extends ApiBuilder
 	public static MarketBuilder getExtQuotes(ResponseFormat format, String symbols, String fields) throws Throwable{ 
 		MarketBuilder marketBuilder = new MarketBuilder(POST);
 		List<String> symbolsLst = Arrays.asList(symbols);
-		marketBuilder.resourceURL = ApiCalls.getExtQuotes(format.toString(), symbolsLst);
+		marketBuilder.resourceURL = ApiCalls.getExtQuotes(format.toString(), symbolsLst.toString().substring(1, symbolsLst.toString().length()-1));
 		return marketBuilder;
 	}
 
