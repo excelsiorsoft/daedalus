@@ -8,7 +8,6 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.scribe.model.Verb;
@@ -37,7 +36,7 @@ public class ApiCalls {
 	 * This call will return the current state of the market, the time of the next state change (if the market is open), and the current server timestamp.
 	 */	
 	public static String getMarketClock(String format) throws Throwable	{
-		return buildUri( MARKET.CLOCK, null/*,format*/);
+		return buildUri( MARKET.CLOCK, null);
 	}
 	
 	/**
@@ -46,17 +45,17 @@ public class ApiCalls {
 	 * @param symbolsLst 
 	 * @throws Throwable 
 	 */
-	public static String getExtQuotes(String format, String symbolsLst) throws Throwable 	{
+	public static String getExtQuotes(String format, String symbolsLst) throws Throwable {
 		
 		Map<String, Object> params = new HashMap<>();
 		params.put("symbols", symbolsLst);
 		params.put("format", format);
 
-		return buildUri(MARKET.EXT_QUOTES, params/*, format.toString()*/);
+		return buildUri(MARKET.EXT_QUOTES, params);
 	}
 	
 	
-	public static String buildUri(CallType type, Map<String, Object> params/*, String format*/) throws Throwable {
+	public static String buildUri(CallType type, Map<String, Object> params) throws Throwable {
 
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);
@@ -71,7 +70,7 @@ public class ApiCalls {
 		return out.toString();
 	}
 	
-	public enum MARKET implements CallType	{
+	public enum MARKET implements CallType {
 		CLOCK(GET, "https://api.tradeking.com/v1/market/clock"), 
 		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${format}?symbols=${symbols?url}"), 
 		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
@@ -92,7 +91,7 @@ public class ApiCalls {
 		private Verb httpMethod;
 		private String template;
 
-		MARKET(Verb httpMethod, String template){
+		MARKET(Verb httpMethod, String template) {
 			this.httpMethod = httpMethod;
 			this.template = template;
 		

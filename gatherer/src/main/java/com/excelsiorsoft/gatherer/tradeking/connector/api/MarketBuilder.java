@@ -15,6 +15,7 @@ import org.scribe.model.Verb;
  *
  */
 public class MarketBuilder extends ApiBuilder {
+	
 	private static final long serialVersionUID = -7542591696724178699L;
 
 	private MarketBuilder(Verb v) {
