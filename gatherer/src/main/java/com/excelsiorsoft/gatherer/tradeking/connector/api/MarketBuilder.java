@@ -39,31 +39,7 @@ public class MarketBuilder extends ApiBuilder
 		return marketBuilder;
 	}
 
-/*	public static MarketBuilder getQuotes(ResponseFormat format, String... symbols) {
-		return getQuotes(format, symbols, new MarketQuotesResponseField[] {});
-	}
 
-	public static MarketBuilder getQuotes(ResponseFormat format, String[] symbols, MarketQuotesResponseField[] fields)
-	{
-		StringBuilder sb = new StringBuilder();
-		for (String sym : symbols)
-		{
-			sb.append(sym + " ");
-		}
-		StringBuilder fids = new StringBuilder();
-		for (MarketQuotesResponseField f : fields)
-		{
-			fids.append(f.toString() + " ");
-		}
-		MarketBuilder b = new MarketBuilder(POST);
-		b.params.put(SYMBOLS.toString(), sb.toString().trim().replace(" ", ","));
-		b.resourceURL = ApiCall.getQuote(XML);
-		if (!fids.toString().isEmpty())
-		{
-			b.params.put(FIDS.toString(), fids.toString().trim().replace(" ", ","));
-		}
-		return b;
-	}*/
 
 }
 
