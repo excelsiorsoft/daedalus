@@ -1,23 +1,9 @@
 package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.XML;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.model.MarketQuotesField.FIDS;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.model.MarketQuotesField.SYMBOLS;
 import static org.scribe.model.Verb.GET;
 import static org.scribe.model.Verb.POST;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.scribe.model.Verb;
-
-
-
-
-
-
-
-import com.excelsiorsoft.gatherer.tradeking.connector.api.model.MarketQuotesResponseField;
 
 
 
@@ -52,7 +38,7 @@ public class MarketBuilder extends ApiBuilder
 		return marketBuilder;
 	}
 
-	public static MarketBuilder getQuotes(ResponseFormat format, String... symbols) {
+/*	public static MarketBuilder getQuotes(ResponseFormat format, String... symbols) {
 		return getQuotes(format, symbols, new MarketQuotesResponseField[] {});
 	}
 
@@ -76,7 +62,7 @@ public class MarketBuilder extends ApiBuilder
 			b.params.put(FIDS.toString(), fids.toString().trim().replace(" ", ","));
 		}
 		return b;
-	}
+	}*/
 
 }
 
