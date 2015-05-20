@@ -46,7 +46,16 @@ public class TradeKingForemanTest {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println("Calls remaining: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsRemaining());
+		System.out.println("Calls used: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsUsed());
+		System.out.println("Rate limit expiration: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getRateLimitExpiration());
+		System.out.println("Total calls allowed: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getTotalCallsAllowed());
 		
+		System.out.println("\n..... repeating .....\n");
+		
+		System.out.println("Calls remaining: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsRemaining());
+		System.out.println("Calls used: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsUsed());
+		System.out.println("Rate limit expiration: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getRateLimitExpiration());
+		System.out.println("Total calls allowed: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getTotalCallsAllowed());
 	}	
 
 }

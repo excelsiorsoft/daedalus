@@ -72,21 +72,26 @@ public class TKResponse implements Serializable {
 		String limitTotal = response.getHeader("X-RateLimit-Limit");
 		String limitRemain = response.getHeader("X-RateLimit-Remaining");
 		
-		if (limitUsed != null) {
+		/*if (limitUsed != null) {
 			rateLimitUsed = Integer.parseInt(limitUsed);
-		}
+		}*/
 		
-		if (limitExpire != null) {
+		rateLimitUsed = limitUsed != null?Integer.parseInt(limitUsed):0;
+		
+		/*if (limitExpire != null) {
 			rateLimitExpire = Long.parseLong(limitExpire);
-		}
+		}*/
+		rateLimitExpire = limitExpire != null?Long.parseLong(limitExpire):0;
 		
-		if (limitTotal != null) {
+		/*if (limitTotal != null) {
 			rateLimitTotal = Integer.parseInt(limitTotal);
-		}
+		}*/
+		rateLimitTotal = limitTotal != null?Integer.parseInt(limitTotal):0;
 		
-		if (limitRemain != null) {
+		/*if (limitRemain != null) {
 			rateLimitRemaining = Integer.parseInt(limitRemain);
-		}
+		}*/
+		rateLimitRemaining = limitRemain != null?Integer.parseInt(limitRemain):0;
 		
 		this.response = response.getBody();
 	}
