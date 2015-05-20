@@ -12,37 +12,33 @@ import org.scribe.model.Verb;
  * @author sleyzerzon
  *
  */
-public abstract class ApiBuilder implements Serializable
-{
+public abstract class ApiBuilder implements Serializable {
+	
 	private static final long serialVersionUID = 5364934694744835663L;
+	
 	protected Verb verb;
-	protected Map<String, String> params = new HashMap<String, String>();
+	protected Map<String, String> params = new HashMap<>();
 	protected String resourceURL;
 	protected String body;
 	protected boolean streaming;
 
-	public Verb getVerb()
-	{
+	public Verb getVerb() {
 		return verb;
 	}
 
-	public Map<String, String> getParameters()
-	{
+	public Map<String, String> getParameters() {
 		return params;
 	}
 
-	public String getResourceURL()
-	{
+	public String getResourceURL() {
 		return resourceURL;
 	}
 
-	public String getBody()
-	{
+	public String getBody() {
 		return body;
 	}
 
-	public boolean isStreaming()
-	{
+	public boolean isStreaming() {
 		return streaming;
 	}
 
