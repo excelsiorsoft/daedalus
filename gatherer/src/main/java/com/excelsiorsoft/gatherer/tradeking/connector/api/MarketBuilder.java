@@ -26,7 +26,7 @@ public class MarketBuilder extends ApiBuilder {
 		
 		MarketBuilder marketBuilder = new MarketBuilder(GET);
 		//b.resourceURL = ApiCall.getMarketClock(format);
-		marketBuilder.resourceURL = ApiCalls.getMarketClock(format.toString());
+		marketBuilder.setResourceURL(ApiCalls.getMarketClock(format.toString()));;
 		return marketBuilder;
 	}
 	
@@ -34,7 +34,7 @@ public class MarketBuilder extends ApiBuilder {
 	public static MarketBuilder getExtQuotes(ResponseFormat format, String symbols, String fields) throws Throwable { 
 		
 		MarketBuilder marketBuilder = new MarketBuilder(POST);
-		marketBuilder.resourceURL = ApiCalls.getExtQuotes(format.toString(), symbols);
+		marketBuilder.setResourceURL(ApiCalls.getExtQuotes(format.toString(), symbols));
 		return marketBuilder;
 	}
 
