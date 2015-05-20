@@ -7,7 +7,7 @@ import org.eclipse.jetty.client.api.Response;
 import org.eclipse.jetty.client.api.Result;
 import org.eclipse.jetty.http.HttpMethod;
 
-public class TKAdaptherTest {
+public class TKAdapterTest {
 	/* 
 	public static void mainOld(String[] args) throws Exception {
        String CONSUMER_KEY = "<CONSUMER_KEY>";
