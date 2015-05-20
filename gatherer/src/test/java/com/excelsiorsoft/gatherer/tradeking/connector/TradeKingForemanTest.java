@@ -38,6 +38,7 @@ public class TradeKingForemanTest {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).toString());
+		//System.out.println(foreman.makeAPICall(getExtQuotes(XML, "gasl, gasl150918C00004000 ", "")).toString());
 		
 	}
 	
