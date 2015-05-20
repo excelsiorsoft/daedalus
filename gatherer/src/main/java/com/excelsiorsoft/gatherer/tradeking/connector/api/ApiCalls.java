@@ -36,7 +36,11 @@ public class ApiCalls {
 	 * This call will return the current state of the market, the time of the next state change (if the market is open), and the current server timestamp.
 	 */	
 	public static String getMarketClock(String format) throws Throwable	{
-		return buildUri( MARKET.CLOCK, null);
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("format", format);
+		return buildUri( MARKET.CLOCK, params);
+		
 	}
 	
 	/**
@@ -71,7 +75,7 @@ public class ApiCalls {
 	}
 	
 	public enum MARKET implements CallType {
-		CLOCK(GET, "https://api.tradeking.com/v1/market/clock"), 
+		CLOCK(GET, "https://api.tradeking.com/v1/market/clock.${format}"), 
 		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${format}?symbols=${symbols?url}"), 
 		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
 		NEWS_SEARCH(GET, "https://api.tradeking.com/v1/market/news/search"), 
