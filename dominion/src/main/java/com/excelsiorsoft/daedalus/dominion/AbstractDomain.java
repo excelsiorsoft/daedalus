@@ -1,33 +1,33 @@
 package com.excelsiorsoft.daedalus.dominion;
 
-
 import java.sql.Timestamp;
-
 
 public class AbstractDomain implements Reportable {
 
+	protected Long id;
+
+	protected Timestamp timestamp;
+
 	@Override
 	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
 
 	@Override
 	public Identifiable setId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		this.id = id;
+		return this;
 	}
 
 	@Override
 	public Timestamp getTimestamp() {
-		// TODO Auto-generated method stub
-		return null;
+		return timestamp;
 	}
 
 	@Override
 	public TimeTrackable setTimestamp(Timestamp timestamp) {
-		// TODO Auto-generated method stub
-		return null;
+		this.timestamp = timestamp;
+		return this;
 	}
 
 }
