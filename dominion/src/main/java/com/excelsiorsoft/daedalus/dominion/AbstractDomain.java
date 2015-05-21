@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 
-public class AbstractDomain implements Reportable {
+public class AbstractDomain implements IdentifiableTimeTrackable {
 
 	protected Long id;
 
