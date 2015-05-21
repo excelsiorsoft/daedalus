@@ -7,7 +7,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+
 import com.excelsiorsoft.gatherer.tradeking.connector.api.MarketBuilder;
+import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
 
 
 
@@ -30,7 +32,11 @@ public class TradeKingForemanTest {
 
 		System.out.println(foreman.makeAPICall(getClock(XML)).toString()); 
 
-		assertTrue("Foreman didn't recognize API reponse",foreman.makeAPICall(MarketBuilder.getClock(XML)).toString().contains("<message>"));
+		String response = foreman.makeAPICall(MarketBuilder.getClock(XML)).toString();
+		assertTrue("Foreman didn't recognize API reponse",response.contains("<message>"));
+		
+		XmlHandler handler = new XmlHandler();
+		handler.parseMarketClock(response);
 	}	
 	
 	@Test
