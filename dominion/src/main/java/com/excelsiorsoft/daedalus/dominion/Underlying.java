@@ -25,6 +25,7 @@ public class Underlying extends AbstractTradableDomain /*implements Tradable*/ {
 	/*private BigDecimal bid;
 	private BigDecimal ask;*/
 	
+
 	private List<Phenomenon> affectedBy = new ArrayList<Phenomenon>();
 
 	public InstrumentType getType() {
@@ -58,6 +59,7 @@ public class Underlying extends AbstractTradableDomain /*implements Tradable*/ {
 	}
 
 	public void setAffectedBy(List<Phenomenon> affectedBy) {
+
 		this.affectedBy = affectedBy;
 	}
 
