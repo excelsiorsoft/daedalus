@@ -42,7 +42,14 @@
 			<version>${json-lib.version}</version>
 			<classifier>jdk15</classifier>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 
