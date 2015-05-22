@@ -1,4 +1,4 @@
-package com.excelsior.gatherer.tradeking.connector;
+package com.excelsior.gatherer.tradeking.connector.api;
 
 import static org.junit.Assert.*;
 
