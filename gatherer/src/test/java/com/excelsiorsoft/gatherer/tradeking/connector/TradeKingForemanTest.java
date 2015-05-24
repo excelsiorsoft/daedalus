@@ -39,7 +39,7 @@ public class TradeKingForemanTest {
 
 		System.out.println(foreman.makeApiCall(getClock(xml)).toString()); 
 
-		String response = foreman.makeApiCall(MarketRequestBuilder.getClock(xml)).toString();
+		String response = foreman.makeApiCall(MarketRequestBuilder.getClock(xml)).getResponse()/*.toString()*/;
 		assertTrue("Foreman didn't recognize API reponse",response.contains("<message>"));
 		
 		XmlHandler handler = new XmlHandler();
@@ -53,7 +53,7 @@ public class TradeKingForemanTest {
 		System.out.println("market/ext/quotes call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).toString());
+		System.out.println(foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getResponse());
 		//System.out.println(foreman.makeAPICall(getExtQuotes(XML, "gasl, gasl150918C00004000 ", "")).toString());
 		System.out.println("==============================");
 		
@@ -86,7 +86,7 @@ public class TradeKingForemanTest {
 		System.out.println("market/options/expirations call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getOptionsExpirations(xml, "slw ")).toString());
+		System.out.println(foreman.makeApiCall(getOptionsExpirations(xml, "slw ")).getResponse());
 		System.out.println("==============================");
 		
 	}
@@ -97,7 +97,7 @@ public class TradeKingForemanTest {
 		System.out.println("market/options/strikes call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getOptionsStrikes(xml, "slw ")).toString());
+		System.out.println(foreman.makeApiCall(getOptionsStrikes(xml, "slw ")).getResponse());
 		System.out.println("==============================");
 		
 	}

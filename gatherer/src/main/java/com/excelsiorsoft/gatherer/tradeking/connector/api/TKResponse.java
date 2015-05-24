@@ -63,34 +63,24 @@ public class TKResponse implements Serializable {
 	private int rateLimitTotal = 0;
 	private int rateLimitRemaining = 0;
 
-	public TKResponse(/*Request req*/Response oAuthResponse) {
+	public TKResponse(Response oAuthResponse) {
 		
-		//Response response = req.send();
 		
 		String limitUsed = oAuthResponse.getHeader("X-RateLimit-Used");
 		String limitExpire = oAuthResponse.getHeader("X-RateLimit-Expire");
 		String limitTotal = oAuthResponse.getHeader("X-RateLimit-Limit");
 		String limitRemain = oAuthResponse.getHeader("X-RateLimit-Remaining");
 		
-		/*if (limitUsed != null) {
-			rateLimitUsed = Integer.parseInt(limitUsed);
-		}*/
 		
 		rateLimitUsed = limitUsed != null?Integer.parseInt(limitUsed):0;
 		
-		/*if (limitExpire != null) {
-			rateLimitExpire = Long.parseLong(limitExpire);
-		}*/
+		
 		rateLimitExpire = limitExpire != null?Long.parseLong(limitExpire):0;
 		
-		/*if (limitTotal != null) {
-			rateLimitTotal = Integer.parseInt(limitTotal);
-		}*/
+		
 		rateLimitTotal = limitTotal != null?Integer.parseInt(limitTotal):0;
 		
-		/*if (limitRemain != null) {
-			rateLimitRemaining = Integer.parseInt(limitRemain);
-		}*/
+		
 		rateLimitRemaining = limitRemain != null?Integer.parseInt(limitRemain):0;
 		
 		this.response = oAuthResponse.getBody();
@@ -117,10 +107,19 @@ public class TKResponse implements Serializable {
 	public int getCallsRemaining() {
 		return rateLimitRemaining;
 	}
+	
+	public String getResponse(){
+		return response;
+	}
 
 	@Override
 	public String toString() {
-		return response;
+		return String
+				.format("TKResponse [response=%s, rateLimitUsed=%s, rateLimitExpire=%s, rateLimitTotal=%s, rateLimitRemaining=%s]",
+						response, rateLimitUsed, rateLimitExpire,
+						rateLimitTotal, rateLimitRemaining);
 	}
+
+	
 }
 
