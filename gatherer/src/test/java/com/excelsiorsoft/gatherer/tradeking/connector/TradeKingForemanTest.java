@@ -16,7 +16,7 @@ import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
 public class TradeKingForemanTest {
 
 	
-/*	
+	
 	@Test
 	public void connectionTest()
 	{
@@ -27,7 +27,7 @@ public class TradeKingForemanTest {
 		System.out.println("connected fine.");
 		System.out.println("==============================");
 		
-	}*/
+	}
 	
 	@Test
 	public void marketClockApiCall() throws Throwable {
@@ -44,7 +44,7 @@ public class TradeKingForemanTest {
 		handler.parseMarketClock(response);
 		System.out.println("==============================");
 	}	
-/*	
+	
 	@Test
 	public void marketExtQuotesApiCall() throws Throwable {
 		
@@ -87,7 +87,7 @@ public class TradeKingForemanTest {
 		System.out.println(foreman.makeApiCall(getOptionsExpirations(xml, "slw ")).getResponse());
 		System.out.println("==============================");
 		
-	}*/
+	}
 	
 	@Test
 	public void marketOptionsStrikesApiCall() throws Throwable {
