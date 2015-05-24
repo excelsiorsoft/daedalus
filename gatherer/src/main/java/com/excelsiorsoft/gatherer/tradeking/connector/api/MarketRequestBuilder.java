@@ -1,7 +1,10 @@
 package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.*;
 import static org.scribe.model.Verb.GET;
 import static org.scribe.model.Verb.POST;
+
+
 
 
 
@@ -30,33 +33,33 @@ public class MarketRequestBuilder extends TKRequest {
 
 	public static MarketRequestBuilder getClock(ResponseFormat format) throws Throwable {
 		
-		MarketRequestBuilder marketBuilder = new MarketRequestBuilder(GET);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET);
 		//b.resourceURL = ApiCall.getMarketClock(format);
-		marketBuilder.setResourceURL(ApiCalls.getMarketClock(format.toString()));;
-		return marketBuilder;
+		mktReqBuilder.setResourceURL(marketClock(format.toString()));;
+		return mktReqBuilder;
 	}
 	
 	
 	public static MarketRequestBuilder getExtQuotes(ResponseFormat format, String symbols, String fields) throws Throwable { 
 		
-		MarketRequestBuilder marketBuilder = new MarketRequestBuilder(POST);
-		marketBuilder.setResourceURL(ApiCalls.getExtQuotes(format.toString(), symbols));
-		return marketBuilder;
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(POST);
+		mktReqBuilder.setResourceURL(extQuotes(format.toString(), symbols));
+		return mktReqBuilder;
 	}
 	
 
 	public static MarketRequestBuilder getOptionsExpirations (ResponseFormat format, String symbol) throws Throwable { 
 		
-		MarketRequestBuilder marketBuilder = new MarketRequestBuilder(GET);
-		marketBuilder.setResourceURL(ApiCalls.optionsExpirations(format.toString(), symbol));
-		return marketBuilder;
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET);
+		mktReqBuilder.setResourceURL(optionsExpirations(format.toString(), symbol));
+		return mktReqBuilder;
 	}
 	
 	public static MarketRequestBuilder getOptionsStrikes (ResponseFormat format, String symbol) throws Throwable { 
 		
-		MarketRequestBuilder marketBuilder = new MarketRequestBuilder(GET);
-		marketBuilder.setResourceURL(ApiCalls.optionsStrikes(format.toString(), symbol));
-		return marketBuilder;
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET);
+		mktReqBuilder.setResourceURL(optionsStrikes(format.toString(), symbol));
+		return mktReqBuilder;
 	}	
 
 

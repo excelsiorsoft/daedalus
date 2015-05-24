@@ -26,10 +26,10 @@ import freemarker.template.Template;
  * @author sleyzerzon
  *
  */
-public class ApiCalls {
+public class UriBuilder {
 	
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(ApiCalls.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(UriBuilder.class);
 	
 	public interface CallType {
 		Verb getHttpMethod();
@@ -39,7 +39,7 @@ public class ApiCalls {
 	/**
 	 * This call will return the current state of the market, the time of the next state change (if the market is open), and the current server timestamp.
 	 */	
-	public static String getMarketClock(String format) throws Throwable	{
+	public static String marketClock(String format) throws Throwable	{
 		
 		Map<String, Object> params = new HashMap<>();
 		params.put("format", format);
@@ -53,7 +53,7 @@ public class ApiCalls {
 	 * @param symbolsLst 
 	 * @throws Throwable 
 	 */
-	public static String getExtQuotes(String format, String symbolsLst) throws Throwable {
+	public static String extQuotes(String format, String symbolsLst) throws Throwable {
 		
 		Map<String, Object> params = new HashMap<>();
 		params.put("symbols", symbolsLst);
