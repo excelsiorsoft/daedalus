@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.scribe.model.Verb;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The abstract backend to all APIBuilders
@@ -13,6 +15,8 @@ import org.scribe.model.Verb;
  *
  */
 public abstract class ApiBuilder implements Serializable {
+	
+	private final static Logger LOGGER = LoggerFactory.getLogger(ApiBuilder.class);
 	
 	private static final long serialVersionUID = 5364934694744835663L;
 	
