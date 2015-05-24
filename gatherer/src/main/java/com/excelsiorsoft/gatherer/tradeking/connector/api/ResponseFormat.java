@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public enum ResponseFormat implements Serializable
 {
-	XML, JSON, JSONP;
+	xml, json, jsonp;
 
 	@Override
 	public String toString()

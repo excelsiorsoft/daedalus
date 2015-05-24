@@ -2,7 +2,7 @@ package com.excelsiorsoft.gatherer.tradeking.connector;
 
 
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketBuilder.*;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.XML;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -30,9 +30,9 @@ public class TradeKingForemanTest {
 		TradeKingForeman foreman = new TradeKingForeman();
 		
 
-		System.out.println(foreman.makeAPICall(getClock(XML)).toString()); 
+		System.out.println(foreman.makeAPICall(getClock(xml)).toString()); 
 
-		String response = foreman.makeAPICall(MarketBuilder.getClock(XML)).toString();
+		String response = foreman.makeAPICall(MarketBuilder.getClock(xml)).toString();
 		assertTrue("Foreman didn't recognize API reponse",response.contains("<message>"));
 		
 		XmlHandler handler = new XmlHandler();
@@ -43,7 +43,7 @@ public class TradeKingForemanTest {
 	public void marketExtQuotesApiCallTest() throws Throwable {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).toString());
+		System.out.println(foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).toString());
 		//System.out.println(foreman.makeAPICall(getExtQuotes(XML, "gasl, gasl150918C00004000 ", "")).toString());
 		
 	}
@@ -52,17 +52,17 @@ public class TradeKingForemanTest {
 	public void exploringResponse() throws Throwable {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println("Calls remaining: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsRemaining());
-		System.out.println("Calls used: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsUsed());
-		System.out.println("Rate limit expiration: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getRateLimitExpiration());
-		System.out.println("Total calls allowed: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getTotalCallsAllowed());
+		System.out.println("Calls remaining: " + foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsRemaining());
+		System.out.println("Calls used: " + foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsUsed());
+		System.out.println("Rate limit expiration: " + foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getRateLimitExpiration());
+		System.out.println("Total calls allowed: " + foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getTotalCallsAllowed());
 		
 		System.out.println("\n..... repeating .....\n");
 		
-		System.out.println("Calls remaining: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsRemaining());
-		System.out.println("Calls used: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsUsed());
-		System.out.println("Rate limit expiration: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getRateLimitExpiration());
-		System.out.println("Total calls allowed: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getTotalCallsAllowed());
+		System.out.println("Calls remaining: " + foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsRemaining());
+		System.out.println("Calls used: " + foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsUsed());
+		System.out.println("Rate limit expiration: " + foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getRateLimitExpiration());
+		System.out.println("Total calls allowed: " + foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getTotalCallsAllowed());
 	}	
 	
 	
@@ -70,7 +70,7 @@ public class TradeKingForemanTest {
 	public void marketOptionsExpirationsApiCallTest() throws Throwable {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeAPICall(getOptionsExpirations(XML, "slw ")).toString());
+		System.out.println(foreman.makeAPICall(getOptionsExpirations(xml, "slw ")).toString());
 		
 	}
 
