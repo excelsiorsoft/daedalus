@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Request;
+import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
@@ -43,7 +44,7 @@ public class TradeKingForeman implements Serializable {
 	public TKResponse makeApiCall(final TKRequest tkRequest) throws ForemanException {
 		
 		if (!isConnected()) {
-			connect();
+			prepareOAuthConnection();
 		}
 	
 		return sendOAuthRequest(makeOAuthRequest(/*
@@ -55,7 +56,9 @@ public class TradeKingForeman implements Serializable {
 	
 	private TKResponse sendOAuthRequest(final Request request) {
 		
-		TKResponse response = new TKResponse(request);
+		Response oAuthResponse = request.send();
+		
+		TKResponse response = new TKResponse(oAuthResponse);
 		return response;
 	}	
 	
@@ -91,7 +94,7 @@ public class TradeKingForeman implements Serializable {
 		return request;
 	}
 	
-	private void connect() throws ForemanException 	{
+	private void prepareOAuthConnection() throws ForemanException 	{
 		
 		log.info("Connecting to Tradeking");
 
@@ -102,7 +105,7 @@ public class TradeKingForeman implements Serializable {
 		accessToken = new Token(OAUTH_TOKEN.toString(), OAUTH_TOKEN_SECRET.toString());
 		
 		log.info("\t ... Access Token built!");
-		log.info("Connection Established");
+		log.info("Safe to connect");
 	}	
 	
 	private boolean hasOAuth()	{

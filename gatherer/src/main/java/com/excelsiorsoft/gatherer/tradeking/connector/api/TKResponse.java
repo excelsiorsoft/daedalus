@@ -63,14 +63,14 @@ public class TKResponse implements Serializable {
 	private int rateLimitTotal = 0;
 	private int rateLimitRemaining = 0;
 
-	public TKResponse(Request req) {
+	public TKResponse(/*Request req*/Response oAuthResponse) {
 		
-		Response response = req.send();
+		//Response response = req.send();
 		
-		String limitUsed = response.getHeader("X-RateLimit-Used");
-		String limitExpire = response.getHeader("X-RateLimit-Expire");
-		String limitTotal = response.getHeader("X-RateLimit-Limit");
-		String limitRemain = response.getHeader("X-RateLimit-Remaining");
+		String limitUsed = oAuthResponse.getHeader("X-RateLimit-Used");
+		String limitExpire = oAuthResponse.getHeader("X-RateLimit-Expire");
+		String limitTotal = oAuthResponse.getHeader("X-RateLimit-Limit");
+		String limitRemain = oAuthResponse.getHeader("X-RateLimit-Remaining");
 		
 		/*if (limitUsed != null) {
 			rateLimitUsed = Integer.parseInt(limitUsed);
@@ -93,7 +93,7 @@ public class TKResponse implements Serializable {
 		}*/
 		rateLimitRemaining = limitRemain != null?Integer.parseInt(limitRemain):0;
 		
-		this.response = response.getBody();
+		this.response = oAuthResponse.getBody();
 	}
 
 	public TKResponse(String req, Integer... limits) {
