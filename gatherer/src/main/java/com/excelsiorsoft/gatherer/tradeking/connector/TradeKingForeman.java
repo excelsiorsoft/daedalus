@@ -18,7 +18,7 @@ import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.excelsiorsoft.gatherer.tradeking.connector.api.ApiBuilder;
+import com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TKResponse;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TradekingApi;
 
@@ -41,21 +41,21 @@ public class TradeKingForeman implements Serializable {
 	private Logger log = LoggerFactory.getLogger(TradeKingForeman.class);
 	
 	
-	public TKResponse makeAPICall(ApiBuilder b) throws ForemanException
+	public TKResponse makeApiCall(final TKRequest b) throws ForemanException
 	{
 		if (!isConnected())
 		{
 			connect();
 		}
-		log.trace("Making an API Call");
+		log.trace("Sending an API Request");
 		log.trace("\t ... Verb:" + b.getVerb());
 		log.trace("\t ... Resource URL:" + b.getResourceURL());
 		log.trace("\t ... Body:" + b.getBody());
 		log.trace("\t ... Parameters:" + !b.getParameters().isEmpty());
-		return sendRequest(makeRequest(b.getVerb(), b.getResourceURL(), b.getParameters(), b.getBody()));
+		return sendRequest(makeOAuthRequest(b.getVerb(), b.getResourceURL(), b.getParameters(), b.getBody()));
 	}
 	
-	private TKResponse sendRequest(Request request)
+	private TKResponse sendRequest(final Request request)
 	{
 		TKResponse response = new TKResponse(request);
 		return response;
@@ -63,25 +63,31 @@ public class TradeKingForeman implements Serializable {
 	
 
 	
-	private Request makeRequest(Verb verb, String resourceURL, Map<String, String> parameters, String payload)
-	{
+	private Request makeOAuthRequest(
+										final Verb verb, 
+										final String resourceURL, 
+										final Map<String, String> parameters, 
+										final String payload
+									) {
+		
 		OAuthRequest request = new OAuthRequest(verb, resourceURL);
-		for (Entry<String, String> entry : parameters.entrySet())
-		{
+		
+		for (Entry<String, String> entry : parameters.entrySet()) {
 			request.addBodyParameter(entry.getKey(), entry.getValue());
 		}
-		if (payload != null)
-		{
+		
+		if (payload != null) {
 			request.addHeader("Content-Length", Integer.toString(payload.length()));
 			request.addHeader("Content-Type", "text/xml");
 			request.addPayload(payload);
 		}
+		
 		oauthService.signRequest(accessToken, request);
 		return request;
 	}
 	
-	private void connect() throws ForemanException
-	{
+	private void connect() throws ForemanException 	{
+		
 		log.trace("Connecting to Tradeking");
 
 		oauthService = new ServiceBuilder().provider(TradekingApi.class).apiKey(CONSUMER_KEY.toString()).apiSecret(CONSUMER_SECRET.toString()).build();
@@ -92,18 +98,15 @@ public class TradeKingForeman implements Serializable {
 		log.trace("Connection Established");
 	}	
 	
-	private boolean hasOAuth()
-	{
+	private boolean hasOAuth()	{
 		return oauthService != null;
 	}
 
-	private boolean hasAccessToken()
-	{
+	private boolean hasAccessToken() {
 		return accessToken != null;
 	}
 	
-	protected boolean isConnected()
-	{
+	protected boolean isConnected() {
 		return hasOAuth() && hasAccessToken();
 	}
 
