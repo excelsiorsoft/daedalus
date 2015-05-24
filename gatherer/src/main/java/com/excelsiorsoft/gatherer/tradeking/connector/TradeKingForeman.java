@@ -99,7 +99,7 @@ public class TradeKingForeman implements Serializable {
 
 		oauthService = new ServiceBuilder().provider(TradekingApi.class).apiKey(CONSUMER_KEY.toString()).apiSecret(CONSUMER_SECRET.toString()).build();
 
-		log.info("\t ... Service built!");
+		log.info("\t ... OAuth Service built!");
 		
 		accessToken = new Token(OAUTH_TOKEN.toString(), OAUTH_TOKEN_SECRET.toString());
 		
