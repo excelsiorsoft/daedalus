@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
 import com.excelsiorsoft.gatherer.tradeking.connector.api.MarketBuilder;
 import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
 
@@ -16,6 +15,8 @@ import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
 
 public class TradeKingForemanTest {
 
+	
+	
 	@Test
 	public void connectionTest()
 	{

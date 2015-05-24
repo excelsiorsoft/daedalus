@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.scribe.model.Verb;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -27,6 +29,8 @@ import freemarker.template.Template;
 public class ApiCalls {
 	
 
+	private final static Logger LOGGER = LoggerFactory.getLogger(ApiCalls.class);
+	
 	public interface CallType {
 		Verb getHttpMethod();
 		String getTemplate(); 
@@ -97,6 +101,7 @@ public class ApiCalls {
 	
 	public static String buildUri(CallType type, Map<String, Object> params) throws Throwable {
 
+		LOGGER.debug("Building template with call of type {} and parameters {}\n", type, params);
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);
 		cfg.setURLEscapingCharset("UTF-8");

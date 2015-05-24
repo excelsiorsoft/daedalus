@@ -4,7 +4,12 @@ import static org.scribe.model.Verb.GET;
 import static org.scribe.model.Verb.POST;
 
 
+
 import org.scribe.model.Verb;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForemanTest;
 
 
 
@@ -15,6 +20,8 @@ import org.scribe.model.Verb;
  *
  */
 public class MarketBuilder extends ApiBuilder {
+	
+	private final static Logger LOGGER = LoggerFactory.getLogger(MarketBuilder.class);
 	
 	private static final long serialVersionUID = -7542591696724178699L;
 
