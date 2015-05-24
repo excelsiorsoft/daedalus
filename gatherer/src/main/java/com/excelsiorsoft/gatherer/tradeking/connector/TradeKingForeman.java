@@ -55,7 +55,7 @@ public class TradeKingForeman implements Serializable {
 
 		log.info("OAuth request {} is ready to be sent out to TK", request);
 		Response oAuthResponse = request.send();
-		log.info("OAuth request sent, received response {}", oAuthResponse);
+		log.info("OAuth request was sent, received a response: {}", oAuthResponse);
 
 		
 		TKResponse response = new TKResponse(oAuthResponse);
@@ -72,7 +72,7 @@ public class TradeKingForeman implements Serializable {
 		final Map<String, String> parameters = tkRequest.getParameters();
 		final String payload = tkRequest.getBody();
 		
-		log.info("Creating an OAuth request around {}", tkRequest);
+		log.info("Creating an OAuth request wrapper around {}", tkRequest);
 		
 		
 		OAuthRequest request = new OAuthRequest(verb, resourceURL);
@@ -87,9 +87,9 @@ public class TradeKingForeman implements Serializable {
 			request.addPayload(payload);
 		}
 		
-		log.info("OAuth request created: {}", request);
+		log.info("OAuth request wrapper created: {}", request);
 		oauthService.signRequest(accessToken, request);
-		log.info("OAuth request singed.");
+		log.info("OAuth request wrapper has been singed.");
 		return request;
 	}
 	

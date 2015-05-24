@@ -36,11 +36,9 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
 		
-
-		System.out.println(foreman.makeApiCall(getClock(xml)).toString()); 
-
 		String response = foreman.makeApiCall(MarketRequestBuilder.getClock(xml)).getResponse()/*.toString()*/;
 		assertTrue("Foreman didn't recognize API reponse",response.contains("<message>"));
+		System.out.println(response);
 		
 		XmlHandler handler = new XmlHandler();
 		handler.parseMarketClock(response);
