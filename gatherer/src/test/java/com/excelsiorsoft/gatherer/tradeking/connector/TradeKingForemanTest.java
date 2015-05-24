@@ -25,7 +25,7 @@ public class TradeKingForemanTest {
 	}
 	
 	@Test
-	public void marketClockApiCallTest() throws Throwable {
+	public void marketClockApiCall() throws Throwable {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
 		
@@ -40,7 +40,7 @@ public class TradeKingForemanTest {
 	}	
 	
 	@Test
-	public void marketExtQuotesApiCallTest() throws Throwable {
+	public void marketExtQuotesApiCall() throws Throwable {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeAPICall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).toString());
@@ -67,7 +67,7 @@ public class TradeKingForemanTest {
 	
 	
 	@Test
-	public void marketOptionsExpirationsApiCallTest() throws Throwable {
+	public void marketOptionsExpirationsApiCall() throws Throwable {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeAPICall(getOptionsExpirations(xml, "slw ")).toString());
