@@ -2,7 +2,6 @@ package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
 import java.io.Serializable;
 
-import org.scribe.model.Request;
 import org.scribe.model.Response;
 
 /**
@@ -63,13 +62,13 @@ public class TKResponse implements Serializable {
 	private int rateLimitTotal = 0;
 	private int rateLimitRemaining = 0;
 
-	public TKResponse(Response oAuthResponse) {
+	public TKResponse(final Response oAuthResponse) {
 		
 		
-		String limitUsed = oAuthResponse.getHeader("X-RateLimit-Used");
-		String limitExpire = oAuthResponse.getHeader("X-RateLimit-Expire");
-		String limitTotal = oAuthResponse.getHeader("X-RateLimit-Limit");
-		String limitRemain = oAuthResponse.getHeader("X-RateLimit-Remaining");
+		final String limitUsed = oAuthResponse.getHeader("X-RateLimit-Used");
+		final String limitExpire = oAuthResponse.getHeader("X-RateLimit-Expire");
+		final String limitTotal = oAuthResponse.getHeader("X-RateLimit-Limit");
+		final String limitRemain = oAuthResponse.getHeader("X-RateLimit-Remaining");
 		
 		
 		rateLimitUsed = limitUsed != null?Integer.parseInt(limitUsed):0;
@@ -86,11 +85,11 @@ public class TKResponse implements Serializable {
 		this.response = oAuthResponse.getBody();
 	}
 
-	public TKResponse(String req, Integer... limits) {
+	/*public TKResponse(String req, Integer... limits) {
 		this.response = req;
 	}
 
-	public TKResponse() {}
+	public TKResponse() {}*/
 
 	public int getCallsUsed() {
 		return rateLimitUsed;
