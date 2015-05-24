@@ -45,19 +45,12 @@ public class TradeKingForeman implements Serializable {
 		if (!isConnected()) {
 			connect();
 		}
-		
-
-		log.info("Sending an API Request");
-		log.info("\t ... Verb:" + tkRequest.getVerb());
-		log.info("\t ... Resource URL:" + tkRequest.getResourceURL());
-		log.info("\t ... Body:" + tkRequest.getBody());
-		log.info("\t ... Parameters:" + !tkRequest.getParameters().isEmpty());
 	
-		return sendOAuthRequest(makeOAuthRequest(
+		return sendOAuthRequest(makeOAuthRequest(/*
 										tkRequest.getVerb(),
 										tkRequest.getResourceURL(), 
 										tkRequest.getParameters(),
-										tkRequest.getBody()));
+										tkRequest.getBody()*/tkRequest));
 	}
 	
 	private TKResponse sendOAuthRequest(final Request request) {
@@ -69,14 +62,21 @@ public class TradeKingForeman implements Serializable {
 
 	
 
-	private Request makeOAuthRequest(
-										final Verb verb, 
-										final String resourceURL, 
-										final Map<String, String> parameters, 
-										final String payload
-									) {
+	private Request makeOAuthRequest(final TKRequest tkRequest) {
 		
 
+
+		final Verb verb = tkRequest.getVerb();
+		final String resourceURL = tkRequest.getResourceURL(); 
+		final Map<String, String> parameters = tkRequest.getParameters();
+		final String payload = tkRequest.getBody();
+		
+		log.info("Sending an API Request");
+		log.info("\t ... Verb=" + verb);
+		log.info("\t ... Resource URL=" + resourceURL);
+		log.info("\t ... Body=" + payload);
+		log.info("\t ... Parameters=" + parameters);
+		
 		OAuthRequest request = new OAuthRequest(verb, resourceURL);
 
 		for (Entry<String, String> entry : parameters.entrySet()) {
@@ -99,7 +99,7 @@ public class TradeKingForeman implements Serializable {
 
 		oauthService = new ServiceBuilder().provider(TradekingApi.class).apiKey(CONSUMER_KEY.toString()).apiSecret(CONSUMER_SECRET.toString()).build();
 
-		log.info("\t ... Service built!");
+		log.info("\t ... OAuth Service built!");
 		
 		accessToken = new Token(OAUTH_TOKEN.toString(), OAUTH_TOKEN_SECRET.toString());
 		
