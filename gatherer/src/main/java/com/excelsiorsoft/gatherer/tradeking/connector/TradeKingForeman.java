@@ -41,12 +41,13 @@ public class TradeKingForeman implements Serializable {
 	private Logger log = LoggerFactory.getLogger(TradeKingForeman.class);
 	
 	
-	public TKResponse makeApiCall(final TKRequest b) throws ForemanException
-	{
-		if (!isConnected())
-		{
+
+	public TKResponse makeApiCall(final TKRequest b) throws ForemanException {
+		
+		if (!isConnected()) {
 			connect();
 		}
+		
 		log.trace("Sending an API Request");
 		log.trace("\t ... Verb:" + b.getVerb());
 		log.trace("\t ... Resource URL:" + b.getResourceURL());
@@ -55,14 +56,15 @@ public class TradeKingForeman implements Serializable {
 		return sendRequest(makeOAuthRequest(b.getVerb(), b.getResourceURL(), b.getParameters(), b.getBody()));
 	}
 	
-	private TKResponse sendRequest(final Request request)
-	{
+	private TKResponse sendRequest(final Request request) {
+		
 		TKResponse response = new TKResponse(request);
 		return response;
 	}	
 	
 
 	
+
 	private Request makeOAuthRequest(
 										final Verb verb, 
 										final String resourceURL, 
@@ -70,8 +72,9 @@ public class TradeKingForeman implements Serializable {
 										final String payload
 									) {
 		
+
 		OAuthRequest request = new OAuthRequest(verb, resourceURL);
-		
+
 		for (Entry<String, String> entry : parameters.entrySet()) {
 			request.addBodyParameter(entry.getKey(), entry.getValue());
 		}
