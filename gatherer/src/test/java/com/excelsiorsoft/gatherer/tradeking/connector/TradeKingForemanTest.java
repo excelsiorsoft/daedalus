@@ -17,7 +17,7 @@ public class TradeKingForemanTest {
 
 	
 	
-	@Test
+	/*@Test
 	public void connectionTest()
 	{
 		System.out.println("testing connection via TK OAuth...");
@@ -27,7 +27,7 @@ public class TradeKingForemanTest {
 		System.out.println("connected fine.");
 		System.out.println("==============================");
 		
-	}
+	}*/
 	
 	@Test
 	public void marketClockApiCall() throws Throwable {
@@ -47,7 +47,7 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 	}	
 	
-	@Test
+	/*@Test
 	public void marketExtQuotesApiCall() throws Throwable {
 		
 		System.out.println("market/ext/quotes call...");
@@ -101,5 +101,5 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		
 	}
-
+*/
 }

@@ -63,8 +63,6 @@ public class TradeKingForeman implements Serializable {
 	
 
 	private Request makeOAuthRequest(final TKRequest tkRequest) {
-		
-
 
 		final Verb verb = tkRequest.getVerb();
 		final String resourceURL = tkRequest.getResourceURL(); 

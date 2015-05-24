@@ -20,6 +20,8 @@ public abstract class TKRequest implements Serializable {
 	
 	private static final long serialVersionUID = 5364934694744835663L;
 	
+	public static final String FORMAT = "format";
+	
 	protected Verb verb;
 	protected Map<String, String> params = new HashMap<>();
 	protected String resourceURL;
