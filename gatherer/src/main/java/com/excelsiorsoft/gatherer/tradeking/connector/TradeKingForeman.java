@@ -47,11 +47,7 @@ public class TradeKingForeman implements Serializable {
 			prepareOAuthConnection();
 		}
 	
-		return sendOAuthRequest(makeOAuthRequest(/*
-										tkRequest.getVerb(),
-										tkRequest.getResourceURL(), 
-										tkRequest.getParameters(),
-										tkRequest.getBody()*/tkRequest));
+		return sendOAuthRequest(makeOAuthRequest(tkRequest));
 	}
 	
 	private TKResponse sendOAuthRequest(final Request request) {
@@ -77,10 +73,7 @@ public class TradeKingForeman implements Serializable {
 		final String payload = tkRequest.getBody();
 		
 		log.info("Creating an OAuth request around {}", tkRequest);
-		/*log.info("\t ... Verb=" + verb);
-		log.info("\t ... Resource URL=" + resourceURL);
-		log.info("\t ... Body=" + payload);
-		log.info("\t ... Parameters=" + parameters);*/
+		
 		
 		OAuthRequest request = new OAuthRequest(verb, resourceURL);
 
