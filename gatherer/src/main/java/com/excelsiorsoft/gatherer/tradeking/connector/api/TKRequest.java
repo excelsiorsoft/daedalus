@@ -38,8 +38,9 @@ public abstract class TKRequest implements Serializable {
 		return resourceURL;
 	}
 	
-	public void setResourceURL(String resourceURL) {
+	public TKRequest setResourceURL(String resourceURL) {
 		this.resourceURL = resourceURL;
+		return this;
 	}
 
 	public String getBody() {

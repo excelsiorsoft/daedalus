@@ -38,7 +38,7 @@ public class TradeKingForeman implements Serializable {
 	
 	private Token accessToken;
 	private OAuthService oauthService;
-	private Logger log = LoggerFactory.getLogger(TradeKingForeman.class);
+	private final static Logger log = LoggerFactory.getLogger(TradeKingForeman.class);
 	
 	
 
