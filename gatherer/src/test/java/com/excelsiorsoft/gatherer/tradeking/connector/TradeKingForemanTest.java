@@ -64,5 +64,14 @@ public class TradeKingForemanTest {
 		System.out.println("Rate limit expiration: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getRateLimitExpiration());
 		System.out.println("Total calls allowed: " + foreman.makeAPICall(getExtQuotes(XML, "slw, slw160115P00020000, slw160115P00021000 ", "")).getTotalCallsAllowed());
 	}	
+	
+	
+	@Test
+	public void marketOptionsExpirationsApiCallTest() throws Throwable {
+		
+		TradeKingForeman foreman = new TradeKingForeman();
+		System.out.println(foreman.makeAPICall(getOptionsExpirations(XML, "slw ")).toString());
+		
+	}
 
 }

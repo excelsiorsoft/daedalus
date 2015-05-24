@@ -59,6 +59,16 @@ public class ApiCalls {
 	}
 	
 	
+	public static String optionsExpirations(String format, String symbol) throws Throwable {
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("symbol", symbol);
+		params.put("format", format);
+
+		return buildUri(MARKET.OPTIONS_EXPIRATIONS, params);
+	}	
+	
+	
 	public static String buildUri(CallType type, Map<String, Object> params) throws Throwable {
 
 		Configuration cfg = new Configuration();
@@ -82,7 +92,7 @@ public class ApiCalls {
 		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 
 		OPTIONS_SEARCH(GET, "https://api.tradeking.com/v1/market/options/search"), 
 		OPTIONS_STRIKES(GET, "https://api.tradeking.com/v1/market/options/strikes"), 
-		OPTIONS_EXPIRATIONS(GET, "https://api.tradeking.com/v1/market/options/expirations"), 
+		OPTIONS_EXPIRATIONS(GET, "https://api.tradeking.com/v1/market/options/expirations.${format}?symbol=${symbol?url}"), 
 		TIMESALES(GET, "https://api.tradeking.com/v1/market/timesales"), 
 		TOPLISTS_VOLUME(GET, "https://api.tradeking.com/v1/market/toplists/topvolume"), 
 		TOPLISTS_LOSERS_DOLLAR(GET, "https://api.tradeking.com/v1/market/toplists/toplosers"), 

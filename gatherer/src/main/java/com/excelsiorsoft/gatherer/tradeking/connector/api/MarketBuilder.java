@@ -37,6 +37,14 @@ public class MarketBuilder extends ApiBuilder {
 		marketBuilder.setResourceURL(ApiCalls.getExtQuotes(format.toString(), symbols));
 		return marketBuilder;
 	}
+	
+
+	public static MarketBuilder getOptionsExpirations (ResponseFormat format, String symbol) throws Throwable { 
+		
+		MarketBuilder marketBuilder = new MarketBuilder(GET);
+		marketBuilder.setResourceURL(ApiCalls.optionsExpirations(format.toString(), symbol));
+		return marketBuilder;
+	}
 
 
 
