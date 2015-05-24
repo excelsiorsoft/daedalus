@@ -101,7 +101,9 @@ public class ApiCalls {
 	
 	public static String buildUri(CallType type, Map<String, Object> params) throws Throwable {
 
+
 		LOGGER.trace("Building a template with call of type {} and parameters {}\n", type, params);
+
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);
 		cfg.setURLEscapingCharset("UTF-8");
@@ -112,8 +114,9 @@ public class ApiCalls {
 		Writer out = new StringWriter();
 		template.process(params, out);
 
-		LOGGER.trace("Done: {}", out.toString());
-		return out.toString();
+		String result = out.toString();
+		LOGGER.trace("Done: {}", result);
+		return result;
 	}
 	
 	public enum MARKET implements CallType {
