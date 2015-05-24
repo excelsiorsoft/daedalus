@@ -59,6 +59,15 @@ public class ApiCalls {
 	}
 	
 	
+	/**
+	 * This call will return the full list of available option expiration dates for a given symbol.</br>
+	 * Expiration dates are returned in the format of YYYY-MM-DD
+	 * 
+	 * @param format
+	 * @param symbol
+	 * @return
+	 * @throws Throwable
+	 */
 	public static String optionsExpirations(String format, String symbol) throws Throwable {
 		
 		Map<String, Object> params = new HashMap<>();
