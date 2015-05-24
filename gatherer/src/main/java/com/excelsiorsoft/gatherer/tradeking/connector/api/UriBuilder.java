@@ -55,11 +55,11 @@ public class UriBuilder {
 	 * @param symbolsLst 
 	 * @throws Throwable 
 	 */
-	public static String extQuotes(String format, String symbolsLst) throws Throwable {
+	public static String extQuotes(Map<String, String> params) throws Throwable {
 		
-		Map<String, String> params = new HashMap<>();
+		/*Map<String, String> params = new HashMap<>();
 		params.put("symbols", symbolsLst);
-		params.put("format", format);
+		params.put("format", format);*/
 
 		return buildUri(MARKET.EXT_QUOTES, params);
 	}
@@ -74,11 +74,11 @@ public class UriBuilder {
 	 * @return
 	 * @throws Throwable
 	 */
-	public static String optionsExpirations(String format, String symbol) throws Throwable {
+	public static String optionsExpirations(Map<String, String> params) throws Throwable {
 		
-		Map<String, String> params = new HashMap<>();
+		/*Map<String, String> params = new HashMap<>();
 		params.put("symbol", symbol);
-		params.put("format", format);
+		params.put("format", format);*/
 
 		return buildUri(MARKET.OPTIONS_EXPIRATIONS, params);
 	}
@@ -91,11 +91,11 @@ public class UriBuilder {
 	 * @return
 	 * @throws Throwable
 	 */
-	public static String optionsStrikes(String format, String symbol) throws Throwable {
+	public static String optionsStrikes(Map<String, String> params) throws Throwable {
 		
-		Map<String, String> params = new HashMap<>();
+		/*Map<String, String> params = new HashMap<>();
 		params.put("symbol", symbol);
-		params.put("format", format);
+		params.put("format", format);*/
 
 		return buildUri(MARKET.OPTIONS_STRIKES, params);
 	}		

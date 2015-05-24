@@ -6,7 +6,6 @@ import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.opti
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.optionsStrikes;
 import static org.scribe.model.Verb.GET;
 import static org.scribe.model.Verb.POST;
-
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.*;
 
 import java.util.HashMap;
@@ -34,10 +33,11 @@ public class MarketRequestBuilder extends TKRequest {
 		params = context;
 	}
 
-	@SuppressWarnings("serial")
+	
 	public static MarketRequestBuilder getClock(final ResponseFormat format)
 			throws Throwable {
 
+		@SuppressWarnings("serial")
 		Map<String, String> context = new HashMap<String, String>() {
 			{
 				put(FORMAT, format.toString());
@@ -52,26 +52,53 @@ public class MarketRequestBuilder extends TKRequest {
 	public static MarketRequestBuilder getExtQuotes(ResponseFormat format,
 			String symbols, String fields) throws Throwable {
 
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(POST,
+		@SuppressWarnings("serial")
+		Map<String, String> context = new HashMap<String, String>() {
+			{
+				put(FORMAT, format.toString());
+				put("symbols", symbols);
+			}
+		};
+
+		return (MarketRequestBuilder) new MarketRequestBuilder(GET, context)
+					.setResourceURL(extQuotes((context/*.get(FORMAT)*/)));
+		
+		
+		/*MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(POST,
 				null);
 		mktReqBuilder.setResourceURL(extQuotes(format.toString(), symbols));
-		return mktReqBuilder;
+		return mktReqBuilder;*/
 	}
 
 	public static MarketRequestBuilder getOptionsExpirations(
 			ResponseFormat format, String symbol) throws Throwable {
 
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, null);
-		mktReqBuilder.setResourceURL(optionsExpirations(format.toString(),
-				symbol));
+		@SuppressWarnings("serial")
+		Map<String, String> context = new HashMap<String, String>() {
+			{
+				put(FORMAT, format.toString());
+				put("symbol", symbol);
+			}
+		};
+		
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
+		mktReqBuilder.setResourceURL(optionsExpirations(context));
 		return mktReqBuilder;
 	}
 
 	public static MarketRequestBuilder getOptionsStrikes(ResponseFormat format,
 			String symbol) throws Throwable {
 
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, null);
-		mktReqBuilder.setResourceURL(optionsStrikes(format.toString(), symbol));
+		@SuppressWarnings("serial")
+		Map<String, String> context = new HashMap<String, String>() {
+			{
+				put(FORMAT, format.toString());
+				put("symbol", symbol);
+			}
+		};
+		
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
+		mktReqBuilder.setResourceURL(optionsStrikes(context));
 		return mktReqBuilder;
 	}
 

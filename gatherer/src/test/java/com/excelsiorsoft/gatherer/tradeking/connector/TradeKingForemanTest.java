@@ -16,8 +16,8 @@ import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
 public class TradeKingForemanTest {
 
 	
-	
-	/*@Test
+/*	
+	@Test
 	public void connectionTest()
 	{
 		System.out.println("testing connection via TK OAuth...");
@@ -36,7 +36,7 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
 		
-		String response = foreman.makeApiCall(MarketRequestBuilder.getClock(xml)).getResponse()/*.toString()*/;
+		String response = foreman.makeApiCall(MarketRequestBuilder.getClock(xml)).getResponse().toString();
 		assertTrue("Foreman didn't recognize API reponse",response.contains("<message>"));
 		System.out.println(response);
 		
@@ -44,8 +44,8 @@ public class TradeKingForemanTest {
 		handler.parseMarketClock(response);
 		System.out.println("==============================");
 	}	
-	
-	/*@Test
+/*	
+	@Test
 	public void marketExtQuotesApiCall() throws Throwable {
 		
 		System.out.println("market/ext/quotes call...");
@@ -87,7 +87,7 @@ public class TradeKingForemanTest {
 		System.out.println(foreman.makeApiCall(getOptionsExpirations(xml, "slw ")).getResponse());
 		System.out.println("==============================");
 		
-	}
+	}*/
 	
 	@Test
 	public void marketOptionsStrikesApiCall() throws Throwable {
@@ -95,9 +95,9 @@ public class TradeKingForemanTest {
 		System.out.println("market/options/strikes call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getOptionsStrikes(xml, "slw ")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsStrikes(xml, "slw")).getResponse());
 		System.out.println("==============================");
 		
 	}
-*/
+
 }
