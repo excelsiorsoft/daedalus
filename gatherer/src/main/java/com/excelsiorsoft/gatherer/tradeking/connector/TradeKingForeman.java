@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Request;
+import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
@@ -43,7 +44,7 @@ public class TradeKingForeman implements Serializable {
 	public TKResponse makeApiCall(final TKRequest tkRequest) throws ForemanException {
 		
 		if (!isConnected()) {
-			connect();
+			prepareOAuthConnection();
 		}
 	
 		return sendOAuthRequest(makeOAuthRequest(/*
@@ -55,7 +56,11 @@ public class TradeKingForeman implements Serializable {
 	
 	private TKResponse sendOAuthRequest(final Request request) {
 		
-		TKResponse response = new TKResponse(request);
+		log.info("OAuth request {} is ready to be sent out to TK", request);
+		Response oAuthResponse = request.send();
+		log.info("OAuth request sent, received response {}", oAuthResponse);
+		
+		TKResponse response = new TKResponse(oAuthResponse);
 		return response;
 	}	
 	
@@ -69,11 +74,11 @@ public class TradeKingForeman implements Serializable {
 		final Map<String, String> parameters = tkRequest.getParameters();
 		final String payload = tkRequest.getBody();
 		
-		log.info("Sending an API Request");
-		log.info("\t ... Verb=" + verb);
+		log.info("Creating an OAuth request around {}", tkRequest);
+		/*log.info("\t ... Verb=" + verb);
 		log.info("\t ... Resource URL=" + resourceURL);
 		log.info("\t ... Body=" + payload);
-		log.info("\t ... Parameters=" + parameters);
+		log.info("\t ... Parameters=" + parameters);*/
 		
 		OAuthRequest request = new OAuthRequest(verb, resourceURL);
 
@@ -87,11 +92,13 @@ public class TradeKingForeman implements Serializable {
 			request.addPayload(payload);
 		}
 		
+		log.info("OAuth request created: {}", request);
 		oauthService.signRequest(accessToken, request);
+		log.info("OAuth request singed.");
 		return request;
 	}
 	
-	private void connect() throws ForemanException 	{
+	private void prepareOAuthConnection() throws ForemanException 	{
 		
 		log.info("Connecting to Tradeking");
 
@@ -102,7 +109,7 @@ public class TradeKingForeman implements Serializable {
 		accessToken = new Token(OAUTH_TOKEN.toString(), OAUTH_TOKEN_SECRET.toString());
 		
 		log.info("\t ... Access Token built!");
-		log.info("Connection Established");
+		log.info("Safe to connect");
 	}	
 	
 	private boolean hasOAuth()	{

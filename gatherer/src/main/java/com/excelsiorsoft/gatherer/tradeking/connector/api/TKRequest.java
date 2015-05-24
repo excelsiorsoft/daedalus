@@ -53,4 +53,11 @@ public abstract class TKRequest implements Serializable {
 		return streaming;
 	}
 
+	@Override
+	public String toString() {
+		return String
+				.format("TKRequest [verb=%s, params=%s, resourceURL=%s, body=%s, streaming=%s]",
+						verb, params, resourceURL, body, streaming);
+	}
+
 }
