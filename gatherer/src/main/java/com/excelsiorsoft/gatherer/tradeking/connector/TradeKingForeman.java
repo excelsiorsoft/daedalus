@@ -24,8 +24,6 @@ import com.excelsiorsoft.gatherer.tradeking.connector.api.TradekingApi;
 
 
 
-
-
 /**
  * An entry point service into the TradeKing API
  * 
@@ -42,21 +40,26 @@ public class TradeKingForeman implements Serializable {
 	
 	
 
-	public TKResponse makeApiCall(final TKRequest b) throws ForemanException {
+	public TKResponse makeApiCall(final TKRequest tkRequest) throws ForemanException {
 		
 		if (!isConnected()) {
 			connect();
 		}
 		
 		log.trace("Sending an API Request");
-		log.trace("\t ... Verb:" + b.getVerb());
-		log.trace("\t ... Resource URL:" + b.getResourceURL());
-		log.trace("\t ... Body:" + b.getBody());
-		log.trace("\t ... Parameters:" + !b.getParameters().isEmpty());
-		return sendRequest(makeOAuthRequest(b.getVerb(), b.getResourceURL(), b.getParameters(), b.getBody()));
+		log.trace("\t ... Verb:" + tkRequest.getVerb());
+		log.trace("\t ... Resource URL:" + tkRequest.getResourceURL());
+		log.trace("\t ... Body:" + tkRequest.getBody());
+		log.trace("\t ... Parameters:" + !tkRequest.getParameters().isEmpty());
+		
+		return sendOAuthRequest(makeOAuthRequest(
+										tkRequest.getVerb(),
+										tkRequest.getResourceURL(), 
+										tkRequest.getParameters(),
+										tkRequest.getBody()));
 	}
 	
-	private TKResponse sendRequest(final Request request) {
+	private TKResponse sendOAuthRequest(final Request request) {
 		
 		TKResponse response = new TKResponse(request);
 		return response;
