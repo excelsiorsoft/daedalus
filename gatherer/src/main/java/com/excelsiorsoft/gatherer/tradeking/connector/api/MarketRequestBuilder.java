@@ -45,7 +45,7 @@ public class MarketRequestBuilder extends TKRequest {
 		};
 
 		return (MarketRequestBuilder) new MarketRequestBuilder(GET, context)
-					.setResourceURL(marketClock((context.get(FORMAT))));
+					.setResourceURL(marketClock((context/*.get(FORMAT)*/)));
 
 	}
 

@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.*;
+
 
 
 
@@ -39,11 +41,11 @@ public class UriBuilder {
 	/**
 	 * This call will return the current state of the market, the time of the next state change (if the market is open), and the current server timestamp.
 	 */	
-	public static String marketClock(String format) throws Throwable	{
+	public static String marketClock(Map<String, String> params) throws Throwable	{
 		
-		Map<String, Object> params = new HashMap<>();
-		params.put("format", format);
-		return buildUri( MARKET.CLOCK, params);
+		/*Map<String, String> params = new HashMap<>();
+		params.put("format", format);*/
+		return buildUri( MARKET.CLOCK, params/*.get(FORMAT)*/);
 		
 	}
 	
@@ -55,7 +57,7 @@ public class UriBuilder {
 	 */
 	public static String extQuotes(String format, String symbolsLst) throws Throwable {
 		
-		Map<String, Object> params = new HashMap<>();
+		Map<String, String> params = new HashMap<>();
 		params.put("symbols", symbolsLst);
 		params.put("format", format);
 
@@ -74,7 +76,7 @@ public class UriBuilder {
 	 */
 	public static String optionsExpirations(String format, String symbol) throws Throwable {
 		
-		Map<String, Object> params = new HashMap<>();
+		Map<String, String> params = new HashMap<>();
 		params.put("symbol", symbol);
 		params.put("format", format);
 
@@ -91,7 +93,7 @@ public class UriBuilder {
 	 */
 	public static String optionsStrikes(String format, String symbol) throws Throwable {
 		
-		Map<String, Object> params = new HashMap<>();
+		Map<String, String> params = new HashMap<>();
 		params.put("symbol", symbol);
 		params.put("format", format);
 
@@ -99,7 +101,7 @@ public class UriBuilder {
 	}		
 	
 	
-	public static String buildUri(CallType type, Map<String, Object> params) throws Throwable {
+	public static String buildUri(CallType type, Map<String, String> params) throws Throwable {
 
 
 		LOGGER.debug("Building a template with call of type {} and parameters {}\n", type, params);
