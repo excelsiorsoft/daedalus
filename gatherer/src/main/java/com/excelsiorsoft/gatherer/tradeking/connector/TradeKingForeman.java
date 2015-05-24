@@ -24,8 +24,6 @@ import com.excelsiorsoft.gatherer.tradeking.connector.api.TradekingApi;
 
 
 
-
-
 /**
  * An entry point service into the TradeKing API
  * 
@@ -42,21 +40,26 @@ public class TradeKingForeman implements Serializable {
 	
 	
 
-	public TKResponse makeApiCall(final TKRequest b) throws ForemanException {
+	public TKResponse makeApiCall(final TKRequest tkRequest) throws ForemanException {
 		
 		if (!isConnected()) {
 			connect();
 		}
 		
-		log.trace("Sending an API Request");
-		log.trace("\t ... Verb:" + b.getVerb());
-		log.trace("\t ... Resource URL:" + b.getResourceURL());
-		log.trace("\t ... Body:" + b.getBody());
-		log.trace("\t ... Parameters:" + !b.getParameters().isEmpty());
-		return sendRequest(makeOAuthRequest(b.getVerb(), b.getResourceURL(), b.getParameters(), b.getBody()));
+		log.info("Sending an API Request");
+		log.info("\t ... Verb:" + tkRequest.getVerb());
+		log.info("\t ... Resource URL:" + tkRequest.getResourceURL());
+		log.info("\t ... Body:" + tkRequest.getBody());
+		log.info("\t ... Parameters:" + !tkRequest.getParameters().isEmpty());
+		
+		return sendOAuthRequest(makeOAuthRequest(
+										tkRequest.getVerb(),
+										tkRequest.getResourceURL(), 
+										tkRequest.getParameters(),
+										tkRequest.getBody()));
 	}
 	
-	private TKResponse sendRequest(final Request request) {
+	private TKResponse sendOAuthRequest(final Request request) {
 		
 		TKResponse response = new TKResponse(request);
 		return response;
@@ -91,14 +94,16 @@ public class TradeKingForeman implements Serializable {
 	
 	private void connect() throws ForemanException 	{
 		
-		log.trace("Connecting to Tradeking");
+		log.info("Connecting to Tradeking");
 
 		oauthService = new ServiceBuilder().provider(TradekingApi.class).apiKey(CONSUMER_KEY.toString()).apiSecret(CONSUMER_SECRET.toString()).build();
 
-		log.trace("\t ... Service built!");
+		log.info("\t ... Service built!");
+		
 		accessToken = new Token(OAUTH_TOKEN.toString(), OAUTH_TOKEN_SECRET.toString());
-		log.trace("\t ... Access Token built!");
-		log.trace("Connection Established");
+		
+		log.info("\t ... Access Token built!");
+		log.info("Connection Established");
 	}	
 	
 	private boolean hasOAuth()	{

@@ -102,7 +102,7 @@ public class UriBuilder {
 	public static String buildUri(CallType type, Map<String, Object> params) throws Throwable {
 
 
-		LOGGER.trace("Building a template with call of type {} and parameters {}\n", type, params);
+		LOGGER.debug("Building a template with call of type {} and parameters {}\n", type, params);
 
 		Configuration cfg = new Configuration();
 		cfg.setObjectWrapper(BEANS_WRAPPER);
@@ -115,7 +115,7 @@ public class UriBuilder {
 		template.process(params, out);
 
 		String result = out.toString();
-		LOGGER.trace("Done: {}", result);
+		LOGGER.debug("Done: {}", result);
 		return result;
 	}
 	
