@@ -56,9 +56,11 @@ public class TradeKingForeman implements Serializable {
 	
 	private TKResponse sendOAuthRequest(final Request request) {
 		
+
 		log.info("OAuth request {} is ready to be sent out to TK", request);
 		Response oAuthResponse = request.send();
 		log.info("OAuth request sent, received response {}", oAuthResponse);
+
 		
 		TKResponse response = new TKResponse(oAuthResponse);
 		return response;
