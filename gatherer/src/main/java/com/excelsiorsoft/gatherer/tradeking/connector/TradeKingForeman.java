@@ -46,12 +46,13 @@ public class TradeKingForeman implements Serializable {
 			connect();
 		}
 		
+
 		log.info("Sending an API Request");
 		log.info("\t ... Verb:" + tkRequest.getVerb());
 		log.info("\t ... Resource URL:" + tkRequest.getResourceURL());
 		log.info("\t ... Body:" + tkRequest.getBody());
 		log.info("\t ... Parameters:" + !tkRequest.getParameters().isEmpty());
-		
+	
 		return sendOAuthRequest(makeOAuthRequest(
 										tkRequest.getVerb(),
 										tkRequest.getResourceURL(), 
