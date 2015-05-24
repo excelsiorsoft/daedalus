@@ -19,6 +19,7 @@ public class TradeKingForemanTest {
 	@Test
 	public void connectionTest()
 	{
+		
 		TradeKingForeman foreman = new TradeKingForeman();
 		assertTrue("Foreman does not have OAuth Service", !foreman.isConnected());
 		
@@ -71,6 +72,14 @@ public class TradeKingForemanTest {
 		
 		TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeAPICall(getOptionsExpirations(xml, "slw ")).toString());
+		
+	}
+	
+	@Test
+	public void marketOptionsStrikesApiCall() throws Throwable {
+		
+		TradeKingForeman foreman = new TradeKingForeman();
+		System.out.println(foreman.makeAPICall(getOptionsStrikes(xml, "slw ")).toString());
 		
 	}
 

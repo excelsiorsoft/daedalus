@@ -64,7 +64,7 @@ public class ApiCalls {
 	 * Expiration dates are returned in the format of YYYY-MM-DD
 	 * 
 	 * @param format
-	 * @param symbol
+	 * @param symbol a single symbol for which options are traded
 	 * @return
 	 * @throws Throwable
 	 */
@@ -75,7 +75,24 @@ public class ApiCalls {
 		params.put("format", format);
 
 		return buildUri(MARKET.OPTIONS_EXPIRATIONS, params);
-	}	
+	}
+	
+	/**
+	 * This call will return the full list of available option strikes for a given symbol.
+	 * 
+	 * @param format
+	 * @param symbol a single symbol for which options are traded
+	 * @return
+	 * @throws Throwable
+	 */
+	public static String optionsStrikes(String format, String symbol) throws Throwable {
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("symbol", symbol);
+		params.put("format", format);
+
+		return buildUri(MARKET.OPTIONS_STRIKES, params);
+	}		
 	
 	
 	public static String buildUri(CallType type, Map<String, Object> params) throws Throwable {
@@ -100,7 +117,7 @@ public class ApiCalls {
 		NEWS_SEARCH(GET, "https://api.tradeking.com/v1/market/news/search"), 
 		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 
 		OPTIONS_SEARCH(GET, "https://api.tradeking.com/v1/market/options/search"), 
-		OPTIONS_STRIKES(GET, "https://api.tradeking.com/v1/market/options/strikes"), 
+		OPTIONS_STRIKES(GET, "https://api.tradeking.com/v1/market/options/strikes.${format}?symbol=${symbol?url}"), 
 		OPTIONS_EXPIRATIONS(GET, "https://api.tradeking.com/v1/market/options/expirations.${format}?symbol=${symbol?url}"), 
 		TIMESALES(GET, "https://api.tradeking.com/v1/market/timesales"), 
 		TOPLISTS_VOLUME(GET, "https://api.tradeking.com/v1/market/toplists/topvolume"), 
