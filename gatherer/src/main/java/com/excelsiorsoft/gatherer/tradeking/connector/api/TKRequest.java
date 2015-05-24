@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
  * @author sleyzerzon
  *
  */
-public abstract class ApiBuilder implements Serializable {
+public abstract class TKRequest implements Serializable {
 	
-	private final static Logger LOGGER = LoggerFactory.getLogger(ApiBuilder.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(TKRequest.class);
 	
 	private static final long serialVersionUID = 5364934694744835663L;
 	

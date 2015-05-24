@@ -9,7 +9,6 @@ import org.scribe.model.Verb;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForemanTest;
 
 
 
@@ -19,43 +18,43 @@ import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForemanTest;
  * @author sleyzerzon
  *
  */
-public class MarketBuilder extends ApiBuilder {
+public class MarketRequestBuilder extends TKRequest {
 	
-	private final static Logger LOGGER = LoggerFactory.getLogger(MarketBuilder.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(MarketRequestBuilder.class);
 	
 	private static final long serialVersionUID = -7542591696724178699L;
 
-	private MarketBuilder(Verb v) {
+	private MarketRequestBuilder(Verb v) {
 		verb = v;
 	}
 
-	public static MarketBuilder getClock(ResponseFormat format) throws Throwable {
+	public static MarketRequestBuilder getClock(ResponseFormat format) throws Throwable {
 		
-		MarketBuilder marketBuilder = new MarketBuilder(GET);
+		MarketRequestBuilder marketBuilder = new MarketRequestBuilder(GET);
 		//b.resourceURL = ApiCall.getMarketClock(format);
 		marketBuilder.setResourceURL(ApiCalls.getMarketClock(format.toString()));;
 		return marketBuilder;
 	}
 	
 	
-	public static MarketBuilder getExtQuotes(ResponseFormat format, String symbols, String fields) throws Throwable { 
+	public static MarketRequestBuilder getExtQuotes(ResponseFormat format, String symbols, String fields) throws Throwable { 
 		
-		MarketBuilder marketBuilder = new MarketBuilder(POST);
+		MarketRequestBuilder marketBuilder = new MarketRequestBuilder(POST);
 		marketBuilder.setResourceURL(ApiCalls.getExtQuotes(format.toString(), symbols));
 		return marketBuilder;
 	}
 	
 
-	public static MarketBuilder getOptionsExpirations (ResponseFormat format, String symbol) throws Throwable { 
+	public static MarketRequestBuilder getOptionsExpirations (ResponseFormat format, String symbol) throws Throwable { 
 		
-		MarketBuilder marketBuilder = new MarketBuilder(GET);
+		MarketRequestBuilder marketBuilder = new MarketRequestBuilder(GET);
 		marketBuilder.setResourceURL(ApiCalls.optionsExpirations(format.toString(), symbol));
 		return marketBuilder;
 	}
 	
-	public static MarketBuilder getOptionsStrikes (ResponseFormat format, String symbol) throws Throwable { 
+	public static MarketRequestBuilder getOptionsStrikes (ResponseFormat format, String symbol) throws Throwable { 
 		
-		MarketBuilder marketBuilder = new MarketBuilder(GET);
+		MarketRequestBuilder marketBuilder = new MarketRequestBuilder(GET);
 		marketBuilder.setResourceURL(ApiCalls.optionsStrikes(format.toString(), symbol));
 		return marketBuilder;
 	}	

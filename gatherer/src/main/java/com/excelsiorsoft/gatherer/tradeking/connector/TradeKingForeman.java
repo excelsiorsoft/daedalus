@@ -18,7 +18,7 @@ import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.excelsiorsoft.gatherer.tradeking.connector.api.ApiBuilder;
+import com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TKResponse;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TradekingApi;
 
@@ -41,18 +41,18 @@ public class TradeKingForeman implements Serializable {
 	private Logger log = LoggerFactory.getLogger(TradeKingForeman.class);
 	
 	
-	public TKResponse makeAPICall(ApiBuilder b) throws ForemanException
+	public TKResponse makeApiCall(TKRequest b) throws ForemanException
 	{
 		if (!isConnected())
 		{
 			connect();
 		}
-		log.trace("Making an API Call");
+		log.trace("Sending an API Request");
 		log.trace("\t ... Verb:" + b.getVerb());
 		log.trace("\t ... Resource URL:" + b.getResourceURL());
 		log.trace("\t ... Body:" + b.getBody());
 		log.trace("\t ... Parameters:" + !b.getParameters().isEmpty());
-		return sendRequest(makeRequest(b.getVerb(), b.getResourceURL(), b.getParameters(), b.getBody()));
+		return sendRequest(makeOAuthRequest(b.getVerb(), b.getResourceURL(), b.getParameters(), b.getBody()));
 	}
 	
 	private TKResponse sendRequest(Request request)
@@ -63,19 +63,19 @@ public class TradeKingForeman implements Serializable {
 	
 
 	
-	private Request makeRequest(Verb verb, String resourceURL, Map<String, String> parameters, String payload)
+	private Request makeOAuthRequest(Verb verb, String resourceURL, Map<String, String> parameters, String payload)
 	{
 		OAuthRequest request = new OAuthRequest(verb, resourceURL);
-		for (Entry<String, String> entry : parameters.entrySet())
-		{
+		for (Entry<String, String> entry : parameters.entrySet()) {
 			request.addBodyParameter(entry.getKey(), entry.getValue());
 		}
-		if (payload != null)
-		{
+		
+		if (payload != null) {
 			request.addHeader("Content-Length", Integer.toString(payload.length()));
 			request.addHeader("Content-Type", "text/xml");
 			request.addPayload(payload);
 		}
+		
 		oauthService.signRequest(accessToken, request);
 		return request;
 	}
