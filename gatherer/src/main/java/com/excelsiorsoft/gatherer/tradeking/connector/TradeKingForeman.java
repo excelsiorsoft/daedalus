@@ -79,7 +79,11 @@ public class TradeKingForeman implements Serializable {
 		
 		
 		OAuthRequest request = new OAuthRequest(verb, resourceURL);
+		
+		
 		/*
+		 * TODO: Using params on the scribe request results in an authentication error, use templating solution until fully understood why
+		 * 
 		for (Entry<String, String> entry : parameters.entrySet()) {
 			log.info("adding request body param: {}={}", entry.getKey(), entry.getValue() );
 			request.addBodyParameter(entry.getKey(), entry.getValue());

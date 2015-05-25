@@ -56,7 +56,7 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, String> context = new HashMap<String, String>() {
 			{
 				put(FORMAT, format.toString());
-				put("symbols", symbols);
+				put(SYMBOLS, symbols);
 			}
 		};
 
@@ -77,7 +77,7 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, String> context = new HashMap<String, String>() {
 			{
 				put(FORMAT, format.toString());
-				put("symbol", symbol);
+				put(SYMBOL, symbol);
 			}
 		};
 		
@@ -93,7 +93,7 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, String> context = new HashMap<String, String>() {
 			{
 				put(FORMAT, format.toString());
-				put("symbol", symbol);
+				put(SYMBOL, symbol);
 			}
 		};
 		
