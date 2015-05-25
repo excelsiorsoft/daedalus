@@ -113,9 +113,10 @@ public class UriBuilder {
 	 * @return
 	 * @throws Throwable
 	 */
-	public static String topLosers(TopType typeOfTop, Map<String, String> params) throws Throwable {
+	public static String topLosers(/*TopType typeOfTop, */Map<String, String> params) throws Throwable {
 	
 		String defaultLosersUri = buildUri(MARKET.TOPLISTS_LOSERS_DOLLAR, params);
+		String typeOfTop = params.get(LOSER_TYPE);
 		
 		String result = (typeOfTop.equals(TopType.BY_DOLLAR_AMOUNT)) ? defaultLosersUri 	: 
 						(typeOfTop.equals(TopType.BY_PERCENTAGE_AMOUNT)) ? buildUri(MARKET.TOPLISTS_LOSERS_PERCENTAGE, params)

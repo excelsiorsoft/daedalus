@@ -114,7 +114,6 @@ public class TradeKingForemanTest {
 		
 		System.out.println("market/toplists losers by % call (xml)...");
 		System.out.println("==============================");
-		//TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeApiCall(getTopLosers(TopType.BY_PERCENTAGE_AMOUNT, xml)).getResponse());
 		System.out.println("==============================");
 		
@@ -132,7 +131,6 @@ public class TradeKingForemanTest {
 		
 		System.out.println("market/toplists losers by % call (json)...");
 		System.out.println("==============================");
-		//TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeApiCall(getTopLosers(TopType.BY_PERCENTAGE_AMOUNT, json)).getResponse());
 		System.out.println("==============================");
 		

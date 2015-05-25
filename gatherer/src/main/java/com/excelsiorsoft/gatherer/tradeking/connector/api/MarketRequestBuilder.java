@@ -108,12 +108,12 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, String> context = new HashMap<String, String>() {
 			{
 				put(FORMAT, format.toString());
-				put(SYMBOL, typeOfLoser.toString());
+				put(LOSER_TYPE, typeOfLoser.toString());
 			}
 		};
 		
 		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
-		mktReqBuilder.setResourceURL(topLosers(typeOfLoser, context));
+		mktReqBuilder.setResourceURL(topLosers(context));
 		return mktReqBuilder;
 	}
 

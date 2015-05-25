@@ -23,6 +23,7 @@ public abstract class TKRequest implements Serializable {
 	public static final String FORMAT = "format";
 	public static final String SYMBOL = "symbol";
 	public static final String SYMBOLS = "symbols";
+	public static final String LOSER_TYPE = "typeOfLoser";
 	
 	protected Verb verb;
 	protected Map<String, String> params = new HashMap<>();
