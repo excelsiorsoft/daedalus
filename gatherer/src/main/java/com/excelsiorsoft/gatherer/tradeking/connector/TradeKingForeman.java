@@ -72,6 +72,8 @@ public class TradeKingForeman implements Serializable {
 
 		final Verb verb = tkRequest.getVerb();
 		final String resourceURL = tkRequest.getResourceURL(); 
+		
+		//parameters and payload get in the way - for now not using them
 		final Map<String, String> parameters = tkRequest.getParameters();
 		final String payload = tkRequest.getBody();
 		
