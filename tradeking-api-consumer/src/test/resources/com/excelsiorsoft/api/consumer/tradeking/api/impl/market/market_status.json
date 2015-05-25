@@ -1,0 +1,13 @@
+{
+  "response": {
+    "@id": "1edd7:-7313",
+    "date": "2015-01-04 18:11:00.359999",
+    "status": {
+      "current": "closed",
+      "next": "pre",
+      "change_at": "08:00:00"
+    },
+    "message": "Market is open Monday through Friday 9:30AM to 4:00PM EST",
+    "unixtime": "1420413060"
+  }
+}

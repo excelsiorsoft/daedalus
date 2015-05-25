@@ -1,0 +1,23 @@
+{
+  "response": {
+    "@id": "1edd7da1:14ab7299138:5eab",
+    "elapsedtime": "0",
+    "watchlists": {
+      "watchlist": {
+        "watchlistitem": [
+          {
+            "costbasis": "0.0",
+            "instrument": {"sym": "TCKR1"},
+            "qty": "0.0"
+          },
+          {
+            "costbasis": "0.0",
+            "instrument": {"sym": "TCKR2"},
+            "qty": "0.0"
+          }
+        ]
+      }
+    },
+    "error": "Success"
+  }
+}

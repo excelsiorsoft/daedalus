@@ -1,0 +1,31 @@
+{
+  "response": {
+    "@id": "-2e0431db:14affee01a7:1e00",
+    "quotes": {
+      "quote": [
+        {
+          "chg": "68.6600",
+          "chg_sign": "u",
+          "last": "300.0100",
+          "name": "CORP 1",
+          "pchg": "29.6780 %",
+          "pcls": "231.3500",
+          "rank": "1",
+          "symbol": "C1",
+          "vl": "36744"
+        },
+        {
+          "chg": "18.4700",
+          "chg_sign": "u",
+          "last": "215.5200",
+          "name": "CORP 2",
+          "pchg": "9.3733 %",
+          "pcls": "197.0500",
+          "rank": "2",
+          "symbol": "C2",
+          "vl": "251548"
+        }
+      ]
+    }
+  }
+}

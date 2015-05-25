@@ -1,0 +1,67 @@
+{
+  "response": {
+    "@id": "-5ceaae551d851:-5485",
+    "elapsedtime": "0",
+    "totalrows": "0",
+    "transactions": {
+      "transaction": [
+        {
+          "activity": "Trade",
+          "amount": "286.07",
+          "date": "2014-12-15T00:00:00-05:00",
+          "desc": "SOMETHING INC",
+          "symbol": "SMTH2",
+          "transaction": {
+            "accounttype": "2",
+            "commission": "4.95",
+            "description": "SOMETHING INC-DEL",
+            "fee": "0.0",
+            "price": "2.671",
+            "quantity": "-10.0",
+            "secfee": "0.08",
+            "security": {
+              "cusip": "800000000",
+              "id": "80000000",
+              "sectyp": "CS",
+              "sym": "SMTH2"
+            },
+            "settlementdate": "2014-12-18T00:00:00-05:00",
+            "side": "2",
+            "source": "XCH",
+            "tradedate": "2014-12-15T00:00:00-05:00",
+            "transactionid": "10"
+          }
+        },
+        {
+          "activity": "Dividend",
+          "amount": "24.0",
+          "date": "2014-12-01T00:00:00-05:00",
+          "desc": "SOMETHING CO,CASH DIV ON 40 SHS",
+          "symbol": "SMTH1",
+          "transaction": {
+            "accounttype": "2",
+            "commission": "0.0",
+            "description": [
+              "SOMETHING CO",
+              "CASH DIV  ON     40 SHS"
+            ],
+            "fee": "0.0",
+            "price": "0.0",
+            "quantity": "0.0",
+            "secfee": "0.0",
+            "security": {
+              "cusip": "300000000",
+              "id": "30000000",
+              "sectyp": "CS",
+              "sym": "SMTH1"
+            },
+            "source": "DIV",
+            "tradedate": "2014-12-01T00:00:00-05:00",
+            "transactionid": "10",
+            "transactiontype": "Cash Dividend"
+          }
+        }
+      ]
+    }
+  }
+}

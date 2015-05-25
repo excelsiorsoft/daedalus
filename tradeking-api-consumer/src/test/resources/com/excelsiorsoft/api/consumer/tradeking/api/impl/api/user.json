@@ -1,0 +1,74 @@
+{
+  "response": {
+    "@id": "1edd7d38:16f0",
+    "elapsedtime": "0",
+    "userdata": {
+      "account": {
+        "account": "TestAccount1",
+        "fundtrading": "true",
+        "ira": "false",
+        "margintrading": "false",
+        "nickname": "NAME SURNAME",
+        "optionlevel": "2",
+        "shared": "false",
+        "stocktrading": "true"
+      },
+      "disabled": "false",
+      "resetpassword": "false",
+      "resettradingpassword": "false",
+      "userprofile": {
+        "entry": [
+          {
+            "name": "UUID",
+            "value": "1000001"
+          },
+          {
+            "name": "gainsKeeper",
+            "value": "Y"
+          },
+          {
+            "name": "primaryLastName",
+            "value": "SURNAME"
+          },
+          {
+            "name": "accountSummaryDashboardCollapsed",
+            "value": "quickQuote"
+          },
+          {
+            "name": "NewMsg",
+            "value": "Y"
+          },
+          {
+            "name": "primaryFirstName",
+            "value": "NAME"
+          },
+          {
+            "name": "rtq",
+            "value": "Y"
+          },
+          {
+            "name": "emailAddress1",
+            "value": "name.surname@example.com"
+          },
+          {
+            "name": "fdicPaper",
+            "value": "0"
+          },
+          {
+            "name": "TKLoginDisabledQuestions",
+            "value": null
+          },
+          {
+            "name": "AGREEMENT_FDIC",
+            "value": "TestAccount1=05\/06\/2013"
+          },
+          {
+            "name": "useTradingPassword",
+            "value": "Y"
+          }
+        ]
+      }
+    },
+    "error": "Success"
+  }
+}

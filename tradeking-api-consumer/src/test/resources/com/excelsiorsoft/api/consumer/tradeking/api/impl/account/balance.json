@@ -1,0 +1,43 @@
+{
+  "response": {
+    "@id": "-2f149:14aad6fc1b:1d5c",
+    "elapsedtime": "0",
+    "accountbalance": {
+      "account": "TestAccount1",
+      "accountvalue": "36.46",
+      "backofficehouseexcess": "0.0",
+      "buyingpower": {
+        "cashavailableforwithdrawal": "26.63",
+        "equitypercentage": "100",
+        "options": "26.63",
+        "sodoptions": "26.63",
+        "sodstock": "53.26",
+        "stock": "53.26"
+      },
+      "fedcall": "0.0",
+      "housecall": "0.0",
+      "maintenanceexcess": "26.63",
+      "money": {
+        "accruedinterest": "0.0",
+        "cash": "9.83",
+        "cashavailable": "0.0",
+        "marginbalance": "10.98",
+        "mmf": "0.0",
+        "total": "10.98",
+        "uncleareddeposits": "0.0",
+        "unsettledfunds": "0.0",
+        "yield": "0.0"
+      },
+      "securities": {
+        "longoptions": "0.0",
+        "longstocks": "26.48",
+        "options": "0.0",
+        "shortoptions": "0.0",
+        "shortstocks": "0.0",
+        "stocks": "26.48",
+        "total": "26.48"
+      }
+    },
+    "error": "Success"
+  }
+}

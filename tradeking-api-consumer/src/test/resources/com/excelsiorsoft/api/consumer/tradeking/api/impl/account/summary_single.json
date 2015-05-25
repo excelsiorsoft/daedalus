@@ -1,0 +1,127 @@
+{
+  "response": {
+    "@id": "-5ceaae57:b290:-c52",
+    "elapsedtime": "0",
+    "accounts": {
+      "accountsummary": {
+        "account": "TestAccount1",
+        "accountbalance": {
+          "account": "TestAccount1",
+          "accountvalue": "36.46",
+          "backofficehouseexcess": "0.0",
+          "buyingpower": {
+            "cashavailableforwithdrawal": "26.63",
+            "equitypercentage": "100",
+            "options": "26.63",
+            "sodoptions": "26.63",
+            "sodstock": "53.26",
+            "stock": "53.26"
+          },
+          "fedcall": "0.0",
+          "housecall": "0.0",
+          "maintenanceexcess": "26.63",
+          "money": {
+            "accruedinterest": "0.0",
+            "cash": "9.83",
+            "cashavailable": "0.0",
+            "marginbalance": "10.98",
+            "mmf": "0.0",
+            "total": "10.98",
+            "uncleareddeposits": "0.0",
+            "unsettledfunds": "0.0",
+            "yield": "0.0"
+          },
+          "securities": {
+            "longoptions": "0.0",
+            "longstocks": "26.48",
+            "options": "0.0",
+            "shortoptions": "0.0",
+            "shortstocks": "0.0",
+            "stocks": "26.48",
+            "total": "26.48"
+          }
+        },
+        "accountholdings": {
+          "displaydata": {"totalsecurities": "$26.48"},
+          "holding": [
+            {
+              "accounttype": "2",
+              "costbasis": "906.87",
+              "displaydata": {
+                "accounttype": "Margin",
+                "assetclass": "Stock",
+                "change": "$.00",
+                "costbasis": "$906.87",
+                "desc": "SOMETHING 1 CO",
+                "lastprice": "$28.34",
+                "marketvalue": "$113,3.00",
+                "marketvaluechange": "-$9.00",
+                "qty": "40",
+                "symbol": "SMTH1"
+              },
+              "gainloss": "2267.129999999999",
+              "instrument": {
+                "cusip": "300000000",
+                "desc": "SOMETHING 1 CO",
+                "factor": "0.0",
+                "sectyp": "CS",
+                "sym": "SMTH1"
+              },
+              "marketvalue": "1133.0",
+              "marketvaluechange": "-92.0",
+              "price": "28.34",
+              "purchaseprice": "22.672175000000003",
+              "qty": "40.0",
+              "quote": {
+                "change": "0.0",
+                "extendedquote": {"dividenddata": null},
+                "format": null,
+                "lastprice": "28.34"
+              },
+              "sodcostbasis": "0.0",
+              "underlying": null
+            },
+            {
+              "accounttype": "2",
+              "costbasis": "580.71",
+              "displaydata": {
+                "accounttype": "Margin",
+                "assetclass": "Stock",
+                "change": "$.00",
+                "costbasis": "$580.71",
+                "desc": "SOMETHING2 CO",
+                "lastprice": "$348.94",
+                "marketvalue": "$593.98",
+                "marketvaluechange": "$124.61",
+                "qty": "2",
+                "symbol": "SMTH2"
+              },
+              "gainloss": "12.26999999999953",
+              "instrument": {
+                "cusip": "6000L0000",
+                "desc": "SOMETHING2 CO",
+                "factor": "0.0",
+                "sectyp": "CS",
+                "sym": "SMTH2"
+              },
+              "marketvalue": "593.98",
+              "marketvaluechange": "12.60999999999967",
+              "price": "348.94",
+              "purchaseprice": "341.5711764705882",
+              "qty": "17.0",
+              "quote": {
+                "change": "0.0",
+                "extendedquote": {"dividenddata": null},
+                "format": null,
+                "lastprice": "348.94"
+              },
+              "sodcostbasis": "0.0",
+              "underlying": null
+            }
+          ],
+          "totalsecurities": "26.48"
+        }
+      }
+    }
+  }
+}

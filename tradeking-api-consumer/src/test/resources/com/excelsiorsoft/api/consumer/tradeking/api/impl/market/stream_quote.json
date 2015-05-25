@@ -1,0 +1,13 @@
+{
+  "quote": {
+    "ask": "528.5",
+    "asksz": "5",
+    "bid": "528.22",
+    "bidsz": "3",
+    "datetime": "2015-02-03T17:13:43-05:00",
+    "exch": "Direct Edge X Exchange",
+    "qcond": "Regular, two-sided open quote automated",
+    "symbol": "CMPN1",
+    "timestamp": "1423001623"
+  }
+}

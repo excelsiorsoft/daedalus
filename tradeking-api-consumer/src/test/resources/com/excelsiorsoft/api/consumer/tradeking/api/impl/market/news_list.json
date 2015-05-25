@@ -1,0 +1,19 @@
+{
+  "response": {
+    "@id": "1edd7da1:14ab7437032:-6337",
+    "articles": {
+      "article": [
+        {
+          "date": "04/09 14:02",
+          "headline": "Eye on Apple and Amazon",
+          "id": "4cacd265647adb9a46977d5d2f8ff559"
+        },
+        {
+          "date": "04/09 14:12",
+          "headline": "Second Story",
+          "id": "4wefed265647adb9a46977d5d2df"
+        }
+      ]
+    }
+  }
+}

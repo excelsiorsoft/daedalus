@@ -1,0 +1,13 @@
+{
+  "trade": {
+    "cvol": "2032727",
+    "datetime": "2015-02-03T17:13:32-05:00",
+    "exch": "Direct Edge X Exchange",
+    "last": "528.5",
+    "symbol": "CMPN1",
+    "tcond": "57,16,10",
+    "timestamp": "1423001612",
+    "vl": "300",
+    "vwap": "528.351"
+  }
+}
