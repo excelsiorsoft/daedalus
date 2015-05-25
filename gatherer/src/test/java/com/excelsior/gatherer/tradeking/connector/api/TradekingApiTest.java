@@ -15,34 +15,36 @@ import com.excelsiorsoft.gatherer.tradeking.connector.api.TradekingApi;
 public class TradekingApiTest {
 
 	@Test
-	public void validEndpointsTest()
-	{
+	public void validEndpointsTest() {
+		
 		TradekingApi api = new TradekingApi();
 		assertTrue("Request Token Endpoint is not valid",isValid(api.getRequestTokenEndpoint()));
 		assertTrue("Access Token Endpoint is not valid",isValid(api.getAccessTokenEndpoint()));
 	}
 
-	public boolean isValid(String urlString)
-	{
+	public boolean isValid(String urlString) {
+		
 		URL url = null;
-		try
-		{
+		
+		try {
+			
 			url = new URL(urlString);
-		}
-		catch (MalformedURLException e)
-		{
+		
+		} catch (MalformedURLException e) {
+			
 			return false;
 		}
+		
 		URLConnection conn;
-		try
-		{
+		try {
+			
 			conn = url.openConnection();
 			conn.connect();
-		}
-		catch (IOException e)
-		{
+			
+		} catch (IOException e) {
 			return false;
 		}
+		
 		return true;
 	}
 

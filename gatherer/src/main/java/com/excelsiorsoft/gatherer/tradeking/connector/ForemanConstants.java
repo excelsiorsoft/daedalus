@@ -11,8 +11,7 @@ import java.io.Serializable;
  * @author sleyzerzon
  *
  */
-public enum ForemanConstants implements Serializable
-{
+public enum ForemanConstants implements Serializable {
 	/**
 	 * TradeKing's OAuth API Key
 	 */
@@ -33,18 +32,19 @@ public enum ForemanConstants implements Serializable
 	private String value;
 
 	ForemanConstants(String value) {
-		if (value == null) {
+		
+		this.value = value == null?"":value;
+		/*if (value == null) {
 			
 			this.value = "";
 		} else {
 			
 			this.value = value;
-		}
+		}*/
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return value;
 	}
 }

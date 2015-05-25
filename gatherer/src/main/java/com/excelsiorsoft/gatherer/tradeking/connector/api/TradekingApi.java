@@ -3,8 +3,6 @@ package com.excelsiorsoft.gatherer.tradeking.connector.api;
 import java.io.Serializable;
 
 import org.scribe.builder.api.DefaultApi10a;
-import org.scribe.builder.api.DefaultApi20;
-import org.scribe.model.OAuthConfig;
 import org.scribe.model.Token;
 
 public class TradekingApi extends DefaultApi10a implements Serializable {
