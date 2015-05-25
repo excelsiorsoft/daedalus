@@ -14,6 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * This demonstrates the usage of the framework - take a look at readme.txt in the /doc of this project
+ * 
+ * @author Simeon
+ *
+ */
 public class Example {
 
     public static void main(String[] args) {
