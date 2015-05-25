@@ -43,11 +43,21 @@
 			<version>1.6.1</version>
 		</dependency>
 
-		<!-- <dependency>
-			<groupId>jaxen</groupId>
-			<artifactId>jaxen</artifactId>
-			<version>1.1.6</version>
-		</dependency> -->
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path-assert</artifactId>
+			<version>2.0.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- <dependency> <groupId>jaxen</groupId> <artifactId>jaxen</artifactId> 
+			<version>1.1.6</version> </dependency> -->
 
 	</dependencies>
 
@@ -59,18 +69,11 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 				</plugin>
 
-<!-- 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<configuration>
-						<environmentVariables>
-							<tk.consumer_key>${env.CONSUMER_KEY}</tk.consumer_key>
-							<tk.consumer_secret>${env.CONSUMER_SECRET}</tk.consumer_secret>
-							<tk.oauth_token>${env.OAUTH_TOKEN}</tk.oauth_token>
-							<tk.oauth_token_secret>${env.OAUTH_TOKEN_SECRET}</tk.oauth_token_secret>
-						</environmentVariables>
-					</configuration>
-				</plugin> -->
+				<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+					<configuration> <environmentVariables> <tk.consumer_key>${env.CONSUMER_KEY}</tk.consumer_key> 
+					<tk.consumer_secret>${env.CONSUMER_SECRET}</tk.consumer_secret> <tk.oauth_token>${env.OAUTH_TOKEN}</tk.oauth_token> 
+					<tk.oauth_token_secret>${env.OAUTH_TOKEN_SECRET}</tk.oauth_token_secret> 
+					</environmentVariables> </configuration> </plugin> -->
 			</plugins>
 		</pluginManagement>
 	</build>
