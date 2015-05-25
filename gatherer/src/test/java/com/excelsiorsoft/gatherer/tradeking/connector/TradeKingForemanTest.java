@@ -17,7 +17,7 @@ import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
 public class TradeKingForemanTest {
 
 	
-/*	
+	
 	@Test
 	public void connectionTest()
 	{
@@ -97,43 +97,6 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeApiCall(getOptionsStrikes(xml, "slw")).getResponse());
-		System.out.println("==============================");
-		
-	}*/
-	
-	
-	@Test
-	public void marketTopListsApiCall_xml() throws Throwable {
-		
-		System.out.println("market/toplists losers by $ call...");
-		System.out.println("==============================");
-		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getTopLosers(TopType.BY_DOLLAR_AMOUNT, xml)).getResponse());
-		System.out.println("==============================");
-		
-		
-		System.out.println("market/toplists losers by % call...");
-		System.out.println("==============================");
-		//TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getTopLosers(TopType.BY_PERCENTAGE_AMOUNT, xml)).getResponse());
-		System.out.println("==============================");
-		
-	}
-	
-	@Test
-	public void marketTopListsApiCall_json() throws Throwable {
-		
-		System.out.println("market/toplists losers by $ call...");
-		System.out.println("==============================");
-		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getTopLosers(TopType.BY_DOLLAR_AMOUNT, json)).getResponse());
-		System.out.println("==============================");
-		
-		
-		System.out.println("market/toplists losers by % call...");
-		System.out.println("==============================");
-		//TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getTopLosers(TopType.BY_PERCENTAGE_AMOUNT, json)).getResponse());
 		System.out.println("==============================");
 		
 	}
