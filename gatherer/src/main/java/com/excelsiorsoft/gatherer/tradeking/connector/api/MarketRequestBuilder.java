@@ -45,7 +45,7 @@ public class MarketRequestBuilder extends TKRequest {
 		};
 
 		return (MarketRequestBuilder) new MarketRequestBuilder(GET, context)
-					.setResourceURL(marketClock((context/*.get(FORMAT)*/)));
+					.setResourceURL(marketClock((context)));
 
 	}
 
@@ -56,18 +56,13 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, String> context = new HashMap<String, String>() {
 			{
 				put(FORMAT, format.toString());
-				put("symbols", symbols);
+				put(SYMBOLS, symbols);
 			}
 		};
 
-		return (MarketRequestBuilder) new MarketRequestBuilder(GET, context)
-					.setResourceURL(extQuotes((context/*.get(FORMAT)*/)));
-		
-		
-		/*MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(POST,
-				null);
-		mktReqBuilder.setResourceURL(extQuotes(format.toString(), symbols));
-		return mktReqBuilder;*/
+		return (MarketRequestBuilder) new MarketRequestBuilder(POST, context)
+					.setResourceURL(extQuotes((context)));
+
 	}
 
 	public static MarketRequestBuilder getOptionsExpirations(
@@ -77,7 +72,7 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, String> context = new HashMap<String, String>() {
 			{
 				put(FORMAT, format.toString());
-				put("symbol", symbol);
+				put(SYMBOL, symbol);
 			}
 		};
 		
@@ -93,7 +88,7 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, String> context = new HashMap<String, String>() {
 			{
 				put(FORMAT, format.toString());
-				put("symbol", symbol);
+				put(SYMBOL, symbol);
 			}
 		};
 		
