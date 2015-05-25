@@ -29,6 +29,10 @@ public abstract class TKRequest implements Serializable {
 	protected String resourceURL;
 	protected String body;
 	protected boolean streaming;
+	
+	public static enum TopType{
+		BY_DOLLAR_AMOUNT, BY_PERCENTAGE_AMOUNT;
+	}
 
 	public Verb getVerb() {
 		return verb;

@@ -22,6 +22,7 @@ import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.*;
 
 
 
+
 /**
  * A builder for different sorts of TradeKing API calls - replacement for {@link ApiCall}
  * 
@@ -33,7 +34,7 @@ public class UriBuilder {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(UriBuilder.class);
 	
-	public interface CallType {
+	public interface UriType {
 		Verb getHttpMethod();
 		String getTemplate(); 
 	}
@@ -98,10 +99,34 @@ public class UriBuilder {
 		params.put("format", format);*/
 
 		return buildUri(MARKET.OPTIONS_STRIKES, params);
-	}		
+	}	
 	
 	
-	public static String buildUri(CallType type, Map<String, String> params) throws Throwable {
+	/**
+	 * This call will return a ranked list based on the list type specified.
+	 * 
+	 * 			<li>toplosers	Top losers by dollar amount, corresponds to {@link TopType.BY_DOLLAR_AMOUNT}
+	 *			<li>toppctlosers	Top percentage losers, corresponds to {@link TopType.BY_PERCENTAGE_AMOUNT}
+	 * 
+	 * @param typeOfTop 
+	 * @param params
+	 * @return
+	 * @throws Throwable
+	 */
+	public static String topLosers(TopType typeOfTop, Map<String, String> params) throws Throwable {
+	
+		String defaultLosersUri = buildUri(MARKET.TOPLISTS_LOSERS_DOLLAR, params);
+		
+		String result = (typeOfTop.equals(TopType.BY_DOLLAR_AMOUNT)) ? defaultLosersUri 	: 
+						(typeOfTop.equals(TopType.BY_PERCENTAGE_AMOUNT)) ? buildUri(MARKET.TOPLISTS_LOSERS_PERCENTAGE, params)
+						: defaultLosersUri;
+			
+		return result;
+			
+		}	
+	
+	
+	public static String buildUri(UriType type, Map<String, String> params) throws Throwable {
 
 
 		LOGGER.debug("Building a template with call of type {} and parameters {}\n", type, params);
@@ -121,7 +146,7 @@ public class UriBuilder {
 		return result;
 	}
 	
-	public enum MARKET implements CallType {
+	public enum MARKET implements UriType {
 		CLOCK(GET, "https://api.tradeking.com/v1/market/clock.${format}"), 
 		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${format}?symbols=${symbols?url}"), 
 		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
@@ -132,8 +157,8 @@ public class UriBuilder {
 		OPTIONS_EXPIRATIONS(GET, "https://api.tradeking.com/v1/market/options/expirations.${format}?symbol=${symbol?url}"), 
 		TIMESALES(GET, "https://api.tradeking.com/v1/market/timesales"), 
 		TOPLISTS_VOLUME(GET, "https://api.tradeking.com/v1/market/toplists/topvolume"), 
-		TOPLISTS_LOSERS_DOLLAR(GET, "https://api.tradeking.com/v1/market/toplists/toplosers"), 
-		TOPLISTS_LOSERS_PERCENTAGE(GET, "https://api.tradeking.com/v1/market/toplists/toppctlosers"), 
+		TOPLISTS_LOSERS_DOLLAR(GET, "https://api.tradeking.com/v1/market/toplists/toplosers.${format}"), 
+		TOPLISTS_LOSERS_PERCENTAGE(GET, "https://api.tradeking.com/v1/market/toplists/toppctlosers.${format}"), 
 		TOPLISTS_ACTIVE(GET, "https://api.tradeking.com/v1/market/toplists/topactive"), 
 		TOPLISTS_GAINERS_DOLLAR_AMT(GET, "https://api.tradeking.com/v1/market/toplists/topgainers"), 
 		TOPLISTS_GAINERS_PERCENTAGE(GET, "https://api.tradeking.com/v1/market/toplists/toppctgainers"), 
