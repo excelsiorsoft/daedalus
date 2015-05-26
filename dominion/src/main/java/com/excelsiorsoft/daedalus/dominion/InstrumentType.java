@@ -10,6 +10,15 @@ public enum InstrumentType {
 	OPTION, STOCK, ETF, FUTURE;
 
 	public static enum OptionType{
-		PUT, CALL;
+		PUT("P"), CALL("C");
+		
+		String abbreviation;
+		
+		OptionType(String value){
+			this.abbreviation=value;}
+
+		public String abbreviation() {
+			return abbreviation;
+		}
 	}
 }
