@@ -2,6 +2,7 @@ package com.excelsiorsoft.daedalus.dominion;
 
 import static com.excelsiorsoft.daedalus.dominion.Option.OptionsSymbologyType.OCC;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -44,8 +45,7 @@ public class Option {
 			return optionSymbol;
 		}
 
-	
-	
+
 	
 	
 	public static enum OptionsSymbologyType {
