@@ -17,7 +17,9 @@ public class OptionSymbolBuilder {
 		
 		String paddedPrice = String.format("%08d", (int) (strike * 1000));
 
-		return underlyingSymbol + timeString	+ optionType + paddedPrice;
+		return new StringBuilder(underlyingSymbol).append(timeString).append(optionType).append(paddedPrice).toString().toUpperCase();
+		
+		//return underlyingSymbol + timeString	+ optionType + paddedPrice;
 
     }
 
