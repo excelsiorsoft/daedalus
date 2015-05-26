@@ -45,7 +45,7 @@ public class JsonHandlerTest {
 	
 	//endpoint specific value object, not our app domain object
 	@JsonDeserialize(using = QuoteDeserializer.class)
-	public final static class Quote{
+	public final static class Quote {
 		
 		double bid;
 		double ask;
