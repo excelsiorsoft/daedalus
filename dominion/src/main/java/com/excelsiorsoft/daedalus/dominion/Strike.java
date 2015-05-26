@@ -16,7 +16,7 @@ import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
  * 
  */
 
-public final class Strike extends AbstractTradableDomain/* implements Tradable*/ {
+public final class Strike extends AbstractTradableInstrument/* implements Tradable*/ {
 	
 	
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page

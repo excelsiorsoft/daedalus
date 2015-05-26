@@ -5,7 +5,7 @@ package com.excelsiorsoft.daedalus.dominion;
 import org.apache.commons.lang3.math.NumberUtils;
 import static org.apache.commons.lang3.math.NumberUtils.*;
 
-public class AbstractTradableDomain extends AbstractDomain implements Tradable {
+public class AbstractTradableInstrument extends AbstractDomain implements Tradable {
 
 	protected /*BigDecimal*/ double bid;
 	protected /*BigDecimal*/double ask;
