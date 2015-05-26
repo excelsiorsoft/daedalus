@@ -13,7 +13,7 @@ import org.apache.commons.lang3.math.NumberUtils;
  * @author Simeon
  *
  */
-public class Underlying extends AbstractTradableDomain /*implements Tradable*/ {
+public class Underlying extends AbstractTradableInstrument /*implements Tradable*/ {
 	
 	private InstrumentType type;
 	
