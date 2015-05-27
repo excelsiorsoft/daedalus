@@ -11,7 +11,7 @@ public class Option extends AbstractTradableInstrument {
 
 	private Underlying underlying;
 	private OptionType optionType; //put or call
-	
+
 	// expiration type - european or american
 
 	private Date expirationDate;
@@ -23,8 +23,7 @@ public class Option extends AbstractTradableInstrument {
 									// own, especially futures)
 	private OptionSymbolBuilder symbolBuilder = new OptionSymbolBuilder();
 
-	
-	
+
 	public String getSymbol(){
 		
 		return symbolBuilder.buildSymbol(underlying.getSymbol(), expirationDate, optionType.abbreviation, strike.getValue());
