@@ -7,6 +7,13 @@ import java.util.Date;
 
 import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
 
+/**
+ * Representation of an option financial instrument
+ * 
+ * 
+ * @author sleyzerzon
+ *
+ */
 public class Option extends AbstractTradableInstrument {
 
 	private Underlying underlying;
@@ -47,6 +54,8 @@ public class Option extends AbstractTradableInstrument {
 	
 	
 	/**
+	 * Encapsulates different existing specifications of options symbology, defaulting to the OCC
+	 * 
 	 * @author sleyzerzon
 	 *
 	 */
@@ -55,6 +64,8 @@ public class Option extends AbstractTradableInstrument {
 	}
 
 	/**
+	 * Representation of an option symbol 
+	 * 
 	 * @author sleyzerzon
 	 *
 	 */
@@ -81,16 +92,6 @@ public class Option extends AbstractTradableInstrument {
 	 */
 	public static class OptionSymbolBuilder {
 		
-
-		private String occSpecification(OptionSymbologyType symbolType, String underlyingSymbol, Date expirationDate, String optionType, double strike){
-			
-			String timeString = new SimpleDateFormat("yyMMdd").format(expirationDate);
-			
-			String paddedPrice = String.format("%08d", (int) (strike * 1000));
-
-			return new StringBuilder(underlyingSymbol).append(timeString).append(optionType).append(paddedPrice).toString().toUpperCase();
-		}
-		
 	    	
 		public String buildSymbol(OptionSymbologyType symbolType, String underlyingSymbol, Date expirationDate, String optionType, double strike){
 			
@@ -112,12 +113,24 @@ public class Option extends AbstractTradableInstrument {
 			
 		}
 		
+		
 	    public String buildSymbol(String underlyingSymbol, Date expirationDate, String optionType, double strike)  {
 
 	    	return buildSymbol(OCC, underlyingSymbol, expirationDate, optionType, strike);
 
 
 	    }
+	    
+		
+	    private String occSpecification(OptionSymbologyType symbolType, String underlyingSymbol, Date expirationDate, String optionType, double strike){
+					
+					String timeString = new SimpleDateFormat("yyMMdd").format(expirationDate);
+					
+					String paddedPrice = String.format("%08d", (int) (strike * 1000));
+		
+					return new StringBuilder(underlyingSymbol).append(timeString).append(optionType).append(paddedPrice).toString().toUpperCase();
+				}
+		
 
 	}
 	
