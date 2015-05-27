@@ -1,4 +1,4 @@
-package com.excelsiorsoft.daedalus.dominion.builder;
+package com.excelsiorsoft.daedalus.dominion;
 
 
 import static org.junit.Assert.assertEquals;
@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
+import com.excelsiorsoft.daedalus.dominion.builder.OptionSymbolBuilder;
 
 public class OptionSymbolBuilderTest {
 
