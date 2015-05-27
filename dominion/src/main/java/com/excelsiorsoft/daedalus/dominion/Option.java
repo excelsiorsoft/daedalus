@@ -10,7 +10,8 @@ import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
 public class Option extends AbstractTradableInstrument {
 
 	private Underlying underlying;
-	private OptionType optionType;
+	private OptionType optionType; //put or call
+	
 	// expiration type - european or american
 
 	private Date expirationDate;
@@ -24,37 +25,33 @@ public class Option extends AbstractTradableInstrument {
 
 	
 	
+	public String getSymbol(){
+		
+		return symbolBuilder.buildSymbol(underlying.getSymbol(), expirationDate, optionType.abbreviation, strike.getValue());
+	}
 	
-	/*
-	 * public String getSymbol(OptionsSymbologyType... symbolType){
-	 * 
-	 * String optionSymbol = "";
-	 * 
-	 * OptionsSymbologyType optSymbolType = symbolType[0] !=
-	 * null?symbolType[0]:OCC;
-	 * 
-	 * switch (optSymbolType) {
-	 * 
-	 * default: { String timeString = new
-	 * SimpleDateFormat("yyMMdd").format(expirationDate);
-	 * 
-	 * String optnType = optionType.abbreviation();
-	 * 
-	 * String paddedPrice = String.format("%08d", (int) (strike.getValue() *
-	 * 1000));
-	 * 
-	 * optionSymbol = underlying.getSymbol() + timeString + optnType +
-	 * paddedPrice;
-	 * 
-	 * break; } }
-	 * 
-	 * return optionSymbol; }
-	 */
+	public String getSymbol(OptionsSymbologyType symbolType){
 
+		return symbolBuilder.buildSymbol(symbolType, underlying.getSymbol(), expirationDate, optionType.abbreviation, strike.getValue());
+	}
+
+	
+	
+	
+	
+	
+	/**
+	 * @author sleyzerzon
+	 *
+	 */
 	public static enum OptionsSymbologyType {
 		OCC;
 	}
 
+	/**
+	 * @author sleyzerzon
+	 *
+	 */
 	public static class OptionsSymbol {
 
 		String value;
@@ -72,16 +69,46 @@ public class Option extends AbstractTradableInstrument {
 	}
 
 	
+	/**
+	 * @author sleyzerzon
+	 *
+	 */
 	public static class OptionSymbolBuilder {
 		
-		
-	    public String buildSymbol(String underlyingSymbol, Date expirationDate, String optionType, double strike)  {
 
-	    	String timeString = new SimpleDateFormat("yyMMdd").format(expirationDate);
+		private String occSpecification(OptionsSymbologyType symbolType, String underlyingSymbol, Date expirationDate, String optionType, double strike){
+			
+			String timeString = new SimpleDateFormat("yyMMdd").format(expirationDate);
 			
 			String paddedPrice = String.format("%08d", (int) (strike * 1000));
 
 			return new StringBuilder(underlyingSymbol).append(timeString).append(optionType).append(paddedPrice).toString().toUpperCase();
+		}
+		
+	    	
+		public String buildSymbol(OptionsSymbologyType symbolType, String underlyingSymbol, Date expirationDate, String optionType, double strike){
+			
+			String result = "";
+			
+			switch(symbolType){
+			
+			case OCC: 
+				
+				occSpecification(symbolType, underlyingSymbol, expirationDate, optionType, strike); break;
+			
+			default:
+				
+				occSpecification(symbolType, underlyingSymbol, expirationDate, optionType, strike); break;
+				
+			}
+			
+			return result;
+			
+		}
+		
+	    public String buildSymbol(String underlyingSymbol, Date expirationDate, String optionType, double strike)  {
+
+	    	return buildSymbol(OCC, underlyingSymbol, expirationDate, optionType, strike);
 
 
 	    }
