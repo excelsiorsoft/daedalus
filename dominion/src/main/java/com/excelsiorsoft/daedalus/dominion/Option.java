@@ -19,7 +19,7 @@ import static com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType.*;
  */
 public class Option extends AbstractTradableInstrument {
 
-	private Underlying underlying = new Underlying();
+	private Instrument underlying = new Instrument();
 	private OptionType optionType; //put or call
 
 	// expiration type - european or american
@@ -198,7 +198,7 @@ public class Option extends AbstractTradableInstrument {
 			
 		}
 		
-		public static OptionBuilder withUnderlying(Underlying underlying){
+		public static OptionBuilder withUnderlying(Instrument underlying){
 			OptionBuilder result = new OptionBuilder();
 			result.option.underlying = underlying;
 			return result;

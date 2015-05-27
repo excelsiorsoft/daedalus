@@ -13,7 +13,7 @@ import org.apache.commons.lang3.math.NumberUtils;
  * @author Simeon
  *
  */
-public class Underlying extends AbstractTradableInstrument /*implements Tradable*/ {
+public class Instrument extends AbstractTradableInstrument /*implements Tradable*/ {
 	
 	private InstrumentType type;
 	
@@ -32,7 +32,7 @@ public class Underlying extends AbstractTradableInstrument /*implements Tradable
 		return type;
 	}
 
-	public Underlying setType(InstrumentType type) {
+	public Instrument setType(InstrumentType type) {
 		this.type = type;
 		return this;
 	}
@@ -41,7 +41,7 @@ public class Underlying extends AbstractTradableInstrument /*implements Tradable
 		return symbol;
 	}
 
-	public Underlying setSymbol(String symbol) {
+	public Instrument setSymbol(String symbol) {
 		this.symbol = symbol;
 		return this;
 	}
@@ -63,5 +63,33 @@ public class Underlying extends AbstractTradableInstrument /*implements Tradable
 		this.affectedBy = affectedBy;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * @author sleyzerzon
+	 *
+	 */
+	public static enum InstrumentType {
+		OPTION, STOCK, ETF, FUTURE;
+
+		public static enum OptionType{
+			PUT("P"), CALL("C");
+			
+			String abbreviation;
+			
+			private OptionType(String value){
+				this.abbreviation=value;}
+
+			public String abbreviation() {
+				return abbreviation;
+			}
+		}
+	}
+	
 
 }
