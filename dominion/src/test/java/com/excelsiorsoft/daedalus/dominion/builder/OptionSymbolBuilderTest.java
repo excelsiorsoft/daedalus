@@ -1,5 +1,6 @@
 package com.excelsiorsoft.daedalus.dominion.builder;
 
+
 import static org.junit.Assert.assertEquals;
 
 import java.text.SimpleDateFormat;
