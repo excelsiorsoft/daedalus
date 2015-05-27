@@ -2,10 +2,13 @@ package com.excelsiorsoft.daedalus.dominion;
 
 import static com.excelsiorsoft.daedalus.dominion.Option.OptionSymbologyType.OCC;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
+
+import static com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType.*;
 
 /**
  * Representation of an option financial instrument
@@ -16,13 +19,13 @@ import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
  */
 public class Option extends AbstractTradableInstrument {
 
-	private Underlying underlying;
+	private Underlying underlying = new Underlying();
 	private OptionType optionType; //put or call
 
 	// expiration type - european or american
 
 	private Date expirationDate;
-	private Strike strike;
+	private Strike strike = new Strike();
 
 	private OptionSymbol symbol; // OCC by default, need to create a hierarchy
 									// for symbols of different types of
@@ -30,7 +33,9 @@ public class Option extends AbstractTradableInstrument {
 									// own, especially futures)
 	private OptionSymbolBuilder symbolBuilder = new OptionSymbolBuilder();
 
-
+	private Option(){}
+	
+	
 	/**
 	 * @return
 	 */
@@ -144,8 +149,71 @@ public class Option extends AbstractTradableInstrument {
 	 * @author sleyzerzon
 	 *
 	 */
-	public static class OptionBuilder{
+	public static class OptionBuilder {
 		
+		private Option option = new Option();
+		
+		private OptionBuilder(){}
+		
+		/*public static OptionBuilder instance(){
+			return new OptionBuilder();
+		}
+		*/
+		public OptionBuilder withStrike(double strike){
+			
+			option.strike.setValue(strike);
+			return this;
+		}
+		
+		public OptionBuilder ofType(OptionType type){
+			
+			option.optionType = type;
+			return this;
+		}
+		
+		public OptionBuilder ofType(String type){
+			
+			if (type.equalsIgnoreCase("PUT") || type.equalsIgnoreCase("P")){
+				
+				option.optionType = PUT;
+			
+			} else if (type.equalsIgnoreCase("CALL") || type.equalsIgnoreCase("C")){
+				
+				option.optionType = CALL;
+			}
+			
+			return this;
+		}
+		
+		public OptionBuilder withExpiration(Date expirDate){
+			
+			option.expirationDate = expirDate;
+			return this;
+		}
+		
+		public OptionBuilder withExpiration(String expiration) throws Throwable{
+			
+			option.expirationDate = new SimpleDateFormat("yyyy-MM-dd").parse(expiration);
+			return this;
+			
+		}
+		
+		public static OptionBuilder withUnderlying(Underlying underlying){
+			OptionBuilder result = new OptionBuilder();
+			result.option.underlying = underlying;
+			return result;
+		}
+		
+		public static OptionBuilder withUnderlying(String symbol){
+			OptionBuilder result = new OptionBuilder();
+			result.option.underlying.setSymbol(symbol);
+			return result;
+		}
+		
+		public Option build(){
+			
+			return option;
+		}
 	}
 	
 	

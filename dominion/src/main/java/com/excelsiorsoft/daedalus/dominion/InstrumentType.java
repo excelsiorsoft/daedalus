@@ -14,7 +14,7 @@ public enum InstrumentType {
 		
 		String abbreviation;
 		
-		OptionType(String value){
+		private OptionType(String value){
 			this.abbreviation=value;}
 
 		public String abbreviation() {
