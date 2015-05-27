@@ -87,6 +87,10 @@ public class Option extends AbstractTradableInstrument {
 
 	
 	/**
+	 * Utility to create a symbol for an option from its constituent parts </br>
+	 * Conforms to a specific option symbology specification. </br>
+	 * Defaults to the OCC.
+	 * 
 	 * @author sleyzerzon
 	 *
 	 */
@@ -132,6 +136,16 @@ public class Option extends AbstractTradableInstrument {
 				}
 		
 
+	}
+	
+	/**
+	 * A utility to fluidly build option instances
+	 * 
+	 * @author sleyzerzon
+	 *
+	 */
+	public static class OptionBuilder{
+		
 	}
 	
 	
