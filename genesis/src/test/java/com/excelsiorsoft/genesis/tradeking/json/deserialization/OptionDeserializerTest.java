@@ -6,7 +6,7 @@ import com.excelsiorsoft.daedalus.dominion.Option;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class OptionDeserializerTest {
+public class OptionDeserializerTest { 
 
 	/**
 	 * https://oopsnullpointer.wordpress.com/2009/10/26/hello-world/
