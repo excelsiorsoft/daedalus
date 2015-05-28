@@ -17,7 +17,7 @@ public class OptionDeserializerTest {
 	 * http://www.robinhowlett.com/blog/2015/01/01/building-a-custom-jackson-deserializer/
 	 * http://www.leveluplunch.com/java/examples/convert-json-to-from-map-jackson/
 	 * http://blog.palominolabs.com/2012/06/05/writing-a-custom-jackson-serializer-and-deserializer/
-	 * http://www.baeldung.com/jackson
+	 * http://www.baeldung.com/jackson 
 	 * 
 	 * @throws Throwable
 	 */
