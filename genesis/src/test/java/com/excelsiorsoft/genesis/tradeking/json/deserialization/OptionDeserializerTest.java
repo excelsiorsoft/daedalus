@@ -8,6 +8,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OptionDeserializerTest {
 
+	/**
+	 * https://oopsnullpointer.wordpress.com/2009/10/26/hello-world/
+	 * http://www.cowtowncoder.com/blog/archives/2009/08/entry_305.html
+	 * http://wiki.fasterxml.com/JacksonMixInAnnotations
+	 * https://www.sghill.net/how-do-i-write-a-jackson-json-serializer-deserializer.html
+	 * 
+	 * @throws Throwable
+	 */
 	@Test
 	public void test() throws Throwable {
 		
