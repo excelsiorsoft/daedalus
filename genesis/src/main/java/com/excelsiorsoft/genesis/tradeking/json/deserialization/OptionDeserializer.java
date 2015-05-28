@@ -32,16 +32,17 @@ public class OptionDeserializer extends JsonDeserializer<Option> {
         String toDeserialize = node.get("response").toString();
         
         Object document = Configuration.defaultConfiguration().jsonProvider().parse(toDeserialize);
-		String symbol = JsonPath.read(document, "$.quotes.quote[0].symbol");
-		String bid = JsonPath.read(document, "$.quotes.quote[0].bid");
-		String ask = JsonPath.read(document, "$.quotes.quote[0].ask");
-		String optionType = JsonPath.read(document, "$.quotes.quote[0].put_call");
-		String strike = JsonPath.read(document, "$.quotes.quote[0].strikeprice");
-		String expiration = JsonPath.read(document, "$.quotes.quote[0].xdate");
+		String symbol = JsonPath.read(document, "$.quotes.quote.symbol");
+		String bid = JsonPath.read(document, "$.quotes.quote.bid");
+		String ask = JsonPath.read(document, "$.quotes.quote.ask");
+		String optionType = JsonPath.read(document, "$.quotes.quote.put_call");
+		String strike = JsonPath.read(document, "$.quotes.quote.strikeprice");
+		String expiration = JsonPath.read(document, "$.quotes.quote.xdate");
+		String underlying = JsonPath.read(document, "$.quotes.quote.undersymbol");
 
 		Option result = null;
 		try {
-			result = OptionBuilder.withUnderlying(symbol).ofType(optionType)
+			result = OptionBuilder.withUnderlying(underlying).ofType(optionType)
 					.withExpiration(expiration)
 					.withStrike(Double.parseDouble(strike)).build();
 		} catch (Throwable e) {
