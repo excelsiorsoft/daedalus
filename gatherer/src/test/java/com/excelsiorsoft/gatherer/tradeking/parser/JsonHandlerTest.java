@@ -22,6 +22,15 @@ import com.jayway.jsonpath.JsonPath;
 
 public class JsonHandlerTest {
 	
+	
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * @author sleyzerzon
+	 *
+	 */
 	public static class QuoteDeserializer extends JsonDeserializer<Quote> {
 	    
 		@Override

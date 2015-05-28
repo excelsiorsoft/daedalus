@@ -2,11 +2,12 @@ package com.excelsiorsoft.daedalus.dominion;
 
 import static com.excelsiorsoft.daedalus.dominion.Option.OptionSymbologyType.OCC;
 
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
+
 
 import static com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType.*;
 
@@ -17,6 +18,7 @@ import static com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType.*;
  * @author sleyzerzon
  *
  */
+//@JsonDeserialize(using = OptionDeserializer.class)
 public class Option extends AbstractTradableInstrument {
 
 	private Instrument underlying = new Instrument();
