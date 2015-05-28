@@ -54,7 +54,7 @@ public class TradeKingForemanTest {
 		TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getResponse());
 		System.out.println("single option: "+foreman.makeApiCall(getExtQuotes(json, "slw160115P00020000", "")).getResponse());
-		System.out.println(foreman.makeApiCall(getExtQuotes(json, "slw, slw160115P00020000, slw160115P00021000 ", "")).getResponse());
+		System.out.println("several options: "+foreman.makeApiCall(getExtQuotes(json, "slw160115P00020000, slw160115P00021000 ", "")).getResponse());
 		//System.out.println(foreman.makeAPICall(getExtQuotes(XML, "gasl, gasl150918C00004000 ", "")).toString());
 		System.out.println("==============================");
 		

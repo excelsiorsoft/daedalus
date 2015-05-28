@@ -22,6 +22,7 @@ import com.jayway.jsonpath.JsonPath;
  */
 public class OptionDeserializer extends JsonDeserializer<Option> {
 
+	@SuppressWarnings("unused")
 	@Override
 	public Option deserialize(JsonParser jsonParser,
 	            DeserializationContext deserializationContext) throws IOException, JsonProcessingException {		
