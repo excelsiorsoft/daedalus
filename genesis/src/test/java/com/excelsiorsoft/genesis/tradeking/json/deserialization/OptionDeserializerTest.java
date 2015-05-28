@@ -6,15 +6,19 @@ import com.excelsiorsoft.daedalus.dominion.Option;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class OptionDeserializerTest {
+public class OptionDeserializerTest { 
 
 	/**
 	 * https://oopsnullpointer.wordpress.com/2009/10/26/hello-world/
 	 * http://www.cowtowncoder.com/blog/archives/2009/08/entry_305.html
 	 * http://wiki.fasterxml.com/JacksonMixInAnnotations
+	 * http://wiki.fasterxml.com/JacksonHowToCustomSerializers
 	 * https://www.sghill.net/how-do-i-write-a-jackson-json-serializer-deserializer.html
 	 * http://www.robinhowlett.com/blog/2015/01/01/building-a-custom-jackson-deserializer/
 	 * http://www.leveluplunch.com/java/examples/convert-json-to-from-map-jackson/
+	 * http://blog.palominolabs.com/2012/06/05/writing-a-custom-jackson-serializer-and-deserializer/
+	 * 
+	 * 
 	 * 
 	 * @throws Throwable
 	 */
