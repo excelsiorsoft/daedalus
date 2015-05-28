@@ -20,7 +20,7 @@ public class OptionDeserializerTest {
 	 * http://www.baeldung.com/jackson 
 	 * http://programmerbruce.blogspot.com.au/2011/05/deserialize-json-with-jackson-into.html
 	 * 
-	 * @throws Throwable
+	 * @throws Throwable 
 	 */
 	@Test
 	public void test() throws Throwable {
