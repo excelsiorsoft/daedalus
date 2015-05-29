@@ -5,6 +5,8 @@ package com.excelsiorsoft.genesis.tradeking.json.deserialization;
 
 import java.io.IOException;
 
+import net.sf.json.JSONArray;
+
 import com.excelsiorsoft.daedalus.dominion.Option; 
 import com.excelsiorsoft.daedalus.dominion.Option.OptionBuilder;
 import com.fasterxml.jackson.core.JsonParser;
@@ -33,7 +35,10 @@ public class OptionDeserializer extends JsonDeserializer<Option> {
         String toDeserialize = node.get("response").toString();
         
         Object document = Configuration.defaultConfiguration().jsonProvider().parse(toDeserialize);
-		String symbol = JsonPath.read(document, "$.quotes.quote.symbol");
+		String symbol = JsonPath.read(document, "$.quotes.quote[0].symbol");
+		JSONArray quotes = JsonPath.read(document, "$.quotes.quote[*]");
+		
+		
 		String bid = JsonPath.read(document, "$.quotes.quote.bid");
 		String ask = JsonPath.read(document, "$.quotes.quote.ask");
 		String optionType = JsonPath.read(document, "$.quotes.quote.put_call");
