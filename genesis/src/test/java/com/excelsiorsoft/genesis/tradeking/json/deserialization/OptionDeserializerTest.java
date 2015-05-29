@@ -37,6 +37,35 @@ public class OptionDeserializerTest {
 
 		System.out.println(String.format("Deserialized json=%s into the following object=%s", optionJsonStr, quote));
 		System.out.println("==============================");
+		
+		
+		/*
+		 * 
+		 * JSON:
+
+{
+    "objects" : ["One", "Two", "Three"]
+}
+
+Code:
+
+final String json = "{\"objects\" : [\"One\", \"Two\", \"Three\"]}";
+
+final JsonNode arrNode = new ObjectMapper().readTree(json).get("objects");
+if (arrNode.isArray()) {
+    for (final JsonNode objNode : arrNode) {
+        System.out.println(objNode);
+    }
+}
+
+Output:
+
+    "One"
+    "Two"
+    "Three"
+		 * 
+		*/
+	
 	}
 
 }
