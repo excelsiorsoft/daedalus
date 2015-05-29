@@ -27,7 +27,8 @@ import com.jayway.jsonpath.JsonPath;
  * @author sleyzerzon
  *
  */
-public class OptionDeserializer extends JsonDeserializer<Option> {
+@Deprecated
+public class OptionDeserializer$ extends JsonDeserializer<Option> {
 
 	@SuppressWarnings("unused")
 	@Override

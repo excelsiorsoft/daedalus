@@ -10,10 +10,11 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  * @author sleyzerzon
  *
  */
-public class JacksonMixInRegistry extends SimpleModule {
+@Deprecated
+public class JacksonMixInRegistry$ extends SimpleModule {
 	
-	public JacksonMixInRegistry(){
-		addDeserializer(Option.class, new OptionDeserializer());
+	public JacksonMixInRegistry$(){
+		addDeserializer(Option.class, new OptionDeserializer$());
 	}
 
 }
