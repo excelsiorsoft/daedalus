@@ -5,7 +5,12 @@ package com.excelsiorsoft.genesis.tradeking.json.deserialization;
 
 import java.io.IOException;
 
-import net.sf.json.JSONArray;
+//import net.sf.json.JSONArray;
+
+
+import java.util.Iterator;
+
+import net.minidev.json.JSONArray;
 
 import com.excelsiorsoft.daedalus.dominion.Option; 
 import com.excelsiorsoft.daedalus.dominion.Option.OptionBuilder;
@@ -32,28 +37,31 @@ public class OptionDeserializer extends JsonDeserializer<Option> {
 		ObjectCodec oc = jsonParser.getCodec();
         JsonNode node = oc.readTree(jsonParser);
         
-        String toDeserialize = node.get("response").toString();
+        String response = node.get("response").toString();
         
-        Object document = Configuration.defaultConfiguration().jsonProvider().parse(toDeserialize);
+        Object document = Configuration.defaultConfiguration().jsonProvider().parse(response);
 		String symbol = JsonPath.read(document, "$.quotes.quote[0].symbol");
 		JSONArray quotes = JsonPath.read(document, "$.quotes.quote[*]");
 		
-		
-		String bid = JsonPath.read(document, "$.quotes.quote.bid");
-		String ask = JsonPath.read(document, "$.quotes.quote.ask");
-		String optionType = JsonPath.read(document, "$.quotes.quote.put_call");
-		String strike = JsonPath.read(document, "$.quotes.quote.strikeprice");
-		String expiration = JsonPath.read(document, "$.quotes.quote.xdate");
-		String underlying = JsonPath.read(document, "$.quotes.quote.undersymbol");
-
 		Option result = null;
-		try {
-			result = OptionBuilder.withUnderlying(underlying).ofType(optionType)
-					.withExpiration(expiration)
-					.withStrike(Double.parseDouble(strike)).build();
+		OptionBuilder builder = OptionBuilder.init();
+		
+		try{
+		for (Object quote : quotes){
+			
+			builder.withUnderlying((String)JsonPath.read(quote, "$.undersymbol"));
+			builder.withExpiration((String)JsonPath.read(quote, "$.xdate"));
+			builder.withStrike(Double.parseDouble(JsonPath.read(quote, "$.strikeprice")));
+			builder.ofType((String)JsonPath.read(quote, "$.put_call"));
+			
+			result = builder.build();
+			
+		}
+		
 		} catch (Throwable e) {
 			//TODO: proper error handling 
 		}
+
 		return result;
         
 		
