@@ -4,7 +4,7 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 import java.util.Collection;
-import java.util.List;
+
 
 import com.fasterxml.jackson.databind.JsonNode;
 
