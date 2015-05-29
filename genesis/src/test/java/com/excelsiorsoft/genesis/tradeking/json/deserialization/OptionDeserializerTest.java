@@ -6,6 +6,7 @@ import com.excelsiorsoft.daedalus.dominion.Option;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
 
 public class OptionDeserializerTest { 
 
@@ -89,7 +90,14 @@ Output:
 		System.out.println("response/quotes/quote: " + response.path("quotes").path("quote"));
 		
 		for(JsonNode quote : response.path("quotes").path("quote")){
-			System.out.println(""+ quote.path("undersymbol"));
+			
+			System.out.println("\nsymbol: " + quote.path("symbol"));
+			System.out.println("underlying: "+ quote.path("undersymbol"));
+			System.out.println("expiration dt: "+ quote.path("xdate"));
+			System.out.println("strike: "+ quote.path("strikeprice"));
+			System.out.println("option type: "+ quote.path("put_call"));
+			System.out.println("========================================");
+			
 		}
 
 		
