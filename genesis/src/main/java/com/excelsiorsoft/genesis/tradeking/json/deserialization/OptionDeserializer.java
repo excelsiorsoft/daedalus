@@ -40,7 +40,7 @@ public class OptionDeserializer extends JsonDeserializer<Option> {
         String response = node.get("response").toString();
         
         Object document = Configuration.defaultConfiguration().jsonProvider().parse(response);
-		String symbol = JsonPath.read(document, "$.quotes.quote[0].symbol");
+		//String symbol = JsonPath.read(document, "$.quotes.quote[0].symbol");
 		JSONArray quotes = JsonPath.read(document, "$.quotes.quote[*]");
 		
 		Option result = null;
