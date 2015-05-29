@@ -3,68 +3,96 @@
  */
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
-import java.io.IOException;
+import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils.asText;
 
-//import net.sf.json.JSONArray;
+import java.util.LinkedList;
+import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.Iterator;
-
-import net.minidev.json.JSONArray;
-
-import com.excelsiorsoft.daedalus.dominion.Option; 
+import com.excelsiorsoft.daedalus.dominion.Option;
 import com.excelsiorsoft.daedalus.dominion.Option.OptionBuilder;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.ObjectCodec;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.jayway.jsonpath.Configuration;
-import com.jayway.jsonpath.JsonPath;
 
 /**
  * @author sleyzerzon
  *
  */
-public class OptionDeserializer extends JsonDeserializer<Option> {
+public class OptionDeserializer implements SimpleDeserializer<Option> {
 
-	@SuppressWarnings("unused")
+	private Logger logger = LoggerFactory.getLogger(OptionDeserializer.class);
+	
 	@Override
-	public Option deserialize(JsonParser jsonParser,
-	            DeserializationContext deserializationContext) throws IOException, JsonProcessingException {		
+	public List<Option> deserialize(JsonNode node) throws Throwable {
 		
-		ObjectCodec oc = jsonParser.getCodec();
-        JsonNode node = oc.readTree(jsonParser);
-        
-        String response = node.get("response").toString();
-        
-        Object document = Configuration.defaultConfiguration().jsonProvider().parse(response);
-		//String symbol = JsonPath.read(document, "$.quotes.quote[0].symbol");
-		JSONArray quotes = JsonPath.read(document, "$.quotes.quote[*]");
+		List<Option> result = new LinkedList<>();
+		if (node.isContainerNode()) {
+			return deserializeNodeCollection(node);
+		}else {
+			result.add(deserializeSingleNode(node));
+			return result;
+		}
+		
+		/*Option result = null;
+		OptionBuilder builder = OptionBuilder.init();
+		
+		try{
+			
+				builder.withUnderlying(asText(quote, "undersymbol"));
+				builder.withExpiration(asText(quote, "xdate"));
+				builder.withStrike(Double.parseDouble(asText(quote, "strikeprice")));
+				builder.ofType(asText(quote, "put_call"));
+				
+				result = builder.build();
+
+		} catch (Throwable e) {
+			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
+		}
+
+		return result;*/
+	}
+
+	
+	private Option deserializeSingleNode(JsonNode quote) throws Throwable {
 		
 		Option result = null;
 		OptionBuilder builder = OptionBuilder.init();
 		
 		try{
 			
-			for (Object quote : quotes){
-				
-				builder.withUnderlying((String)JsonPath.read(quote, "$.undersymbol"));
-				builder.withExpiration((String)JsonPath.read(quote, "$.xdate"));
-				builder.withStrike(Double.parseDouble(JsonPath.read(quote, "$.strikeprice")));
-				builder.ofType((String)JsonPath.read(quote, "$.put_call"));
+				builder.withUnderlying(asText(quote, "undersymbol"));
+				builder.withExpiration(asText(quote, "xdate"));
+				builder.withStrike(Double.parseDouble(asText(quote, "strikeprice")));
+				builder.ofType(asText(quote, "put_call"));
 				
 				result = builder.build();
-				
-			}
 
 		} catch (Throwable e) {
-			//TODO: proper error handling 
+			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
 		}
 
 		return result;
+	}
+	
+	
 
+	private List<Option> deserializeNodeCollection(JsonNode quotes) throws Throwable {
+		
+		List<Option> result = new LinkedList<>();
+		logger.debug("Deserializing a collection of json nodes of size {} into a collection of Options", quotes.size());
+		
+		int counter = 0;
+		for(JsonNode quote : quotes){
+			
+			logger.debug("deserializing node: {}", quote);
+			result.add(deserializeSingleNode(quote));
+			
+		}
+		
+		logger.debug("Done deserializing.\nResulting collection: {}", result);
+		return result;
 	}
 
 }
