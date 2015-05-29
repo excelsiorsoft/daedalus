@@ -3,6 +3,9 @@
  */
 package com.excelsiorsoft.genesis.tradeking.json.deserialization;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.excelsiorsoft.daedalus.dominion.Option;
 import com.excelsiorsoft.daedalus.dominion.Option.OptionBuilder;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,6 +16,8 @@ import com.fasterxml.jackson.databind.JsonNode;
  */
 public class SingleOptionDeserializer implements SimpleDeserializer<Option> {
 
+	private Logger logger = LoggerFactory.getLogger(SingleOptionDeserializer.class);
+	
 	@Override
 	public Option deserialize(JsonNode quote) throws Throwable {
 		
@@ -29,7 +34,7 @@ public class SingleOptionDeserializer implements SimpleDeserializer<Option> {
 				result = builder.build();
 
 		} catch (Throwable e) {
-			System.out.println(e);
+			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
 		}
 
 		return result;
