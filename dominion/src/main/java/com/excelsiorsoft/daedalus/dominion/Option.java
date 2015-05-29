@@ -199,17 +199,24 @@ public class Option extends AbstractTradableInstrument {
 			return this;
 			
 		}
-		
-		public static OptionBuilder withUnderlying(Instrument underlying){
+
+		public static OptionBuilder init() {
 			OptionBuilder result = new OptionBuilder();
-			result.option.underlying = underlying;
 			return result;
 		}
 		
-		public static OptionBuilder withUnderlying(String symbol){
+		public OptionBuilder withUnderlying(Instrument underlying){
+			
+			//OptionBuilder result = new OptionBuilder();
+			/*result.*/option.underlying = underlying;
+			return this;
+		}
+		
+		public  OptionBuilder withUnderlying(String symbol){
+			
 			OptionBuilder result = new OptionBuilder();
-			result.option.underlying.setSymbol(symbol);
-			return result;
+			/*result.*/option.underlying.setSymbol(symbol);
+			return this;
 		}
 		
 		public Option build(){
