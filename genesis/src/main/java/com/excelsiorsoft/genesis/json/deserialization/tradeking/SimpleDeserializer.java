@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.excelsiorsoft.genesis.tradeking.json.deserialization;
+package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

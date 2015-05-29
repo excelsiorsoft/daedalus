@@ -1,10 +1,13 @@
-package com.excelsiorsoft.genesis.tradeking.json.deserialization;
+package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.Option;
+import com.excelsiorsoft.genesis.json.deserialization.tradeking.JacksonMixInRegistry;
+import com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer;
+import com.excelsiorsoft.genesis.json.deserialization.tradeking.SingleOptionDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -26,7 +29,9 @@ public class SingleOptionDeserializerTest {
 		SimpleDeserializer<Option> deserializer = new SingleOptionDeserializer();
 		
 		JsonNode quotes = response.path("quotes").path("quote"); 
-		System.out.println("\nexpecting " + quotes.size() + " deserialized objects");
+		
+		System.out.println("\nDeserializing collection of json nodes of size " + quotes.size() +":");
+		
 		int counter = 0;
 		for(JsonNode quote : quotes){
 		 
@@ -34,6 +39,8 @@ public class SingleOptionDeserializerTest {
 			counter++;
 			
 		}
+		
+		assertEquals("Expecting different # of deserialized objects", counter,quotes.size());
 		
 	}
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.excelsiorsoft.genesis.tradeking.json.deserialization;
+package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 import com.excelsiorsoft.daedalus.dominion.Option;
 import com.fasterxml.jackson.databind.module.SimpleModule;

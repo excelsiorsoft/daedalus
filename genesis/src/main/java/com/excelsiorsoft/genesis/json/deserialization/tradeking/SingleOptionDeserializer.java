@@ -1,13 +1,16 @@
 /**
  * 
  */
-package com.excelsiorsoft.genesis.tradeking.json.deserialization;
+package com.excelsiorsoft.genesis.json.deserialization.tradeking;
+
+import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils.asText;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.excelsiorsoft.daedalus.dominion.Option;
 import com.excelsiorsoft.daedalus.dominion.Option.OptionBuilder;
+import com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
@@ -26,10 +29,10 @@ public class SingleOptionDeserializer implements SimpleDeserializer<Option> {
 		
 		try{
 			
-				builder.withUnderlying(quote.path("undersymbol").asText());
-				builder.withExpiration(quote.path("xdate").asText());
-				builder.withStrike(Double.parseDouble(quote.path("strikeprice").asText()));
-				builder.ofType(quote.path("put_call").asText());
+				builder.withUnderlying(asText(quote, "undersymbol"));
+				builder.withExpiration(asText(quote, "xdate"));
+				builder.withStrike(Double.parseDouble(asText(quote, "strikeprice")));
+				builder.ofType(asText(quote, "put_call"));
 				
 				result = builder.build();
 
