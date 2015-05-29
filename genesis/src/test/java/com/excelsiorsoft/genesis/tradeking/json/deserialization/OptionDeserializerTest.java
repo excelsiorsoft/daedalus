@@ -84,13 +84,14 @@ Output:
 		mapper.registerModule(new JacksonMixInRegistry());
 		
 		JsonNode response = mapper.readTree(optionJsonStr).get("response");
+
 		System.out.println("response/quotes: " +response.path("quotes"));
 		System.out.println("response/quotes/quote: " + response.path("quotes").path("quote"));
 		
 		for(JsonNode quote : response.path("quotes").path("quote")){
 			System.out.println(""+ quote.path("undersymbol"));
 		}
-	
+
 		
 	}
 	
