@@ -3,6 +3,9 @@
  */
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
+import java.util.Collection;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
@@ -13,7 +16,9 @@ import com.fasterxml.jackson.databind.JsonNode;
  */
 public interface SimpleDeserializer<T> {
 	
-	T deserialize(JsonNode node) throws Throwable; 
+	Collection<T> deserialize(JsonNode node) throws Throwable; 
+	
+	
 		
 			
 
