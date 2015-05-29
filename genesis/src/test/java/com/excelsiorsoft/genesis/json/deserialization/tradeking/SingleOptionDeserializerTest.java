@@ -3,7 +3,7 @@ package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 import static org.junit.Assert.*;
 
 import java.util.Collection;
-import java.util.List;
+
 
 import org.junit.Test;
 
@@ -34,13 +34,7 @@ public class SingleOptionDeserializerTest {
 		System.out.println("isContainer: "+quotes.isContainerNode());
 		System.out.println("isArray: "+quotes.isArray());
 		
-		/*int counter = 0;
-		for(JsonNode quote : quotes){
-		 
-			System.out.println("\n" + counter +": "+ deserializer.deserialize(quote));
-			counter++;
-			
-		}*/
+
 		Collection<Option> result = deserializer.deserialize(quotes);
 		assertEquals("Expecting different # of deserialized objects", quotes.size(), result.size());
 		
