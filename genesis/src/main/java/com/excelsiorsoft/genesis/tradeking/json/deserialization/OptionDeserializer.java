@@ -47,26 +47,24 @@ public class OptionDeserializer extends JsonDeserializer<Option> {
 		OptionBuilder builder = OptionBuilder.init();
 		
 		try{
-		for (Object quote : quotes){
 			
-			builder.withUnderlying((String)JsonPath.read(quote, "$.undersymbol"));
-			builder.withExpiration((String)JsonPath.read(quote, "$.xdate"));
-			builder.withStrike(Double.parseDouble(JsonPath.read(quote, "$.strikeprice")));
-			builder.ofType((String)JsonPath.read(quote, "$.put_call"));
-			
-			result = builder.build();
-			
-		}
-		
+			for (Object quote : quotes){
+				
+				builder.withUnderlying((String)JsonPath.read(quote, "$.undersymbol"));
+				builder.withExpiration((String)JsonPath.read(quote, "$.xdate"));
+				builder.withStrike(Double.parseDouble(JsonPath.read(quote, "$.strikeprice")));
+				builder.ofType((String)JsonPath.read(quote, "$.put_call"));
+				
+				result = builder.build();
+				
+			}
+
 		} catch (Throwable e) {
 			//TODO: proper error handling 
 		}
 
 		return result;
-        
-		
-		
-		
+
 	}
 
 }
