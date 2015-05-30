@@ -16,7 +16,7 @@ import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
  * 
  */
 
-public final class Strike extends AbstractTradableInstrument/* implements Tradable*/ {
+public final class Strike extends AbstractTradableInstrument/* implements WithSpread*/ {
 	
 	
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page
@@ -30,12 +30,12 @@ public final class Strike extends AbstractTradableInstrument/* implements Tradab
 		return value;
 	}
 
-	public Tradable setValue(/*BigDecimal*/double value) {
+	public WithSpread setValue(/*BigDecimal*/double value) {
 		this.value = value;
 		return this;
 	}
 	
-	public Tradable setValue(String value) {
+	public WithSpread setValue(String value) {
 		this.value=NumberUtils.isNumber(value)?/*new BigDecimal(*/toDouble(value)/*)*/:/*new BigDecimal(*/DOUBLE_ZERO.doubleValue()/*)*/;
 		
 		return this;
@@ -45,12 +45,12 @@ public final class Strike extends AbstractTradableInstrument/* implements Tradab
 		return bid;
 	}*/
 
-	/*public Tradable setBid(BigDecimal bid) {
+	/*public WithSpread setBid(BigDecimal bid) {
 		this.bid = bid;
 		return this;
 	}*/
 	
-	/*public Tradable setBid(String bid) {
+	/*public WithSpread setBid(String bid) {
 		this.bid = NumberUtils.isNumber(bid)?new BigDecimal(bid):new BigDecimal(ZERO);
 		return this;
 	}*/
@@ -59,12 +59,12 @@ public final class Strike extends AbstractTradableInstrument/* implements Tradab
 		return ask;
 	}*/
 
-	/*public Tradable setAsk(BigDecimal ask) {
+	/*public WithSpread setAsk(BigDecimal ask) {
 		this.ask = ask;
 		return this;
 	}*/
 	 
-	/*public Tradable setAsk(String ask) {
+	/*public WithSpread setAsk(String ask) {
 		this.ask = NumberUtils.isNumber(ask)?new BigDecimal(ask):new BigDecimal(ZERO);
 		return this;
 	}*/
@@ -74,7 +74,7 @@ public final class Strike extends AbstractTradableInstrument/* implements Tradab
 		return type;
 	}
 
-	public Tradable setType(OptionType type) {
+	public WithSpread setType(OptionType type) {
 		this.type = type;
 		return this;
 	}

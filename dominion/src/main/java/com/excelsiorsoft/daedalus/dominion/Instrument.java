@@ -15,7 +15,7 @@ import com.excelsiorsoft.daedalus.dominion.builder.NullSupressingStyle;
  * @author Simeon
  *
  */
-public class Instrument implements Listable {
+public class Instrument implements /*Listable*/ Tradable {
 
 private InstrumentType type;
 	
@@ -25,6 +25,8 @@ private InstrumentType type;
 	private String description;
 	
 	private List<Phenomenon> affectedBy = new ArrayList<Phenomenon>();
+	
+	private String [] tradableOnExchanges = new String[]{};
 	
 	public InstrumentType getType() {
 		return type;
@@ -58,11 +60,24 @@ private InstrumentType type;
 		return affectedBy;
 	}
 
-	public void setAffectedBy(List<Phenomenon> affectedBy) {
+	public Instrument setAffectedBy(List<Phenomenon> affectedBy) {
 
 		this.affectedBy = affectedBy;
+		return this;
 	}
 	
+	@Override
+	public Tradable setExchange(String[] exchanges) {
+		
+		this.tradableOnExchanges = exchanges;
+		return this;
+	}
+
+	@Override
+	public String[] getExchange() {
+		
+		return tradableOnExchanges;
+	}
 	
 	public String toString() {
 		   return ReflectionToStringBuilder.toString(this, NullSupressingStyle.INSTANCE);
@@ -90,4 +105,8 @@ private InstrumentType type;
 			}
 		}
 	}
+
+
+
+
 }

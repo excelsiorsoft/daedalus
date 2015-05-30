@@ -5,7 +5,7 @@ package com.excelsiorsoft.daedalus.dominion;
 import org.apache.commons.lang3.math.NumberUtils;
 import static org.apache.commons.lang3.math.NumberUtils.*;
 
-public class AbstractTradableInstrument extends AbstractDomain implements Tradable {
+public class AbstractTradableInstrument extends AbstractDomain implements WithSpread {
 
 	protected /*BigDecimal*/ double bid;
 	protected /*BigDecimal*/double ask;
@@ -14,12 +14,12 @@ public class AbstractTradableInstrument extends AbstractDomain implements Tradab
 		return bid;
 	}
 
-	public Tradable setBid(/*BigDecimal*/double bid) {
+	public WithSpread setBid(/*BigDecimal*/double bid) {
 		this.bid = bid;
 		return this;
 	}
 	
-	public Tradable setBid(String bid) {
+	public WithSpread setBid(String bid) {
 		this.bid = NumberUtils.isNumber(bid)?/*new BigDecimal(*/toDouble(bid)/*)*/:/*new BigDecimal(*/DOUBLE_ZERO.doubleValue()/*)*/;
 		return this;
 	}
@@ -28,12 +28,12 @@ public class AbstractTradableInstrument extends AbstractDomain implements Tradab
 		return ask;
 	}
 
-	public Tradable setAsk(/*BigDecimal*/double ask) {
+	public WithSpread setAsk(/*BigDecimal*/double ask) {
 		this.ask = ask;
 		return this;
 	}
 	 
-	public Tradable setAsk(String ask) {
+	public WithSpread setAsk(String ask) {
 		this.ask = NumberUtils.isNumber(ask)?/*new BigDecimal(*/toDouble(ask)/*)*/:/*new BigDecimal(*/DOUBLE_ZERO.doubleValue()/*)*/;
 		return this;
 	}

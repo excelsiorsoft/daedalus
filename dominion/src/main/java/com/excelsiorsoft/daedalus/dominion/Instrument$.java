@@ -13,7 +13,9 @@ import org.apache.commons.lang3.math.NumberUtils;
  * @author Simeon
  *
  */
-public class Instrument$ extends Instrument/*Domain*//*TradableInstrument*/ /*implements Tradable*/ {
+
+@Deprecated 
+public class Instrument$ extends Instrument/*Domain*//*TradableInstrument*/ /*implements WithSpread*/ {
 	
 	/*private InstrumentType type;
 	

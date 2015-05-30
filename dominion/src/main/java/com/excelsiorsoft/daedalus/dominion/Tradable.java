@@ -3,27 +3,13 @@
  */
 package com.excelsiorsoft.daedalus.dominion;
 
-//import java.math.BigDecimal;
-
 /**
  * @author Simeon
  *
  */
-public interface Tradable {
+public interface Tradable extends Listable {
 	
-	//public static final String ZERO = "0";
-	//public static final double ZERO = 0.0;
-
-	/*BigDecimal*/ double getBid() ;
-	
-	Tradable setBid(/*BigDecimal*/double  bid);
-	
-	Tradable setBid(String bid);
-
-	/*BigDecimal*/double getAsk();
-
-	Tradable setAsk(/*BigDecimal*/double ask);
-	
-	Tradable setAsk(String ask);
+	Tradable setExchange(String[] exchange);
+	String[] getExchange();
 
 }
