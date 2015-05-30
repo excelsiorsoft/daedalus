@@ -19,7 +19,7 @@ import static com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType.*;
  *
  */
 //@JsonDeserialize(using = OptionDeserializer.class)
-public class Option extends AbstractTradableInstrument {
+public class Option extends /*AbstractTradable*/Instrument {
 
 	private Instrument underlying = new Instrument();
 	private OptionType optionType; //put or call

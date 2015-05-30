@@ -3,30 +3,30 @@
  */
 package com.excelsiorsoft.daedalus.dominion;
 
+//import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
-import com.excelsiorsoft.daedalus.dominion.builder.NullSupressingStyle;
-
+import org.apache.commons.lang3.math.NumberUtils;
 
 /**
  * @author Simeon
  *
  */
-public class Instrument implements Listable {
-
-private InstrumentType type;
+public class Instrument$ extends Instrument/*Domain*//*TradableInstrument*/ /*implements Tradable*/ {
+	
+	/*private InstrumentType type;
 	
 	//akin to a ticker for stocks but wider based on instrument type
 	private String symbol;
 	
-	private String description;
+	private String description;*/
 	
-	private List<Phenomenon> affectedBy = new ArrayList<Phenomenon>();
 	
-	public InstrumentType getType() {
+
+	/*private List<Phenomenon> affectedBy = new ArrayList<Phenomenon>();*/
+
+/*	public InstrumentType getType() {
 		return type;
 	}
 
@@ -48,33 +48,31 @@ private InstrumentType type;
 		return description;
 	}
 
-	public Instrument setDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
-		return this;
-	}
-	
-	
-	public List<Phenomenon> getAffectedBy() {
+	}*/
+
+/*	public List<Phenomenon> getAffectedBy() {
 		return affectedBy;
 	}
 
 	public void setAffectedBy(List<Phenomenon> affectedBy) {
 
 		this.affectedBy = affectedBy;
-	}
+	}*/
+
 	
 	
-	public String toString() {
-		   return ReflectionToStringBuilder.toString(this, NullSupressingStyle.INSTANCE);
-		 }	
+	
+	
 	
 	
 	
 	/**
-	 * @author Simeon
+	 * @author sleyzerzon
 	 *
 	 */
-	public static enum InstrumentType {
+	/*public static enum InstrumentType {
 		OPTION, STOCK, ETF, FUTURE;
 
 		public static enum OptionType{
@@ -89,5 +87,7 @@ private InstrumentType type;
 				return abbreviation;
 			}
 		}
-	}
+	}*/
+	
+
 }
