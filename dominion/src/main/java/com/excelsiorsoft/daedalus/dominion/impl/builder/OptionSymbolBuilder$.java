@@ -8,18 +8,17 @@ import java.util.Date;
  * @author sleyzerzon
  *
  */
-public class OptionSymbolBuilder {
+@Deprecated
+public final class OptionSymbolBuilder$ {
 	
-	
-    public String buildSymbol(String underlyingSymbol, Date expirationDate, String optionType, double strike)  {
+	@Deprecated
+    public static String buildSymbol(final String underlyingSymbol, final Date expirationDate, final String optionType, final double strike)  {
 
     	String timeString = new SimpleDateFormat("yyMMdd").format(expirationDate);
 		
 		String paddedPrice = String.format("%08d", (int) (strike * 1000));
 
 		return new StringBuilder(underlyingSymbol).append(timeString).append(optionType).append(paddedPrice).toString().toUpperCase();
-		
-		//return underlyingSymbol + timeString	+ optionType + paddedPrice;
 
     }
 

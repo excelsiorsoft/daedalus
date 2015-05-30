@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
-
+@Deprecated
 public class JsonHandlerTest {
 	
 	
@@ -30,7 +30,7 @@ public class JsonHandlerTest {
 	 * 
 	 * @author sleyzerzon
 	 *
-	 */
+	 */@Deprecated
 	public static class QuoteDeserializer extends JsonDeserializer<Quote> {
 	    
 		@Override
@@ -54,6 +54,7 @@ public class JsonHandlerTest {
 	
 	//endpoint specific value object, not our app domain object
 	@JsonDeserialize(using = QuoteDeserializer.class)
+	@Deprecated
 	public final static class Quote {
 		
 		double bid;
@@ -123,7 +124,7 @@ public class JsonHandlerTest {
 	}
 	
 	
-	@Test
+	@Test @Deprecated
 	public void deserializingJsonWithJacksonMappingAndJsonPath() throws Throwable {
 		
 		String ask = "3.1500";
@@ -142,7 +143,7 @@ public class JsonHandlerTest {
 		
 	}
 	
-	@Test
+	@Test @Deprecated
 	public void grabbingValuesViaJsonPath() throws Throwable {
 		
 		/*System.out.println("market/ext/quotes call...");

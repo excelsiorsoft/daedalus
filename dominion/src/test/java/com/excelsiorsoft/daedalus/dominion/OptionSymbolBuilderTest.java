@@ -10,7 +10,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
-import com.excelsiorsoft.daedalus.dominion.impl.builder.OptionSymbolBuilder;
+//import com.excelsiorsoft.daedalus.dominion.impl.builder.OptionSymbolBuilder$;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbolBuilder;
 
 public class OptionSymbolBuilderTest {
 
