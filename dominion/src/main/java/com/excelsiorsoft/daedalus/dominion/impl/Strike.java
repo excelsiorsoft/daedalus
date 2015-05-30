@@ -1,15 +1,19 @@
 /**
  * 
  */
-package com.excelsiorsoft.daedalus.dominion;
+package com.excelsiorsoft.daedalus.dominion.impl;
 
 import static org.apache.commons.lang3.math.NumberUtils.DOUBLE_ZERO;
 import static org.apache.commons.lang3.math.NumberUtils.toDouble;
 
 
+
+
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
+import com.excelsiorsoft.daedalus.dominion.WithSpread;
+import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType;
+import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType.OptionType;
 
 /**
  * @author Simeon

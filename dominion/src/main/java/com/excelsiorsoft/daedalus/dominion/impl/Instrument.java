@@ -1,14 +1,13 @@
-/**
- * 
- */
-package com.excelsiorsoft.daedalus.dominion;
+package com.excelsiorsoft.daedalus.dominion.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-import com.excelsiorsoft.daedalus.dominion.builder.NullSupressingStyle;
+import com.excelsiorsoft.daedalus.dominion.Phenomenon;
+import com.excelsiorsoft.daedalus.dominion.Tradable;
+import com.excelsiorsoft.daedalus.dominion.impl.builder.NullSupressingStyle;
 
 
 /**
@@ -50,7 +49,7 @@ private InstrumentType type;
 		return description;
 	}
 
-	public Instrument setDescription(String description) {
+	public Instrument setDescription(String description) { 
 		this.description = description;
 		return this;
 	}

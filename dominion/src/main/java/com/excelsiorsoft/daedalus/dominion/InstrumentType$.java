@@ -4,8 +4,8 @@ package com.excelsiorsoft.daedalus.dominion;
 /**
  * @author Simeon
  *
- */
-
+ *//*
+@Deprecated
 public enum InstrumentType {
 	OPTION, STOCK, ETF, FUTURE;
 
@@ -21,4 +21,4 @@ public enum InstrumentType {
 			return abbreviation;
 		}
 	}
-}
+}*/

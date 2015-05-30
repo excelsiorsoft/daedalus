@@ -1,4 +1,4 @@
-package com.excelsiorsoft.daedalus.dominion.builder;
+package com.excelsiorsoft.daedalus.dominion.impl.builder;
 
 import net.sf.json.util.PropertyFilter;
 

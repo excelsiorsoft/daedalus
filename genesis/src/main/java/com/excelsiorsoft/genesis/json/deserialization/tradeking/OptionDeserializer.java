@@ -11,8 +11,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.excelsiorsoft.daedalus.dominion.Option;
-import com.excelsiorsoft.daedalus.dominion.Option.OptionBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.Option;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**

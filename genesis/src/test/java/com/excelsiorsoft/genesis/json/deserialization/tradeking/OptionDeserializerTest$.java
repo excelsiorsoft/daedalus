@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import org.junit.Test;
 
-import com.excelsiorsoft.daedalus.dominion.Option;
+import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.JacksonMixInRegistry$;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;

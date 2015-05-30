@@ -5,7 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
-import com.excelsiorsoft.daedalus.dominion.Quote;
+
+
+import com.excelsiorsoft.daedalus.dominion.impl.Quote;
+import com.excelsiorsoft.daedalus.dominion.impl.builder.QuoteBuilder;
 
 public class QuoteBuilderTest {
 

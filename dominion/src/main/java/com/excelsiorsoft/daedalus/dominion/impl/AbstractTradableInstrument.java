@@ -1,8 +1,11 @@
-package com.excelsiorsoft.daedalus.dominion;
+package com.excelsiorsoft.daedalus.dominion.impl;
 
 //import java.math.BigDecimal;
 
 import org.apache.commons.lang3.math.NumberUtils;
+
+import com.excelsiorsoft.daedalus.dominion.WithSpread;
+
 import static org.apache.commons.lang3.math.NumberUtils.*;
 
 public class AbstractTradableInstrument extends AbstractDomain implements WithSpread {
@@ -36,5 +39,28 @@ public class AbstractTradableInstrument extends AbstractDomain implements WithSp
 	public WithSpread setAsk(String ask) {
 		this.ask = NumberUtils.isNumber(ask)?/*new BigDecimal(*/toDouble(ask)/*)*/:/*new BigDecimal(*/DOUBLE_ZERO.doubleValue()/*)*/;
 		return this;
+	}
+	
+	
+	/**
+	 * @author Simeon
+	 *
+	 */
+
+	public static enum InstrumentType {
+		OPTION, STOCK, ETF, FUTURE;
+
+		public static enum OptionType{
+			PUT("P"), CALL("C");
+			
+			String abbreviation;
+			
+			private OptionType(String value){
+				this.abbreviation=value;}
+
+			public String abbreviation() {
+				return abbreviation;
+			}
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.excelsiorsoft.daedalus.dominion;
+package com.excelsiorsoft.daedalus.dominion.impl;
 
 import java.sql.Timestamp;
 
@@ -6,7 +6,10 @@ import net.sf.json.util.PropertyFilter;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-import com.excelsiorsoft.daedalus.dominion.builder.NullSupressingStyle;
+import com.excelsiorsoft.daedalus.dominion.Identifiable;
+import com.excelsiorsoft.daedalus.dominion.IdentifiableTimeTrackable;
+import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
+import com.excelsiorsoft.daedalus.dominion.impl.builder.NullSupressingStyle;
 
 
 

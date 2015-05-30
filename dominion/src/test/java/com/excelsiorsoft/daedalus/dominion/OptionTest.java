@@ -7,7 +7,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.excelsiorsoft.daedalus.dominion.Option.OptionBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.Option;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
 
 /**
  * @author sleyzerzon

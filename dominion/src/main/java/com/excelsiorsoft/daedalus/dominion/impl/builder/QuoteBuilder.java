@@ -1,10 +1,10 @@
-package com.excelsiorsoft.daedalus.dominion.builder;
+package com.excelsiorsoft.daedalus.dominion.impl.builder;
 
 import org.springframework.util.Assert;
 
-import com.excelsiorsoft.daedalus.dominion.InstrumentType;
-import com.excelsiorsoft.daedalus.dominion.Quote;
-import com.excelsiorsoft.daedalus.dominion.Instrument;
+import com.excelsiorsoft.daedalus.dominion.impl.Instrument;
+import com.excelsiorsoft.daedalus.dominion.impl.Quote;
+import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType;
 
 
 public final class QuoteBuilder<T> {

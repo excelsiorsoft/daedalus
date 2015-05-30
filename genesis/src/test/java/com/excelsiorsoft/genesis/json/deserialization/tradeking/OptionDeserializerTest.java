@@ -5,9 +5,10 @@ import static org.junit.Assert.*;
 import java.util.Collection;
 
 
+
 import org.junit.Test;
 
-import com.excelsiorsoft.daedalus.dominion.Option;
+import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

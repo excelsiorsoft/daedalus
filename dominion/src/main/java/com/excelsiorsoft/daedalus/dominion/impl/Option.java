@@ -1,15 +1,20 @@
-package com.excelsiorsoft.daedalus.dominion;
+package com.excelsiorsoft.daedalus.dominion.impl;
 
-import static com.excelsiorsoft.daedalus.dominion.Option.OptionSymbologyType.OCC;
 
+
+
+import static com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType.OptionType.*;
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbologyType.OCC;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType;
 
 
-import static com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType.*;
+
+
+import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType;
+import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType.OptionType;
 
 /**
  * Representation of an option financial instrument
@@ -21,7 +26,7 @@ import static com.excelsiorsoft.daedalus.dominion.InstrumentType.OptionType.*;
 //@JsonDeserialize(using = OptionDeserializer.class)
 public class Option extends /*AbstractTradable*/Instrument {
 
-	private Instrument underlying = new Instrument();
+	private Instrument underlying = new Instrument(); 
 	private OptionType optionType; //put or call
 
 	// expiration type - european or american
@@ -43,7 +48,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 	 */
 	public String getSymbol(){
 		
-		return symbolBuilder.buildSymbol(underlying.getSymbol(), expirationDate, optionType.abbreviation, strike.getValue());
+		return symbolBuilder.buildSymbol(underlying.getSymbol(), expirationDate, optionType.abbreviation(), strike.getValue());
 	}
 	
 	/**
@@ -52,7 +57,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 	 */
 	public String getSymbol(OptionSymbologyType symbolType){
 
-		return symbolBuilder.buildSymbol(symbolType, underlying.getSymbol(), expirationDate, optionType.abbreviation, strike.getValue());
+		return symbolBuilder.buildSymbol(symbolType, underlying.getSymbol(), expirationDate, optionType.abbreviation(), strike.getValue());
 	}
 
 	

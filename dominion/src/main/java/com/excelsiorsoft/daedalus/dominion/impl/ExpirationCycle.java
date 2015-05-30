@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.excelsiorsoft.daedalus.dominion;
+package com.excelsiorsoft.daedalus.dominion.impl;
 
 import java.util.Collection;
 import java.util.HashMap;

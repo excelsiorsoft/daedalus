@@ -12,8 +12,8 @@ import java.util.Iterator;
 
 import net.minidev.json.JSONArray;
 
-import com.excelsiorsoft.daedalus.dominion.Option; 
-import com.excelsiorsoft.daedalus.dominion.Option.OptionBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.Option;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;

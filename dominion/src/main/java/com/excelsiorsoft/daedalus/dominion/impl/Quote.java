@@ -1,4 +1,4 @@
-package com.excelsiorsoft.daedalus.dominion;
+package com.excelsiorsoft.daedalus.dominion.impl;
 
 import java.sql.Timestamp;
 import java.util.Date;
