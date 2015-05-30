@@ -6,6 +6,8 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 import static org.apache.commons.lang3.math.NumberUtils.DOUBLE_ZERO;
 import static org.apache.commons.lang3.math.NumberUtils.toDouble;
 
+import java.text.SimpleDateFormat;
+
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
@@ -50,4 +52,10 @@ public final class Strike extends AbstractTradableInstrument/* implements WithSp
 		this.type = type;
 		return this;
 	}
+	
+	public String toString(){
+		StringBuilder builder = new StringBuilder();
+		builder.append("Strike[value=").append(value).append(", bid=").append(bid).append(", ask=").append(ask).append("]");
+		return builder.toString();
+	}	
 }

@@ -56,6 +56,11 @@ public class Option extends /*AbstractTradable*/Instrument {
 	}
 
 	
+	public String toString(){
+		StringBuilder builder = new StringBuilder();
+		builder.append("Option[underlying=").append(underlying).append(", optionType=").append(optionType).append(", expirationDate=").append(new SimpleDateFormat("EEE MMM dd, yyyy").format(expirationDate)).append(", strike=").append(strike).append("]");
+		return builder.toString();
+	}
 	
 	
 	
