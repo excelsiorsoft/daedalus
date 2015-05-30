@@ -3,6 +3,7 @@
  */
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder.builder;
 import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils.asText;
 
 import java.util.LinkedList;
@@ -57,7 +58,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	private Option deserializeSingleNode(JsonNode quote) throws Throwable {
 		
 		Option result = null;
-		OptionBuilder builder = OptionBuilder.init();
+		OptionBuilder builder = builder();
 		
 		try{
 			
@@ -80,9 +81,9 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	private List<Option> deserializeNodeCollection(JsonNode quotes) throws Throwable {
 		
 		List<Option> result = new LinkedList<>();
-		logger.debug("Deserializing a collection of json nodes of size {} into a collection of Options", quotes.size());
+		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}s", quotes.size(), Option.class.getSimpleName());
 		
-		int counter = 0;
+		//int counter = 0;
 		for(JsonNode quote : quotes){
 			
 			logger.debug("deserializing node: {}", quote);

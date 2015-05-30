@@ -45,7 +45,7 @@ public class OptionDeserializer$ extends JsonDeserializer<Option> {
 		JSONArray quotes = JsonPath.read(document, "$.quotes.quote[*]");
 		
 		Option result = null;
-		OptionBuilder builder = OptionBuilder.init();
+		OptionBuilder builder = OptionBuilder.builder();
 		
 		try{
 			

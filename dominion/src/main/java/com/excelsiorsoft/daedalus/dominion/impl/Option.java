@@ -197,7 +197,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 			
 		}
 
-		public static OptionBuilder init() {
+		public static OptionBuilder builder() {
 			OptionBuilder result = new OptionBuilder();
 			return result;
 		}
