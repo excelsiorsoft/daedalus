@@ -16,10 +16,12 @@ import com.fasterxml.jackson.databind.JsonNode;
  */
 public interface SimpleDeserializer<T> {
 	
+	/**
+	 * @param node
+	 * @return
+	 * @throws Throwable
+	 */
 	Collection<T> deserialize(JsonNode node) throws Throwable; 
-	
-	
-		
 			
 
 }
