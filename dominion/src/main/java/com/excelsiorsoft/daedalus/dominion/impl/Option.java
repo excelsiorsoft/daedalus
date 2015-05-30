@@ -2,7 +2,7 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 
 
 
-
+import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType.OptionType;
 import static com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType.OptionType.*;
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbologyType.OCC;
 
@@ -11,10 +11,6 @@ import java.util.Date;
 
 
 
-
-
-import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType;
-import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType.OptionType;
 
 /**
  * Representation of an option financial instrument
