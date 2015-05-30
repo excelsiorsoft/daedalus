@@ -9,7 +9,7 @@ import java.util.Date;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType.OptionType;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 import com.excelsiorsoft.daedalus.dominion.impl.builder.OptionSymbolBuilder;
 
 public class OptionSymbolBuilderTest {

@@ -1,10 +1,8 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
 
-
-import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType.OptionType;
-import static com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType.OptionType.*;
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbologyType.OCC;
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -158,10 +156,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 		
 		private OptionBuilder(){}
 		
-		/*public static OptionBuilder instance(){
-			return new OptionBuilder();
-		}
-		*/
+
 		public OptionBuilder withStrike(double strike){
 			
 			option.strike.setValue(strike);
@@ -208,15 +203,13 @@ public class Option extends /*AbstractTradable*/Instrument {
 		
 		public OptionBuilder withUnderlying(Instrument underlying){
 			
-			//OptionBuilder result = new OptionBuilder();
-			/*result.*/option.underlying = underlying;
+			option.underlying = underlying;
 			return this;
 		}
 		
 		public  OptionBuilder withUnderlying(String symbol){
 			
-			OptionBuilder result = new OptionBuilder();
-			/*result.*/option.underlying.setSymbol(symbol);
+			option.underlying.setSymbol(symbol);
 			return this;
 		}
 		
@@ -226,5 +219,22 @@ public class Option extends /*AbstractTradable*/Instrument {
 		}
 	}
 	
+	
+	/**
+	 * @author Simeon
+	 *
+	 */
+	public static enum OptionType{
+		PUT("P"), CALL("C");
+		
+		String abbreviation;
+		
+		private OptionType(String value){
+			this.abbreviation=value;}
+
+		public String abbreviation() {
+			return abbreviation;
+		}
+	}
 	
 }

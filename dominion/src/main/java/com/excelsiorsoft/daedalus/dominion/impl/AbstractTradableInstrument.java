@@ -50,17 +50,6 @@ public class AbstractTradableInstrument extends AbstractDomain implements WithSp
 	public static enum InstrumentType {
 		OPTION, STOCK, ETF, FUTURE;
 
-		public static enum OptionType{
-			PUT("P"), CALL("C");
-			
-			String abbreviation;
-			
-			private OptionType(String value){
-				this.abbreviation=value;}
 
-			public String abbreviation() {
-				return abbreviation;
-			}
-		}
 	}
 }
