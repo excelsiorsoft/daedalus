@@ -25,7 +25,7 @@ private InstrumentType type;
 	
 	private List<Phenomenon> affectedBy = new ArrayList<Phenomenon>();
 	
-	private String [] tradableOnExchanges = new String[]{};
+	protected List<Exchange> tradableOnExchanges = new ArrayList<>();
 	
 	public InstrumentType getType() {
 		return type;
@@ -66,20 +66,25 @@ private InstrumentType type;
 	}
 	
 	@Override
-	public Tradable setExchange(String[] exchanges) {
-		
-		this.tradableOnExchanges = exchanges;
+	public Tradable setExchange(Exchange exchange) {
+		//implement later
+		//this.tradableOnExchanges.add(exchange);
 		return this;
 	}
 
 	@Override
-	public String[] getExchange() {
-		
-		return tradableOnExchanges;
+	public Exchange getExchange() {
+		//will implement later - based on instrument type, go over all listings (strikes) for the instrument and build up the set of exhcnages where it's tradeable
+		return null;
 	}
 	
 	public String toString() {
-		   return ReflectionToStringBuilder.toString(this, NullSupressingStyle.INSTANCE);
+		   //return ReflectionToStringBuilder.toString(this, NullSupressingStyle.INSTANCE);
+		
+			StringBuilder builder = new StringBuilder();
+			builder.append("Instrument[symbol=").append(symbol).append(", affectedBy=").append(affectedBy).append(", tradableOnExchanges=").append(tradableOnExchanges).append("]");
+			return builder.toString();
+		
 		 }	
 	
 	
@@ -103,6 +108,12 @@ private InstrumentType type;
 				return abbreviation;
 			}
 		}
+	}
+
+
+
+	protected List<Exchange> getTradableOnExchanges() {
+		return tradableOnExchanges;
 	}
 
 

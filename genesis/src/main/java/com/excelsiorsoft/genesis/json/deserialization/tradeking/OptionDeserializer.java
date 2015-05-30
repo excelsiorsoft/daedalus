@@ -12,6 +12,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.excelsiorsoft.daedalus.dominion.impl.Exchange;
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -66,6 +67,9 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 				builder.withExpiration(asText(quote, "xdate"));
 				builder.withStrike(Double.parseDouble(asText(quote, "strikeprice")));
 				builder.ofType(asText(quote, "put_call"));
+				
+				
+				Exchange exchange = new Exchange(); exchange.setCode(asText(quote, "exch")); exchange.setDescription(asText(quote, "exch_desc")); builder.tradeableOn(exchange);
 				
 				result = builder.build();
 

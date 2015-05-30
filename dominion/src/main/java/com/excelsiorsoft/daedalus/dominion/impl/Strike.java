@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.excelsiorsoft.daedalus.dominion.Tradable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 
@@ -20,7 +21,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
  */
 public final class Strike extends AbstractTradableInstrument/* implements WithSpread*/ {
 
-	
+	private Exchange exchange;
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page
 	private OptionType type;
 	private /*BigDecimal*/ double value;
@@ -53,9 +54,23 @@ public final class Strike extends AbstractTradableInstrument/* implements WithSp
 		return this;
 	}
 	
+
+
+	@Override
+	public Exchange getExchange() {
+		
+		return exchange;
+	}
+
+	@Override
+	public Tradable setExchange(Exchange exchange) {
+		this.exchange = exchange;
+		return this;
+	}
+	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		builder.append("Strike[value=").append(value).append(", bid=").append(bid).append(", ask=").append(ask).append("]");
+		builder.append("Strike[value=").append(value).append(", bid=").append(bid).append(", ask=").append(ask).append(", exchange=").append(exchange).append("]");
 		return builder.toString();
-	}	
+	}
 }

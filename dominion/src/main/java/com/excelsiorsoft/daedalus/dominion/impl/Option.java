@@ -56,9 +56,19 @@ public class Option extends /*AbstractTradable*/Instrument {
 	}
 
 	
-	public String toString(){
+	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Option[underlying=").append(underlying).append(", optionType=").append(optionType).append(", expirationDate=").append(new SimpleDateFormat("EEE MMM dd, yyyy").format(expirationDate)).append(", strike=").append(strike).append("]");
+		builder.append("Option[underlying=")
+				.append(underlying)
+				.append(", optionType=")
+				.append(optionType)
+				.append(", expirationDate=")
+				.append(new SimpleDateFormat("EEE MMM dd, yyyy").format(expirationDate))
+				.append(", strike=")
+				.append(strike)
+				/*.append(", tradableOnExchanges=")
+				.append(tradableOnExchanges)*/
+				.append("]");
 		return builder.toString();
 	}
 	
@@ -216,6 +226,13 @@ public class Option extends /*AbstractTradable*/Instrument {
 		public  OptionBuilder withUnderlying(String symbol){
 			
 			option.underlying.setSymbol(symbol);
+			return this;
+		}
+		
+		public OptionBuilder tradeableOn(Exchange exchange){
+			
+			((Instrument)option).getTradableOnExchanges().add(exchange);
+			option.strike.setExchange(exchange);
 			return this;
 		}
 		

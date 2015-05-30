@@ -4,12 +4,15 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.excelsiorsoft.daedalus.dominion.Tradable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
 
 import static org.apache.commons.lang3.math.NumberUtils.*;
 
-public class AbstractTradableInstrument extends AbstractDomain implements WithSpread {
+public abstract class AbstractTradableInstrument extends AbstractDomain implements WithSpread, Tradable {
 
+	private Exchange exchange;
+	
 	protected /*BigDecimal*/ double bid;
 	protected /*BigDecimal*/double ask;
 	
@@ -52,4 +55,37 @@ public class AbstractTradableInstrument extends AbstractDomain implements WithSp
 
 
 	}
+
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Instrument setDescription(String description) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getSymbol() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Instrument setSymbol(String symbol) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public abstract Tradable setExchange(Exchange exchange);
+
+	@Override
+	public abstract Exchange getExchange();
+
+	
 }
