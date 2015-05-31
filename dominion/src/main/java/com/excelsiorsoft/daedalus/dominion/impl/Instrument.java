@@ -94,7 +94,7 @@ private InstrumentType type;
 	 *
 	 */
 	public static enum InstrumentType {
-		OPTION, STOCK, ETF, FUTURE;
+		OPTION, STOCK, ETF, FUTURE, INDEX, COMMODITY;
 
 		public static enum OptionType{
 			PUT("P"), CALL("C");
