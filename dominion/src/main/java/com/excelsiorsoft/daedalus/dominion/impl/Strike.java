@@ -12,6 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import com.excelsiorsoft.daedalus.dominion.TradeableListable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 
 
@@ -71,6 +72,29 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		StringBuilder builder = new StringBuilder();
 		builder.append("Strike[value=").append(value).append(", bid=").append(bid).append(", ask=").append(ask).append(", exchange=").append(exchange).append("]");
 		return builder.toString();
+	}
+	
+	
+	/**
+	 * @author Simeon
+	 *
+	 */
+	public final static class StrikeBuilder {
+		
+		private final Strike strike = new Strike();
+		
+		private StrikeBuilder(){};
+		
+		public static StrikeBuilder builder() {
+			
+			StrikeBuilder result = new StrikeBuilder();
+			return result;
+		}
+		
+		public Strike build(){
+			
+			return strike;
+		}
 	}
 
 

@@ -261,5 +261,10 @@ public class Option extends /*AbstractTradable*/Instrument {
 			return abbreviation;
 		}
 	}
+
+
+	public Strike getStrike() {
+		return strike;
+	}
 	
 }

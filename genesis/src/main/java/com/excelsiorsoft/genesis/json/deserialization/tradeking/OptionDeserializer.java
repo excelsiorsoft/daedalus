@@ -16,6 +16,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.Exchange;
 import com.excelsiorsoft.daedalus.dominion.impl.Exchange.ExchangeBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
@@ -59,7 +60,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	
 	private Option deserializeSingleNode(JsonNode quote) throws Throwable {
 		
-		Option result = null;
+		Option option = null;
 		OptionBuilder builder = builder();
 		
 		try{
@@ -73,13 +74,17 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 				/*Exchange exchange = new Exchange(); exchange.setCode(asText(quote, "exch")); exchange.setDescription(asText(quote, "exch_desc"));*/ 
 				builder.tradeableOn(exchange);
 				
-				result = builder.build();
+				option = builder.build();
+				
+				Strike strike = option.getStrike();
+				strike.setBid(asText(quote, "bid"));
+				strike.setAsk(asText(quote, "ask"));
 
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
 		}
 
-		return result;
+		return option;
 	}
 	
 	
