@@ -11,6 +11,8 @@ import java.util.Date;
 
 
 
+
+
 /**
  * Representation of an option financial instrument
  * 
@@ -232,7 +234,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 		public OptionBuilder tradeableOn(Exchange exchange){
 			
 			((Instrument)option).getTradableOnExchanges().add(exchange);
-			option.strike.setExchange(exchange);
+			option.strike.setAsQuotedOn(exchange);
 			return this;
 		}
 		

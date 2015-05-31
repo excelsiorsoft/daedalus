@@ -5,6 +5,8 @@ package com.excelsiorsoft.daedalus.dominion;
 
 import java.util.Date;
 
+import com.excelsiorsoft.daedalus.dominion.impl.Exchange;
+
 //import java.math.BigDecimal;
 
 /**
@@ -12,6 +14,10 @@ import java.util.Date;
  *
  */
 public interface WithSpread {
+	
+	WithSpread setAsQuotedOn(Exchange exchange);
+	
+	Exchange getAsQuotedOn();
 	
 	//public static final String ZERO = "0";
 	//public static final double ZERO = 0.0;

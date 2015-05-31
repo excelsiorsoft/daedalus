@@ -3,18 +3,16 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import com.excelsiorsoft.daedalus.dominion.Phenomenon;
 import com.excelsiorsoft.daedalus.dominion.TradeableListable;
-import com.excelsiorsoft.daedalus.dominion.impl.builder.NullSupressingStyle;
+import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.InstrumentType;
 
 
 /**
  * @author Simeon
  *
  */
-public class Instrument implements /*Listable$*/ TradeableListable {
+public class Instrument implements TradeableListable /*extends AbstractTradeableInstrument*/ {
 
 private InstrumentType type;
 	
@@ -65,18 +63,18 @@ private InstrumentType type;
 		return this;
 	}
 	
-	@Override
+	/*@Override
 	public TradeableListable setExchange(Exchange exchange) {
 		//implement later
 		//this.tradableOnExchanges.add(exchange);
 		return this;
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public Exchange getExchange() {
 		//will implement later - based on instrument type, go over all listings (strikes) for the instrument and build up the set of exhcnages where it's tradeable
 		return null;
-	}
+	}*/
 	
 	public String toString() {
 		   //return ReflectionToStringBuilder.toString(this, NullSupressingStyle.INSTANCE);
@@ -89,29 +87,6 @@ private InstrumentType type;
 	
 	
 	
-	/**
-	 * @author Simeon
-	 *
-	 */
-	public static enum InstrumentType {
-		OPTION, STOCK, ETF, FUTURE, INDEX, COMMODITY;
-
-		public static enum OptionType{
-			PUT("P"), CALL("C");
-			
-			String abbreviation;
-			
-			private OptionType(String value){
-				this.abbreviation=value;}
-
-			public String abbreviation() {
-				return abbreviation;
-			}
-		}
-	}
-
-
-
 	protected List<Exchange> getTradableOnExchanges() {
 		return tradableOnExchanges;
 	}

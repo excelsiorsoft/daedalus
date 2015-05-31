@@ -93,11 +93,11 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 		return null;
 	}
 
-	@Override
-	public abstract TradeableListable setExchange(Exchange exchange);
+	/*@Override
+	public abstract TradeableListable setExchange(Exchange exchange);*/
 
-	@Override
-	public abstract Exchange getExchange();
+	/*@Override
+	public abstract Exchange getExchange();*/
 
 	@Override
 	public WithSpread setAskTime(String askTime) {
@@ -150,10 +150,39 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 	}
 
 	
+
+	/*public static class AbstractTradeableInstrumentBuilder {
+		
+		
+	}*/
+
+
+	/**
+	 * @author Simeon
+	 *
+	 */
 	public static enum InstrumentType {
-		OPTION, STOCK, ETF, FUTURE;
-
-
+		OPTION, STOCK, ETF, FUTURE, INDEX, COMMODITY;
+	
+		/*public static enum OptionType{
+			PUT("P"), CALL("C");
+			
+			String abbreviation;
+			
+			private OptionType(String value){
+				this.abbreviation=value;}
+	
+			public String abbreviation() {
+				return abbreviation;
+			}
+		}*/
 	}
+
+
+	@Override
+	public abstract WithSpread setAsQuotedOn(Exchange exchange);
+
+	@Override
+	public abstract Exchange getAsQuotedOn();
 	
 }

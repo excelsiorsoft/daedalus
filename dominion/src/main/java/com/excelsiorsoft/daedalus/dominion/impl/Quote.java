@@ -53,12 +53,12 @@ public class Quote extends AbstractDomain {
 		
 		public static <T> QuoteBuilder<T> withTicker(String ticker) {
 			Assert.notNull(ticker, "ticker must be present");
-			Instrument underlying  = new Instrument().setType(Instrument.InstrumentType.STOCK).setSymbol(ticker);
+			Instrument underlying  = new Instrument().setType(AbstractTradeableInstrument.InstrumentType.STOCK).setSymbol(ticker);
 			QuoteBuilder<T> builder = new QuoteBuilder<T>(underlying);
 			return builder;
 		}
 		
-		public static <T> QuoteBuilder<T> withInstrument(String symbol, Instrument.InstrumentType typeOfUnderlying) {
+		public static <T> QuoteBuilder<T> withInstrument(String symbol, AbstractTradeableInstrument.InstrumentType typeOfUnderlying) {
 			Assert.notNull(symbol, "symbol must be present");
 			Assert.notNull(typeOfUnderlying, "type of Instrument instrument must be present");
 			Instrument underlying  = new Instrument().setType(typeOfUnderlying).setSymbol(symbol);

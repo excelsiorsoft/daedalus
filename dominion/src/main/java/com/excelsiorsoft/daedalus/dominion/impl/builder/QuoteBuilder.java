@@ -2,6 +2,7 @@ package com.excelsiorsoft.daedalus.dominion.impl.builder;
 
 import org.springframework.util.Assert;
 
+import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument;
 import com.excelsiorsoft.daedalus.dominion.impl.Instrument;
 import com.excelsiorsoft.daedalus.dominion.impl.Quote;
 import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.InstrumentType;
@@ -31,12 +32,12 @@ public final class QuoteBuilder<T> {
 	
 	public static <T> QuoteBuilder<T> withTicker(String ticker) {
 		Assert.notNull(ticker, "ticker must be present");
-		Instrument underlying  = new Instrument().setType(Instrument.InstrumentType.STOCK).setSymbol(ticker);
+		Instrument underlying  = new Instrument().setType(AbstractTradeableInstrument.InstrumentType.STOCK).setSymbol(ticker);
 		QuoteBuilder<T> builder = new QuoteBuilder<T>(underlying);
 		return builder;
 	}
 	
-	public static <T> QuoteBuilder<T> withInstrument(String symbol, Instrument.InstrumentType typeOfUnderlying) {
+	public static <T> QuoteBuilder<T> withInstrument(String symbol, AbstractTradeableInstrument.InstrumentType typeOfUnderlying) {
 		Assert.notNull(symbol, "symbol must be present");
 		Assert.notNull(typeOfUnderlying, "type of Instrument instrument must be present");
 		Instrument underlying  = new Instrument().setType(typeOfUnderlying).setSymbol(symbol);

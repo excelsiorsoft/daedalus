@@ -25,31 +25,30 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page
 	private OptionType type;
 	private /*BigDecimal*/ double value;
-	/*private BigDecimal bid;
-	private BigDecimal ask;*/
+
 
 	
 	public /*BigDecimal*/double getValue() {
 		return value;
 	}
 
-	public WithSpread setValue(/*BigDecimal*/double value) {
+	public Strike setValue(/*BigDecimal*/double value) {
 		this.value = value;
 		return this;
 	}
 	
-	public WithSpread setValue(String value) {
+	public Strike setValue(String value) {
 		this.value=NumberUtils.isNumber(value)?/*new BigDecimal(*/toDouble(value)/*)*/:/*new BigDecimal(*/DOUBLE_ZERO.doubleValue()/*)*/;
 		
 		return this;
 	}
 
 
-	public OptionType getType() {
+	public OptionType getType() { 
 		return type;
 	}
 
-	public WithSpread setType(OptionType type) {
+	public Strike setType(OptionType type) {
 		this.type = type;
 		return this;
 	}
@@ -57,13 +56,13 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 
 
 	@Override
-	public Exchange getExchange() {
+	public Exchange getAsQuotedOn() {
 		
 		return exchange;
 	}
 
 	@Override
-	public TradeableListable setExchange(Exchange exchange) {
+	public Strike setAsQuotedOn(Exchange exchange) {
 		this.exchange = exchange;
 		return this;
 	}
@@ -73,4 +72,6 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		builder.append("Strike[value=").append(value).append(", bid=").append(bid).append(", ask=").append(ask).append(", exchange=").append(exchange).append("]");
 		return builder.toString();
 	}
+
+
 }

@@ -14,8 +14,8 @@ import com.excelsiorsoft.daedalus.dominion.impl.Instrument;
  */
 public interface TradeableListable extends Listable$ {
 	
-	TradeableListable setExchange(Exchange exchange);
-	Exchange getExchange();
+	/*TradeableListable setExchange(Exchange exchange);
+	Exchange getExchange();*/
 
 	
 	String getDescription();

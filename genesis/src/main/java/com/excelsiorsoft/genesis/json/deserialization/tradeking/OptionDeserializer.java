@@ -70,7 +70,8 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 				builder.ofType(asText(quote, "put_call"));
 				
 				Exchange exchange = ExchangeBuilder.builder().withCode(asText(quote, "exch")).withDescription(asText(quote, "exch_desc")).build();
-				/*Exchange exchange = new Exchange(); exchange.setCode(asText(quote, "exch")); exchange.setDescription(asText(quote, "exch_desc"));*/ builder.tradeableOn(exchange);
+				/*Exchange exchange = new Exchange(); exchange.setCode(asText(quote, "exch")); exchange.setDescription(asText(quote, "exch_desc"));*/ 
+				builder.tradeableOn(exchange);
 				
 				result = builder.build();
 
