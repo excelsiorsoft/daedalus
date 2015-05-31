@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.excelsiorsoft.daedalus.dominion.Phenomenon;
-import com.excelsiorsoft.daedalus.dominion.Tradable;
+import com.excelsiorsoft.daedalus.dominion.Tradeable;
 import com.excelsiorsoft.daedalus.dominion.impl.builder.NullSupressingStyle;
 
 
@@ -14,7 +14,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.builder.NullSupressingStyle;
  * @author Simeon
  *
  */
-public class Instrument implements /*Listable*/ Tradable {
+public class Instrument implements /*Listable*/ Tradeable {
 
 private InstrumentType type;
 	
@@ -66,7 +66,7 @@ private InstrumentType type;
 	}
 	
 	@Override
-	public Tradable setExchange(Exchange exchange) {
+	public Tradeable setExchange(Exchange exchange) {
 		//implement later
 		//this.tradableOnExchanges.add(exchange);
 		return this;

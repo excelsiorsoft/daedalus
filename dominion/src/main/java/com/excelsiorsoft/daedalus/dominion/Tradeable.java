@@ -6,12 +6,14 @@ package com.excelsiorsoft.daedalus.dominion;
 import com.excelsiorsoft.daedalus.dominion.impl.Exchange;
 
 /**
+ * Representation of relevant characreristics of products to be 
+ * 
  * @author Simeon
  *
  */
-public interface Tradable extends Listable {
+public interface Tradeable extends Listable {
 	
-	Tradable setExchange(Exchange exchange);
+	Tradeable setExchange(Exchange exchange);
 	Exchange getExchange();
 
 }
