@@ -4,12 +4,12 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.excelsiorsoft.daedalus.dominion.Tradeable;
+import com.excelsiorsoft.daedalus.dominion.TradeableListable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
 
 import static org.apache.commons.lang3.math.NumberUtils.*;
 
-public abstract class AbstractTradableInstrument extends AbstractDomain implements WithSpread, Tradeable {
+public abstract class AbstractTradableInstrument extends AbstractDomain implements WithSpread, TradeableListable {
 
 	private Exchange exchange;
 	
@@ -82,7 +82,7 @@ public abstract class AbstractTradableInstrument extends AbstractDomain implemen
 	}
 
 	@Override
-	public abstract Tradeable setExchange(Exchange exchange);
+	public abstract TradeableListable setExchange(Exchange exchange);
 
 	@Override
 	public abstract Exchange getExchange();

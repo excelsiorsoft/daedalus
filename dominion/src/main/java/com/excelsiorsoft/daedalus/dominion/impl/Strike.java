@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.excelsiorsoft.daedalus.dominion.Tradeable;
+import com.excelsiorsoft.daedalus.dominion.TradeableListable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 
@@ -63,7 +63,7 @@ public final class Strike extends AbstractTradableInstrument/* implements WithSp
 	}
 
 	@Override
-	public Tradeable setExchange(Exchange exchange) {
+	public TradeableListable setExchange(Exchange exchange) {
 		this.exchange = exchange;
 		return this;
 	}
