@@ -19,7 +19,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
  * @author Simeon
  * 
  */
-public final class Strike extends AbstractTradableInstrument/* implements WithSpread*/ {
+public final class Strike extends AbstractTradeableInstrument/* implements WithSpread*/ {
 
 	private Exchange exchange;
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page

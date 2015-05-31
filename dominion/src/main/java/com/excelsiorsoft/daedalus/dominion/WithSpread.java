@@ -3,6 +3,8 @@
  */
 package com.excelsiorsoft.daedalus.dominion;
 
+import java.util.Date;
+
 //import java.math.BigDecimal;
 
 /**
@@ -25,5 +27,21 @@ public interface WithSpread {
 	WithSpread setAsk(/*BigDecimal*/double ask);
 	
 	WithSpread setAsk(String ask);
+	
+	WithSpread setAskTime(String askTime);
+	
+	Date getAskTime();
+	
+	WithSpread setAskSize(String askSize);
+	
+	int getAskSize();
+	
+	WithSpread setBidTime(String bidTime);
+	
+	Date getBidTime();
+	
+	WithSpread setBidSize(String bidSize);
+	
+	int getBidSize();
 
 }

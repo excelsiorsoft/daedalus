@@ -2,6 +2,12 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 
 //import java.math.BigDecimal;
 
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.excelsiorsoft.daedalus.dominion.TradeableListable;
@@ -9,12 +15,22 @@ import com.excelsiorsoft.daedalus.dominion.WithSpread;
 
 import static org.apache.commons.lang3.math.NumberUtils.*;
 
-public abstract class AbstractTradableInstrument extends AbstractDomain implements WithSpread, TradeableListable {
+public abstract class AbstractTradeableInstrument extends AbstractDomain implements WithSpread, TradeableListable {
 
-	private Exchange exchange;
+	//private Exchange exchange;
 	
 	protected /*BigDecimal*/ double bid;
 	protected /*BigDecimal*/double ask;
+	
+	/**
+	 * Time of latest ask
+	 */
+	protected Date askTime;
+	
+	/**
+	 * Time of latest bid
+	 */
+	protected LocalDateTime bidTime;
 	
 	public /*BigDecimal*/ double getBid() {
 		return bid;
@@ -50,11 +66,7 @@ public abstract class AbstractTradableInstrument extends AbstractDomain implemen
 	 *
 	 */
 
-	public static enum InstrumentType {
-		OPTION, STOCK, ETF, FUTURE;
 
-
-	}
 
 
 	@Override
@@ -87,5 +99,61 @@ public abstract class AbstractTradableInstrument extends AbstractDomain implemen
 	@Override
 	public abstract Exchange getExchange();
 
+	@Override
+	public WithSpread setAskTime(String askTime) {
+		this.askTime = Date.from(LocalDateTime
+				.parse(askTime, DateTimeFormatter.ofPattern("HH:mm"))
+				.atZone(ZoneId.systemDefault()).toInstant());
+		return this;
+	}
+
+	@Override
+	public Date getAskTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public WithSpread setAskSize(String askSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getAskSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public WithSpread setBidTime(String bidTime) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Date getBidTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public WithSpread setBidSize(String bidSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getBidSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	public static enum InstrumentType {
+		OPTION, STOCK, ETF, FUTURE;
+
+
+	}
 	
 }

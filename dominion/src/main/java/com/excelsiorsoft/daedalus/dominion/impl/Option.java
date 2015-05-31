@@ -166,9 +166,9 @@ public class Option extends /*AbstractTradable*/Instrument {
 	 * @author sleyzerzon
 	 *
 	 */
-	public static class OptionBuilder {
+	public final static class OptionBuilder {
 		
-		private Option option = new Option();
+		private final Option option = new Option();
 		
 		private OptionBuilder(){}
 		

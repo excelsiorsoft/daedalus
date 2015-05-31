@@ -4,7 +4,7 @@ import org.springframework.util.Assert;
 
 import com.excelsiorsoft.daedalus.dominion.impl.Instrument;
 import com.excelsiorsoft.daedalus.dominion.impl.Quote;
-import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradableInstrument.InstrumentType;
+import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.InstrumentType;
 
 
 public final class QuoteBuilder<T> {
