@@ -153,11 +153,9 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
 		
-		
-		
 		ObjectMapper mapper = new ObjectMapper();
 		
-		String optionJsonStr = foreman.makeApiCall(getExtQuotes(json, "slw160115P00020000, slw160115P00021000 ", "")).getResponse();
+		String optionJsonStr = foreman.makeApiCall(getExtQuotes(json, "slw160115P00018000, slw160115P00021000, slw160115P00025000 ", "")).getResponse();
 		System.out.println("several options: "+optionJsonStr);
 		JsonNode response = mapper.readTree(optionJsonStr).get("response");
 

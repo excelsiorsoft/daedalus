@@ -26,6 +26,7 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page
 	private OptionType type;
 	private /*BigDecimal*/ double value;
+	private int volume;
 
 
 	
@@ -68,12 +69,26 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		return this;
 	}
 	
+	
+	@Override
+	public WithSpread setVolume(String volume) {
+		this.volume=Integer.parseInt(volume);
+		return this;
+	}
+
+	@Override
+	public int getVolume() {
+		
+		return volume;
+	}	
+	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
 		builder.append("Strike[value=").append(value)
 				.append(", bid=").append(bid).append(", bidSize=").append(bidSize).append(", bidTime=").append(bidTime)
 				.append(", ask=").append(ask).append(", askSize=").append(askSize).append(", askTime=").append(askTime)
 				.append(", exchange=").append(exchange)
+				.append(", volume=").append(volume)
 				.append("]");
 		return builder.toString();
 	}
@@ -140,6 +155,9 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 			return this;
 		}		
 	}
+
+
+
 
 
 }

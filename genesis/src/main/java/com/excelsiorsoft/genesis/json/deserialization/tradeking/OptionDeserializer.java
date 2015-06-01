@@ -80,7 +80,8 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 				Strike strike = (Strike) option.getStrike()
 						.setBid(asText(quote, "bid")).setAsk(asText(quote, "ask"))
 						.setBidSize(asText(quote, "bidsz")).setAskSize(asText(quote, "asksz"))
-						.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"));
+						.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"))
+						.setVolume(asText(quote, "vl"));
 
 
 		} catch (Throwable e) {

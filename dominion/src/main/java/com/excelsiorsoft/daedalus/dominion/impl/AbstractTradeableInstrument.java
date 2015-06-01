@@ -68,12 +68,7 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 	}
 	
 	
-	/**
-	 * @author Simeon
-	 *
-	 */
-
-
+	
 
 
 	@Override
@@ -215,5 +210,11 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 
 	@Override
 	public abstract Exchange getAsQuotedOn();
+
+	@Override
+	public abstract WithSpread setVolume(String volume);
+
+	@Override
+	public abstract int getVolume();
 	
 }

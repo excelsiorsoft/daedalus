@@ -49,5 +49,9 @@ public interface WithSpread {
 	WithSpread setBidSize(String bidSize);
 	
 	int getBidSize();
+	
+	WithSpread setVolume(String volume);
+	
+	int getVolume();
 
 }
