@@ -6,10 +6,17 @@ import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
 import static org.junit.Assert.*;
 
+import java.util.Collection;
+
 import org.junit.Test;
 
+import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder;
 import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
+import com.excelsiorsoft.genesis.json.deserialization.tradeking.OptionDeserializer;
+import com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -134,6 +141,33 @@ public class TradeKingForemanTest {
 		System.out.println("market/toplists losers by % call (json)...");
 		System.out.println("==============================");
 		System.out.println(foreman.makeApiCall(getTopLosers(TopType.BY_PERCENTAGE_AMOUNT, json)).getResponse());
+		System.out.println("==============================");
+		
+	}
+	
+	@Test
+	public void marketExtQuotesApiCallMultiOptionDeserialization() throws Throwable {
+		
+		System.out.println("market/ext/quotes call...");
+		System.out.println("==============================");
+		TradeKingForeman foreman = new TradeKingForeman();
+		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String optionJsonStr = foreman.makeApiCall(getExtQuotes(json, "slw160115P00020000, slw160115P00021000 ", "")).getResponse();
+		System.out.println("several options: "+optionJsonStr);
+		JsonNode response = mapper.readTree(optionJsonStr).get("response");
+
+		System.out.println("response/quotes: " +response.path("quotes"));
+		System.out.println("response/quotes/quote: " + response.path("quotes").path("quote"));
+		
+		SimpleDeserializer<Option> deserializer = new OptionDeserializer();
+		
+		JsonNode quotes = response.path("quotes").path("quote"); 
+		Collection<Option> result = deserializer.deserialize(quotes);
+		assertEquals("Expecting different # of deserialized objects", quotes.size(), result.size());
 		System.out.println("==============================");
 		
 	}

@@ -154,7 +154,7 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 		//LocalDateTime.parse(bidTime, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
 		
 		
-		LocalTime localBidTime = LocalTime.parse("15:57");
+		LocalTime localBidTime = LocalTime.parse(bidTime);
 		Instant instant = localBidTime.atDate(LocalDate.now()).
 		        atZone(ZoneId.systemDefault()).toInstant();
 		this.bidTime = Date.from(instant);
