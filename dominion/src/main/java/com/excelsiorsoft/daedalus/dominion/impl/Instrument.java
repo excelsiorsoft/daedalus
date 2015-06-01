@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.excelsiorsoft.daedalus.dominion.Phenomenon;
+import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
 import com.excelsiorsoft.daedalus.dominion.TradeableListable;
 import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.InstrumentType;
 
@@ -12,9 +13,9 @@ import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.Inst
  * @author Simeon
  *
  */
-public class Instrument implements TradeableListable /*extends AbstractTradeableInstrument*/ {
+public class Instrument implements TradeableListable, TimeTrackable /*extends AbstractTradeableInstrument*/ {
 
-private InstrumentType type;
+	private InstrumentType type;
 	
 	//akin to a ticker for stocks but wider based on instrument type
 	private String symbol;
@@ -24,6 +25,8 @@ private InstrumentType type;
 	private List<Phenomenon> affectedBy = new ArrayList<Phenomenon>();
 	
 	protected List<Exchange> tradableOnExchanges = new ArrayList<>();
+	
+	protected long timestamp;
 	
 	public InstrumentType getType() {
 		return type;
@@ -60,6 +63,17 @@ private InstrumentType type;
 	public Instrument setAffectedBy(List<Phenomenon> affectedBy) {
 
 		this.affectedBy = affectedBy;
+		return this;
+	}
+	
+	@Override
+	public long getTimestamp() {
+		return timestamp;
+	}
+
+	@Override
+	public TimeTrackable setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
 		return this;
 	}
 	

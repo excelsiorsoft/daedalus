@@ -16,5 +16,12 @@ public class DeserializationUtils {
 		String result = node.path(path).asText();
 		return result;
 	}
+	
+	
+	public static Long asLong(JsonNode node, String path){
+		  
+		Long result = node.path(path).asLong();
+		return result;
+	}
 
 }

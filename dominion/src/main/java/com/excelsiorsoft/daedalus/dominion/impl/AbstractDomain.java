@@ -17,7 +17,7 @@ public class AbstractDomain implements IdentifiableTimeTrackable {
 
 	protected Long id;
 
-	protected Timestamp timestamp;
+	protected long timestamp;
 
 	@Override
 	public Long getId() {
@@ -31,12 +31,12 @@ public class AbstractDomain implements IdentifiableTimeTrackable {
 	}
 
 	@Override
-	public Timestamp getTimestamp() {
+	public long getTimestamp() {
 		return timestamp;
 	}
 
 	@Override
-	public TimeTrackable setTimestamp(Timestamp timestamp) {
+	public TimeTrackable setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 		return this;
 	}

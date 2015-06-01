@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
 import com.excelsiorsoft.daedalus.dominion.TradeableListable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
@@ -78,8 +79,13 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 
 	@Override
 	public int getVolume() {
-		
 		return volume;
+	}
+	
+	@Override
+	public TimeTrackable setTimestamp(long timestamp) {
+		super.setTimestamp(timestamp);
+		return this;
 	}	
 	
 	public String toString(){
@@ -89,6 +95,7 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 				.append(", ask=").append(ask).append(", askSize=").append(askSize).append(", askTime=").append(askTime)
 				.append(", exchange=").append(exchange)
 				.append(", volume=").append(volume)
+				.append(", timestamp=").append(timestamp)
 				.append("]");
 		return builder.toString();
 	}
@@ -155,6 +162,11 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 			return this;
 		}		
 	}
+
+
+
+
+
 
 
 

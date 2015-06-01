@@ -149,22 +149,37 @@ public class TradeKingForemanTest {
 	@Test
 	public void marketExtQuotesApiCallMultiOptionDeserialization() throws Throwable {
 		
-		System.out.println("market/ext/quotes call...");
+		
+		System.out.println("market/clock call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
+		
+		String response = foreman.makeApiCall(MarketRequestBuilder.getClock(xml)).getResponse().toString();
+		assertTrue("Foreman didn't recognize API reponse",response.contains("<message>"));
+		System.out.println(response);
+		
+		XmlHandler handler = new XmlHandler();
+		handler.parseMarketClock(response);
+		System.out.println("==============================");
+		
+		
+		
+		System.out.println("market/ext/quotes call...");
+		System.out.println("==============================");
+		//TradeKingForeman foreman = new TradeKingForeman();
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
 		String optionJsonStr = foreman.makeApiCall(getExtQuotes(json, "slw160115P00018000, slw160115P00021000, slw160115P00025000 ", "")).getResponse();
 		System.out.println("several options: "+optionJsonStr);
-		JsonNode response = mapper.readTree(optionJsonStr).get("response");
+		JsonNode jsonResponse = mapper.readTree(optionJsonStr).get("response");
 
-		System.out.println("response/quotes: " +response.path("quotes"));
-		System.out.println("response/quotes/quote: " + response.path("quotes").path("quote"));
+		System.out.println("response/quotes: " +jsonResponse.path("quotes"));
+		System.out.println("response/quotes/quote: " + jsonResponse.path("quotes").path("quote"));
 		
 		SimpleDeserializer<Option> deserializer = new OptionDeserializer();
 		
-		JsonNode quotes = response.path("quotes").path("quote"); 
+		JsonNode quotes = jsonResponse.path("quotes").path("quote"); 
 		Collection<Option> result = deserializer.deserialize(quotes);
 		assertEquals("Expecting different # of deserialized objects", quotes.size(), result.size());
 		System.out.println("==============================");

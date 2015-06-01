@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public interface TimeTrackable {
 
-	Timestamp getTimestamp();
+	long getTimestamp();
 
-	TimeTrackable setTimestamp(Timestamp timestamp);
+	TimeTrackable setTimestamp(long timestamp);
 }
