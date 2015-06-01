@@ -108,16 +108,23 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 
 	@Override
 	public WithSpread setAskTime(String askTime) {
-		this.askTime = Date.from(LocalDateTime
+		/*this.askTime = Date.from(LocalDateTime
 				.parse(askTime, DateTimeFormatter.ofPattern("HH:mm"))
 				.atZone(ZoneId.systemDefault()).toInstant());
+		return this;*/
+		
+		LocalTime localAskTime = LocalTime.parse(askTime);
+		Instant instant = localAskTime.atDate(LocalDate.now()).
+		        atZone(ZoneId.systemDefault()).toInstant();
+		this.askTime = Date.from(instant);
+        System.out.println(this.askTime);
 		return this;
 	}
 
 	@Override
 	public Date getAskTime() {
 		
-		return this.askTime;
+		return this.bidTime;
 	}
 
 	@Override

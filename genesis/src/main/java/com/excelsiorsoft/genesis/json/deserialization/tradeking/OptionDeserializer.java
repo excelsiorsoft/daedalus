@@ -95,7 +95,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	private List<Option> deserializeNodeCollection(JsonNode quotes) throws Throwable {
 		
 		List<Option> result = new LinkedList<>();
-		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}s", quotes.size(), Option.class.getSimpleName());
+		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}s:", quotes.size(), Option.class.getSimpleName());
 		
 		//int counter = 0;
 		for(JsonNode quote : quotes){

@@ -32,7 +32,7 @@ public class OptionDeserializerTest {
 		
 		JsonNode quotes = response.path("quotes").path("quote"); 
 		
-		System.out.println("\nDeserializing collection of json nodes of size " + quotes.size() +":");
+		//System.out.println("\nDeserializing collection of json nodes of size " + quotes.size() +":");
 		System.out.println("isContainer: "+quotes.isContainerNode());
 		System.out.println("isArray: "+quotes.isArray());
 		
