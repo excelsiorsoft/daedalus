@@ -70,7 +70,7 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		builder.append("Strike[value=").append(value).append(", bid=").append(bid).append(", ask=").append(ask).append(", exchange=").append(exchange).append("]");
+		builder.append("Strike[value=").append(value).append(", bid=").append(bid).append(", bidSize=").append(bidSize).append(", bidTime=").append(bidTime).append(", ask=").append(ask).append(", exchange=").append(exchange).append("]");
 		return builder.toString();
 	}
 	
@@ -94,6 +94,36 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		public Strike build(){
 			
 			return strike;
+		}
+		
+		public StrikeBuilder withBid(String bid){
+			strike.setBid(bid);
+			return this;
+		}
+		
+		public StrikeBuilder withBidSize(String bidSize){
+			strike.setBidSize(bidSize);
+			return this;
+		}	
+		
+		public StrikeBuilder withBidTime(String bidTime){
+			strike.setBidTime(bidTime);
+			return this;
+		}
+		
+		public StrikeBuilder withAsk(String ask){
+			strike.setAsk(ask);
+			return this;
+		}
+		
+		public StrikeBuilder withAskSize(String askSize){
+			strike.setAskSize(askSize);
+			return this;
+		}
+		
+		public StrikeBuilder withAskTime(String askTime){
+			strike.setAskTime(askTime);
+			return this;
 		}
 	}
 

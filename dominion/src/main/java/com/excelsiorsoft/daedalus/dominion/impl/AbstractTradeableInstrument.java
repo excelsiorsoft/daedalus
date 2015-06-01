@@ -3,9 +3,13 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 //import java.math.BigDecimal;
 
 import java.text.DateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Date;
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -22,6 +26,9 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 	protected /*BigDecimal*/ double bid;
 	protected /*BigDecimal*/double ask;
 	
+	protected int bidSize;
+	protected int askSize;
+	
 	/**
 	 * Time of latest ask
 	 */
@@ -30,7 +37,7 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 	/**
 	 * Time of latest bid
 	 */
-	protected LocalDateTime bidTime;
+	protected Date bidTime;
 	
 	public /*BigDecimal*/ double getBid() {
 		return bid;
@@ -109,44 +116,61 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 
 	@Override
 	public Date getAskTime() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.askTime;
 	}
 
 	@Override
 	public WithSpread setAskSize(String askSize) {
-		// TODO Auto-generated method stub
-		return null;
+		this.askSize = Integer.parseInt(askSize);
+		return this;
 	}
 
 	@Override
 	public int getAskSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.askSize;
 	}
 
+	/* 
+	 * http://blog.progs.be/542/date-to-java-time
+	 * 
+	 * (non-Javadoc)
+	 * @see com.excelsiorsoft.daedalus.dominion.WithSpread#setBidTime(java.lang.String)
+	 */
 	@Override
 	public WithSpread setBidTime(String bidTime) {
-		// TODO Auto-generated method stub
-		return null;
+		/*this.bidTime = Date.from(LocalDateTime
+				.parse(bidTime, DateTimeFormatter.ofPattern("HH:mm"))
+				.atZone(ZoneId.systemDefault()).toInstant());*/
+		
+		//LocalDateTime.parse(bidTime, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
+		
+		
+		LocalTime localBidTime = LocalTime.parse("15:57");
+		Instant instant = localBidTime.atDate(LocalDate.now()).
+		        atZone(ZoneId.systemDefault()).toInstant();
+		this.bidTime = Date.from(instant);
+        System.out.println(this.bidTime);
+		return this;
 	}
 
 	@Override
 	public Date getBidTime() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.bidTime;
 	}
 
 	@Override
 	public WithSpread setBidSize(String bidSize) {
-		// TODO Auto-generated method stub
-		return null;
+		this.bidSize = Integer.parseInt(bidSize);
+		return this;
 	}
 
 	@Override
 	public int getBidSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.bidSize;
 	}
 
 	

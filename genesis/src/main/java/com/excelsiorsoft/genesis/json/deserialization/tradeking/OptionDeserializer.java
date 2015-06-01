@@ -76,9 +76,12 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 				
 				option = builder.build();
 				
-				Strike strike = option.getStrike();
-				strike.setBid(asText(quote, "bid"));
-				strike.setAsk(asText(quote, "ask"));
+				//make sure it's invoked after option is built!!
+				Strike strike = (Strike) option.getStrike()
+						.setBid(asText(quote, "bid")).setAsk(asText(quote, "ask"))
+						.setBidSize(asText(quote, "bidsz")).setAskSize(asText(quote, "asksz"))
+						.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"));
+
 
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
