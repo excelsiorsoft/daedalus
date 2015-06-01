@@ -13,7 +13,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.Exchange;
  * @author Simeon
  *
  */
-public interface WithSpread {
+public interface WithSpread extends TimeTrackable{
 	
 	WithSpread setAsQuotedOn(Exchange exchange);
 	

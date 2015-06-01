@@ -4,8 +4,13 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder.builder;
+import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils.asLong;
 import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils.asText;
+import static com.excelsiorsoft.genesis.json.deserialization.DateTimeUtils.*;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -81,9 +86,11 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 						.setBid(asText(quote, "bid")).setAsk(asText(quote, "ask"))
 						.setBidSize(asText(quote, "bidsz")).setAskSize(asText(quote, "asksz"))
 						.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"))
-						.setVolume(asText(quote, "vl"));
+						.setVolume(asText(quote, "vl"))
+						.setTimestamp(asLong(quote, "timestamp"))
+						;
 
-
+				logger.debug("\n\ttimestamp: {}, \n\ttimestamp as instant: {}, \n\ttimestamp @ local zone: {}, \n\tnow as instant: {}, \n\tnow @ local zone: {}", asLong(quote, "timestamp"), Instant.ofEpochSecond(asLong(quote, "timestamp")), fromUnixTimestampToLocalDateTime(asLong(quote, "timestamp")), Instant.now().getEpochSecond(), fromUnixTimestampToLocalDateTime(Instant.now().getEpochSecond()));
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
 		}
