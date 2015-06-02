@@ -90,7 +90,9 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 						.setTimestamp(asLong(quote, "timestamp"))
 						;
 
+
 				logger.debug("\n\ttimestamp: {}, \n\ttimestamp as instant: {}, \n\ttimestamp @ local zone: {}, \n\tnow as instant: {}, \n\tnow @ local zone: {}", asLong(quote, "timestamp"), Instant.ofEpochSecond(asLong(quote, "timestamp")), fromUnixTimestampToLocalDateTime(asLong(quote, "timestamp")), Instant.now().getEpochSecond(), fromUnixTimestampToLocalDateTime(Instant.now().getEpochSecond()));
+
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
 		}
