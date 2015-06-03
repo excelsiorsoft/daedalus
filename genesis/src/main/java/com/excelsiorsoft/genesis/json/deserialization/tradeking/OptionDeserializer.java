@@ -92,6 +92,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 						
 						;
 
+
 			logger.debug(
 					"\n\ttimestamp: {}, "
 					+ "\n\ttimestamp as instant: {}, "
@@ -104,6 +105,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 					Instant.now().getEpochSecond(),
 					fromUnixTimestampToLocalDateTime(Instant.now()
 							.getEpochSecond()));
+
 
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
