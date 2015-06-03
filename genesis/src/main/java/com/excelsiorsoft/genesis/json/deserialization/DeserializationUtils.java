@@ -6,7 +6,7 @@ package com.excelsiorsoft.genesis.json.deserialization;
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
- * Utility for deserializing Json documents using concepts of Jackson Tree Model outlined {@link http://wiki.fasterxml.com/JacksonTreeModel}
+ * Utility for deserializing Json documents using concepts of Jackson Tree Model outlined in {@link http://wiki.fasterxml.com/JacksonTreeModel}
  * 
  * @author sleyzerzon
  *

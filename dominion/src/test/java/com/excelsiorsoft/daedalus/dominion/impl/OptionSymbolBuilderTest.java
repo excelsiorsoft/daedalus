@@ -1,4 +1,4 @@
-package com.excelsiorsoft.daedalus.dominion;
+package com.excelsiorsoft.daedalus.dominion.impl;
 
 
 import static org.junit.Assert.assertEquals;
@@ -23,6 +23,7 @@ public class OptionSymbolBuilderTest {
 		builder = new OptionSymbolBuilder();
 	}
 	
+	@SuppressWarnings("static-access")
 	@Test
 	public void creatingSymbol() throws Throwable {
 		
