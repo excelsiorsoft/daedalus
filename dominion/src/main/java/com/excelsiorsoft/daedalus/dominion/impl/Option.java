@@ -61,7 +61,9 @@ public class Option extends /*AbstractTradable*/Instrument {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Option[underlying=")
+		builder.append("Option[timestamp=")
+				.append(timestamp)
+				.append(", underlying=")
 				.append(underlying)
 				.append(", optionType=")
 				.append(optionType)

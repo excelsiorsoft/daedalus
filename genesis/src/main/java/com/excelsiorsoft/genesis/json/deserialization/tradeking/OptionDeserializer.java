@@ -66,6 +66,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	private Option deserializeSingleNode(JsonNode quote) throws Throwable {
 		
 		Option option = null;
+		long now = Instant.now().getEpochSecond();
 		OptionBuilder builder = builder();
 		
 		try{
@@ -80,6 +81,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 				builder.tradeableOn(exchange);
 				
 				option = builder.build();
+				option.setTimestamp(now);
 				
 				//make sure it's invoked after option is built!!
 				Strike strike = (Strike) option.getStrike()
@@ -88,9 +90,10 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 						.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"))
 						.setVolume(asText(quote, "vl"))
 						//.setTimestamp(asLong(quote, "timestamp"))
-						.setTimestamp(Instant.now().getEpochSecond()) //disregarding what's on the response
+						.setTimestamp(now) //disregarding what's on the response
 						
 						;
+
 
 			logger.debug(
 					"\n\ttimestamp: {}, "
@@ -104,6 +107,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 					Instant.now().getEpochSecond(),
 					fromUnixTimestampToLocalDateTime(Instant.now()
 							.getEpochSecond()));
+
 
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
