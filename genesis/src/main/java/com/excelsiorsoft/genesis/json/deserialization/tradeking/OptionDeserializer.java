@@ -87,7 +87,9 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 						.setBidSize(asText(quote, "bidsz")).setAskSize(asText(quote, "asksz"))
 						.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"))
 						.setVolume(asText(quote, "vl"))
-						.setTimestamp(asLong(quote, "timestamp"))
+						//.setTimestamp(asLong(quote, "timestamp"))
+						.setTimestamp(Instant.now().getEpochSecond()) //disregarding what's on the response
+						
 						;
 
 			logger.debug(
