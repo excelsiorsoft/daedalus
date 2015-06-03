@@ -9,8 +9,6 @@ import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtil
 import static com.excelsiorsoft.genesis.json.deserialization.DateTimeUtils.*;
 
 import java.time.Instant;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,8 +30,11 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 
 	private Logger logger = LoggerFactory.getLogger(OptionDeserializer.class);
 	
+	/* (non-Javadoc)
+	 * @see com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer#deserialize(com.fasterxml.jackson.databind.JsonNode)
+	 */
 	@Override
-	public List<Option> deserialize(JsonNode node) throws Throwable {
+	public List<Option> deserialize(final JsonNode node) throws Throwable {
 		
 		List<Option> result = new LinkedList<>();
 		
@@ -41,7 +42,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 			
 			return deserializeNodeCollection(node);
 		
-		}else {
+		} else {
 			
 			result.add(deserializeSingleNode(node));
 			return result;
@@ -50,10 +51,16 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	}
 
 	
-	private Option deserializeSingleNode(JsonNode quote) throws Throwable {
+	/**
+	 * @param quote
+	 * @return
+	 * @throws Throwable
+	 */
+	private Option deserializeSingleNode(final JsonNode quote) throws Throwable {
 		
 		Option option = null;
-		OptionBuilder builder = builder();
+		final long now = Instant.now().getEpochSecond();
+		final OptionBuilder builder = builder();
 		
 		try{
 			
@@ -67,6 +74,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 				builder.tradeableOn(exchange);
 				
 				option = builder.build();
+				option.setTimestamp(now);
 				
 				//make sure it's invoked after option is built!!
 				Strike strike = (Strike) option.getStrike()
@@ -74,11 +82,25 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 						.setBidSize(asText(quote, "bidsz")).setAskSize(asText(quote, "asksz"))
 						.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"))
 						.setVolume(asText(quote, "vl"))
-						.setTimestamp(asLong(quote, "timestamp"))
+						//.setTimestamp(asLong(quote, "timestamp"))
+						.setTimestamp(now) //disregarding what's on the response
+						
 						;
 
 
-				logger.debug("\n\ttimestamp: {}, \n\ttimestamp as instant: {}, \n\ttimestamp @ local zone: {}, \n\tnow as instant: {}, \n\tnow @ local zone: {}", asLong(quote, "timestamp"), Instant.ofEpochSecond(asLong(quote, "timestamp")), fromUnixTimestampToLocalDateTime(asLong(quote, "timestamp")), Instant.now().getEpochSecond(), fromUnixTimestampToLocalDateTime(Instant.now().getEpochSecond()));
+			logger.debug(
+					"\n\ttimestamp: {}, "
+					+ "\n\ttimestamp as instant: {}, "
+					+ "\n\ttimestamp @ local zone: {}, "
+					+ "\n\tnow as instant: {}, "
+					+ "\n\tnow @ local zone: {}",
+					asLong(quote, "timestamp"),
+					Instant.ofEpochSecond(asLong(quote, "timestamp")),
+					fromUnixTimestampToLocalDateTime(asLong(quote, "timestamp")),
+					Instant.now().getEpochSecond(),
+					fromUnixTimestampToLocalDateTime(Instant.now()
+							.getEpochSecond()));
+
 
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
@@ -89,9 +111,14 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	
 	
 
-	private List<Option> deserializeNodeCollection(JsonNode quotes) throws Throwable {
+	/**
+	 * @param quotes
+	 * @return
+	 * @throws Throwable
+	 */
+	private List<Option> deserializeNodeCollection(final JsonNode quotes) throws Throwable {
 		
-		List<Option> result = new LinkedList<>();
+		final List<Option> result = new LinkedList<>();
 		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}s:", quotes.size(), Option.class.getSimpleName());
 		
 		//int counter = 0;

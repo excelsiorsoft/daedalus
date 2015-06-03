@@ -6,11 +6,18 @@ package com.excelsiorsoft.genesis.json.deserialization;
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
+ * Utility for deserializing Json documents using concepts of Jackson Tree Model outlined {@link http://wiki.fasterxml.com/JacksonTreeModel}
+ * 
  * @author sleyzerzon
  *
  */
 public class DeserializationUtils {
 	
+	/**
+	 * @param node
+	 * @param path
+	 * @return
+	 */
 	public static String asText(JsonNode node, String path){
 		  
 		String result = node.path(path).asText();
@@ -18,6 +25,11 @@ public class DeserializationUtils {
 	}
 	
 	
+	/**
+	 * @param node
+	 * @param path
+	 * @return
+	 */
 	public static Long asLong(JsonNode node, String path){
 		  
 		Long result = node.path(path).asLong();
