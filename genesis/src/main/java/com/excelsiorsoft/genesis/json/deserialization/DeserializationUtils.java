@@ -18,7 +18,7 @@ public class DeserializationUtils {
 	 * @param path
 	 * @return
 	 */
-	public static String asText(JsonNode node, String path){
+	public static String asText(final JsonNode node, final String path){
 		  
 		String result = node.path(path).asText();
 		return result;
@@ -30,7 +30,7 @@ public class DeserializationUtils {
 	 * @param path
 	 * @return
 	 */
-	public static Long asLong(JsonNode node, String path){
+	public static Long asLong(final JsonNode node, final String path){
 		  
 		Long result = node.path(path).asLong();
 		return result;
