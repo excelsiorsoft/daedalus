@@ -132,11 +132,11 @@ public class Option extends /*AbstractTradable*/Instrument {
 			
 			case OCC: 
 				
-				occSpecification(symbolType, underlyingSymbol, expirationDate, optionType, strike); break;
+				result = occSpecification(symbolType, underlyingSymbol, expirationDate, optionType, strike); break;
 			
 			default:
 				
-				occSpecification(symbolType, underlyingSymbol, expirationDate, optionType, strike); break;
+				result = occSpecification(symbolType, underlyingSymbol, expirationDate, optionType, strike); break;
 				
 			}
 			

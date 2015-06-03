@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.excelsiorsoft.daedalus.dominion;
+package com.excelsiorsoft.daedalus.dominion.impl;
 
 
 import static org.junit.Assert.*;

@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Simeon
  * 
  */
-
+@Deprecated
 public class ExpirationCycle extends AbstractDomain {
 
 	private Long id;
