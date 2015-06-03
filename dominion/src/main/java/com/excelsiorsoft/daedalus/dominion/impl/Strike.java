@@ -90,12 +90,11 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		builder.append("Strike[value=").append(value)
+		builder.append("Strike[timestamp=").append(timestamp).append(", value=").append(value)
 				.append(", bid=").append(bid).append(", bidSize=").append(bidSize).append(", bidTime=").append(bidTime)
 				.append(", ask=").append(ask).append(", askSize=").append(askSize).append(", askTime=").append(askTime)
 				.append(", exchange=").append(exchange)
 				.append(", volume=").append(volume)
-				.append(", timestamp=").append(timestamp)
 				.append("]");
 		return builder.toString();
 	}
