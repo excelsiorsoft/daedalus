@@ -36,30 +36,17 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	public List<Option> deserialize(JsonNode node) throws Throwable {
 		
 		List<Option> result = new LinkedList<>();
+		
 		if (node.isContainerNode()) {
+			
 			return deserializeNodeCollection(node);
+		
 		}else {
+			
 			result.add(deserializeSingleNode(node));
 			return result;
 		}
-		
-		/*Option result = null;
-		OptionBuilder builder = OptionBuilder.init();
-		
-		try{
-			
-				builder.withUnderlying(asText(quote, "undersymbol"));
-				builder.withExpiration(asText(quote, "xdate"));
-				builder.withStrike(Double.parseDouble(asText(quote, "strikeprice")));
-				builder.ofType(asText(quote, "put_call"));
-				
-				result = builder.build();
 
-		} catch (Throwable e) {
-			logger.error("Error while deserializing {}: {}", quote, e.getMessage());
-		}
-
-		return result;*/
 	}
 
 	
