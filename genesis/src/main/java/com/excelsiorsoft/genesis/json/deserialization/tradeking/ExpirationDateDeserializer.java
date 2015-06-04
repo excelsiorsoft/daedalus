@@ -25,7 +25,7 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 
 	private Logger logger = LoggerFactory.getLogger(ExpirationDateDeserializer.class);
 	
-	protected ExpirationDateDeserializer() {
+	public ExpirationDateDeserializer() {
 		super(ExpirationDate.class);
 		
 	}

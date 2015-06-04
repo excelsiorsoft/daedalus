@@ -37,7 +37,7 @@ public class TradeKingForeman implements Serializable {
 	
 	private Token accessToken;
 	private OAuthService oauthService;
-	private final static Logger log = LoggerFactory.getLogger(TradeKingForeman.class);
+	private final static Logger logger = LoggerFactory.getLogger(TradeKingForeman.class);
 	
 	
 
@@ -53,12 +53,12 @@ public class TradeKingForeman implements Serializable {
 	private TKResponse sendOAuthRequest(final Request request) {
 		
 
-		log.info("OAuth request {} is ready to be sent out to TK", request);
-		log.info("OAuth parameters: "+((OAuthRequest)request).getOauthParameters());
-		log.info("oauth_timestamp={}", ((OAuthRequest)request).getOauthParameters().get("oauth_timestamp"));
+		logger.info("OAuth request {} is ready to be sent out to TK", request);
+		logger.info("OAuth parameters: "+((OAuthRequest)request).getOauthParameters());
+		logger.info("oauth_timestamp={}", ((OAuthRequest)request).getOauthParameters().get("oauth_timestamp"));
 
 		Response oAuthResponse = request.send();
-		log.info("OAuth request was sent, received a response: {}", oAuthResponse);
+		logger.info("OAuth request was sent, received a response: {}", oAuthResponse);
 
 		
 		TKResponse response = new TKResponse(oAuthResponse);
@@ -77,7 +77,7 @@ public class TradeKingForeman implements Serializable {
 		final Map<String, String> parameters = tkRequest.getParameters();
 		final String payload = tkRequest.getBody();
 		
-		log.info("Creating an OAuth request wrapper around {}", tkRequest);
+		logger.info("Creating an OAuth request wrapper around {}", tkRequest);
 		
 		
 		OAuthRequest request = new OAuthRequest(verb, resourceURL);
@@ -97,24 +97,24 @@ public class TradeKingForeman implements Serializable {
 			request.addPayload(payload);
 		}*/
 		
-		log.info("OAuth request wrapper created: {}", request);
+		logger.info("OAuth request wrapper created: {}", request);
 		oauthService.signRequest(accessToken, request);
-		log.info("OAuth request wrapper has been singed.");
+		logger.info("OAuth request wrapper has been singed.");
 		return request;
 	}
 	
 	private void prepareOAuthConnection() throws ForemanException 	{
 		
-		log.info("Connecting to Tradeking");
+		logger.info("Connecting to Tradeking");
 
 		oauthService = new ServiceBuilder().provider(TradekingApi.class).apiKey(CONSUMER_KEY.toString()).apiSecret(CONSUMER_SECRET.toString()).build();
 
-		log.info("\t ... OAuth Service built!");
+		logger.info("\t ... OAuth Service built!");
 		
 		accessToken = new Token(OAUTH_TOKEN.toString(), OAUTH_TOKEN_SECRET.toString());
 		
-		log.info("\t ... Access Token built!");
-		log.info("Safe to connect");
+		logger.info("\t ... Access Token built!");
+		logger.info("Safe to connect");
 	}	
 	
 	private boolean hasOAuth()	{
