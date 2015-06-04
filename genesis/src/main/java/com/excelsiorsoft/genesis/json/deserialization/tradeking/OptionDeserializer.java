@@ -9,8 +9,6 @@ import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtil
 import static com.excelsiorsoft.genesis.json.deserialization.DateTimeUtils.*;
 
 import java.time.Instant;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,37 +24,14 @@ import com.fasterxml.jackson.databind.JsonNode;
  * @author sleyzerzon
  *
  */
-public class OptionDeserializer /*implements SimpleDeserializer<Option>*/ extends AbstractDeserializer<Option>{
+public class OptionDeserializer  extends AbstractDeserializer<Option> {
 
 	public OptionDeserializer() {
 		super(Option.class);
 		
 	}
 
-
 	private Logger logger = LoggerFactory.getLogger(OptionDeserializer.class);
-	
-
-	/* (non-Javadoc)
-	 * @see com.excelsiorsoft.genesis.json.deserialization.tradeking.AbstractDeserializer#deserialize(com.fasterxml.jackson.databind.JsonNode)
-	 */
-	@Override
-	public List<Option> deserialize(final JsonNode node) throws Throwable {
-		
-		List<Option> result = new LinkedList<>();
-		
-		if (node.isContainerNode()) {
-			
-			return deserializeNodeCollection(node);
-		
-		} else {
-			
-			result.add(deserializeSingleNode(node));
-			return result;
-		}
-
-	}
-
 	
 	/**
 	 * @param quote

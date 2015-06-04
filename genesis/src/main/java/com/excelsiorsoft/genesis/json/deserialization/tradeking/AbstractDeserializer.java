@@ -46,8 +46,18 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 
 	}
 
+	/**
+	 * @param node
+	 * @return
+	 * @throws Throwable
+	 */
 	protected abstract T deserializeSingleNode(JsonNode node) throws Throwable;
 
+	/**
+	 * @param elements
+	 * @return
+	 * @throws Throwable
+	 */
 	protected List<T> deserializeNodeCollection(JsonNode elements) throws Throwable {
 		
 		final List<T> result = new LinkedList<>();
