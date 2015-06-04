@@ -33,30 +33,7 @@ public class OptionDeserializer /*implements SimpleDeserializer<Option>*/ extend
 		
 	}
 
-
 	private Logger logger = LoggerFactory.getLogger(OptionDeserializer.class);
-	
-
-	/* (non-Javadoc)
-	 * @see com.excelsiorsoft.genesis.json.deserialization.tradeking.AbstractDeserializer#deserialize(com.fasterxml.jackson.databind.JsonNode)
-	 */
-	@Override
-	public List<Option> deserialize(final JsonNode node) throws Throwable {
-		
-		List<Option> result = new LinkedList<>();
-		
-		if (node.isContainerNode()) {
-			
-			return deserializeNodeCollection(node);
-		
-		} else {
-			
-			result.add(deserializeSingleNode(node));
-			return result;
-		}
-
-	}
-
 	
 	/**
 	 * @param quote
