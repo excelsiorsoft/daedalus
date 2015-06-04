@@ -6,6 +6,8 @@ package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 import java.util.Collection;
 
 
+import java.util.Map;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
@@ -21,7 +23,7 @@ public interface SimpleDeserializer<T> {
 	 * @return
 	 * @throws Throwable
 	 */
-	Collection<T> deserialize(JsonNode node) throws Throwable; 
+	Collection<T> deserialize(JsonNode node, Map<String, Object>context) throws Throwable; 
 			
 
 }

@@ -31,6 +31,10 @@ public class Quote extends AbstractDomain {
 
 	public final static class QuoteBuilder<T> {
 		
+		
+		public final static String SYMBOL = "symbol";
+		
+		
 		private final Instrument underlying;
 
 		

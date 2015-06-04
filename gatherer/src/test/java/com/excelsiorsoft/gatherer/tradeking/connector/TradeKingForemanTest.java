@@ -5,6 +5,7 @@ import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBu
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
 import static org.junit.Assert.*;
+import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
 
 import java.util.Collection;
 
@@ -180,7 +181,8 @@ public class TradeKingForemanTest {
 		SimpleDeserializer<Option> deserializer = new OptionDeserializer();
 		
 		JsonNode quotes = jsonResponse.path("quotes").path("quote"); 
-		Collection<Option> result = deserializer.deserialize(quotes);
+
+		Collection<Option> result = deserializer.deserialize(quotes, null);
 		assertEquals("Expecting different # of deserialized objects", quotes.size(), result.size());
 		System.out.println("==============================");
 		

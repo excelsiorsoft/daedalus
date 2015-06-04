@@ -1,9 +1,9 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class AbstractDeserializerTest {
 		}
 
 		@Override
-		protected Foo deserializeSingleNode(JsonNode node) { return new Foo(node.asText()); }
+		protected Foo deserializeSingleNode(JsonNode node, Map<String, Object> context) { return new Foo(node.asText()); }
 		
 	}
 	
@@ -52,7 +52,7 @@ public class AbstractDeserializerTest {
 		containerNode.add(containerNode.textNode("date-1"));
 		containerNode.add(containerNode.textNode("date-2"));
 
-		List<Foo> result = fooDeserializer.deserialize(containerNode);
+		List<Foo> result = fooDeserializer.deserialize(containerNode, null);
 		
 		assertTrue("wrong number of deserialized elements", result.size()==2);
 
