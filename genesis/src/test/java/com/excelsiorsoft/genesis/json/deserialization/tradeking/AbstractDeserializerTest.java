@@ -2,6 +2,7 @@ package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 import static org.junit.Assert.*;
 
+
 import java.util.List;
 
 import org.junit.Before;
@@ -54,6 +55,7 @@ public class AbstractDeserializerTest {
 		List<Foo> result = fooDeserializer.deserialize(containerNode);
 		
 		assertTrue("wrong number of deserialized elements", result.size()==2);
+
 		
 	}
 
