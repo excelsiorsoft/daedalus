@@ -108,6 +108,7 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeApiCall(getOptionsStrikes(xml, "slw")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsStrikes(json, "slw")).getResponse());
 		System.out.println("==============================");
 		
 	}

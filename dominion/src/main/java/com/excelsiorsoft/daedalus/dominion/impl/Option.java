@@ -184,6 +184,12 @@ public class Option extends /*AbstractTradable*/Instrument {
 			return this;
 		}
 		
+		public OptionBuilder withStrike(String strike){
+			
+			option.strike.setValue(Double.parseDouble(strike));
+			return this;
+		}
+		
 		public OptionBuilder ofType(OptionType type){
 			
 			option.optionType = type;
