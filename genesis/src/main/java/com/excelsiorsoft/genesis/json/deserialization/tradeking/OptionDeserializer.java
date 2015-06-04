@@ -63,7 +63,7 @@ public class OptionDeserializer /*implements SimpleDeserializer<Option>*/ extend
 	 * @return
 	 * @throws Throwable
 	 */
-	public Option deserializeSingleNode(final JsonNode quote) throws Throwable {
+	protected Option deserializeSingleNode(final JsonNode quote) throws Throwable {
 		
 		Option option = null;
 		final long now = Instant.now().getEpochSecond();
@@ -115,29 +115,6 @@ public class OptionDeserializer /*implements SimpleDeserializer<Option>*/ extend
 
 		return option;
 	}
-	
-	
 
-	/**
-	 * @param quotes
-	 * @return
-	 * @throws Throwable
-	 */
-	/*private List<Option> deserializeNodeCollection(final JsonNode quotes) throws Throwable {
-		
-		final List<Option> result = new LinkedList<>();
-		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}s:", quotes.size(), Option.class.getSimpleName());
-		
-		//int counter = 0;
-		for(JsonNode quote : quotes){
-			
-			logger.debug("deserializing node: {}", quote);
-			result.add(deserializeSingleNode(quote));
-			
-		}
-		
-		logger.debug("Done deserializing.\nResulting collection: {}", result);
-		return result;
-	}*/
 
 }
