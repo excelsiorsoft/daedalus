@@ -26,12 +26,19 @@ import com.fasterxml.jackson.databind.JsonNode;
  * @author sleyzerzon
  *
  */
-public class OptionDeserializer implements SimpleDeserializer<Option> {
+public class OptionDeserializer /*implements SimpleDeserializer<Option>*/ extends AbstractDeserializer<Option>{
+
+	public OptionDeserializer() {
+		super(Option.class);
+		
+	}
+
 
 	private Logger logger = LoggerFactory.getLogger(OptionDeserializer.class);
 	
+
 	/* (non-Javadoc)
-	 * @see com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer#deserialize(com.fasterxml.jackson.databind.JsonNode)
+	 * @see com.excelsiorsoft.genesis.json.deserialization.tradeking.AbstractDeserializer#deserialize(com.fasterxml.jackson.databind.JsonNode)
 	 */
 	@Override
 	public List<Option> deserialize(final JsonNode node) throws Throwable {
@@ -56,7 +63,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	 * @return
 	 * @throws Throwable
 	 */
-	private Option deserializeSingleNode(final JsonNode quote) throws Throwable {
+	public Option deserializeSingleNode(final JsonNode quote) throws Throwable {
 		
 		Option option = null;
 		final long now = Instant.now().getEpochSecond();
@@ -116,7 +123,7 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 	 * @return
 	 * @throws Throwable
 	 */
-	private List<Option> deserializeNodeCollection(final JsonNode quotes) throws Throwable {
+	/*private List<Option> deserializeNodeCollection(final JsonNode quotes) throws Throwable {
 		
 		final List<Option> result = new LinkedList<>();
 		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}s:", quotes.size(), Option.class.getSimpleName());
@@ -131,6 +138,6 @@ public class OptionDeserializer implements SimpleDeserializer<Option> {
 		
 		logger.debug("Done deserializing.\nResulting collection: {}", result);
 		return result;
-	}
+	}*/
 
 }

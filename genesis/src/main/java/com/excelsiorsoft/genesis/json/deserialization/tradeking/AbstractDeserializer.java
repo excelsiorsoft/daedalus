@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
@@ -44,12 +46,12 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 
 	}
 
-	protected abstract T deserializeSingleNode(JsonNode node);
+	protected abstract T deserializeSingleNode(JsonNode node) throws Throwable;
 
-	protected List<T> deserializeNodeCollection(JsonNode elements) {
+	protected List<T> deserializeNodeCollection(JsonNode elements) throws Throwable {
 		
 		final List<T> result = new LinkedList<>();
-		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}'s:", elements.size(), clazz.getSimpleName());
+		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}s:", elements.size(), clazz.getSimpleName());
 		
 		//int counter = 0;
 		for(JsonNode element : elements){
