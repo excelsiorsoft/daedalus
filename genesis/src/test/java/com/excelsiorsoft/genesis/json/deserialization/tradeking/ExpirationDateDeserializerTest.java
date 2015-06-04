@@ -3,12 +3,14 @@ package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 import static org.junit.Assert.*;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
 
 public class ExpirationDateDeserializerTest {
 
@@ -32,7 +34,7 @@ public class ExpirationDateDeserializerTest {
 		System.out.println("isArray: "+dates.isArray());
 		
 
-		Collection<ExpirationDate> result = deserializer.deserialize(dates);
+		Collection<ExpirationDate> result = deserializer.deserialize(dates, new HashMap<String,Object>(){{put(SYMBOL,"SLW");}});
 		assertEquals("Expecting different # of deserialized objects", dates.size(), result.size());
 		
 	}

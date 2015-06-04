@@ -38,7 +38,7 @@ public class OptionDeserializerTest {
 		System.out.println("isArray: "+quotes.isArray());
 		
 
-		Collection<Option> result = deserializer.deserialize(quotes);
+		Collection<Option> result = deserializer.deserialize(quotes, null);
 		assertEquals("Expecting different # of deserialized objects", quotes.size(), result.size());
 		
 	}

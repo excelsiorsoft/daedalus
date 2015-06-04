@@ -4,13 +4,17 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 import java.time.Instant;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
+
 import static com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder.*;
+import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
@@ -27,7 +31,7 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 	}
 
 	
-	protected ExpirationDate deserializeSingleNode(final JsonNode date) throws Throwable {
+	protected ExpirationDate deserializeSingleNode(final JsonNode date, final Map<String, Object> context) throws Throwable {
 		
 
 		
@@ -37,7 +41,7 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 		
 		try{
 			
-			expDate = builder.forSymbol("SLW") //TODO: pass the symbol through
+			expDate = builder.forSymbol((String) context.get(SYMBOL)) //TODO: pass the symbol through
 						.asOf(now)
 						.forCycle(date.asText())
 						.build();

@@ -9,6 +9,7 @@ import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtil
 import static com.excelsiorsoft.genesis.json.deserialization.DateTimeUtils.*;
 
 import java.time.Instant;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 	 * @return
 	 * @throws Throwable
 	 */
-	protected Option deserializeSingleNode(final JsonNode quote) throws Throwable {
+	protected Option deserializeSingleNode(final JsonNode quote, final Map<String, Object> context) throws Throwable {
 		
 		Option option = null;
 		final long now = Instant.now().getEpochSecond();
