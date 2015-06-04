@@ -63,6 +63,11 @@ public class ExpirationDate {
 			return this;
 		}
 		
+		public ExpirationDateBuilder asOf(long now){
+			expirationDate.timestamp = now;
+			return this;
+		}
+		
 }
 
 }

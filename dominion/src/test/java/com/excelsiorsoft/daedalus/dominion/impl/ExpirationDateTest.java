@@ -2,7 +2,7 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 
 import static org.junit.Assert.*;
 
-
+import java.time.Instant;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,6 +31,7 @@ private static ExpirationDateBuilder expDateBuilder;
 
 				.forSymbol("SLW")
 				.forCycle("2015-06-05")
+				.asOf(Instant.now().getEpochSecond())
 				.build();
 		System.out.println(expirationDates);
 		
