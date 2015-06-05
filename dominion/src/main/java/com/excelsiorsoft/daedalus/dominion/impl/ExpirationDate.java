@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.excelsiorsoft.daedalus.dominion.impl;
 
 
@@ -23,6 +21,42 @@ public class ExpirationDate {
 	private ExpirationDate() {}
 	
 	
+
+	public long getTimestamp() {
+		return timestamp;
+	}
+
+
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
+
+
+
+	public String getSymbol() {
+		return symbol;
+	}
+
+
+
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+
+
+
+	public String getCycle() {
+		return cycle;
+	}
+
+
+
+	public void setCycle(String cycle) {
+		this.cycle = cycle;
+	}
+
+
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ExpirationDate[timestamp=")
@@ -36,6 +70,7 @@ public class ExpirationDate {
 		return builder.toString();
 	}
 	
+
 	public final static class ExpirationDateBuilder {
 		
 		private final ExpirationDate expirationDate = new ExpirationDate();

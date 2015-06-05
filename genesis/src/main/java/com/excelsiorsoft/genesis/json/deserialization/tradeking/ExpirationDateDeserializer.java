@@ -42,7 +42,7 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 		
 		try{
 			
-			expDate = builder.forSymbol((String) context.get(SYMBOL)) //TODO: pass the symbol through
+			expDate = builder.forSymbol((String) context.get(SYMBOL)) 
 						.asOf(now)
 						.forCycle(date.asText())
 						.build();
