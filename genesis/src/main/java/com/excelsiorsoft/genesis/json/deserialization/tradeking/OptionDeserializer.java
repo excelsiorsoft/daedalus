@@ -4,9 +4,9 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder.builder;
+import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.*;
 import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils.asLong;
 import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils.asText;
-import static com.excelsiorsoft.genesis.json.deserialization.DateTimeUtils.*;
 
 import java.time.Instant;
 import java.util.Map;
@@ -42,7 +42,7 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 	protected Option deserializeSingleNode(final JsonNode quote, final Map<String, Object> context) throws Throwable {
 		
 		Option option = null;
-		final long now = Instant.now().getEpochSecond();
+		final long now = nowFromEpoch();
 		final OptionBuilder builder = builder();
 		
 		try{
@@ -80,7 +80,7 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 					asLong(quote, "timestamp"),
 					Instant.ofEpochSecond(asLong(quote, "timestamp")),
 					fromUnixTimestampToLocalDateTime(asLong(quote, "timestamp")),
-					Instant.now().getEpochSecond(),
+					nowFromEpoch(),
 					fromUnixTimestampToLocalDateTime(Instant.now()
 							.getEpochSecond()));
 

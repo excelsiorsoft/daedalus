@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
+import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -17,25 +17,25 @@ public class StrikesDeserializerTest {
 	@Test
 	public void parsingJsonIntoObjects() throws Throwable {
 		
-		String optionJsonStr = "{\"response\":{\"@id\":\"-53fd9e88:14dbee75e77:-1d2e\",\"expirationdates\":{\"date\":[\"2015-06-05\",\"2015-06-12\",\"2015-06-19\",\"2015-06-26\",\"2015-07-02\",\"2015-07-10\",\"2015-07-17\",\"2015-07-24\",\"2015-08-21\",\"2015-09-18\",\"2015-12-18\",\"2016-01-15\",\"2017-01-20\"]}}}";		
+		String optionJsonStr = "{\"response\":{\"@id\":\"46d1d54c:14dc122964c:-5091\",\"prices\":{\"price\":[\"3\",\"5\",\"8\",\"9\",\"10\",\"11\",\"11.5\",\"12\",\"12.5\",\"13\",\"13.5\",\"14\",\"14.5\",\"15\",\"15.5\",\"16\",\"16.5\",\"17\",\"17.5\",\"18\",\"18.5\",\"19\",\"19.5\",\"20\",\"20.5\",\"21\",\"21.5\",\"22\",\"22.5\",\"23\",\"23.5\",\"24\",\"24.5\",\"25\",\"25.5\",\"26\",\"26.5\",\"27\",\"27.5\",\"28\",\"28.5\",\"29\",\"29.5\",\"30\",\"31\",\"32\",\"33\",\"34\",\"35\",\"36\",\"37\",\"38\",\"40\"]}}}";		
 		ObjectMapper mapper = new ObjectMapper();
 		
 		
 		JsonNode response = mapper.readTree(optionJsonStr).get("response");
 
-		System.out.println("response/expirationdates: " +response.path("expirationdates"));
-		System.out.println("response/expirationdates/date: " + response.path("expirationdates").path("date"));
+		System.out.println("response/prices: " +response.path("prices"));
+		System.out.println("response/prices/price: " + response.path("prices").path("price"));
 		
-		SimpleDeserializer<ExpirationDate> deserializer = new ExpirationDateDeserializer();
+		SimpleDeserializer<Strike> deserializer = new StrikesDeserializer();
 		
-		JsonNode dates = response.path("expirationdates").path("date"); 
+		JsonNode prices = response.path("prices").path("price"); 
 		
-		System.out.println("isContainer: "+dates.isContainerNode());
-		System.out.println("isArray: "+dates.isArray());
+		System.out.println("isContainer: "+prices.isContainerNode());
+		System.out.println("isArray: "+prices.isArray());
 		
 
-		Collection<ExpirationDate> result = deserializer.deserialize(dates, new HashMap<String,Object>(){{put(SYMBOL,"SLW");}});
-		assertEquals("Expecting different # of deserialized objects", dates.size(), result.size());
+		Collection<Strike> result = deserializer.deserialize(prices, new HashMap<String,Object>(){{put(SYMBOL,"SLW");}});
+		assertEquals("Expecting different # of deserialized objects", prices.size(), result.size());
 		
 		
 	}

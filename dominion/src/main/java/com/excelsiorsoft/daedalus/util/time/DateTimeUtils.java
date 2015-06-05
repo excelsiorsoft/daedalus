@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.excelsiorsoft.genesis.json.deserialization;
+package com.excelsiorsoft.daedalus.util.time;
 
 import java.time.Instant;
 import java.time.ZoneId;
@@ -19,6 +19,10 @@ public final class DateTimeUtils {
 		
 		return Instant.ofEpochSecond(unixTimestamp).atZone(ZoneId.systemDefault()).format(formatter);
 		
+	}
+	
+	public static long nowFromEpoch(){
+		return Instant.now().getEpochSecond();
 	}
 
 }

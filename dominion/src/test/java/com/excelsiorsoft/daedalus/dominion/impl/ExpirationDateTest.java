@@ -1,6 +1,7 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
 import static org.junit.Assert.*;
+import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.*;
 
 import java.time.Instant;
 
@@ -31,7 +32,7 @@ private static ExpirationDateBuilder expDateBuilder;
 
 				.forSymbol("SLW")
 				.forCycle("2015-06-05")
-				.asOf(Instant.now().getEpochSecond())
+				.asOf(nowFromEpoch())
 				.build();
 		System.out.println(expirationDates);
 		

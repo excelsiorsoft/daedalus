@@ -3,7 +3,7 @@
  */
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
-import java.time.Instant;
+
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -14,6 +14,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBui
 
 import static com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder.*;
 import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
+import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -36,7 +37,7 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 
 		
 		ExpirationDate expDate = null;
-		final long now = Instant.now().getEpochSecond();
+		final long now = nowFromEpoch();
 		final ExpirationDateBuilder builder = builder();
 		
 		try{

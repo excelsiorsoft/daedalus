@@ -22,7 +22,10 @@ public class StrikesDeserializer extends AbstractDeserializer<Strike> {
 	@Override
 	protected Strike deserializeSingleNode(final JsonNode node, final Map<String, Object> context) throws Throwable {
 		
-		return null;
+		
+		Strike strike = null;
+		
+		return strike;
 	}
 
 }
