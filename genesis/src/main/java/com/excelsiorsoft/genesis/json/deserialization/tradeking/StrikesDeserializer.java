@@ -6,6 +6,11 @@ package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 import java.util.Map;
 
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
+import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
+
+import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.SYMBOL;
+import static com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder.*;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
@@ -20,10 +25,20 @@ public class StrikesDeserializer extends AbstractDeserializer<Strike> {
 	}
 
 	@Override
-	protected Strike deserializeSingleNode(final JsonNode node, final Map<String, Object> context) throws Throwable {
+	protected Strike deserializeSingleNode(final JsonNode price, final Map<String, Object> context) throws Throwable {
 		
 		
 		Strike strike = null;
+		final StrikeBuilder builder = builder();
+		
+		try {
+
+			strike = builder.withValue(price.asText()).build();
+
+		} catch (Throwable e) {
+			logger.error("Error while deserializing {}: {}", price,
+					e.getMessage());
+		}
 		
 		return strike;
 	}
