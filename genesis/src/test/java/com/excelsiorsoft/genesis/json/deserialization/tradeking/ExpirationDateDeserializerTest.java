@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
 
-import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
 
 public class ExpirationDateDeserializerTest {
 
