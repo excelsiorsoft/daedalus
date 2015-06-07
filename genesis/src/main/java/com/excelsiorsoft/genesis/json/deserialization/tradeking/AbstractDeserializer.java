@@ -63,7 +63,7 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 		final List<T> result = new LinkedList<>();
 		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}s:", elements.size(), clazz.getSimpleName());
 		
-		//int counter = 0;
+	
 		for(JsonNode element : elements){
 			
 			logger.debug("deserializing node: {}", element);
