@@ -14,6 +14,7 @@ public class Quote extends AbstractDomain {
 
 	private final Map<String /*name TODO: or id?*/, ExpirationCycle /*respective cycle*/ > expirationCycles = new LinkedHashMap<>();
 	
+	@SuppressWarnings("unused")
 	private Quote(){}
 	
 	public Quote(Instrument underlying){
