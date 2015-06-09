@@ -62,6 +62,7 @@ public class ExpirationDates {
 			}
 			
 			public ExpirationDates build(){
+
 				
 				long now = nowFromEpoch();
 				expirationDates.timestamp = now;
@@ -83,6 +84,7 @@ public class ExpirationDates {
 				for(String dateStr : datesStr){
 					
 					ExpirationDate date = ExpirationDateBuilder.builder()
+
 							.forSymbol(expirationDates.symbol)
 							.forCycle(dateStr)
 							.build();
