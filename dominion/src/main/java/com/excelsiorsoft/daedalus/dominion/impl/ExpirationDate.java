@@ -28,7 +28,7 @@ public class ExpirationDate {
 
 
 
-	public void setTimestamp(long timestamp) {
+	protected void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
 
@@ -40,7 +40,7 @@ public class ExpirationDate {
 
 
 
-	public void setSymbol(String symbol) {
+	protected void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
 
@@ -52,7 +52,7 @@ public class ExpirationDate {
 
 
 
-	public void setCycle(String cycle) {
+	protected void setCycle(String cycle) {
 		this.cycle = cycle;
 	}
 

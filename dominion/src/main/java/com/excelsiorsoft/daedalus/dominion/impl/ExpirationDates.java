@@ -4,10 +4,13 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
 
+import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
+
 import java.util.LinkedList;
 import java.util.List;
 
-import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
+import com.excelsiorsoft.daedalus.util.time.DateTimeUtils;
 
 /**
  * Represent a sorted sequence of an option expiration cycles for a particular underlying in YYYY-MM-DD format.<br>
@@ -22,7 +25,8 @@ public class ExpirationDates {
 	
 	private String symbol;
 	
-	private List<String> expirationCycles = new LinkedList<>();
+	//private List<String> expirationCycles = new LinkedList<>();
+	private List<ExpirationDate> dates = new LinkedList<>();
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -31,7 +35,8 @@ public class ExpirationDates {
 				.append(", symbol=")
 				.append(symbol)
 				.append(", expirationCycles=")
-				.append(expirationCycles)
+				/*.append(expirationCycles)*/
+				.append(dates)
 				
 				.append("]");
 		return builder.toString();
@@ -57,7 +62,11 @@ public class ExpirationDates {
 			}
 			
 			public ExpirationDates build(){
-				
+				long now = nowFromEpoch();
+				expirationDates.timestamp = now;
+				for(ExpirationDate date : expirationDates.dates){
+					date.setTimestamp(now);
+				}
 				return expirationDates;
 			}
 			
@@ -66,8 +75,16 @@ public class ExpirationDates {
 				return this;
 			}
 			
-			public ExpirationDatesBuilder withExpirationDates(List<String> dates){
-				expirationDates.expirationCycles = new LinkedList<String>(dates);
+			public ExpirationDatesBuilder withExpirationDates(List<String> datesStr){
+				//expirationDates.expirationCycles = new LinkedList<String>(datesStr);
+				for(String dateStr : datesStr){
+					
+					ExpirationDate date = ExpirationDateBuilder.builder()
+					.forSymbol(expirationDates.symbol)
+					.forCycle(dateStr).build();
+					
+					expirationDates.dates.add(date);
+				}
 				return this;
 			}
 			
