@@ -6,7 +6,7 @@ package com.excelsiorsoft.daedalus.dominion;
 import com.excelsiorsoft.daedalus.dominion.impl.Instrument;
 
 /**
- * Representation of relevant characreristics of products to be 
+ * Representation of relevant characteristics of products to be 
  * 
  * @author Simeon
  *
