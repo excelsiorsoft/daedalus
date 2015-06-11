@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.excelsiorsoft.daedalus.dominion.impl;
 
 import java.util.List;
