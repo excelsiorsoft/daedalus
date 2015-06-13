@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.excelsiorsoft.daedalus.dominion;
 
 import java.util.Date;
