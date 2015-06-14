@@ -12,6 +12,8 @@ import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
+ * Encapsulation of the base version of domain deserialization logic
+ * 
  * @author Simeon
  * @param <T>
  *
