@@ -3,14 +3,12 @@
  */
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
+import static com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder.builder;
+
 import java.util.Map;
 
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
-
-import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.SYMBOL;
-import static com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder.*;
-
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**

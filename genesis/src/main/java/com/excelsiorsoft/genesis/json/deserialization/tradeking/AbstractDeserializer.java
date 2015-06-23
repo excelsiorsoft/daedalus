@@ -32,7 +32,7 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 	
 	public List<T> deserialize(final JsonNode node, final Map<String, Object> context) throws Throwable {
 
-		symbol =( context != null)?(String) context.get(SYMBOL):"";
+		symbol = context != null?(String) context.get(SYMBOL):"";
 		
 		List<T> result = new LinkedList<>();
 
