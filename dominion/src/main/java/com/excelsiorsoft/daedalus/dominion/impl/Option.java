@@ -243,7 +243,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 		public OptionBuilder tradeableOn(Exchange exchange){
 			
 			((Instrument)option).getTradableOnExchanges().add(exchange);
-			option.strike.setAsQuotedOn(exchange);
+			//option.strike.setAsQuotedOn(exchange);
 			return this;
 		}
 		
