@@ -61,10 +61,10 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 				
 				//make sure it's invoked after option is built!!
 				Strike strike = (Strike) option.getStrike()
-						.setBid(asText(quote, "bid")).setAsk(asText(quote, "ask"))
-						.setBidSize(asText(quote, "bidsz")).setAskSize(asText(quote, "asksz"))
-						.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"))
-						.setVolume(asText(quote, "vl"))
+						//.setBid(asText(quote, "bid")).setAsk(asText(quote, "ask"))
+						//.setBidSize(asText(quote, "bidsz")).setAskSize(asText(quote, "asksz"))
+						//.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"))
+						//.setVolume(asText(quote, "vl"))
 						//.setTimestamp(asLong(quote, "timestamp"))
 						.setTimestamp(now) //disregarding what's on the response
 						
