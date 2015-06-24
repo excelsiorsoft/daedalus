@@ -12,6 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
 import com.excelsiorsoft.daedalus.dominion.TradeableListable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
+import com.excelsiorsoft.daedalus.dominion.WithSymbol;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 
@@ -20,14 +21,15 @@ import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
  * @author Simeon
  * 
  */
-public final class Strike extends AbstractTradeableInstrument/* implements WithSpread*/ {
+public final class Strike extends AbstractDomain implements WithSymbol/*extends AbstractTradeableInstrument*//* implements WithSpread*/ {
 
-	private Exchange exchange;
+	//private Exchange exchange;
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page
 	private OptionType type;
 	private /*BigDecimal*/ double value;
 	private int volume;
 	private ExpirationDate expirationCycle;
+	private String symbol;
 	
 
 	
@@ -59,7 +61,7 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	
 
 
-	@Override
+	/*@Override
 	public Exchange getAsQuotedOn() {
 		
 		return exchange;
@@ -69,7 +71,7 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	public Strike setAsQuotedOn(Exchange exchange) {
 		this.exchange = exchange;
 		return this;
-	}
+	}*/
 	
 	
 	public ExpirationDate getExpirationCycle() {
@@ -81,7 +83,7 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		return this;
 	}
 	
-	@Override
+	/*@Override
 	public WithSpread setVolume(String volume) {
 		this.volume=Integer.parseInt(volume);
 		return this;
@@ -90,22 +92,34 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	@Override
 	public int getVolume() {
 		return volume;
-	}
+	}*/
 	
 	@Override
 	public TimeTrackable setTimestamp(long timestamp) {
 		super.setTimestamp(timestamp);
 		return this;
-	}	
+	}
+	
+
+	@Override
+	public String getSymbol() {
+		return symbol;
+	}
+
+	@Override
+	public WithSymbol setSymbol(String symbol) {
+		this.symbol = symbol;
+		return this;
+	}
 	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		builder.append("Strike[timestamp=").append(timestamp).append(", symbol=").append(symbol)
+		builder.append("\nStrike[timestamp=").append(timestamp).append(", symbol=").append(symbol)
 				.append(", expirationCycle=").append(expirationCycle).append(", value=").append(value)
-				.append(", bid=").append(bid).append(", bidSize=").append(bidSize).append(", bidTime=").append(bidTime)
+				/*.append(", bid=").append(bid).append(", bidSize=").append(bidSize).append(", bidTime=").append(bidTime)
 				.append(", ask=").append(ask).append(", askSize=").append(askSize).append(", askTime=").append(askTime)
 				.append(", exchange=").append(exchange)
-				.append(", volume=").append(volume)
+				.append(", volume=").append(volume)*/
 				.append("]");
 		return builder.toString();
 	}
@@ -155,7 +169,7 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 			return this;
 		}
 		
-		public StrikeBuilder withBid(String bid){
+		/*public StrikeBuilder withBid(String bid){
 			strike.setBid(bid);
 			return this;
 		}
@@ -188,8 +202,11 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		public StrikeBuilder asQuotedOne(String askTime){
 			strike.setAskTime(askTime);
 			return this;
-		}		
+		}		*/
 	}
+
+
+
 
 
 	
