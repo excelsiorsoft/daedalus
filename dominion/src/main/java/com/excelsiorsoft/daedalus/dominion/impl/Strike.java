@@ -151,7 +151,7 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		}
 		
 		public StrikeBuilder withValue(String value){
-			strike.value = Double.parseDouble(value);
+			strike.setValue(value);
 			return this;
 		}
 		
