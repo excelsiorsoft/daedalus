@@ -10,7 +10,7 @@ public class CacheableOptionMatrix {
 	
 	private String symbol;
 	
-	private List<String> expirationCycles;
+	private ExpirationDates expirationCycles;
 	
 	private List<String> strikesPerCycle;
 

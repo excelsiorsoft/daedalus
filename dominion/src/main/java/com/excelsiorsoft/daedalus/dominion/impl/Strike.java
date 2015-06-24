@@ -3,13 +3,16 @@
  */
 package com.excelsiorsoft.daedalus.dominion.impl;
 
+import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 import static org.apache.commons.lang3.math.NumberUtils.DOUBLE_ZERO;
 import static org.apache.commons.lang3.math.NumberUtils.toDouble;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
+import com.excelsiorsoft.daedalus.dominion.TradeableListable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
+import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 
 
@@ -24,8 +27,10 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	private OptionType type;
 	private /*BigDecimal*/ double value;
 	private int volume;
+	private ExpirationDate expirationCycle;
+	
 
-
+	
 	
 	public /*BigDecimal*/double getValue() {
 		return value;
@@ -67,6 +72,15 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	}
 	
 	
+	public ExpirationDate getExpirationCycle() {
+		return expirationCycle;
+	}
+
+	public Strike setExpirationCycle(ExpirationDate expirationCycle) {
+		this.expirationCycle = expirationCycle;
+		return this;
+	}
+	
 	@Override
 	public WithSpread setVolume(String volume) {
 		this.volume=Integer.parseInt(volume);
@@ -86,7 +100,8 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		builder.append("Strike[timestamp=").append(timestamp).append(", value=").append(value)
+		builder.append("Strike[timestamp=").append(timestamp).append(", symbol=").append(symbol)
+				.append(", expirationCycle=").append(expirationCycle).append(", value=").append(value)
 				.append(", bid=").append(bid).append(", bidSize=").append(bidSize).append(", bidTime=").append(bidTime)
 				.append(", ask=").append(ask).append(", askSize=").append(askSize).append(", askTime=").append(askTime)
 				.append(", exchange=").append(exchange)
@@ -102,6 +117,8 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	 */
 	public final static class StrikeBuilder {
 		
+		long now = nowFromEpoch();
+		
 		private final Strike strike = new Strike();
 		
 		private StrikeBuilder(){};
@@ -113,8 +130,24 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		}
 		
 		public Strike build(){
-			
+			strike.timestamp = now;
 			return strike;
+		}
+		
+		public StrikeBuilder forSymbol(String symbol){
+			strike.symbol = symbol;
+			return this;
+		}
+		
+		public StrikeBuilder forExpirationCycle(String expirationCycle){
+			
+			strike.expirationCycle = ExpirationDateBuilder.builder()
+			.forSymbol(strike.symbol)
+			.forCycle(expirationCycle)
+			.asOf(now)
+			.build();
+			strike.expirationCycle.setCycle(expirationCycle);
+			return this;
 		}
 		
 		public StrikeBuilder withValue(String value){
@@ -157,6 +190,12 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 			return this;
 		}		
 	}
+
+
+	
+
+
+
 
 
 

@@ -21,6 +21,6 @@ public interface TradeableListable extends Listable$ {
 	Instrument setDescription(String description);
 	
 	String getSymbol();
-	Instrument setSymbol(String symbol);
+	TradeableListable setSymbol(String symbol);
 	
 }

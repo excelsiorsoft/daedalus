@@ -39,6 +39,8 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 	 */
 	protected Date bidTime;
 	
+	protected String symbol;
+	
 	public /*BigDecimal*/ double getBid() {
 		return bid;
 	}
@@ -85,14 +87,12 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 
 	@Override
 	public String getSymbol() {
-		// TODO Auto-generated method stub
-		return null;
+		return symbol;
 	}
 
 	@Override
-	public Instrument setSymbol(String symbol) {
-		// TODO Auto-generated method stub
-		return null;
+	public TradeableListable setSymbol(String symbol) {
+		return this;
 	}
 
 	/*@Override

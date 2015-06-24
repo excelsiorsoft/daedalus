@@ -18,6 +18,6 @@ public interface Listable$ {
 	Instrument setDescription(String description);
 	
 	String getSymbol();
-	Instrument setSymbol(String symbol);
+	TradeableListable setSymbol(String symbol);
 
 }
