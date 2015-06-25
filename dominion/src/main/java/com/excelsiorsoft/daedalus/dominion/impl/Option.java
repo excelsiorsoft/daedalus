@@ -70,7 +70,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 				.append(", optionType=")
 				.append(optionType)
 				.append(", expirationDate=")
-				.append(new SimpleDateFormat("EEE MMM dd, yyyy").format(expirationDate))
+				.append(expirationDate != null?new SimpleDateFormat("EEE MMM dd, yyyy").format(expirationDate):"")
 				.append(", \nunderlying=")
 				.append(underlying)
 				.append(", \nstrike=")
