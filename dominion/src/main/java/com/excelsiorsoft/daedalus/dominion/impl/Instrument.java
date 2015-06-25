@@ -95,7 +95,7 @@ public class Instrument implements WithDescription, WithTimestamp, WithSymbol {
 		   //return ReflectionToStringBuilder.toString(this, NullSupressingStyle.INSTANCE);
 		
 			StringBuilder builder = new StringBuilder();
-			builder.append("\nInstrument[timestamp=").append(timestamp).append(", symbol=").append(symbol).append(", affectedBy=").append(affectedBy).append(", tradableOnExchanges=").append(tradableOnExchanges).append("]");
+			builder.append("Instrument[timestamp=").append(timestamp).append(", symbol=").append(symbol).append(", affectedBy=").append(affectedBy).append(", tradableOnExchanges=").append(tradableOnExchanges).append("]");
 			return builder.toString();
 		
 		 }	

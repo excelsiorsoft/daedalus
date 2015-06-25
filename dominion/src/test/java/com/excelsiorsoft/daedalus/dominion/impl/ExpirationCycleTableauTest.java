@@ -1,9 +1,9 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
 import static java.util.Arrays.asList;
-import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -22,16 +22,29 @@ public class ExpirationCycleTableauTest {
 		String underlying = "SLW";
 		String expirationCycle = "2017-01-20";
 		
+		//OptionBuilder optionBuilder = OptionBuilder.builder();
+		
 		cut = ExpirationCycleTableauBuilder.builder().forSymbol(underlying).forExpirationCycle(expirationCycle).withStrikes(strikesStr).build();
 		System.out.println(cut);
 		
-		String optionType = "P";
 		
-		OptionBuilder optionBuilder = OptionBuilder.builder();
-		Option put = optionBuilder.withUnderlying(underlying).withExpiration(expirationCycle).ofType(optionType).build();
-		cut.getStrikes().get("13.5").put(optionType, put);
+		String singleStrikeName = "13.5";
 		
-		System.out.println(cut);
+		String putType = "P";
+		Map<String, Option> _135_strike = cut.getStrikes().get(singleStrikeName);
+		OptionBuilder putBuilder = OptionBuilder.builder();
+		Option put = putBuilder.withUnderlying(underlying).withExpiration(expirationCycle).ofType(putType).build();
+		_135_strike.put(putType, put);
+		System.out.println("\nput: " +put);
+		
+		
+		String callType ="C";
+		OptionBuilder callBuilder = OptionBuilder.builder();
+		Option call = callBuilder.withUnderlying(underlying).withExpiration(expirationCycle).ofType(callType).build();
+		_135_strike.put(callType, call);
+		System.out.println("\ncall: " +call);
+		
+		System.out.println("\ntableau: " +cut);
 	}
 
 }

@@ -65,15 +65,15 @@ public class Option extends /*AbstractTradable*/Instrument {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("\nOption[timestamp=")
+		builder.append("Option[timestamp=")
 				.append(timestamp)
 				.append(", optionType=")
 				.append(optionType)
 				.append(", expirationDate=")
 				.append(expirationDate != null?new SimpleDateFormat("EEE MMM dd, yyyy").format(expirationDate):"")
-				.append(", \nunderlying=")
+				.append(", underlying=")
 				.append(underlying)
-				.append(", \nstrike=")
+				.append(", strike=")
 				.append(strike)
 				/*.append(", tradableOnExchanges=")
 				.append(tradableOnExchanges)*/

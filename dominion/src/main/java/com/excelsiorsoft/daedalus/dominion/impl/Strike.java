@@ -111,7 +111,7 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		builder.append("\nStrike[timestamp=").append(timestamp).append(", symbol=").append(symbol)
+		builder.append("Strike[timestamp=").append(timestamp).append(", symbol=").append(symbol)
 				.append(", expirationCycle=").append(expirationCycle).append(", value=").append(value)
 				/*.append(", bid=").append(bid).append(", bidSize=").append(bidSize).append(", bidTime=").append(bidTime)
 				.append(", ask=").append(ask).append(", askSize=").append(askSize).append(", askTime=").append(askTime)
