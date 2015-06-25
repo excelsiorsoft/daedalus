@@ -1,19 +1,15 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
-import java.sql.Timestamp;
-
-import net.sf.json.util.PropertyFilter;
-
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.excelsiorsoft.daedalus.dominion.Identifiable;
-import com.excelsiorsoft.daedalus.dominion.IdentifiableTimeTrackable;
-import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
+//import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
+import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
 import com.excelsiorsoft.daedalus.dominion.impl.builder.NullSupressingStyle;
 
 
 
-public class AbstractDomain implements IdentifiableTimeTrackable {
+public abstract class AbstractDomain implements Identifiable, WithTimestamp {
 
 	protected Long id;
 
@@ -36,7 +32,7 @@ public class AbstractDomain implements IdentifiableTimeTrackable {
 	}
 
 	@Override
-	public TimeTrackable setTimestamp(long timestamp) {
+	public AbstractDomain setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 		return this;
 	}

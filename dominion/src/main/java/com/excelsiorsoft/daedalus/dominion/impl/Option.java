@@ -59,6 +59,10 @@ public class Option extends /*AbstractTradable*/Instrument {
 	}
 
 	
+	public Strike getStrike() {
+		return strike;
+	}
+	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("\nOption[timestamp=")
@@ -272,8 +276,6 @@ public class Option extends /*AbstractTradable*/Instrument {
 	}
 
 
-	public Strike getStrike() {
-		return strike;
-	}
+	
 	
 }
