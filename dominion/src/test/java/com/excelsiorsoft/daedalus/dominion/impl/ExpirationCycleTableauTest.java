@@ -2,7 +2,6 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Test;
