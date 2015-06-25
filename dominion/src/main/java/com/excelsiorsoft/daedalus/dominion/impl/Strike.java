@@ -9,9 +9,6 @@ import static org.apache.commons.lang3.math.NumberUtils.toDouble;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
-import com.excelsiorsoft.daedalus.dominion.TradeableListable;
-import com.excelsiorsoft.daedalus.dominion.WithSpread;
 import com.excelsiorsoft.daedalus.dominion.WithSymbol;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
@@ -21,7 +18,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
  * @author Simeon
  * 
  */
-public final class Strike extends AbstractDomain implements WithSymbol/*extends AbstractTradeableInstrument*//* implements WithSpread*/ {
+public final class Strike extends AbstractDomain implements WithSymbol {
 
 	//private Exchange exchange;
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page
@@ -95,7 +92,7 @@ public final class Strike extends AbstractDomain implements WithSymbol/*extends 
 	}*/
 	
 	@Override
-	public TimeTrackable setTimestamp(long timestamp) {
+	public AbstractDomain setTimestamp(long timestamp) {
 		super.setTimestamp(timestamp);
 		return this;
 	}

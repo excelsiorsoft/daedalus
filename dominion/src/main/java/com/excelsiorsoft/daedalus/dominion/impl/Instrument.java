@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.excelsiorsoft.daedalus.dominion.Phenomenon;
-import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
-import com.excelsiorsoft.daedalus.dominion.TradeableListable;
+import com.excelsiorsoft.daedalus.dominion.WithDescription;
 import com.excelsiorsoft.daedalus.dominion.WithSymbol;
 import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
 import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.InstrumentType;
@@ -15,7 +14,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.Inst
  * @author Simeon
  *
  */
-public class Instrument implements TradeableListable, WithTimestamp, WithSymbol/*TimeTrackable*/ /*extends AbstractTradeableInstrument*/ {
+public class Instrument implements WithDescription, WithTimestamp, WithSymbol {
 
 	private InstrumentType type;
 	

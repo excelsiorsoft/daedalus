@@ -4,4 +4,4 @@ package com.excelsiorsoft.daedalus.dominion;
  * @author Simeon
  *
  */
-public interface IdentifiableTimeTrackable extends Identifiable, TimeTrackable {}
+@Deprecated public interface IdentifiableTimeTrackable extends Identifiable, WithTimestamp /*TimeTrackable*/ {}
