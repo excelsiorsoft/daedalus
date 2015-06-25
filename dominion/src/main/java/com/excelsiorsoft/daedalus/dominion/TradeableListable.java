@@ -11,6 +11,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.Instrument;
  * @author Simeon
  *
  */
+@Deprecated
 public interface TradeableListable extends Listable$ {
 	
 	/*TradeableListable setExchange(Exchange exchange);
@@ -20,7 +21,7 @@ public interface TradeableListable extends Listable$ {
 	String getDescription();
 	Instrument setDescription(String description);
 	
-	String getSymbol();
-	TradeableListable setSymbol(String symbol);
+	/*String getSymbol();
+	TradeableListable setSymbol(String symbol);*/
 	
 }

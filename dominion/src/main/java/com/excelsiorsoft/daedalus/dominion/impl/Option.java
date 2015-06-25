@@ -32,7 +32,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 	private Date expirationDate;
 	private Strike strike = new Strike();
 
-	private OptionSymbol symbol; // OCC by default, need to create a hierarchy
+	//private OptionSymbol symbol; // OCC by default, need to create a hierarchy
 									// for symbols of different types of
 									// underlying (stocks & etf would have their
 									// own, especially futures)
@@ -61,15 +61,15 @@ public class Option extends /*AbstractTradable*/Instrument {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Option[timestamp=")
+		builder.append("\nOption[timestamp=")
 				.append(timestamp)
-				.append(", underlying=")
-				.append(underlying)
 				.append(", optionType=")
 				.append(optionType)
 				.append(", expirationDate=")
 				.append(new SimpleDateFormat("EEE MMM dd, yyyy").format(expirationDate))
-				.append(", strike=")
+				.append(", \nunderlying=")
+				.append(underlying)
+				.append(", \nstrike=")
 				.append(strike)
 				/*.append(", tradableOnExchanges=")
 				.append(tradableOnExchanges)*/

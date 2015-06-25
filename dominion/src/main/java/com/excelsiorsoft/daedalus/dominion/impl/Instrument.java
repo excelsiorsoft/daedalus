@@ -6,6 +6,8 @@ import java.util.List;
 import com.excelsiorsoft.daedalus.dominion.Phenomenon;
 import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
 import com.excelsiorsoft.daedalus.dominion.TradeableListable;
+import com.excelsiorsoft.daedalus.dominion.WithSymbol;
+import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
 import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.InstrumentType;
 
 
@@ -13,7 +15,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.Inst
  * @author Simeon
  *
  */
-public class Instrument implements TradeableListable, TimeTrackable /*extends AbstractTradeableInstrument*/ {
+public class Instrument implements TradeableListable, WithTimestamp, WithSymbol/*TimeTrackable*/ /*extends AbstractTradeableInstrument*/ {
 
 	private InstrumentType type;
 	
@@ -72,7 +74,7 @@ public class Instrument implements TradeableListable, TimeTrackable /*extends Ab
 	}
 
 	@Override
-	public TimeTrackable setTimestamp(long timestamp) {
+	public WithTimestamp setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 		return this;
 	}
@@ -94,7 +96,7 @@ public class Instrument implements TradeableListable, TimeTrackable /*extends Ab
 		   //return ReflectionToStringBuilder.toString(this, NullSupressingStyle.INSTANCE);
 		
 			StringBuilder builder = new StringBuilder();
-			builder.append("Instrument[symbol=").append(symbol).append(", affectedBy=").append(affectedBy).append(", tradableOnExchanges=").append(tradableOnExchanges).append("]");
+			builder.append("\nInstrument[timestamp=").append(timestamp).append(", symbol=").append(symbol).append(", affectedBy=").append(affectedBy).append(", tradableOnExchanges=").append(tradableOnExchanges).append("]");
 			return builder.toString();
 		
 		 }	

@@ -17,7 +17,7 @@ public interface Listable$ {
 	String getDescription();
 	Instrument setDescription(String description);
 	
-	String getSymbol();
-	TradeableListable setSymbol(String symbol);
+	/*String getSymbol();
+	TradeableListable setSymbol(String symbol);*/
 
 }

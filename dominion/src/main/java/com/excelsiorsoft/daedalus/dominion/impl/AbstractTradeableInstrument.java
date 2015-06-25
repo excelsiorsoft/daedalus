@@ -16,10 +16,11 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import com.excelsiorsoft.daedalus.dominion.TradeableListable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
+import com.excelsiorsoft.daedalus.dominion.WithSymbol;
 
 import static org.apache.commons.lang3.math.NumberUtils.*;
 
-public abstract class AbstractTradeableInstrument extends AbstractDomain implements WithSpread, TradeableListable {
+public abstract class AbstractTradeableInstrument extends AbstractDomain implements WithSpread, WithSymbol, TradeableListable {
 
 	//private Exchange exchange;
 	
@@ -91,7 +92,7 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 	}
 
 	@Override
-	public TradeableListable setSymbol(String symbol) {
+	public WithSymbol setSymbol(String symbol) {
 		return this;
 	}
 
