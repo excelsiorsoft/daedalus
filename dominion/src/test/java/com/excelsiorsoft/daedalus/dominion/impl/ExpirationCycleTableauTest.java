@@ -4,7 +4,6 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 import java.util.Map;
-
 import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
