@@ -2,14 +2,14 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-import com.excelsiorsoft.daedalus.dominion.Identifiable;
+import com.excelsiorsoft.daedalus.dominion.WithId;
 //import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
 import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
 import com.excelsiorsoft.daedalus.dominion.impl.builder.NullSupressingStyle;
 
 
 
-public abstract class AbstractDomain implements Identifiable, WithTimestamp {
+public abstract class AbstractDomain implements WithId, WithTimestamp {
 
 	protected Long id;
 
@@ -21,7 +21,7 @@ public abstract class AbstractDomain implements Identifiable, WithTimestamp {
 	}
 
 	@Override
-	public Identifiable setId(Long id) {
+	public WithId setId(Long id) {
 		this.id = id;
 		return this;
 	}
