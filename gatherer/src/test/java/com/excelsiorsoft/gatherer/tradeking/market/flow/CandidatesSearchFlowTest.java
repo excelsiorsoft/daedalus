@@ -93,6 +93,15 @@ public class CandidatesSearchFlowTest {
 		for(String symbol: symbols) {
 			
 			logger.info("Building cacheable tableau for {}",symbol);
+			
+			String expirations = foreman.makeApiCall(getOptionsExpirations(json, symbol)).getResponse();
+			logger.debug("Expiration dates for {}: {}", symbol, expirations);
+			
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode expDatesResponse = mapper.readTree(expirations).get("response");
+			
+			SimpleDeserializer<ExpirationDate> expDatesDeserializer = new ExpirationDateDeserializer();
+			JsonNode dateNodes = expDatesResponse.path("expirationdates").path("date");
 		}
 		
 	}
