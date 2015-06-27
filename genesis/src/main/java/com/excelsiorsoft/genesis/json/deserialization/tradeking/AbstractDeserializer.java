@@ -40,8 +40,6 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 		Assert.notNull(context, "Context was not passed in.");
 		symbol = (String) context.get(SYMBOL);
 		timestamp = context.get(TIMESTAMP)!= null?(long) context.get(TIMESTAMP):0L;
-		
-		
 		logger.debug("For symbol {} @ timestamp={}...", symbol, timestamp);
 		
 		List<T> result = new LinkedList<>();

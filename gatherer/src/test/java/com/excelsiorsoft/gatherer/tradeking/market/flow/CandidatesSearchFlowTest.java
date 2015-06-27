@@ -2,12 +2,14 @@ package com.excelsiorsoft.gatherer.tradeking.market.flow;
 
 //import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.SYMBOL;
 import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
+import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.*;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
 import static java.lang.String.format;
 import static java.lang.System.out;
 import static org.junit.Assert.assertEquals;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.*;
+import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -53,7 +55,9 @@ public class CandidatesSearchFlowTest {
 		
 		for(String symbol: symbols) {
 			
-			logger.info("Building matrix for {}",symbol);
+			long now = nowFromEpoch(); //define first - this is an anchor timestamp for the whole underlying structure
+			
+			logger.info("Building matrix for {} as of {}",symbol, now);
 
 			String expirations = foreman.makeApiCall(getOptionsExpirations(json, symbol)).getResponse();
 			logger.debug("Expiration dates for {}: {}", symbol, expirations);
@@ -65,7 +69,7 @@ public class CandidatesSearchFlowTest {
 			
 			JsonNode dateNodes = expDatesResponse.path("expirationdates").path("date"); 
 			
-			Collection<ExpirationDate> expirDates = expDatesDeserializer.deserialize(dateNodes, new HashMap<String,Object>(){{put(SYMBOL,symbol);}});
+			Collection<ExpirationDate> expirDates = expDatesDeserializer.deserialize(dateNodes, new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}});
 			assertEquals("Expecting different # of deserialized objects", dateNodes.size(), expirDates.size());
 			logger.info("Expiration dates for {}: {}", symbol, expirDates);
 			
@@ -80,7 +84,7 @@ public class CandidatesSearchFlowTest {
 					
 					JsonNode strikesNodes = strikesResponse.path("prices").path("price"); 
 
-					Collection<Strike> strikes = strikeDeserializer.deserialize(strikesNodes, new HashMap<String,Object>(){{put(SYMBOL,symbol);}});
+					Collection<Strike> strikes = strikeDeserializer.deserialize(strikesNodes, new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}});
 					assertEquals("Expecting different # of deserialized objects", strikesNodes.size(), strikes.size());
 					logger.info("Strikes for {} for {} expiration cycle: {}", symbol, expDate.getCycle(), strikes);
 
@@ -93,7 +97,9 @@ public class CandidatesSearchFlowTest {
 		
 		for(String symbol: symbols) {
 			
-			logger.info("Building cacheable tableau for {}",symbol);
+			long now = nowFromEpoch(); //define first - this is an anchor timestamp for the whole underlying structure
+			
+			logger.info("Building matrix for {} as of {}",symbol, now);
 			
 			String expirations = foreman.makeApiCall(getOptionsExpirations(json, symbol)).getResponse();
 			logger.debug("Expiration dates for {}: {}", symbol, expirations);

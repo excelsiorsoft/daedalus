@@ -128,7 +128,7 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 	 */
 	public final static class StrikeBuilder {
 		
-		long now = nowFromEpoch();
+		//long now = nowFromEpoch();
 		
 		private final Strike strike = new Strike();
 		
@@ -141,7 +141,7 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 		}
 		
 		public Strike build(){
-			strike.timestamp = now;
+			//strike.timestamp = now;
 			return strike;
 		}
 		
@@ -150,13 +150,18 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 			return this;
 		}
 		
+		public StrikeBuilder asOf(long timestamp){
+			strike.timestamp = timestamp;
+			return this;
+		}
+		
 		public StrikeBuilder forExpirationCycle(String expirationCycle){
 			
 			strike.expirationCycle = ExpirationDateBuilder.builder()
-			.forSymbol(strike.symbol)
-			.forCycle(expirationCycle)
-			.asOf(now)
-			.build();
+				.asOf(/*now*/strike.timestamp)
+				.forSymbol(strike.symbol)
+				.forCycle(expirationCycle)
+				.build();
 			strike.expirationCycle.setCycle(expirationCycle);
 			return this;
 		}

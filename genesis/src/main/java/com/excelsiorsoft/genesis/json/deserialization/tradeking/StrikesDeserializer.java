@@ -31,7 +31,7 @@ public class StrikesDeserializer extends AbstractDeserializer<Strike> {
 		
 		try {
 
-			strike = builder.withValue(price.asText()).build();
+			strike = builder.asOf(timestamp).forSymbol(symbol).withValue(price.asText()).build();
 
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", price,
