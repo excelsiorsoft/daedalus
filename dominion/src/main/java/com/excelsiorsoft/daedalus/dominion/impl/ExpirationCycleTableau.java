@@ -8,18 +8,22 @@ import java.util.List;
 import java.util.Map;
 
 import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
-import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
-import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
-import com.excelsiorsoft.daedalus.dominion.impl.Strikes.StrikesBuilder;
 
+/**
+ * Representation of cacheable structure to house option strikes for a particular symbol on a particular expiration date.
+ * Resembles thinkorswim strike views on their trade screen. 
+ * 
+ * @author sleyzerzon
+ *
+ */
 public class ExpirationCycleTableau implements WithTimestamp {
 	
 	private String symbol;
 	private long timestamp; 
 	/*private ExpirationDate expirationCycle;*/
 	private String expirationCycle;
-	private Map<String, Map<String,Option>> strikes = new LinkedHashMap<String, Map<String,Option>>(); // strikeName -> OptionType -> Option
+	private Map<String, Map<String,Option>> strikes = new LinkedHashMap<>(); // strikeName[15.00] -> OptionType[Put/Call] -> Option[market data]
 	
 	
 	@Override
@@ -78,7 +82,7 @@ public class ExpirationCycleTableau implements WithTimestamp {
 	public final static class ExpirationCycleTableauBuilder {
 		
 		private final ExpirationCycleTableau tableau = new ExpirationCycleTableau();
-		private final OptionBuilder optionBuilder = OptionBuilder.builder();
+		//private final OptionBuilder optionBuilder = OptionBuilder.builder();
 		
 		private ExpirationCycleTableauBuilder(){};
 		
