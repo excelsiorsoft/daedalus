@@ -87,5 +87,14 @@ public class CandidatesSearchFlowTest {
 		}
 		
 	}
+	
+	@Test public void buildingCacheableTableau() throws Throwable {
+		
+		for(String symbol: symbols) {
+			
+			logger.info("Building cacheable tableau for {}",symbol);
+		}
+		
+	}
 
 }
