@@ -6,10 +6,14 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
+
+import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
+import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
 
 /**
  * Encapsulation of the base version of domain deserialization logic
@@ -25,6 +29,7 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 	
 	private final Class<T> clazz;
 	protected String symbol;
+	protected long timestamp;
 	
 	protected AbstractDeserializer(Class<T> clazz){
 		this.clazz = clazz;
@@ -32,7 +37,12 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 	
 	public List<T> deserialize(final JsonNode node, final Map<String, Object> context) throws Throwable {
 
-		symbol = context != null?(String) context.get(SYMBOL):"";
+		Assert.notNull(context, "Context was not passed in.");
+		symbol = (String) context.get(SYMBOL);
+		timestamp = context.get(TIMESTAMP)!= null?(long) context.get(TIMESTAMP):0L;
+		
+		
+		logger.debug("For symbol {} @ timestamp={}...", symbol, timestamp);
 		
 		List<T> result = new LinkedList<>();
 

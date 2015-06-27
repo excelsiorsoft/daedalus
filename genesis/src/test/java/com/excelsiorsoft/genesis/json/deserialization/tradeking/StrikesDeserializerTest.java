@@ -1,6 +1,6 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
-import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.SYMBOL;
+//import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.SYMBOL;
 import static org.junit.Assert.*;
 
 import java.util.Collection;
@@ -11,6 +11,7 @@ import org.junit.Test;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 
 public class StrikesDeserializerTest {
 

@@ -17,6 +17,7 @@ import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
 import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 
 /**
  * @author sleyzerzon
