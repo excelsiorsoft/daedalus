@@ -1,6 +1,6 @@
 package com.excelsiorsoft.gatherer.tradeking.market.flow;
 
-//import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.SYMBOL;
+
 import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.*;
