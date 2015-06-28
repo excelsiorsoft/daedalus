@@ -218,7 +218,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 		
 		public OptionBuilder withExpiration(String expiration) throws Throwable{
 			
-			option.expirationDate = new SimpleDateFormat("yyyyMMdd").parse(expiration);
+			option.expirationDate = new SimpleDateFormat("yyyy-MM-dd").parse(expiration);
 			return this;
 			
 		}
