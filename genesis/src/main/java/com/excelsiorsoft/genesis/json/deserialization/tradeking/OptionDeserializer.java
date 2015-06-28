@@ -42,7 +42,7 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 	protected Option deserializeSingleNode(final JsonNode quote, final Map<String, Object> context) throws Throwable {
 		
 		Option option = null;
-		final long now = nowFromEpoch();
+		//final long now = nowFromEpoch();
 		final OptionBuilder builder = builder();
 		
 		try{
@@ -57,7 +57,7 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 				builder.tradeableOn(exchange);
 				
 				option = builder.build();
-				option.setTimestamp(now);
+				option.setTimestamp(timestamp/*now*/);
 				
 				//make sure it's invoked after option is built!!
 				Strike strike = (Strike) option.getStrike()
@@ -66,7 +66,7 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 						//.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"))
 						//.setVolume(asText(quote, "vl"))
 						//.setTimestamp(asLong(quote, "timestamp"))
-						.setTimestamp(now) //disregarding what's on the response
+						.setTimestamp(timestamp/* now*/) 
 						
 						;
 
@@ -90,6 +90,12 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 		}
 
 		return option;
+	}
+
+	@Override
+	public JsonNode cursor(JsonNode root) {
+		return root.path("quotes").path("quote"); 
+
 	}
 
 

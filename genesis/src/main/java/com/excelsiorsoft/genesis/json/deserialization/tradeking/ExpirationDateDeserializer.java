@@ -4,6 +4,8 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 
+import static com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder.builder;
+
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -11,13 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
-
-import static com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder.*;
-import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
-import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.*;
-
 import com.fasterxml.jackson.databind.JsonNode;
-import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 
 /**
  * @author sleyzerzon
@@ -35,16 +31,14 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 	
 	protected ExpirationDate deserializeSingleNode(final JsonNode date, final Map<String, Object> context) throws Throwable {
 		
-
 		
 		ExpirationDate expDate = null;
-		final long now = nowFromEpoch();
 		final ExpirationDateBuilder builder = builder();
 		
 		try{
 			
-			expDate = builder.forSymbol((String) context.get(SYMBOL)) 
-						.asOf(now)
+			expDate = builder.asOf(timestamp)
+						.forSymbol(symbol) 
 						.forCycle(date.asText())
 						.build();
 			
@@ -54,7 +48,16 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 		}
 
 		return expDate;
-	}	
+	}
+
+
+	@Override
+	public JsonNode cursor(JsonNode root) {
+		JsonNode dateNodes = root.path("expirationdates").path("date"); 
+		return dateNodes;
+	}
+
+
 	
 	
 	

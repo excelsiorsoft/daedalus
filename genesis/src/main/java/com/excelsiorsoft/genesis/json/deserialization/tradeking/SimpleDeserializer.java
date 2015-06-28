@@ -23,7 +23,9 @@ public interface SimpleDeserializer<T> {
 	 * @return
 	 * @throws Throwable
 	 */
-	Collection<T> deserialize(JsonNode node, Map<String, Object>context) throws Throwable; 
+	Collection<T> deserialize(/*JsonNode node*/String json, Map<String, Object>context) throws Throwable; 
+	
+	JsonNode cursor(JsonNode root);
 			
 
 }

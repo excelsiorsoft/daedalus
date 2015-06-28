@@ -40,5 +40,11 @@ public class StrikesDeserializer extends AbstractDeserializer<Strike> {
 		
 		return strike;
 	}
+	
+	@Override
+	public JsonNode cursor(JsonNode root) {
+		JsonNode dateNodes = root.path("prices").path("price"); 
+		return dateNodes;
+	}	
 
 }

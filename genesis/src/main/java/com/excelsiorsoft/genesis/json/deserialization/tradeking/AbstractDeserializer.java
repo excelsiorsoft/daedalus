@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
@@ -28,20 +29,29 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 	
 	
 	private final Class<T> clazz;
+	protected final ObjectMapper jacksonMapper = new ObjectMapper();
+	protected JsonNode rootNode;
+	
 	protected String symbol;
 	protected long timestamp;
+	
 	
 	protected AbstractDeserializer(Class<T> clazz){
 		this.clazz = clazz;
 	}
 	
-	public List<T> deserialize(final JsonNode node, final Map<String, Object> context) throws Throwable {
+	public List<T> deserialize(/*final JsonNode node*/String json, final Map<String, Object> context) throws Throwable {
+		
+		Assert.notNull(json, "Json string must be non-empty.");
+		rootNode = jacksonMapper.readTree(json).get("response");
+		JsonNode node = cursor(rootNode);
 
 		Assert.notNull(context, "Context was not passed in.");
 		symbol = (String) context.get(SYMBOL);
 		timestamp = context.get(TIMESTAMP)!= null?(long) context.get(TIMESTAMP):0L;
 		logger.debug("For symbol {} @ timestamp={}...", symbol, timestamp);
 		
+			
 		List<T> result = new LinkedList<>();
 
 		if (node.isContainerNode()) {
@@ -56,12 +66,6 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 
 	}
 
-	/**
-	 * @param node
-	 * @return
-	 * @throws Throwable
-	 */
-	protected abstract T deserializeSingleNode(JsonNode node, final Map<String, Object> context) throws Throwable;
 
 	/**
 	 * @param elements
@@ -84,5 +88,16 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 		logger.debug("Done deserializing.\nResulting collection: {}", result);
 		return result;
 	}
+	
+	
+	/**
+	 * @param node
+	 * @return
+	 * @throws Throwable
+	 */
+	protected abstract T deserializeSingleNode(JsonNode node, final Map<String, Object> context) throws Throwable;
+	
+	public abstract JsonNode cursor(JsonNode root);
+
 
 }

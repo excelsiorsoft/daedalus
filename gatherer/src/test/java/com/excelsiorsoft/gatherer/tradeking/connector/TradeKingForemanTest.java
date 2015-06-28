@@ -1,18 +1,23 @@
 package com.excelsiorsoft.gatherer.tradeking.connector;
 
 
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.*;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getExtQuotes;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsExpirations;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsStrikes;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getTopLosers;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
-import static org.junit.Assert.*;
-import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder;
+import com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.TopType;
 import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.OptionDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer;
@@ -168,23 +173,13 @@ public class TradeKingForemanTest {
 		
 		System.out.println("market/ext/quotes call...");
 		System.out.println("==============================");
-		//TradeKingForeman foreman = new TradeKingForeman();
-		
-		ObjectMapper mapper = new ObjectMapper();
+
 		
 		String optionJsonStr = foreman.makeApiCall(getExtQuotes(json, "slw160115P00018000, slw160115P00021000, slw160115P00025000 ", "")).getResponse();
 		System.out.println("several options: "+optionJsonStr);
-		JsonNode jsonResponse = mapper.readTree(optionJsonStr).get("response");
 
-		System.out.println("response/quotes: " +jsonResponse.path("quotes"));
-		System.out.println("response/quotes/quote: " + jsonResponse.path("quotes").path("quote"));
-		
-		SimpleDeserializer<Option> deserializer = new OptionDeserializer();
-		
-		JsonNode quotes = jsonResponse.path("quotes").path("quote"); 
-
-		Collection<Option> result = deserializer.deserialize(quotes, null);
-		assertEquals("Expecting different # of deserialized objects", quotes.size(), result.size());
+		Collection<Option> result = new OptionDeserializer().deserialize(/*quotes*/optionJsonStr, new HashMap());
+		//assertEquals("Expecting different # of deserialized objects", quotes.size(), result.size());
 		System.out.println("==============================");
 		
 	}

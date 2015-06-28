@@ -10,12 +10,8 @@ import java.util.Date;
 
 
 
-
-
-
-
 /**
- * Representation of an option financial instrument
+ * Representation of a financial instrument of type option
  * 
  * 
  * @author sleyzerzon
