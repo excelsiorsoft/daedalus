@@ -1,5 +1,6 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -22,5 +23,6 @@ public class OptionMontage {
 	*/
 	
 	Map<String, ExpirationCycleTableau> tableus = new LinkedHashMap<>(); //expCycle[] -> Tableau for that cycle.
+
 	
 }
