@@ -3,7 +3,6 @@
  */
 package com.excelsiorsoft.daedalus.dominion.impl;
 
-import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 import static org.apache.commons.lang3.math.NumberUtils.DOUBLE_ZERO;
 import static org.apache.commons.lang3.math.NumberUtils.toDouble;
 
@@ -24,7 +23,6 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page
 	private OptionType type;
 	private /*BigDecimal*/ double value;
-	private int volume;
 	//private ExpirationDate expirationCycle;
 	private String expirationCycle;
 	private String symbol;
@@ -57,19 +55,6 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 		return this;
 	}
 	
-
-
-	/*@Override
-	public Exchange getAsQuotedOn() {
-		
-		return exchange;
-	}
-
-	@Override
-	public Strike setAsQuotedOn(Exchange exchange) {
-		this.exchange = exchange;
-		return this;
-	}*/
 	
 	
 	/*public ExpirationDate getExpirationCycle() {
@@ -90,17 +75,7 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 		this.expirationCycle = expirationCycle;
 		return this;
 	}
-	
-	/*@Override
-	public WithSpread setVolume(String volume) {
-		this.volume=Integer.parseInt(volume);
-		return this;
-	}
 
-	@Override
-	public int getVolume() {
-		return volume;
-	}*/
 	
 	@Override
 	public AbstractDomain setTimestamp(long timestamp) {
@@ -124,10 +99,6 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Strike[timestamp=").append(timestamp).append(", symbol=").append(symbol)
 				.append(", expirationCycle=").append(expirationCycle).append(", value=").append(value)
-				/*.append(", bid=").append(bid).append(", bidSize=").append(bidSize).append(", bidTime=").append(bidTime)
-				.append(", ask=").append(ask).append(", askSize=").append(askSize).append(", askTime=").append(askTime)
-				.append(", exchange=").append(exchange)
-				.append(", volume=").append(volume)*/
 				.append("]");
 		return builder.toString();
 	}
@@ -138,8 +109,7 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 	 *
 	 */
 	public final static class StrikeBuilder {
-		
-		//long now = nowFromEpoch();
+
 		
 		private final Strike strike = new Strike();
 		
@@ -152,7 +122,6 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 		}
 		
 		public Strike build(){
-			//strike.timestamp = now;
 			return strike;
 		}
 		
@@ -183,40 +152,7 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 			return this;
 		}
 		
-		/*public StrikeBuilder withBid(String bid){
-			strike.setBid(bid);
-			return this;
-		}
 		
-		public StrikeBuilder withBidSize(String bidSize){
-			strike.setBidSize(bidSize);
-			return this;
-		}	
-		
-		public StrikeBuilder withBidTime(String bidTime){
-			strike.setBidTime(bidTime);
-			return this;
-		}
-		
-		public StrikeBuilder withAsk(String ask){
-			strike.setAsk(ask);
-			return this;
-		}
-		
-		public StrikeBuilder withAskSize(String askSize){
-			strike.setAskSize(askSize);
-			return this;
-		}
-		
-		public StrikeBuilder withAskTime(String askTime){
-			strike.setAskTime(askTime);
-			return this;
-		}
-		
-		public StrikeBuilder asQuotedOne(String askTime){
-			strike.setAskTime(askTime);
-			return this;
-		}		*/
 	}
 
 
