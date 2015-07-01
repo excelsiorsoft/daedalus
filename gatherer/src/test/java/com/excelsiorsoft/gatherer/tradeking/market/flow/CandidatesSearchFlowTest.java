@@ -26,6 +26,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForeman;
@@ -102,7 +103,7 @@ public class CandidatesSearchFlowTest {
 		for(String symbol: symbols) {
 			
 			long now = nowFromEpoch(); //define first - this is an anchor timestamp for the whole underlying structure
-			
+			ExpirationCycleTableauBuilder tableauBuilder = ExpirationCycleTableauBuilder.builder().forSymbol(symbol);
 			
 			//create context
 			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}};

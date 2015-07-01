@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
+import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 
 public class ExpirationCycleTableauTest {
 
@@ -23,7 +24,7 @@ public class ExpirationCycleTableauTest {
 		
 		//OptionBuilder optionBuilder = OptionBuilder.builder();
 		
-		cut = ExpirationCycleTableauBuilder.builder().forSymbol(underlying).forExpirationCycle(expirationCycle).withStrikes(strikesStr).build();
+		cut = ExpirationCycleTableauBuilder.builder().forSymbol(underlying).asOf(nowFromEpoch()).forExpirationCycle(expirationCycle).withStrikes(strikesStr).build();
 		System.out.println(cut);
 		
 		

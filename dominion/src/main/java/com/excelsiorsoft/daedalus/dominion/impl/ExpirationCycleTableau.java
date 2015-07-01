@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
 
 /**
  * Representation of cacheable structure to house option strikes for a particular symbol on a particular expiration date.
@@ -92,11 +93,18 @@ public class ExpirationCycleTableau implements WithTimestamp {
 			return result;
 		}
 		
+		
+		public ExpirationCycleTableauBuilder asOf(long timestamp){
+			tableau.timestamp = timestamp;
+			return this;
+		}
+		
+		
 		public ExpirationCycleTableau build(){
 
 			
-			long now = nowFromEpoch();
-			tableau.timestamp = now;
+			//long now = nowFromEpoch();
+			//tableau.timestamp = now;
 			
 			/*for(Strike strike : tableau.values){
 				strike.setTimestamp(now);
