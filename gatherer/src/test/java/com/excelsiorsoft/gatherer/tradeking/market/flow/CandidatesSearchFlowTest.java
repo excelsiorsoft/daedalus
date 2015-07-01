@@ -26,6 +26,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
@@ -103,7 +104,7 @@ public class CandidatesSearchFlowTest {
 		for(String symbol: symbols) {
 			
 			long now = nowFromEpoch(); //define first - this is an anchor timestamp for the whole underlying structure
-			ExpirationCycleTableauBuilder tableauBuilder = ExpirationCycleTableauBuilder.builder().forSymbol(symbol);
+			
 			
 			//create context
 			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}};
@@ -118,20 +119,27 @@ public class CandidatesSearchFlowTest {
 			
 			for(ExpirationDate expDate : expirDates) {
 				
+				ExpirationCycleTableauBuilder tableauBuilder = ExpirationCycleTableauBuilder.builder().forSymbol(symbol).asOf(now);
+				
 				String expDateStr = expDate.getCycle();
 				context.put(EXPIRATION_DATE, expDateStr);
+				tableauBuilder.forExpirationCycle(expDateStr);
 				
 				String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
 				logger.debug("Strikes for {} for expiration date of {}: {}", symbol, expDateStr, strikesJson);
 				
 				Collection<Strike> strikes = new StrikesDeserializer().deserialize(strikesJson, context);
 				logger.info("{} strikes for {} for {} expiration cycle: {}", strikes.size(), symbol, expDateStr, strikes);
-
+				
+				tableauBuilder.withStrikes((List<Strike>) strikes);
+				ExpirationCycleTableau tableau = tableauBuilder.build();
+				logger.debug("Tableau for {} at {}: {}", symbol, expDateStr, tableau);
 			}
 			
 			
 		}
 		
+
 	}
 
 }
