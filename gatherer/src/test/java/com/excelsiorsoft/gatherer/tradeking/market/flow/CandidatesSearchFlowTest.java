@@ -3,6 +3,7 @@ package com.excelsiorsoft.gatherer.tradeking.market.flow;
 
 import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
+import static com.excelsiorsoft.daedalus.dominion.WithExpirationDate.EXPIRATION_DATE;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.*;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
 import static java.lang.String.format;
@@ -51,7 +52,7 @@ public class CandidatesSearchFlowTest {
 	
 	
 	@SuppressWarnings("serial")
-	@Test
+	@Test @Deprecated
 	public void buildingOptionMatrix() throws Throwable {
 		
 		for(String symbol: symbols) {
@@ -116,11 +117,14 @@ public class CandidatesSearchFlowTest {
 			
 			for(ExpirationDate expDate : expirDates) {
 				
+				String expDateStr = expDate.getCycle();
+				context.put(EXPIRATION_DATE, expDateStr);
+				
 				String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
-				logger.debug("Strikes for {} for expiration date of {}: {}", symbol, expDate.getCycle(), strikesJson);
+				logger.debug("Strikes for {} for expiration date of {}: {}", symbol, expDateStr, strikesJson);
 				
 				Collection<Strike> strikes = new StrikesDeserializer().deserialize(strikesJson, context);
-				logger.info("{} strikes for {} for {} expiration cycle: {}", strikes.size(), symbol, expDate.getCycle(), strikes);
+				logger.info("{} strikes for {} for {} expiration cycle: {}", strikes.size(), symbol, expDateStr, strikes);
 
 			}
 			
