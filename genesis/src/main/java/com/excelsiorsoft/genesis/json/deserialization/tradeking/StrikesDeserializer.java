@@ -3,6 +3,7 @@
  */
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
+import static com.excelsiorsoft.daedalus.dominion.WithExpirationDate.EXPIRATION_DATE;
 import static com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder.builder;
 
 import java.util.Map;
@@ -31,7 +32,7 @@ public class StrikesDeserializer extends AbstractDeserializer<Strike> {
 		
 		try {
 
-			strike = builder.asOf(timestamp).forSymbol(symbol).withValue(price.asText()).build();
+			strike = builder.asOf(timestamp).forSymbol(symbol).withValue(price.asText()).forExpirationCycle((String)context.get(EXPIRATION_DATE)).build();
 
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", price,
