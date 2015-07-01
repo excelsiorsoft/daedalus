@@ -25,7 +25,8 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 	private OptionType type;
 	private /*BigDecimal*/ double value;
 	private int volume;
-	private ExpirationDate expirationCycle;
+	//private ExpirationDate expirationCycle;
+	private String expirationCycle;
 	private String symbol;
 	
 
@@ -71,11 +72,21 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 	}*/
 	
 	
-	public ExpirationDate getExpirationCycle() {
+	/*public ExpirationDate getExpirationCycle() {
 		return expirationCycle;
 	}
 
 	public Strike setExpirationCycle(ExpirationDate expirationCycle) {
+		this.expirationCycle = expirationCycle;
+		return this;
+	}*/
+	
+	
+	public String getExpirationCycle() {
+		return expirationCycle;
+	}
+
+	public Strike setExpirationCycle(String expirationCycle) {
 		this.expirationCycle = expirationCycle;
 		return this;
 	}
@@ -157,12 +168,13 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 		
 		public StrikeBuilder forExpirationCycle(String expirationCycle){
 			
-			strike.expirationCycle = ExpirationDateBuilder.builder()
-				.asOf(/*now*/strike.timestamp)
+			/*strike.expirationCycle = ExpirationDateBuilder.builder()
+				.asOf(nowstrike.timestamp)
 				.forSymbol(strike.symbol)
 				.forCycle(expirationCycle)
 				.build();
-			strike.expirationCycle.setCycle(expirationCycle);
+			strike.expirationCycle.setCycle(expirationCycle);*/
+			strike.setExpirationCycle(expirationCycle);
 			return this;
 		}
 		
