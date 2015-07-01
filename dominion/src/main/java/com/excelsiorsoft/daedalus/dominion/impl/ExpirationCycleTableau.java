@@ -66,11 +66,11 @@ public class ExpirationCycleTableau implements WithTimestamp {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("\nExpirationCycleTableau[timestamp=")
+		builder.append("ExpirationCycleTableau[timestamp=")
 				.append(timestamp)
 				.append(", symbol=")
 				.append(symbol)
-				.append(", nstrikes=")
+				.append(", strikes=")
 				/*.append(expirationCycles)*/
 				.append(strikes)
 				
@@ -124,14 +124,30 @@ public class ExpirationCycleTableau implements WithTimestamp {
 			return this;
 		}
 		
-		public ExpirationCycleTableauBuilder withStrikes(List<String> strikesStr){
+	/*	public ExpirationCycleTableauBuilder withStrikes(List<String> strikesStr){
 
 			for(String strikeStr : strikesStr){
 				tableau.strikes.put(strikeStr, new HashMap<String,Option>());
 			}
 
 			return this;
-		}
+		}*/
+		
+		public ExpirationCycleTableauBuilder withStrikes(List<?> strikes){
+
+			  
+			
+			for(Object strike : strikes){
+				
+				if(strike instanceof String){
+					tableau.strikes.put(strike.toString(), new HashMap<String,Option>());
+				}else if(strike instanceof Strike){
+					tableau.strikes.put(Double.toString(((Strike) strike).getValue()), new HashMap<String,Option>());
+				}
+			}
+
+			return this;
+		}		
 
 	}
 
