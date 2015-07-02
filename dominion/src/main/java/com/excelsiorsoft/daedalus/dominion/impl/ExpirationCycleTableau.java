@@ -32,7 +32,8 @@ public class ExpirationCycleTableau implements WithTimestamp {
 		return timestamp;
 	}
 
-	@Override
+	//@Override
+	@Deprecated //don't need a setter - timestamp should be set via the builder
 	public ExpirationCycleTableau setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 		return this;

@@ -72,7 +72,8 @@ public class Instrument implements WithDescription, WithTimestamp, WithSymbol {
 		return timestamp;
 	}
 
-	@Override
+	//@Override 
+	@Deprecated //potentially remove and do the setting via an internal builder instance
 	public WithTimestamp setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 		return this;

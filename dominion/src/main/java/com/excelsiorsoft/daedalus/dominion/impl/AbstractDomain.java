@@ -31,11 +31,11 @@ public abstract class AbstractDomain implements WithId, WithTimestamp {
 		return timestamp;
 	}
 
-	@Override
+	/*@Override
 	public AbstractDomain setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 		return this;
-	}
+	}*/
 	
 	public String toString() {
 		   return ReflectionToStringBuilder.toString(this, NullSupressingStyle.INSTANCE);

@@ -6,6 +6,6 @@ public interface WithTimestamp {
 
 	long getTimestamp();
 
-	WithTimestamp setTimestamp(long timestamp);
+	//WithTimestamp setTimestamp(long timestamp);
 	
 }

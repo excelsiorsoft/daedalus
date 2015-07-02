@@ -19,8 +19,9 @@ public class Quote extends AbstractDomain {
 	
 	public Quote(Instrument underlying){
 		this.underlying = underlying;
-		this.setTimestamp(/*new Timestamp(*/new Date().getTime()/*)*/);
-	}
+		//this.setTimestamp(/*new Timestamp(*/new Date().getTime()/*)*/);
+		this.timestamp = new Date().getTime();
+		}
 
 	public Instrument getUnderlying() {
 		return underlying;

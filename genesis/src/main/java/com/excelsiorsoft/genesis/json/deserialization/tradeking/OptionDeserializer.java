@@ -66,7 +66,7 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 						//.setBidTime(asText(quote, "bid_time")).setAskTime(asText(quote, "ask_time"))
 						//.setVolume(asText(quote, "vl"))
 						//.setTimestamp(asLong(quote, "timestamp"))
-						.setTimestamp(timestamp/* now*/) 
+						//.setTimestamp(timestamp/* now*/) 
 						
 						;
 

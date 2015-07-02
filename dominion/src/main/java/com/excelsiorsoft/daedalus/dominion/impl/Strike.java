@@ -77,9 +77,9 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 	}
 
 	
-	@Override
+	//@Override
 	public AbstractDomain setTimestamp(long timestamp) {
-		super.setTimestamp(timestamp);
+		this.timestamp = timestamp;
 		return this;
 	}
 	
