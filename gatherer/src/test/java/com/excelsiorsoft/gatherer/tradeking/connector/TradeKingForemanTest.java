@@ -7,7 +7,6 @@ import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBu
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getTopLosers;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
@@ -20,9 +19,6 @@ import com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.TopType;
 import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.OptionDeserializer;
-import com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
