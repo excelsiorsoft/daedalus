@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
+import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage.OptionMontageBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForeman;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.ExpirationDateDeserializer;
@@ -99,7 +100,7 @@ public class CandidatesSearchFlowTest {
 	
 	@SuppressWarnings("serial")
 	@Test 
-	public void buildingCacheableTableau() throws Throwable {
+	public void buildingCacheableTableaus() throws Throwable {
 		
 		for(String symbol: symbols) {
 			
@@ -140,6 +141,52 @@ public class CandidatesSearchFlowTest {
 		}
 		
 
+	}
+	
+	@SuppressWarnings("serial")
+	@Test
+	public void buildingOptionMontage() throws Throwable {
+		
+		for(String symbol: symbols) {
+			
+			long now = nowFromEpoch(); //define first - this is an anchor timestamp for the whole underlying structure
+			OptionMontageBuilder montageBuilder = OptionMontageBuilder.builder();
+			montageBuilder.forSymbol(symbol).asOf(now);
+			
+			//create context
+			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}};
+			
+			logger.info("Building matrix for {} as of {}",symbol, now);
+			
+			String expirations = foreman.makeApiCall(getOptionsExpirations(json, symbol)).getResponse();
+			logger.debug("Expiration dates for {}: {}", symbol, expirations);
+			
+			Collection<ExpirationDate> expirDates = new ExpirationDateDeserializer().deserialize(expirations, context);
+			logger.info("{} expiration dates for {}: {}", expirDates.size(), symbol, expirDates);
+			
+			for(ExpirationDate expDate : expirDates) {
+				
+				ExpirationCycleTableauBuilder tableauBuilder = ExpirationCycleTableauBuilder.builder().forSymbol(symbol).asOf(now);
+				
+				String expDateStr = expDate.getCycle();
+				context.put(EXPIRATION_DATE, expDateStr);
+				tableauBuilder.forExpirationCycle(expDateStr);
+				
+				String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
+				logger.debug("Strikes for {} for expiration date of {}: {}", symbol, expDateStr, strikesJson);
+				
+				Collection<Strike> strikes = new StrikesDeserializer().deserialize(strikesJson, context);
+				logger.info("{} strikes for {} for {} expiration cycle: {}", strikes.size(), symbol, expDateStr, strikes);
+				
+				tableauBuilder.withStrikes((List<Strike>) strikes);
+				ExpirationCycleTableau tableau = tableauBuilder.build();
+				logger.debug("Tableau for {} at {}: {}", symbol, expDateStr, tableau);
+			}
+			
+			
+		}
+		
+		
 	}
 
 }
