@@ -8,8 +8,9 @@ import static org.apache.commons.lang3.math.NumberUtils.toDouble;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.excelsiorsoft.daedalus.dominion.WithExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.WithSymbol;
-import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
+//import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 
 
@@ -17,7 +18,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
  * @author Simeon
  * 
  */
-public final class Strike extends AbstractDomain implements WithSymbol {
+public final class Strike extends AbstractDomain implements WithSymbol, WithExpirationDate {
 
 	//private Exchange exchange;
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page
@@ -67,14 +68,14 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 	}*/
 	
 	
-	public String getExpirationCycle() {
+	public String getExpirationDate() {
 		return expirationCycle;
 	}
 
-	public Strike setExpirationCycle(String expirationCycle) {
+	/*public Strike setExpirationCycle(String expirationCycle) {
 		this.expirationCycle = expirationCycle;
 		return this;
-	}
+	}*/
 
 	
 	//@Override
@@ -143,7 +144,7 @@ public final class Strike extends AbstractDomain implements WithSymbol {
 				.forCycle(expirationCycle)
 				.build();
 			strike.expirationCycle.setCycle(expirationCycle);*/
-			strike.setExpirationCycle(expirationCycle);
+			strike.expirationCycle = expirationCycle/*.setExpirationCycle(expirationCycle)*/;
 			return this;
 		}
 		

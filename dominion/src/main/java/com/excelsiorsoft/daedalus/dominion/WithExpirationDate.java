@@ -6,5 +6,5 @@ public interface WithExpirationDate {
 final String EXPIRATION_DATE = "expirationDate";
 	
 	String getExpirationDate();
-	WithExpirationDate setExpirationDate(String expirationDate);
+	//WithExpirationDate setExpirationDate(String expirationDate);
 }
