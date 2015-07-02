@@ -50,7 +50,7 @@ public class Quote extends AbstractDomain {
 	
 		}
 		
-		public static <T> QuoteBuilder<T> withUnderlying(Instrument underlying) {
+		public static <T> QuoteBuilder<T> withUnderlying(Instrument underlying) throws Throwable {
 			Assert.notNull(underlying, "underlying must be present");
 			Assert.notNull(underlying.getSymbol(), "ticker must be present");
 			QuoteBuilder<T> builder = new QuoteBuilder<T>(underlying);

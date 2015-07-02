@@ -4,7 +4,7 @@ public interface WithSymbol {
 
 	final String SYMBOL = "symbol";
 	
-	String getSymbol();
+	String getSymbol() throws Throwable;
 	WithSymbol setSymbol(String symbol);
 	
 }

@@ -38,7 +38,7 @@ public class Instrument implements WithDescription, WithTimestamp, WithSymbol {
 		return this;
 	}
 
-	public String getSymbol() {
+	public String getSymbol() throws Throwable {
 		return symbol;
 	}
 
