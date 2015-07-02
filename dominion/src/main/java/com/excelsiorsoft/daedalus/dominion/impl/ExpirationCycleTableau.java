@@ -1,15 +1,16 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
-import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
+//import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.excelsiorsoft.daedalus.dominion.WithExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
-import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
-import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
+//import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
+//import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
 
 /**
  * Representation of cacheable structure to house option strikes for a particular symbol on a particular expiration date.
@@ -18,7 +19,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
  * @author sleyzerzon
  *
  */
-public class ExpirationCycleTableau implements WithTimestamp {
+public class ExpirationCycleTableau implements WithTimestamp, WithExpirationDate {
 	
 	private String symbol;
 	private long timestamp; 
@@ -39,7 +40,7 @@ public class ExpirationCycleTableau implements WithTimestamp {
 		return this;
 	}
 
-	public /*ExpirationDate*/String getExpirationCycle() {
+	public /*ExpirationDate*/String getExpirationDate/*Cycle*/() {
 		return expirationCycle;
 	}
 
@@ -71,6 +72,8 @@ public class ExpirationCycleTableau implements WithTimestamp {
 				.append(timestamp)
 				.append(", symbol=")
 				.append(symbol)
+				.append(", expirationDate=")
+				.append(expirationCycle)
 				.append(", strikes=")
 				/*.append(expirationCycles)*/
 				.append(strikes)
