@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.excelsiorsoft.daedalus.dominion.WithSymbol;
 import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
-import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 
 /**
  * Full representation of all option activity for a given underlying symbol, including the activity for the latter
@@ -61,10 +60,22 @@ public class OptionMontage implements WithSymbol, WithTimestamp{
 				.append(timestamp)
 				.append(", symbol=")
 				.append(symbol)
-				.append(", tableaus=")
-				.append(tableaus)
+				.append(", tableaus=");
 				
-				.append("]");
+				if(tableaus.isEmpty()){
+					builder.append("{}");
+				}else {
+					builder.append("\n");
+				for(Map.Entry<String, ExpirationCycleTableau> entry : tableaus.entrySet()){
+					builder.append(entry.getKey())
+					.append(" --> ")
+					.append(entry.getValue())
+					.append("\n\n");
+				}}
+				
+				
+				
+				builder.append("]");
 		return builder.toString();
 
 	}
