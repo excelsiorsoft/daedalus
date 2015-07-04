@@ -3,9 +3,13 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 //import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import org.springframework.util.Assert;
 
 import com.excelsiorsoft.daedalus.dominion.WithExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
@@ -74,15 +78,52 @@ public class ExpirationCycleTableau implements WithTimestamp, WithExpirationDate
 				.append(symbol)
 				.append(", expirationDate=")
 				.append(expirationCycle)
-				.append(", strikes=")
-				/*.append(expirationCycles)*/
-				.append(strikes)
+				.append(", strikes=");
 				
-				.append("]");
+				builder.append("{");
+				
+				int noOfStrikes = strikes.size();
+				if(noOfStrikes > 0){
+					
+					builder.append("\n");
+
+					int strikesCntr = noOfStrikes-1;
+					for(Iterator<Entry<String, Map<String, Option>>> strikesIterator = strikes.entrySet().iterator(); strikesIterator.hasNext() ; strikesCntr--){
+
+						Entry<String, Map<String, Option>> strikeEntry = strikesIterator.next();
+						
+						String strikeKey = strikeEntry.getKey();
+						Map<String, Option> putOrCall = strikeEntry.getValue();
+						
+						if(putOrCall.size() >0) builder.append ("\n");
+						builder.append(strikeKey)
+							.append(" -> ")
+							.append("{");							
+							
+							int optionCntr = putOrCall.size()-1;
+							for(Iterator<Entry<String, Option>> optionIterator = putOrCall.entrySet().iterator(); optionIterator.hasNext(); optionCntr--){
+
+								Entry<String, Option> optionEntry = optionIterator.next();
+								builder.append("\n\t");
+								builder.append(optionEntry.getKey())
+								.append(" = ")
+								.append(optionEntry.getValue());
+								/*.append("\n");*/
+								if (optionCntr >0) builder.append(",");
+							}
+						
+							builder.append("}");
+
+						if (strikesCntr > 0) builder.append(", ");
+					}
+				
+				}
+				builder.append("}");
+				builder.append("]");
 		return builder.toString();
+	
+	
 	}
-	
-	
 	
 	public final static class ExpirationCycleTableauBuilder {
 		
@@ -106,14 +147,8 @@ public class ExpirationCycleTableau implements WithTimestamp, WithExpirationDate
 		
 		public ExpirationCycleTableau build(){
 
-			
-			//long now = nowFromEpoch();
-			//tableau.timestamp = now;
-			
-			/*for(Strike strike : tableau.values){
-				strike.setTimestamp(now);
-			}*/
-			
+		/*	Assert.notNull(tableau.strikes, "Cannot build tableau until strikes are initialized.");
+			Assert.notNull(tableau.symbol, "Cannot build tableau until symbol is known.");*/
 			return tableau;
 		}
 		
@@ -139,7 +174,7 @@ public class ExpirationCycleTableau implements WithTimestamp, WithExpirationDate
 		
 		public ExpirationCycleTableauBuilder withStrikes(List<?> strikes){
 
-			  
+			  Assert.notNull(strikes, "Strikes must not be null");
 			
 			for(Object strike : strikes){
 				
