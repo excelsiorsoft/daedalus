@@ -181,13 +181,17 @@ public class CandidatesSearchFlowTest {
 				
 				tableauBuilder.withStrikes((List<Strike>) strikes);
 				ExpirationCycleTableau tableau = tableauBuilder.build();
+
 				logger.info("Tableau for {} at {}: {}", symbol, expDateStr, tableau);
 				montageBuilder.add(tableau);
 				logger.info("Added tableau {} onto option montage", tableau);
+
 			}
 			
 			OptionMontage montage = montageBuilder.build();
+
 			logger.info("Built {} option montage:\n\n{}", symbol, montage);
+
 		}
 		
 		
