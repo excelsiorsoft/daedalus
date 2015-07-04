@@ -46,6 +46,7 @@ public class OptionMontage implements WithSymbol, WithTimestamp{
 		this.symbol = symbol;
 		return this;
 	}
+
 	
 	public OptionMontage addTableau(ExpirationCycleTableau tableau){
 		tableaus.put(tableau.getExpirationDate(),tableau);
