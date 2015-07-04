@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
+import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage;
 import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage.OptionMontageBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForeman;
@@ -180,10 +181,13 @@ public class CandidatesSearchFlowTest {
 				
 				tableauBuilder.withStrikes((List<Strike>) strikes);
 				ExpirationCycleTableau tableau = tableauBuilder.build();
-				logger.debug("Tableau for {} at {}: {}", symbol, expDateStr, tableau);
+				logger.info("Tableau for {} at {}: {}", symbol, expDateStr, tableau);
+				montageBuilder.add(tableau);
+				logger.info("Added tableau {} onto option montage", tableau);
 			}
 			
-			
+			OptionMontage montage = montageBuilder.build();
+			logger.info("Built {} option montage:\n\n{}", symbol, montage);
 		}
 		
 		
