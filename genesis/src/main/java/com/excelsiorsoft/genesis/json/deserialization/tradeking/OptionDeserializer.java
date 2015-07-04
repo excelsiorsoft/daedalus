@@ -71,7 +71,7 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 						;
 
 
-			logger.debug(
+/*			logger.debug(
 					"\n\ttimestamp: {}, "
 					+ "\n\ttimestamp as instant: {}, "
 					+ "\n\ttimestamp @ local zone: {}, "
@@ -82,7 +82,7 @@ public class OptionDeserializer  extends AbstractDeserializer<Option> {
 					fromUnixTimestampToLocalDateTime(asLong(quote, "timestamp")),
 					nowFromEpoch(),
 					fromUnixTimestampToLocalDateTime(Instant.now()
-							.getEpochSecond()));
+							.getEpochSecond()));*/
 
 
 		} catch (Throwable e) {

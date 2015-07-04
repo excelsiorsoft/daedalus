@@ -33,7 +33,7 @@ public class OptionDeserializerTest {
 		Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,"SLW");put(TIMESTAMP,nowFromEpoch());}};
 		
 		Collection<Option> result = new OptionDeserializer().deserialize(optionJsonStr, context);
-		System.out.println("Deserializeed :"+result);
+		System.out.println("Deserialized :"+result);
 		
 	}
 	
