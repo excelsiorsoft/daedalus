@@ -40,7 +40,7 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 		this.clazz = clazz;
 	}
 	
-	public List<T> deserialize(/*final JsonNode node*/String json, final Map<String, Object> context) throws Throwable {
+	public List<T> deserialize(/*final JsonNode node*/final String json, final Map<String, Object> context) throws Throwable {
 		
 		Assert.notNull(json, "Json string must be non-empty.");
 		rootNode = jacksonMapper.readTree(json).get("response");
@@ -72,7 +72,7 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 	 * @return
 	 * @throws Throwable
 	 */
-	protected List<T> deserializeNodeCollection(JsonNode elements, Map<String, Object> context) throws Throwable {
+	protected List<T> deserializeNodeCollection(final JsonNode elements, final Map<String, Object> context) throws Throwable {
 		
 		final List<T> result = new LinkedList<>();
 		logger.debug("Deserializing a collection of json nodes of size {} into a collection of {}s:", elements.size(), clazz.getSimpleName());
@@ -95,7 +95,7 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 	 * @return
 	 * @throws Throwable
 	 */
-	protected abstract T deserializeSingleNode(JsonNode node, final Map<String, Object> context) throws Throwable;
+	protected abstract T deserializeSingleNode(final JsonNode node, final Map<String, Object> context) throws Throwable;
 	
 	public abstract JsonNode cursor(JsonNode root);
 

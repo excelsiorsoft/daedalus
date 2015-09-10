@@ -52,7 +52,7 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 
 
 	@Override
-	public JsonNode cursor(JsonNode root) {
+	public JsonNode cursor(final JsonNode root) {
 		JsonNode dateNodes = root.path("expirationdates").path("date"); 
 		return dateNodes;
 	}
