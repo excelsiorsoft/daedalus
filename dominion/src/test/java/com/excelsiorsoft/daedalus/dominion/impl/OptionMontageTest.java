@@ -26,7 +26,7 @@ public class OptionMontageTest {
 
 	
 	/**
-	 * Raw & unfinished, see {@link CandidatesSearchFlowTest#buildingOptionMontage} in gatherer instead
+	 * Raw & unfinished, see {@link CandidatesSearchFlowTest#buildingOptionMontage} in gatherer instead 
 	 */
 	@Test
 	@Deprecated
