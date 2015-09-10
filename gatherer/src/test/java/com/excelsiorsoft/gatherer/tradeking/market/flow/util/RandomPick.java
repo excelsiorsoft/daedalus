@@ -26,9 +26,11 @@ public class RandomPick<T> {
 	public static void main(String [] args) {
 		
 		
+
 		for(int i = 1; i<=20; i++) {
 			new RandomPick();
 			System.out.println(i+": "+randomFrom(Arrays.asList(new String[] {"Abraham Linkoln", "Jane Eire", "Richard Nixon", "Miss America"})));
+
 		}
 	}
 
