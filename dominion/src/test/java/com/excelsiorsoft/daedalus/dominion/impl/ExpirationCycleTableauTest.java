@@ -118,6 +118,7 @@ public class ExpirationCycleTableauTest {
 			System.out.println(cut);
 		}catch(Throwable t){
 			assertTrue(t instanceof RuntimeException);
+			System.out.println("Expected: " + t.getMessage());
 		}
 		
 		
