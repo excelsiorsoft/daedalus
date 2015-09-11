@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.excelsiorsoft.daedalus.dominion.Phenomenon;
-import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
-import com.excelsiorsoft.daedalus.dominion.TradeableListable;
+import com.excelsiorsoft.daedalus.dominion.WithDescription;
+import com.excelsiorsoft.daedalus.dominion.WithSymbol;
+import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
 import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.InstrumentType;
 
 
@@ -13,7 +14,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.AbstractTradeableInstrument.Inst
  * @author Simeon
  *
  */
-public class Instrument implements TradeableListable, TimeTrackable /*extends AbstractTradeableInstrument*/ {
+public class Instrument implements WithDescription, WithTimestamp, WithSymbol {
 
 	private InstrumentType type;
 	
@@ -37,7 +38,7 @@ public class Instrument implements TradeableListable, TimeTrackable /*extends Ab
 		return this;
 	}
 
-	public String getSymbol() {
+	public String getSymbol() throws Throwable {
 		return symbol;
 	}
 
@@ -71,8 +72,9 @@ public class Instrument implements TradeableListable, TimeTrackable /*extends Ab
 		return timestamp;
 	}
 
-	@Override
-	public TimeTrackable setTimestamp(long timestamp) {
+	//@Override 
+	@Deprecated //potentially remove and do the setting via an internal builder instance
+	public WithTimestamp setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 		return this;
 	}
@@ -94,7 +96,7 @@ public class Instrument implements TradeableListable, TimeTrackable /*extends Ab
 		   //return ReflectionToStringBuilder.toString(this, NullSupressingStyle.INSTANCE);
 		
 			StringBuilder builder = new StringBuilder();
-			builder.append("Instrument[symbol=").append(symbol).append(", affectedBy=").append(affectedBy).append(", tradableOnExchanges=").append(tradableOnExchanges).append("]");
+			builder.append("Instrument[timestamp=").append(timestamp).append(", symbol=").append(symbol).append(", affectedBy=").append(affectedBy).append(", tradableOnExchanges=").append(tradableOnExchanges).append("]");
 			return builder.toString();
 		
 		 }	

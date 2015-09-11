@@ -14,12 +14,13 @@ import java.util.Date;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.excelsiorsoft.daedalus.dominion.TradeableListable;
+//import com.excelsiorsoft.daedalus.dominion.TradeableListable;
 import com.excelsiorsoft.daedalus.dominion.WithSpread;
+import com.excelsiorsoft.daedalus.dominion.WithSymbol;
 
 import static org.apache.commons.lang3.math.NumberUtils.*;
 
-public abstract class AbstractTradeableInstrument extends AbstractDomain implements WithSpread, TradeableListable {
+public abstract class AbstractTradeableInstrument extends AbstractDomain implements WithSpread, WithSymbol {
 
 	//private Exchange exchange;
 	
@@ -38,6 +39,8 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 	 * Time of latest bid
 	 */
 	protected Date bidTime;
+	
+	protected String symbol;
 	
 	public /*BigDecimal*/ double getBid() {
 		return bid;
@@ -71,13 +74,13 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 	
 
 
-	@Override
+	//@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	//@Override
 	public Instrument setDescription(String description) {
 		// TODO Auto-generated method stub
 		return null;
@@ -85,21 +88,15 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 
 	@Override
 	public String getSymbol() {
-		// TODO Auto-generated method stub
-		return null;
+		return symbol;
 	}
 
 	@Override
-	public Instrument setSymbol(String symbol) {
-		// TODO Auto-generated method stub
-		return null;
+	public WithSymbol setSymbol(String symbol) {
+		return this;
 	}
 
-	/*@Override
-	public abstract TradeableListable setExchange(Exchange exchange);*/
 
-	/*@Override
-	public abstract Exchange getExchange();*/
 
 	@Override
 	public WithSpread setAskTime(String askTime) {
@@ -177,10 +174,6 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 
 	
 
-	/*public static class AbstractTradeableInstrumentBuilder {
-		
-		
-	}*/
 
 
 	/**
@@ -189,19 +182,7 @@ public abstract class AbstractTradeableInstrument extends AbstractDomain impleme
 	 */
 	public static enum InstrumentType {
 		OPTION, STOCK, ETF, FUTURE, INDEX, COMMODITY;
-	
-		/*public static enum OptionType{
-			PUT("P"), CALL("C");
-			
-			String abbreviation;
-			
-			private OptionType(String value){
-				this.abbreviation=value;}
-	
-			public String abbreviation() {
-				return abbreviation;
-			}
-		}*/
+
 	}
 
 

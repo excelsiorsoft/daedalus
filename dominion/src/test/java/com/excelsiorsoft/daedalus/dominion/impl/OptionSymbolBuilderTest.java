@@ -28,7 +28,8 @@ public class OptionSymbolBuilderTest {
 	public void creatingSymbol() throws Throwable {
 		
 		String underlying = "slw";
-		Date expirationDate = new SimpleDateFormat("yyyy-MM-dd").parse("2017-01-20");
+		//Date expirationDate = new SimpleDateFormat("yyyy-MM-dd").parse("2017-01-20");
+		String expirationDate = "2017-01-20";
 		String optionType = OptionType.CALL.abbreviation();
 		double strike = 18.00;
 		

@@ -1,6 +1,6 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
-//import java.sql.Timestamp;
+
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,8 +19,9 @@ public class Quote extends AbstractDomain {
 	
 	public Quote(Instrument underlying){
 		this.underlying = underlying;
-		this.setTimestamp(/*new Timestamp(*/new Date().getTime()/*)*/);
-	}
+		//this.setTimestamp(/*new Timestamp(*/new Date().getTime()/*)*/);
+		this.timestamp = new Date().getTime();
+		}
 
 	public Instrument getUnderlying() {
 		return underlying;
@@ -33,7 +34,7 @@ public class Quote extends AbstractDomain {
 	public final static class QuoteBuilder<T> {
 		
 		
-		public final static String SYMBOL = "symbol";
+		//public final static String SYMBOL = "symbol";
 		
 		
 		private final Instrument underlying;
@@ -49,7 +50,7 @@ public class Quote extends AbstractDomain {
 	
 		}
 		
-		public static <T> QuoteBuilder<T> withUnderlying(Instrument underlying) {
+		public static <T> QuoteBuilder<T> withUnderlying(Instrument underlying) throws Throwable {
 			Assert.notNull(underlying, "underlying must be present");
 			Assert.notNull(underlying.getSymbol(), "ticker must be present");
 			QuoteBuilder<T> builder = new QuoteBuilder<T>(underlying);

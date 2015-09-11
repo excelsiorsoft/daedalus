@@ -21,6 +21,11 @@ public final class DateTimeUtils {
 		
 	}
 	
+	/**
+	 * Should be equivalent to 'date +%s' on Unix
+	 * 
+	 * @return
+	 */
 	public static long nowFromEpoch(){
 		return Instant.now().getEpochSecond();
 	}

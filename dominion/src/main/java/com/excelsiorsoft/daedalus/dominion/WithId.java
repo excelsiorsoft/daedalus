@@ -1,8 +1,8 @@
 package com.excelsiorsoft.daedalus.dominion;
 
-public interface Identifiable {
+public interface WithId {
 
 	Long getId();
 
-	Identifiable setId(Long id);
+	WithId setId(Long id);
 }

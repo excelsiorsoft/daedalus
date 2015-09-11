@@ -5,34 +5,33 @@ import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbolBuilde
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbologyType.OCC;
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-
-
+import com.excelsiorsoft.daedalus.dominion.WithExpirationDate;
 
 
 
 /**
- * Representation of an option financial instrument
+ * Representation of a financial instrument of type option
  * 
  * 
  * @author sleyzerzon
  *
  */
 //@JsonDeserialize(using = OptionDeserializer.class)
-public class Option extends /*AbstractTradable*/Instrument {
+public class Option extends /*AbstractTradable*/Instrument implements WithExpirationDate {
 
 	private Instrument underlying = new Instrument(); 
 	private OptionType optionType; //put or call
 
 	// expiration type - european or american
 
-	private Date expirationDate;
+	private /*Date*/ String expirationDate;
 	private Strike strike = new Strike();
 
-	private OptionSymbol symbol; // OCC by default, need to create a hierarchy
+	//private OptionSymbol symbol; // OCC by default, need to create a hierarchy
 									// for symbols of different types of
 									// underlying (stocks & etf would have their
 									// own, especially futures)
@@ -43,8 +42,9 @@ public class Option extends /*AbstractTradable*/Instrument {
 	
 	/**
 	 * @return
+	 * @throws Throwable 
 	 */
-	public String getSymbol(){
+	public String getSymbol() throws Throwable{
 		
 		return buildSymbol(underlying.getSymbol(), expirationDate, optionType.abbreviation(), strike.getValue());
 	}
@@ -52,10 +52,21 @@ public class Option extends /*AbstractTradable*/Instrument {
 	/**
 	 * @param symbolType
 	 * @return
+	 * @throws Throwable 
 	 */
-	public String getSymbol(OptionSymbologyType symbolType){
+	public String getSymbol(OptionSymbologyType symbolType) throws Throwable{
 
 		return buildSymbol(symbolType, underlying.getSymbol(), expirationDate, optionType.abbreviation(), strike.getValue());
+	}
+
+	
+	public Strike getStrike() {
+		return strike;
+	}
+	
+	@Override
+	public String getExpirationDate() {
+		return expirationDate.toString();
 	}
 
 	
@@ -63,12 +74,12 @@ public class Option extends /*AbstractTradable*/Instrument {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Option[timestamp=")
 				.append(timestamp)
-				.append(", underlying=")
-				.append(underlying)
 				.append(", optionType=")
 				.append(optionType)
 				.append(", expirationDate=")
-				.append(new SimpleDateFormat("EEE MMM dd, yyyy").format(expirationDate))
+				.append(expirationDate != null?/*new SimpleDateFormat("EEE MMM dd, yyyy").format(*/expirationDate/*)*/:"")
+				.append(", underlying=")
+				.append(underlying)
 				.append(", strike=")
 				.append(strike)
 				/*.append(", tradableOnExchanges=")
@@ -124,7 +135,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 	public final static class OptionSymbolBuilder {
 		
 	    	
-		public static String buildSymbol(final OptionSymbologyType symbolType, final String underlyingSymbol, final Date expirationDate, final String optionType, final double strike){
+		public static String buildSymbol(final OptionSymbologyType symbolType, final String underlyingSymbol, final /*Date*/String expirationDate, final String optionType, final double strike) throws Throwable{
 			
 			String result = "";
 			
@@ -145,7 +156,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 		}
 		
 		
-	    public static String buildSymbol(final String underlyingSymbol, final Date expirationDate, final String optionType, final double strike)  {
+	    public static String buildSymbol(final String underlyingSymbol, final /*Date*/String expirationDate, final String optionType, final double strike) throws Throwable  {
 
 	    	return buildSymbol(OCC, underlyingSymbol, expirationDate, optionType, strike);
 
@@ -153,9 +164,11 @@ public class Option extends /*AbstractTradable*/Instrument {
 	    }
 	    
 		
-	    private static String occSpecification(OptionSymbologyType symbolType, String underlyingSymbol, Date expirationDate, String optionType, double strike){
+	    private static String occSpecification(OptionSymbologyType symbolType, String underlyingSymbol, /*Date*/String expirationDate, String optionType, double strike) throws Throwable{
 					
-					String timeString = new SimpleDateFormat("yyMMdd").format(expirationDate);
+	    		Date _expirationDate = new SimpleDateFormat("yyyy-MM-dd").parse(expirationDate);
+	    	
+					String timeString = new SimpleDateFormat("yyMMdd").format(_expirationDate);
 					
 					String paddedPrice = String.format("%08d", (int) (strike * 1000));
 		
@@ -169,6 +182,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 	 * A utility to fluidly build option instances
 	 * 
 	 * @author sleyzerzon
+	 * 
 	 *
 	 */
 	public final static class OptionBuilder {
@@ -210,15 +224,15 @@ public class Option extends /*AbstractTradable*/Instrument {
 			return this;
 		}
 		
-		public OptionBuilder withExpiration(Date expirDate){
+		/*public OptionBuilder withExpiration(Date expirDate){
 			
 			option.expirationDate = expirDate;
 			return this;
-		}
+		}*/
 		
 		public OptionBuilder withExpiration(String expiration) throws Throwable{
 			
-			option.expirationDate = new SimpleDateFormat("yyyyMMdd").parse(expiration);
+			option.expirationDate = /*new SimpleDateFormat("yyyy-MM-dd").parse(expiration)*/expiration;
 			return this;
 			
 		}
@@ -243,7 +257,7 @@ public class Option extends /*AbstractTradable*/Instrument {
 		public OptionBuilder tradeableOn(Exchange exchange){
 			
 			((Instrument)option).getTradableOnExchanges().add(exchange);
-			option.strike.setAsQuotedOn(exchange);
+			//option.strike.setAsQuotedOn(exchange);
 			return this;
 		}
 		
@@ -272,8 +286,8 @@ public class Option extends /*AbstractTradable*/Instrument {
 	}
 
 
-	public Strike getStrike() {
-		return strike;
-	}
+
+
+	
 	
 }

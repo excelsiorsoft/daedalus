@@ -1,6 +1,9 @@
 
 package com.excelsiorsoft.daedalus.dominion.impl;
 
+import com.excelsiorsoft.daedalus.dominion.WithSymbol;
+import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
+
 
 
 /**
@@ -9,7 +12,7 @@ package com.excelsiorsoft.daedalus.dominion.impl;
  * @author sleyzerzon
  *
  */
-public class ExpirationDate {
+public class ExpirationDate implements WithTimestamp, WithSymbol {
 	
 	
 	private long timestamp;
@@ -28,8 +31,9 @@ public class ExpirationDate {
 
 
 
-	protected void setTimestamp(long timestamp) {
+	public  ExpirationDate setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
+		return this;
 	}
 
 
@@ -40,8 +44,9 @@ public class ExpirationDate {
 
 
 
-	protected void setSymbol(String symbol) {
+	public ExpirationDate setSymbol(String symbol) {
 		this.symbol = symbol;
+		return this;
 	}
 
 

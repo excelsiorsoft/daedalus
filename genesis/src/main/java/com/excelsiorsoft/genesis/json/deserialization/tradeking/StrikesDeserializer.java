@@ -3,14 +3,13 @@
  */
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
+import static com.excelsiorsoft.daedalus.dominion.WithExpirationDate.EXPIRATION_DATE;
+import static com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder.builder;
+
 import java.util.Map;
 
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
-
-import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.SYMBOL;
-import static com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder.*;
-
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
@@ -33,7 +32,7 @@ public class StrikesDeserializer extends AbstractDeserializer<Strike> {
 		
 		try {
 
-			strike = builder.withValue(price.asText()).build();
+			strike = builder.asOf(timestamp).forSymbol(symbol).withValue(price.asText()).forExpirationCycle((String)context.get(EXPIRATION_DATE)).build();
 
 		} catch (Throwable e) {
 			logger.error("Error while deserializing {}: {}", price,
@@ -42,5 +41,11 @@ public class StrikesDeserializer extends AbstractDeserializer<Strike> {
 		
 		return strike;
 	}
+	
+	@Override
+	public JsonNode cursor(JsonNode root) {
+		JsonNode dateNodes = root.path("prices").path("price"); 
+		return dateNodes;
+	}	
 
 }

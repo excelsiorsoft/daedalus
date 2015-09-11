@@ -8,8 +8,9 @@ import static org.apache.commons.lang3.math.NumberUtils.toDouble;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.excelsiorsoft.daedalus.dominion.TimeTrackable;
-import com.excelsiorsoft.daedalus.dominion.WithSpread;
+import com.excelsiorsoft.daedalus.dominion.WithExpirationDate;
+import com.excelsiorsoft.daedalus.dominion.WithSymbol;
+//import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 
 
@@ -17,15 +18,18 @@ import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
  * @author Simeon
  * 
  */
-public final class Strike extends AbstractTradeableInstrument/* implements WithSpread*/ {
+public final class Strike extends AbstractDomain implements WithSymbol, WithExpirationDate {
 
-	private Exchange exchange;
+	//private Exchange exchange;
 	//TODO: need to have an Option field on which the optionType, etc. will be housed, this representation only specific to Yahoo's options listing page
 	private OptionType type;
 	private /*BigDecimal*/ double value;
-	private int volume;
+	//private ExpirationDate expirationCycle;
+	private String expirationCycle;
+	private String symbol;
+	
 
-
+	
 	
 	public /*BigDecimal*/double getValue() {
 		return value;
@@ -52,45 +56,50 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		return this;
 	}
 	
-
-
-	@Override
-	public Exchange getAsQuotedOn() {
-		
-		return exchange;
+	
+	
+	/*public ExpirationDate getExpirationCycle() {
+		return expirationCycle;
 	}
 
-	@Override
-	public Strike setAsQuotedOn(Exchange exchange) {
-		this.exchange = exchange;
+	public Strike setExpirationCycle(ExpirationDate expirationCycle) {
+		this.expirationCycle = expirationCycle;
+		return this;
+	}*/
+	
+	
+	public String getExpirationDate() {
+		return expirationCycle;
+	}
+
+	/*public Strike setExpirationCycle(String expirationCycle) {
+		this.expirationCycle = expirationCycle;
+		return this;
+	}*/
+
+	
+	//@Override
+	public AbstractDomain setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
 		return this;
 	}
 	
-	
+
 	@Override
-	public WithSpread setVolume(String volume) {
-		this.volume=Integer.parseInt(volume);
-		return this;
+	public String getSymbol() {
+		return symbol;
 	}
 
 	@Override
-	public int getVolume() {
-		return volume;
-	}
-	
-	@Override
-	public TimeTrackable setTimestamp(long timestamp) {
-		super.setTimestamp(timestamp);
+	public WithSymbol setSymbol(String symbol) {
+		this.symbol = symbol;
 		return this;
-	}	
+	}
 	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		builder.append("Strike[timestamp=").append(timestamp).append(", value=").append(value)
-				.append(", bid=").append(bid).append(", bidSize=").append(bidSize).append(", bidTime=").append(bidTime)
-				.append(", ask=").append(ask).append(", askSize=").append(askSize).append(", askTime=").append(askTime)
-				.append(", exchange=").append(exchange)
-				.append(", volume=").append(volume)
+		builder.append("Strike[timestamp=").append(timestamp).append(", symbol=").append(symbol)
+				.append(", expirationCycle=").append(expirationCycle).append(", value=").append(value)
 				.append("]");
 		return builder.toString();
 	}
@@ -101,6 +110,7 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 	 *
 	 */
 	public final static class StrikeBuilder {
+
 		
 		private final Strike strike = new Strike();
 		
@@ -113,50 +123,47 @@ public final class Strike extends AbstractTradeableInstrument/* implements WithS
 		}
 		
 		public Strike build(){
-			
 			return strike;
 		}
 		
+		public StrikeBuilder forSymbol(String symbol){
+			strike.symbol = symbol;
+			return this;
+		}
+		
+		public StrikeBuilder asOf(long timestamp){
+			strike.timestamp = timestamp;
+			return this;
+		}
+		
+		public StrikeBuilder forExpirationCycle(String expirationCycle){
+			
+			/*strike.expirationCycle = ExpirationDateBuilder.builder()
+				.asOf(nowstrike.timestamp)
+				.forSymbol(strike.symbol)
+				.forCycle(expirationCycle)
+				.build();
+			strike.expirationCycle.setCycle(expirationCycle);*/
+			strike.expirationCycle = expirationCycle/*.setExpirationCycle(expirationCycle)*/;
+			return this;
+		}
+		
 		public StrikeBuilder withValue(String value){
-			strike.value = Double.parseDouble(value);
+			strike.setValue(value);
 			return this;
 		}
 		
-		public StrikeBuilder withBid(String bid){
-			strike.setBid(bid);
-			return this;
-		}
 		
-		public StrikeBuilder withBidSize(String bidSize){
-			strike.setBidSize(bidSize);
-			return this;
-		}	
-		
-		public StrikeBuilder withBidTime(String bidTime){
-			strike.setBidTime(bidTime);
-			return this;
-		}
-		
-		public StrikeBuilder withAsk(String ask){
-			strike.setAsk(ask);
-			return this;
-		}
-		
-		public StrikeBuilder withAskSize(String askSize){
-			strike.setAskSize(askSize);
-			return this;
-		}
-		
-		public StrikeBuilder withAskTime(String askTime){
-			strike.setAskTime(askTime);
-			return this;
-		}
-		
-		public StrikeBuilder asQuotedOne(String askTime){
-			strike.setAskTime(askTime);
-			return this;
-		}		
 	}
+
+
+
+
+
+	
+
+
+
 
 
 
