@@ -1,16 +1,16 @@
 package com.excelsiorsoft.gatherer.tradeking.market.flow;
 
 
+import static com.excelsiorsoft.daedalus.dominion.WithExpirationDate.EXPIRATION_DATE;
 import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
-import static com.excelsiorsoft.daedalus.dominion.WithExpirationDate.EXPIRATION_DATE;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.*;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
-import static java.lang.String.format;
-import static java.lang.System.out;
-import static org.junit.Assert.assertEquals;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.*;
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.CALL;
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.PUT;
 import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsExpirations;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsStrikes;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
+import static com.excelsiorsoft.gatherer.tradeking.market.flow.util.RandomPick.randomFrom;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,25 +20,22 @@ import java.util.Map;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
+import com.excelsiorsoft.daedalus.dominion.impl.Option;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage.OptionMontageBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForeman;
-import com.excelsiorsoft.gatherer.tradeking.market.flow.util.RandomPick;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.ExpirationDateDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.StrikesDeserializer;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("unused")
 public class CandidatesSearchFlowTest {
@@ -214,9 +211,96 @@ public class CandidatesSearchFlowTest {
 			Collection<ExpirationDate> expirDates = new ExpirationDateDeserializer().deserialize(expirations, context);
 			logger.info("{} expiration dates for {}: {}", expirDates.size(), symbol, expirDates);
 			
-			ExpirationDate randomExpDate = RandomPick.randomFrom((List<ExpirationDate>) expirDates);
-			logger.info("randomExpDate: {}", randomExpDate);
+			ExpirationDate randomExpDate = randomFrom((List<ExpirationDate>) expirDates);
+			logger.info("randomExpDate: {}:{}", randomExpDate, randomExpDate.getCycle());
 		}
 	}
 
+	
+	@Test
+	public void updateRandomStrikeInRandomExpirationCycle() throws Throwable {
+		
+		long now = nowFromEpoch(); //define first - this is an anchor timestamp for the whole underlying structure
+		
+		for(String symbol: symbols) {
+			
+			OptionMontageBuilder montageBuilder = OptionMontageBuilder.builder();
+			montageBuilder.forSymbol(symbol).asOf(now);
+			
+			//create context
+			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}};
+			
+			logger.info("Building matrix for {} as of {}",symbol, now);
+			
+			String expirations = foreman.makeApiCall(getOptionsExpirations(json, symbol)).getResponse();
+			logger.debug("Expiration dates for {}: {}", symbol, expirations);
+			
+			Collection<ExpirationDate> expirDates = new ExpirationDateDeserializer().deserialize(expirations, context);
+			logger.info("{} expiration dates for {}: {}", expirDates.size(), symbol, expirDates);
+			
+			Collection<Strike> strikes  = null;
+
+			for(ExpirationDate expDate : expirDates) {
+				
+				ExpirationCycleTableauBuilder tableauBuilder = ExpirationCycleTableauBuilder.builder().forSymbol(symbol).asOf(now);
+				
+				String expDateStr = expDate.getCycle();
+				context.put(EXPIRATION_DATE, expDateStr);
+				tableauBuilder.forExpirationCycle(expDateStr);
+				
+				String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
+				logger.debug("Strikes for {} for expiration date of {}: {}", symbol, expDateStr, strikesJson);
+				
+				strikes = new StrikesDeserializer().deserialize(strikesJson, context);
+				logger.info("{} strikes for {} for {} expiration cycle: {}", strikes.size(), symbol, expDateStr, strikes);
+				
+				tableauBuilder.withStrikes((List<Strike>) strikes);
+				ExpirationCycleTableau tableau = tableauBuilder.build();
+
+				logger.info("Tableau for {} at {}: {}", symbol, expDateStr, tableau);
+				montageBuilder.add(tableau);
+				logger.info("Added tableau {} onto option montage", tableau);
+
+			}
+			
+			OptionMontage montage = montageBuilder.build();
+
+			logger.info("Built {} option montage:\n\n{}", symbol, montage);
+			
+			for(int i = 0; i<2; i++) {
+				ExpirationDate randomExpDate = randomFrom((List<ExpirationDate>) expirDates);
+				logger.info("randomExpDate: {}:{}", randomExpDate, randomExpDate.getCycle());
+
+				Strike randomStrike = randomFrom((List<Strike>) strikes);
+				logger.info("randomStrike: {}:{}", randomStrike, randomStrike.getValue());
+
+				buildOption(montage, randomExpDate.getCycle(), Double.toString(randomStrike.getValue()), CALL.abbreviation());
+				buildOption(montage, randomExpDate.getCycle(), Double.toString(randomStrike.getValue()), PUT.abbreviation());
+				
+				logger.info("--------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+			}
+			
+			logger.info("Resulting montage: {}", montage);
+
+		}
+		
+		
+	}
+	
+	
+	private Option buildOption(OptionMontage montage, String expirationDate, String strike, String optionType) throws Throwable {
+		
+		String underlying = montage.getSymbol();
+		ExpirationCycleTableau chosenTableau = montage.getTableau(expirationDate);
+		Map<String, Option> chosenStrike = chosenTableau.getStrikes().get(strike);
+		
+		OptionBuilder optionBuilder = OptionBuilder.builder();
+		Option option = optionBuilder.withUnderlying(underlying).withExpiration(chosenTableau.getExpirationDate()).ofType(optionType).withStrike(strike).build();
+		
+		chosenStrike.put(optionType, option);
+		
+		return option;
+		
+	}
+	
 }

@@ -53,6 +53,12 @@ public class ExpirationCycleTableau implements WithTimestamp, WithExpirationDate
 		return this;
 	}
 
+	
+	/**
+	 * strikeName[15.00] -> OptionType[Put/Call] -> Option[market data]
+	 * 
+	 * @return
+	 */
 	public Map<String, Map<String,Option>> getStrikes() {
 		return strikes;
 	}

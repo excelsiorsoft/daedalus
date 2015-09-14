@@ -11,7 +11,10 @@ import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.CALL;
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.PUT;
 import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 
 public class ExpirationCycleTableauTest {
@@ -69,7 +72,7 @@ public class ExpirationCycleTableauTest {
 		//String singleStrikeName = "13.5";
 		String threeStrikeName = "3";
 		
-		String putType = "P";
+		String putType = PUT.abbreviation();
 		Map<String, Option> _3_strike = cut.getStrikes().get(threeStrikeName);
 		OptionBuilder putBuilder = OptionBuilder.builder();
 		Option put = putBuilder.withUnderlying(underlying).withExpiration(expirationCycle).ofType(putType).withStrike(threeStrikeName).build();
@@ -77,7 +80,7 @@ public class ExpirationCycleTableauTest {
 		System.out.println("\nput: " +put);
 		
 		
-		String callType ="C";
+		String callType = CALL.abbreviation();
 		OptionBuilder callBuilder = OptionBuilder.builder();
 		Option call = callBuilder.withUnderlying(underlying).withExpiration(expirationCycle).ofType(callType).withStrike(threeStrikeName).build();
 		_3_strike.put(callType, call);

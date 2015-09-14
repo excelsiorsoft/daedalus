@@ -101,6 +101,18 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		
 	}
+
+	@Test
+	public void marketOptionsExpirationsWithMultitTableausApiCall() throws Throwable {
+		
+		System.out.println("market/options/expirations call...");
+		System.out.println("==============================");
+		TradeKingForeman foreman = new TradeKingForeman();
+		System.out.println(foreman.makeApiCall(getOptionsExpirations(xml, "uvxy ")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsExpirations(json, "uvxy ")).getResponse());
+		System.out.println("==============================");
+		
+	}
 	
 	@Test
 	public void marketOptionsStrikesApiCall() throws Throwable {

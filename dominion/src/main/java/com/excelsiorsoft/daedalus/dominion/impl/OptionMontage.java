@@ -47,9 +47,13 @@ public class OptionMontage implements WithSymbol, WithTimestamp{
 	}
 
 	
-	public OptionMontage addTableau(ExpirationCycleTableau tableau){
+	/*public OptionMontage addTableau(ExpirationCycleTableau tableau){
 		tableaus.put(tableau.getExpirationDate(),tableau);
 		return this;
+	}*/
+	
+	public ExpirationCycleTableau getTableau(String expirationDate) {
+		return tableaus.get(expirationDate);
 	}
 
 	@Override
@@ -101,7 +105,7 @@ public class OptionMontage implements WithSymbol, WithTimestamp{
 		}
 		
 		public OptionMontageBuilder add(ExpirationCycleTableau tableau){
-			montage.addTableau(tableau);
+			montage.tableaus.put(tableau.getExpirationDate(),tableau);/*.addTableau(tableau);*/
 			return this;
 		}		
 		
