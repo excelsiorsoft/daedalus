@@ -33,6 +33,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage;
 import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage.OptionMontageBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForeman;
+import com.excelsiorsoft.gatherer.tradeking.market.flow.util.RandomPick;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.ExpirationDateDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.StrikesDeserializer;
@@ -195,6 +196,27 @@ public class CandidatesSearchFlowTest {
 		}
 		
 		
+	}
+	
+	@Test
+	public void pickingRandomExpirationCycle() throws Throwable {
+		
+		long now = nowFromEpoch(); //define first - this is an anchor timestamp for the whole underlying structure
+		
+		for(String symbol: symbols) {
+			
+			//create context
+			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}};			
+			
+			String expirations = foreman.makeApiCall(getOptionsExpirations(json, symbol)).getResponse();
+			logger.debug("Expiration dates for {}: {}", symbol, expirations);
+			
+			Collection<ExpirationDate> expirDates = new ExpirationDateDeserializer().deserialize(expirations, context);
+			logger.info("{} expiration dates for {}: {}", expirDates.size(), symbol, expirDates);
+			
+			ExpirationDate randomExpDate = RandomPick.randomFrom((List<ExpirationDate>) expirDates);
+			logger.info("randomExpDate: {}", randomExpDate);
+		}
 	}
 
 }
