@@ -4,11 +4,8 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder.builder;
-import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.*;
-import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils.asLong;
 import static com.excelsiorsoft.genesis.json.deserialization.DeserializationUtils.asText;
 
-import java.time.Instant;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -19,12 +16,14 @@ import com.excelsiorsoft.daedalus.dominion.impl.Exchange.ExchangeBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
+import com.excelsiorsoft.daedalus.util.Significant;
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * @author sleyzerzon
  *
  */
+@Significant
 public class OptionDeserializer  extends AbstractDeserializer<Option> {
 
 	public OptionDeserializer() {

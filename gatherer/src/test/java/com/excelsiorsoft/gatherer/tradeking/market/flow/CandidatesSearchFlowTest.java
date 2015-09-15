@@ -28,18 +28,19 @@ import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
-import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbolBuilder;
-import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
-import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbolBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage;
 import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage.OptionMontageBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
+import com.excelsiorsoft.daedalus.util.Significant;
 import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForeman;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.ExpirationDateDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.OptionDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.StrikesDeserializer;
 
+@Significant
 @SuppressWarnings("unused")
 public class CandidatesSearchFlowTest {
 

@@ -12,8 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage.OptionMontageBuilder;
+import com.excelsiorsoft.daedalus.util.Significant;
 
-
+@Significant
 public class OptionMontageTest {
 
 	private final static Logger logger = LoggerFactory.getLogger(OptionMontageTest.class);

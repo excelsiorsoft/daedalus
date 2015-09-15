@@ -9,3 +9,5 @@ OptionDeserializerTest
 OptionSymbolBuilderTest
 AbstractDeserializer
 AbstractDeserializerTest
+
+#Decided to annotate the file significance instead so new additions may not be included here (to list them - use Eclipse's Ctrl+Shift+L instead)
