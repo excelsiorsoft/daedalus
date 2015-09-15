@@ -103,6 +103,21 @@ public class UriBuilder {
 	
 	
 	/**
+	 * @param params
+	 * @return
+	 * @throws Throwable
+	 */
+	public static String optionsStrikesForSymbolPerExpCycle(Map<String, String> params) throws Throwable {
+		
+		/*Map<String, String> params = new HashMap<>();
+		params.put("symbol", symbol);
+		params.put("format", format);*/
+
+		return buildUri(MARKET.OPTIONS_SEARCH, params);
+	}	
+	
+	
+	/**
 	 * This call will return a ranked list based on the list type specified.
 	 * 
 	 * 			<li>toplosers	Top losers by dollar amount, corresponds to {@link TopType.BY_DOLLAR_AMOUNT}
@@ -153,7 +168,7 @@ public class UriBuilder {
 		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
 		NEWS_SEARCH(GET, "https://api.tradeking.com/v1/market/news/search"), 
 		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 
-		OPTIONS_SEARCH(GET, "https://api.tradeking.com/v1/market/options/search"), 
+		OPTIONS_SEARCH(GET, "https://api.tradeking.com/v1/market/options/search.${format}?symbol=${symbol?url}&query=${xdate?url}"), 
 		OPTIONS_STRIKES(GET, "https://api.tradeking.com/v1/market/options/strikes.${format}?symbol=${symbol?url}"), 
 		OPTIONS_EXPIRATIONS(GET, "https://api.tradeking.com/v1/market/options/expirations.${format}?symbol=${symbol?url}"), 
 		TIMESALES(GET, "https://api.tradeking.com/v1/market/timesales"), 

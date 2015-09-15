@@ -4,6 +4,7 @@ package com.excelsiorsoft.gatherer.tradeking.connector;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getExtQuotes;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsExpirations;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsStrikes;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsStrikesForSymbolPerExpCycle;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getTopLosers;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
@@ -126,6 +127,19 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		
 	}
+	
+	
+	@Test
+	public void marketOptionsStrikesForSymbolPerExpirationCycleApiCall() throws Throwable {
+		
+		System.out.println("market/options/search call...");
+		System.out.println("==============================");
+		TradeKingForeman foreman = new TradeKingForeman();
+		//System.out.println(foreman.makeApiCall(getOptionsStrikes(xml, "slw")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "SLW")).getResponse());
+		System.out.println("==============================");
+		
+	}	
 	
 	
 	@Test
