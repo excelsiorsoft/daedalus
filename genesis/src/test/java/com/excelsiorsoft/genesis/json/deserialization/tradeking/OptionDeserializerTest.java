@@ -40,7 +40,7 @@ public class OptionDeserializerTest {
 	}
 	
 	 @Test
-	 public void convertJsonToXmlorBack() throws Throwable {
+	 public void convertJsonToXmlOrBack() throws Throwable {
 		 //http://www.json.org/javadoc/  (XML)
 	 }
 	 
