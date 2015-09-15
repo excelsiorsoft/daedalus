@@ -1,7 +1,10 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.CALL;
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.PUT;
+import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 import static java.util.Arrays.asList;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +14,9 @@ import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
-import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
+import com.excelsiorsoft.daedalus.util.Significant;
 
-import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.CALL;
-import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.PUT;
-import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
-
+@Significant
 public class ExpirationCycleTableauTest {
 
 	ExpirationCycleTableau cut;

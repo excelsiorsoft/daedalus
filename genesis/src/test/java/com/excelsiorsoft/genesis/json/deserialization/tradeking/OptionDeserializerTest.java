@@ -3,23 +3,17 @@ package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
 import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
-import static org.junit.Assert.*;
 
 import java.util.Collection;
-
-
-
-
-
-
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
+import com.excelsiorsoft.daedalus.util.Significant;
 
-
+@Significant
 public class OptionDeserializerTest {
 
 	@SuppressWarnings("serial")

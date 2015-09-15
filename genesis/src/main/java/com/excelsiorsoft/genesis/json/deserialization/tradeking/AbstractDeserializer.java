@@ -1,5 +1,8 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
+import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
+import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,14 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
-import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
-
+import com.excelsiorsoft.daedalus.util.Significant;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
-
-import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
-import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
 
 /**
  * Encapsulation of the base version of domain deserialization logic
@@ -25,6 +24,7 @@ import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
  * @param <T>
  *
  */
+@Significant
 public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 
 	protected Logger logger = LoggerFactory.getLogger(AbstractDeserializer.class);

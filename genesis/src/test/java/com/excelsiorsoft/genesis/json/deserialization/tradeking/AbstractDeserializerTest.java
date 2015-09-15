@@ -9,8 +9,10 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.excelsiorsoft.daedalus.util.Significant;
 import com.fasterxml.jackson.databind.JsonNode;
 
+@Significant
 public class AbstractDeserializerTest {
 
 	FooDeserializer fooDeserializer;

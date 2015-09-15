@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.excelsiorsoft.daedalus.dominion.WithSymbol;
 import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
+import com.excelsiorsoft.daedalus.util.Significant;
 
 /**
  * Full representation of all option activity for a given underlying symbol, including the activity for the latter
@@ -13,6 +14,7 @@ import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
  * @author sleyzerzon
  *
  */
+@Significant
 public class OptionMontage implements WithSymbol, WithTimestamp{
 
 	/*
