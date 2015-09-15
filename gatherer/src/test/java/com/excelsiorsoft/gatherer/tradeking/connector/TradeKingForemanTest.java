@@ -15,6 +15,7 @@ import java.util.HashMap;
 import org.junit.Test;
 
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
+import com.excelsiorsoft.daedalus.util.Significant;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.TopType;
 import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
@@ -22,7 +23,7 @@ import com.excelsiorsoft.genesis.json.deserialization.tradeking.OptionDeserializ
 
 
 
-
+@Significant
 public class TradeKingForemanTest {
 
 	
