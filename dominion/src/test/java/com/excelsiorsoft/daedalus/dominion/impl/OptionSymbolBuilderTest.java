@@ -1,6 +1,7 @@
 package com.excelsiorsoft.daedalus.dominion.impl;
 
 
+import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.CALL;
 import static org.junit.Assert.assertEquals;
 
 import java.text.SimpleDateFormat;
@@ -30,7 +31,7 @@ public class OptionSymbolBuilderTest {
 		String underlying = "slw";
 		//Date expirationDate = new SimpleDateFormat("yyyy-MM-dd").parse("2017-01-20");
 		String expirationDate = "2017-01-20";
-		String optionType = OptionType.CALL.abbreviation();
+		String optionType = CALL.abbreviation();
 		double strike = 18.00;
 		
 		String result = builder.buildSymbol(underlying, expirationDate, optionType, strike);

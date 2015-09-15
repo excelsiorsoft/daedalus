@@ -7,6 +7,7 @@ import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.CALL;
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.PUT;
 import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getExtQuotes;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsExpirations;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsStrikes;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
@@ -27,6 +28,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbolBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
@@ -34,6 +36,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage.OptionMontageBuild
 import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForeman;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.ExpirationDateDeserializer;
+import com.excelsiorsoft.genesis.json.deserialization.tradeking.OptionDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.StrikesDeserializer;
 
@@ -288,6 +291,7 @@ public class CandidatesSearchFlowTest {
 	}
 	
 	
+	@SuppressWarnings({ "serial", "static-access" })
 	private Option buildOption(OptionMontage montage, String expirationDate, String strike, String optionType) throws Throwable {
 		
 		String underlying = montage.getSymbol();
@@ -295,6 +299,18 @@ public class CandidatesSearchFlowTest {
 		Map<String, Option> chosenStrike = chosenTableau.getStrikes().get(strike);
 		
 		OptionBuilder optionBuilder = OptionBuilder.builder();
+		
+		String optionSymbol = new OptionSymbolBuilder().buildSymbol(underlying, expirationDate, optionType, Double.parseDouble(strike));
+		
+		
+		String quote = foreman.makeApiCall(getExtQuotes(json, optionSymbol, "")).getResponse();
+		
+		//create context
+		Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,underlying);put(TIMESTAMP,nowFromEpoch());}};
+				
+		Collection<Option> result = new OptionDeserializer().deserialize(quote, context);
+		logger.info("Deserialized: {}",result);
+		
 		Option option = optionBuilder.withUnderlying(underlying).withExpiration(chosenTableau.getExpirationDate()).ofType(optionType).withStrike(strike).build();
 		
 		chosenStrike.put(optionType, option);

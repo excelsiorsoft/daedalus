@@ -1,5 +1,6 @@
 package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import static com.excelsiorsoft.daedalus.dominion.impl.Quote.QuoteBuilder.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeType;
 
 import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
@@ -54,16 +56,19 @@ public abstract class AbstractDeserializer<T> implements SimpleDeserializer<T> {
 			
 		List<T> result = new LinkedList<>();
 
-		if (node.isContainerNode()) {
-
-			return deserializeNodeCollection(node, context);
-
-		} else {
-
-			result.add(deserializeSingleNode(node , context));
-			return result;
+		if(node.getNodeType() != JsonNodeType.MISSING) {
+			if (node.isContainerNode()/*.isArray()*/) {
+	
+				return deserializeNodeCollection(node, context);
+	
+			} else {
+	
+				result.add(deserializeSingleNode(node , context));
+				return result;
+			}
 		}
 
+		return Collections.EMPTY_LIST/*result*/;
 	}
 
 
