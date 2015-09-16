@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.*;
 
 
@@ -163,8 +162,8 @@ public class UriBuilder {
 	}
 	
 	public enum MARKET implements UriType {
-		CLOCK(GET, "https://api.tradeking.com/v1/market/clock.${format}"), 
-		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${format}?symbols=${symbols?url}"), 
+		CLOCK(GET, "https://api.tradeking.com/v1/market/clock.${"+FORMAT+"}"), 
+		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${"+FORMAT+"}?symbols=${"+SYMBOLS+"?url}"), 
 		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
 		NEWS_SEARCH(GET, "https://api.tradeking.com/v1/market/news/search"), 
 		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 
