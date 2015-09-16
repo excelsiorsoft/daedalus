@@ -162,19 +162,21 @@ public class UriBuilder {
 	}
 	
 	public enum MARKET implements UriType {
+
 		CLOCK(GET, "https://api.tradeking.com/v1/market/clock.${"+FORMAT+"}"), 
 		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${"+FORMAT+"}?symbols=${"+SYMBOLS+"?url}"), 
 		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
 		NEWS_SEARCH(GET, "https://api.tradeking.com/v1/market/news/search"), 
 		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 
-		//OPTIONS_SEARCH(GET, "https://api.tradeking.com/v1/market/options/search.${format}?symbol=${symbol?url}&query=${xdate?url}"),
-		OPTIONS_SEARCH(GET, "https://api.tradeking.com/v1/market/options/search.${format}?symbol=${symbol?url}&query=${xdate?url}&${fields}"), 
-		OPTIONS_STRIKES(GET, "https://api.tradeking.com/v1/market/options/strikes.${format}?symbol=${symbol?url}"), 
-		OPTIONS_EXPIRATIONS(GET, "https://api.tradeking.com/v1/market/options/expirations.${format}?symbol=${symbol?url}"), 
+		
+		//fields should not be URL encoded, date - should
+		OPTIONS_SEARCH(GET, "https://api.tradeking.com/v1/market/options/search.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}&query=${xdate?url}&${fields}"), 
+		OPTIONS_STRIKES(GET, "https://api.tradeking.com/v1/market/options/strikes.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
+		OPTIONS_EXPIRATIONS(GET, "https://api.tradeking.com/v1/market/options/expirations.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
 		TIMESALES(GET, "https://api.tradeking.com/v1/market/timesales"), 
 		TOPLISTS_VOLUME(GET, "https://api.tradeking.com/v1/market/toplists/topvolume"), 
-		TOPLISTS_LOSERS_DOLLAR(GET, "https://api.tradeking.com/v1/market/toplists/toplosers.${format}"), 
-		TOPLISTS_LOSERS_PERCENTAGE(GET, "https://api.tradeking.com/v1/market/toplists/toppctlosers.${format}"), 
+		TOPLISTS_LOSERS_DOLLAR(GET, "https://api.tradeking.com/v1/market/toplists/toplosers.${"+FORMAT+"}"), 
+		TOPLISTS_LOSERS_PERCENTAGE(GET, "https://api.tradeking.com/v1/market/toplists/toppctlosers.${"+FORMAT+"}"), 
 		TOPLISTS_ACTIVE(GET, "https://api.tradeking.com/v1/market/toplists/topactive"), 
 		TOPLISTS_GAINERS_DOLLAR_AMT(GET, "https://api.tradeking.com/v1/market/toplists/topgainers"), 
 		TOPLISTS_GAINERS_PERCENTAGE(GET, "https://api.tradeking.com/v1/market/toplists/toppctgainers"), 
