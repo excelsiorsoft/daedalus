@@ -24,6 +24,8 @@ public abstract class TKRequest implements Serializable {
 	public static final String SYMBOL = "symbol";
 	public static final String SYMBOLS = "symbols";
 	public static final String LOSER_TYPE = "typeOfLoser";
+	public static final String FIELDS = "fields";
+	public static final String EXPIRATION_DATE = "xdate";
 	
 	protected Verb verb;
 	protected Map<String, String> params = new HashMap<>();

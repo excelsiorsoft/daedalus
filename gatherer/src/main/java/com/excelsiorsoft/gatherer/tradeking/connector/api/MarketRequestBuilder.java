@@ -24,6 +24,8 @@ import org.slf4j.LoggerFactory;
  */
 public class MarketRequestBuilder extends TKRequest {
 
+	
+
 	private final static Logger LOGGER = LoggerFactory
 			.getLogger(MarketRequestBuilder.class);
 
@@ -105,8 +107,8 @@ public class MarketRequestBuilder extends TKRequest {
 			{
 				put(FORMAT, format.toString());
 				put(SYMBOL, symbol);
-				put("xdate","xdate-eq:20160115 AND put_call-eq:call");
-				put("fields","fids=exch,strikeprice");
+				put(EXPIRATION_DATE,"xdate-eq:20160115 AND put_call-eq:call");
+				put(FIELDS,"fids=exch,strikeprice");
 				//put("xdate","xdate-eq:20160115 AND put_call-eq:call");
 				//put("xdate","xyear-eq:2016 AND xmonth-eq:01 AND xday-eq:01");
 			}
