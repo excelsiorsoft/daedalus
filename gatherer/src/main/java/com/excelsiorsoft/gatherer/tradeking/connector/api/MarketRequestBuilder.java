@@ -105,12 +105,15 @@ public class MarketRequestBuilder extends TKRequest {
 			{
 				put(FORMAT, format.toString());
 				put(SYMBOL, symbol);
-				put("xdate","xdate-eq:20160115");
-				//put("xdate","xyear:2016 AND xmonth:01 AND xday:01");
+				put("xdate","xdate-eq:20160115 AND put_call-eq:call");
+				put("fields","fids=exch,strikeprice");
+				//put("xdate","xdate-eq:20160115 AND put_call-eq:call");
+				//put("xdate","xyear-eq:2016 AND xmonth-eq:01 AND xday-eq:01");
 			}
 		};
 		
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(POST, context);
+		//MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
 		mktReqBuilder.setResourceURL(optionsStrikesForSymbolPerExpCycle(context));
 		return mktReqBuilder;
 	}	
