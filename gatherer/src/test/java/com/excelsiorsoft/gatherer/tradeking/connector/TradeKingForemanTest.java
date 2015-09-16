@@ -135,7 +135,7 @@ public class TradeKingForemanTest {
 		System.out.println("market/options/search call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		//System.out.println(foreman.makeApiCall(getOptionsStrikes(xml, "slw")).getResponse());
+		//System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(xml, "slw")).getResponse());
 		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "SLW")).getResponse());
 		System.out.println("==============================");
 		
