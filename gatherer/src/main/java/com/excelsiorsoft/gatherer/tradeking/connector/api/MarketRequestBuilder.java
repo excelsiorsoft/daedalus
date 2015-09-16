@@ -121,8 +121,7 @@ public class MarketRequestBuilder extends TKRequest {
 	}	
 	
 	
-	public static MarketRequestBuilder getTopLosers(TopType typeOfLoser, ResponseFormat format/*,
-			String symbol*/) throws Throwable {
+	public static MarketRequestBuilder getTopLosers(TopType typeOfLoser, ResponseFormat format/*, String symbol*/) throws Throwable {
 
 		@SuppressWarnings("serial")
 		Map<String, String> context = new HashMap<String, String>() {

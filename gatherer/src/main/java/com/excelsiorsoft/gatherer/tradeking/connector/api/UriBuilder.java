@@ -2,7 +2,7 @@ package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
 
 import static freemarker.template.ObjectWrapper.BEANS_WRAPPER;
-import static org.scribe.model.Verb.GET;
+import static org.scribe.model.Verb.*;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -112,7 +112,7 @@ public class UriBuilder {
 		params.put("symbol", symbol);
 		params.put("format", format);*/
 
-		return buildUri(MARKET.OPTIONS_SEARCH, params);
+		return buildUri(MARKET.OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE, params);
 	}	
 	
 	
@@ -170,7 +170,8 @@ public class UriBuilder {
 		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 
 		
 		//fields should not be URL encoded, date - should
-		OPTIONS_SEARCH(GET, "https://api.tradeking.com/v1/market/options/search.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}&query=${xdate?url}&${fields}"), 
+
+		OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE(POST, "https://api.tradeking.com/v1/market/options/search.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}&query=${xdate?url}&${fields}"), 
 		OPTIONS_STRIKES(GET, "https://api.tradeking.com/v1/market/options/strikes.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
 		OPTIONS_EXPIRATIONS(GET, "https://api.tradeking.com/v1/market/options/expirations.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
 		TIMESALES(GET, "https://api.tradeking.com/v1/market/timesales"), 
