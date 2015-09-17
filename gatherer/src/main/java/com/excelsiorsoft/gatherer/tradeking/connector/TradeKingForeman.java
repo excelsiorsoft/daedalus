@@ -7,7 +7,6 @@ import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.CO
 
 import java.io.Serializable;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthRequest;
@@ -74,7 +73,7 @@ public class TradeKingForeman implements Serializable {
 		final String resourceURL = tkRequest.getResourceURL(); 
 		
 		//parameters and payload get in the way - for now not using them
-		final Map<String, String> parameters = tkRequest.getParameters();
+		final Map<String, Object> parameters = tkRequest.getParameters();
 		final String payload = tkRequest.getBody();
 		
 		logger.info("Creating an OAuth request wrapper around {}", tkRequest);

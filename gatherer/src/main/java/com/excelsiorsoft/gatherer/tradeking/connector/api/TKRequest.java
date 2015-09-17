@@ -20,6 +20,7 @@ public abstract class TKRequest implements Serializable {
 	
 	private static final long serialVersionUID = 5364934694744835663L;
 	
+	public static final String HTTP_METHOD = "http_method";
 	public static final String FORMAT = "format";
 	public static final String SYMBOL = "symbol";
 	public static final String SYMBOLS = "symbols";
@@ -27,8 +28,9 @@ public abstract class TKRequest implements Serializable {
 	public static final String FIELDS = "fields";
 	public static final String EXPIRATION_DATE = "xdate";
 	
+	
 	protected Verb verb;
-	protected Map<String, String> params = new HashMap<>();
+	protected Map<String, Object> params = new HashMap<>();
 	protected String resourceURL;
 	protected String body;
 	protected boolean streaming;
@@ -41,7 +43,7 @@ public abstract class TKRequest implements Serializable {
 		return verb;
 	}
 
-	public Map<String, String> getParameters() {
+	public Map<String, Object> getParameters() {
 		return params;
 	}
 
