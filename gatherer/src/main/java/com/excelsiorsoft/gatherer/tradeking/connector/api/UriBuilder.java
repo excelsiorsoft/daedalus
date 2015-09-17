@@ -34,14 +34,14 @@ public class UriBuilder {
 	private final static Logger LOGGER = LoggerFactory.getLogger(UriBuilder.class);
 	
 	public interface UriType {
-		Verb getHttpMethod();
+		//Verb getHttpMethod();
 		String getTemplate(); 
 	}
 
 	/**
 	 * This call will return the current state of the market, the time of the next state change (if the market is open), and the current server timestamp.
 	 */	
-	public static String marketClock(Map<String, String> params) throws Throwable	{
+	public static String marketClock(Map<String, Object> params) throws Throwable	{
 		
 		/*Map<String, String> params = new HashMap<>();
 		params.put("format", format);*/
@@ -55,7 +55,7 @@ public class UriBuilder {
 	 * @param symbolsLst 
 	 * @throws Throwable 
 	 */
-	public static String extQuotes(Map<String, String> params) throws Throwable {
+	public static String extQuotes(Map<String, Object> params) throws Throwable {
 		
 		/*Map<String, String> params = new HashMap<>();
 		params.put("symbols", symbolsLst);
@@ -74,7 +74,7 @@ public class UriBuilder {
 	 * @return
 	 * @throws Throwable
 	 */
-	public static String optionsExpirations(Map<String, String> params) throws Throwable {
+	public static String optionsExpirations(Map<String, Object> params) throws Throwable {
 		
 		/*Map<String, String> params = new HashMap<>();
 		params.put("symbol", symbol);
@@ -91,7 +91,7 @@ public class UriBuilder {
 	 * @return
 	 * @throws Throwable
 	 */
-	public static String optionsStrikes(Map<String, String> params) throws Throwable {
+	public static String optionsStrikes(Map<String, Object> params) throws Throwable {
 		
 		/*Map<String, String> params = new HashMap<>();
 		params.put("symbol", symbol);
@@ -106,7 +106,7 @@ public class UriBuilder {
 	 * @return
 	 * @throws Throwable
 	 */
-	public static String optionsStrikesForSymbolPerExpCycle(Map<String, String> params) throws Throwable {
+	public static String optionsStrikesForSymbolPerExpCycle(Map<String, Object> params) throws Throwable {
 		
 		/*Map<String, String> params = new HashMap<>();
 		params.put("symbol", symbol);
@@ -127,10 +127,10 @@ public class UriBuilder {
 	 * @return
 	 * @throws Throwable
 	 */
-	public static String topLosers(/*TopType typeOfTop, */Map<String, String> params) throws Throwable {
+	public static String topLosers(/*TopType typeOfTop, */Map<String, Object> params) throws Throwable {
 	
 		String defaultLosersUri = buildUri(MARKET.TOPLISTS_LOSERS_DOLLAR, params);
-		String typeOfTop = params.get(LOSER_TYPE);
+		String typeOfTop = (String) params.get(LOSER_TYPE);
 		
 		String result = (typeOfTop.equals(TopType.BY_DOLLAR_AMOUNT)) ? defaultLosersUri 	: 
 						(typeOfTop.equals(TopType.BY_PERCENTAGE_AMOUNT)) ? buildUri(MARKET.TOPLISTS_LOSERS_PERCENTAGE, params)
@@ -141,7 +141,7 @@ public class UriBuilder {
 		}	
 	
 	
-	public static String buildUri(UriType type, Map<String, String> params) throws Throwable {
+	public static String buildUri(UriType type, Map<String, Object> params) throws Throwable {
 
 
 		LOGGER.debug("Building a template with call of type {} and parameters {}\n", type, params);
@@ -163,38 +163,37 @@ public class UriBuilder {
 	
 	public enum MARKET implements UriType {
 
-		CLOCK(GET, "https://api.tradeking.com/v1/market/clock.${"+FORMAT+"}"), 
-		EXT_QUOTES(GET, "https://api.tradeking.com/v1/market/ext/quotes.${"+FORMAT+"}?symbols=${"+SYMBOLS+"?url}"), 
-		STREAM_EXT_QUOTES(GET, "https://stream.tradeking.com/v1/market/quotes"), 
-		NEWS_SEARCH(GET, "https://api.tradeking.com/v1/market/news/search"), 
-		NEWS_ID(GET, "https://api.tradeking.com/v1/market/news/"), 
+		CLOCK(/*GET,*/ "https://api.tradeking.com/v1/market/clock.${"+FORMAT+"}"), 
+		EXT_QUOTES(/*GET,*/ "https://api.tradeking.com/v1/market/ext/quotes.${"+FORMAT+"}?symbols=${"+SYMBOLS+"?url}"), 
+		STREAM_EXT_QUOTES(/*GET,*/ "https://stream.tradeking.com/v1/market/quotes"), 
+		NEWS_SEARCH(/*GET,*/ "https://api.tradeking.com/v1/market/news/search"), 
+		NEWS_ID(/*GET,*/ "https://api.tradeking.com/v1/market/news/"), 
 		
 		//fields should not be URL encoded, date - should
+		OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE(/*POST,*/ "https://api.tradeking.com/v1/market/options/search.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}&query=${xdate?url}&${fields}"), 
+		OPTIONS_STRIKES(/*GET,*/ "https://api.tradeking.com/v1/market/options/strikes.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
+		OPTIONS_EXPIRATIONS(/*GET,*/ "https://api.tradeking.com/v1/market/options/expirations.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
+		TIMESALES(/*GET,*/ "https://api.tradeking.com/v1/market/timesales"), 
+		TOPLISTS_VOLUME(/*GET,*/ "https://api.tradeking.com/v1/market/toplists/topvolume"), 
+		TOPLISTS_LOSERS_DOLLAR(/*GET,*/ "https://api.tradeking.com/v1/market/toplists/toplosers.${"+FORMAT+"}"), 
+		TOPLISTS_LOSERS_PERCENTAGE(/*GET,*/ "https://api.tradeking.com/v1/market/toplists/toppctlosers.${"+FORMAT+"}"), 
+		TOPLISTS_ACTIVE(/*GET,*/ "https://api.tradeking.com/v1/market/toplists/topactive"), 
+		TOPLISTS_GAINERS_DOLLAR_AMT(/*GET,*/ "https://api.tradeking.com/v1/market/toplists/topgainers"), 
+		TOPLISTS_GAINERS_PERCENTAGE(/*GET,*/ "https://api.tradeking.com/v1/market/toplists/toppctgainers"), 
+		TOPLISTS_GAINERS_ACTIVE_DOLLAR_AMT(/*GET,*/ "https://api.tradeking.com/v1/market/toplists/topactivegainersbydollarvalue");
 
-		OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE(POST, "https://api.tradeking.com/v1/market/options/search.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}&query=${xdate?url}&${fields}"), 
-		OPTIONS_STRIKES(GET, "https://api.tradeking.com/v1/market/options/strikes.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
-		OPTIONS_EXPIRATIONS(GET, "https://api.tradeking.com/v1/market/options/expirations.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
-		TIMESALES(GET, "https://api.tradeking.com/v1/market/timesales"), 
-		TOPLISTS_VOLUME(GET, "https://api.tradeking.com/v1/market/toplists/topvolume"), 
-		TOPLISTS_LOSERS_DOLLAR(GET, "https://api.tradeking.com/v1/market/toplists/toplosers.${"+FORMAT+"}"), 
-		TOPLISTS_LOSERS_PERCENTAGE(GET, "https://api.tradeking.com/v1/market/toplists/toppctlosers.${"+FORMAT+"}"), 
-		TOPLISTS_ACTIVE(GET, "https://api.tradeking.com/v1/market/toplists/topactive"), 
-		TOPLISTS_GAINERS_DOLLAR_AMT(GET, "https://api.tradeking.com/v1/market/toplists/topgainers"), 
-		TOPLISTS_GAINERS_PERCENTAGE(GET, "https://api.tradeking.com/v1/market/toplists/toppctgainers"), 
-		TOPLISTS_GAINERS_ACTIVE_DOLLAR_AMT(GET, "https://api.tradeking.com/v1/market/toplists/topactivegainersbydollarvalue");
-
-		private Verb httpMethod;
+		//private Verb httpMethod;
 		private String template;
 
-		MARKET(Verb httpMethod, String template) {
-			this.httpMethod = httpMethod;
+		MARKET(/*Verb httpMethod, */String template) {
+			//this.httpMethod = httpMethod;
 			this.template = template;
 		
 		}
 		
-		public Verb getHttpMethod() {
+		/*public Verb getHttpMethod() {
 			return httpMethod;
-		}
+		}*/
 
 		public String getTemplate() {
 			return template;

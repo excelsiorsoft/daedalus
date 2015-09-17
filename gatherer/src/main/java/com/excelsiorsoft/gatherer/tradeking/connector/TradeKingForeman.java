@@ -2,12 +2,12 @@ package com.excelsiorsoft.gatherer.tradeking.connector;
 
 import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.OAUTH_TOKEN;
 import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.OAUTH_TOKEN_SECRET;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.HTTP_METHOD;
 import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.CONSUMER_KEY;
 import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.CONSUMER_SECRET;
 
 import java.io.Serializable;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthRequest;
@@ -18,6 +18,7 @@ import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TKResponse;
@@ -70,11 +71,18 @@ public class TradeKingForeman implements Serializable {
 
 	private Request makeOAuthRequest(final TKRequest tkRequest) {
 
-		final Verb verb = tkRequest.getVerb();
+		
+		final Map<String, Object> parameters = tkRequest.getParameters();
+		Assert.notNull(parameters, "Parameters should be present at this point.");
+		
+		final Verb verb = (Verb) parameters.get(HTTP_METHOD);
+		Assert.notNull(verb, "HTTP_METHOD parameter should be present at this point.");
+		
+		//final Verb verb = tkRequest.getVerb();
 		final String resourceURL = tkRequest.getResourceURL(); 
 		
 		//parameters and payload get in the way - for now not using them
-		final Map<String, String> parameters = tkRequest.getParameters();
+		
 		final String payload = tkRequest.getBody();
 		
 		logger.info("Creating an OAuth request wrapper around {}", tkRequest);

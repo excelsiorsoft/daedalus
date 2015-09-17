@@ -31,8 +31,8 @@ public class MarketRequestBuilder extends TKRequest {
 
 	private static final long serialVersionUID = -7542591696724178699L;
 
-	private MarketRequestBuilder(Verb v, Map<String, String> context) {
-		verb = v;
+	private MarketRequestBuilder(/*Verb v,*/ Map<String, Object> context) {
+		//verb = (Verb) context.get(HTTP_METHOD);
 		params = context;
 	}
 
@@ -41,13 +41,14 @@ public class MarketRequestBuilder extends TKRequest {
 			throws Throwable {
 
 		@SuppressWarnings("serial")
-		Map<String, String> context = new HashMap<String, String>() {
+		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
+				put(HTTP_METHOD, GET);
 			}
 		};
 
-		return (MarketRequestBuilder) new MarketRequestBuilder(GET, context)
+		return (MarketRequestBuilder) new MarketRequestBuilder(/*GET,*/ context)
 					.setResourceURL(marketClock((context)));
 
 	}
@@ -56,14 +57,15 @@ public class MarketRequestBuilder extends TKRequest {
 			String symbols, String fields) throws Throwable {
 
 		@SuppressWarnings("serial")
-		Map<String, String> context = new HashMap<String, String>() {
+		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
 				put(SYMBOLS, symbols);
+				put(HTTP_METHOD, POST);
 			}
 		};
 
-		return (MarketRequestBuilder) new MarketRequestBuilder(POST, context)
+		return (MarketRequestBuilder) new MarketRequestBuilder(/*POST,*/ context)
 					.setResourceURL(extQuotes((context)));
 
 	}
@@ -72,14 +74,15 @@ public class MarketRequestBuilder extends TKRequest {
 			ResponseFormat format, String symbol) throws Throwable {
 
 		@SuppressWarnings("serial")
-		Map<String, String> context = new HashMap<String, String>() {
+		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
 				put(SYMBOL, symbol);
+				put(HTTP_METHOD, GET);
 			}
 		};
 		
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(/*GET,*/ context);
 		mktReqBuilder.setResourceURL(optionsExpirations(context));
 		return mktReqBuilder;
 	}
@@ -88,14 +91,15 @@ public class MarketRequestBuilder extends TKRequest {
 			String symbol) throws Throwable {
 
 		@SuppressWarnings("serial")
-		Map<String, String> context = new HashMap<String, String>() {
+		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
 				put(SYMBOL, symbol);
+				put(HTTP_METHOD, GET);
 			}
 		};
 		
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(/*GET, */context);
 		mktReqBuilder.setResourceURL(optionsStrikes(context));
 		return mktReqBuilder;
 	}
@@ -103,7 +107,7 @@ public class MarketRequestBuilder extends TKRequest {
 	public static MarketRequestBuilder getOptionsStrikesForSymbolPerExpCycle(ResponseFormat format, String symbol) throws Throwable {
 
 		@SuppressWarnings("serial")
-		Map<String, String> context = new HashMap<String, String>() {
+		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
 				put(SYMBOL, symbol);
@@ -111,10 +115,11 @@ public class MarketRequestBuilder extends TKRequest {
 				put(FIELDS,"fids=exch,strikeprice");
 				//put("xdate","xdate-eq:20160115 AND put_call-eq:call");
 				//put("xdate","xyear-eq:2016 AND xmonth-eq:01 AND xday-eq:01");
+				put(HTTP_METHOD, POST);
 			}
 		};
 		
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(POST, context);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(/*POST,*/ context);
 		//MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
 		mktReqBuilder.setResourceURL(optionsStrikesForSymbolPerExpCycle(context));
 		return mktReqBuilder;
@@ -124,14 +129,15 @@ public class MarketRequestBuilder extends TKRequest {
 	public static MarketRequestBuilder getTopLosers(TopType typeOfLoser, ResponseFormat format/*, String symbol*/) throws Throwable {
 
 		@SuppressWarnings("serial")
-		Map<String, String> context = new HashMap<String, String>() {
+		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
 				put(LOSER_TYPE, typeOfLoser.toString());
+				put(HTTP_METHOD, GET);
 			}
 		};
 		
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(/*GET,*/ context);
 		mktReqBuilder.setResourceURL(topLosers(context));
 		return mktReqBuilder;
 	}
