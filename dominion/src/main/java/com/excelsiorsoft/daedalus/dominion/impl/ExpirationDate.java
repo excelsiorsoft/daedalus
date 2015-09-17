@@ -24,6 +24,17 @@ public class ExpirationDate implements WithTimestamp, WithSymbol {
 	private ExpirationDate() {}
 	
 	
+	//public static final String XDATE_FORMAT = "ExpirationDateFormat";
+
+	public static enum ExpirationDateFormat {
+		
+		HIPHENATED, //2016-01-15 
+		SQUIZZED;	//20160115
+		
+		public static final String XDATE_FORMAT = "ExpirationDateFormat";
+	}
+	
+	
 
 	public long getTimestamp() {
 		return timestamp;

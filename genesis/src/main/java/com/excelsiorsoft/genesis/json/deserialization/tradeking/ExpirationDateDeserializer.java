@@ -5,14 +5,17 @@ package com.excelsiorsoft.genesis.json.deserialization.tradeking;
 
 
 import static com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder.builder;
+import static com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateFormat.XDATE_FORMAT;
 
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
@@ -31,6 +34,12 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 	
 	protected ExpirationDate deserializeSingleNode(final JsonNode date, final Map<String, Object> context) throws Throwable {
 		
+		Assert.notNull(context, "Missing a deserialization context.");
+		ExpirationDateFormat expDateFormat = (ExpirationDateFormat) context
+				.get(XDATE_FORMAT) == null ? ExpirationDateFormat.SQUIZZED
+				: (ExpirationDateFormat) context.get(XDATE_FORMAT);
+
+		logger.info("will deserialize dates in a "+expDateFormat +" format.");
 		
 		ExpirationDate expDate = null;
 		final ExpirationDateBuilder builder = builder();

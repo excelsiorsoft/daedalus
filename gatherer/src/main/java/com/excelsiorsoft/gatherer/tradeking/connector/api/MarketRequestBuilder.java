@@ -101,15 +101,16 @@ public class MarketRequestBuilder extends TKRequest {
 		return mktReqBuilder;
 	}
 	
-	public static MarketRequestBuilder getOptionsStrikesForSymbolPerExpCycle(ResponseFormat format, String symbol) throws Throwable {
+	public static MarketRequestBuilder getOptionsStrikesForSymbolPerExpCycle(ResponseFormat format, String symbol, String expDate) throws Throwable {
 
 		@SuppressWarnings("serial")
 		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
 				put(SYMBOL, symbol);
-				put(EXPIRATION_DATE,"xdate-eq:20160115 AND put_call-eq:call");
-				put(FIELDS,"fids=exch,strikeprice");
+				put(EXPIRATION_DATE,"xdate-eq:"+expDate +" AND put_call-eq:call");
+				put(FIELDS,"fids=strikeprice");
+				//put(FIELDS,"fids=exch,strikeprice");
 				//put("xdate","xdate-eq:20160115 AND put_call-eq:call");
 				//put("xdate","xyear-eq:2016 AND xmonth-eq:01 AND xday-eq:01");
 				put(HTTP_METHOD, POST);

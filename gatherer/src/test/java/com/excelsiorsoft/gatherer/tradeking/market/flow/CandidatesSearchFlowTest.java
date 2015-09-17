@@ -4,6 +4,7 @@ package com.excelsiorsoft.gatherer.tradeking.market.flow;
 import static com.excelsiorsoft.daedalus.dominion.WithExpirationDate.EXPIRATION_DATE;
 import static com.excelsiorsoft.daedalus.dominion.WithSymbol.SYMBOL;
 import static com.excelsiorsoft.daedalus.dominion.WithTimestamp.TIMESTAMP;
+import static com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateFormat.XDATE_FORMAT;
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.CALL;
 import static com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType.PUT;
 import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
@@ -27,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
+import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate.ExpirationDateFormat;
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionSymbolBuilder;
@@ -224,7 +226,7 @@ public class CandidatesSearchFlowTest {
 			montageBuilder.forSymbol(symbol).asOf(now);
 			
 			//create context
-			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}};
+			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);put(XDATE_FORMAT,ExpirationDateFormat.SQUIZZED);}};
 			
 			logger.info("Building matrix for {} as of {}",symbol, now);
 			
