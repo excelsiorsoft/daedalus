@@ -11,7 +11,9 @@ import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getExtQuotes;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsExpirations;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsStrikes;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsStrikesForSymbolPerExpCycle;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
 import static com.excelsiorsoft.gatherer.tradeking.market.flow.util.RandomPick.randomFrom;
 
 import java.util.Arrays;
@@ -246,7 +248,8 @@ public class CandidatesSearchFlowTest {
 				context.put(EXPIRATION_DATE, expDateStr);
 				tableauBuilder.forExpirationCycle(expDateStr);
 				
-				String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
+				//String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
+				String strikesJson = foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, symbol, expDateStr)).getResponse();
 				logger.debug("Strikes for {} for expiration date of {}: {}", symbol, expDateStr, strikesJson);
 				
 				strikes = new StrikesDeserializer().deserialize(strikesJson, context);
