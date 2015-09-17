@@ -1,5 +1,40 @@
 package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.Accounts.ACCOUNTS;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.Accounts.ACCOUNTS_BALANCES;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.Accounts.ID;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.Accounts.ID_BALANCES;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.CLOCK;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.EXT_QUOTES;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.NEWS_ID;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.NEWS_SEARCH;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.OPTIONS_EXPIRATIONS;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.OPTIONS_SEARCH;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.OPTIONS_STRIKES;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.STREAM_EXT_QUOTES;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.TIMESALES;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.TOPLISTS_ACTIVE;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.TOPLISTS_GAINERS_ACTIVE_DOLLAR_AMT;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.TOPLISTS_GAINERS_DOLLAR_AMT;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.TOPLISTS_GAINERS_PERCENTAGE;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.TOPLISTS_LOSERS_DOLLAR;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.TOPLISTS_LOSERS_PERCENTAGE;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.MARKET.TOPLISTS_VOLUME;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.ORDER_TRADES.GET_ID_ORDERS;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.ORDER_TRADES.POST_ID_ORDERS;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.ORDER_TRADES.POST_ID_ORDERS_PREVIEW;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.UTILITY.STATUS;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.UTILITY.VERSION;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.WATCHLIST.DELETE_SYMBOL_WATCHLIST;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.WATCHLIST.DELETE_WATCHLISTS_ID;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.WATCHLIST.GET_WATCHLISTS;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.WATCHLIST.GET_WATCHLIST_ID;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.WATCHLIST.POST_SYMBOL_WATCHLIST_ID;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ApiCall.WATCHLIST.POST_WATCHLISTS;
+import static org.scribe.model.Verb.DELETE;
+import static org.scribe.model.Verb.GET;
+import static org.scribe.model.Verb.POST;
+
 import java.io.Serializable;
 
 import org.scribe.model.Verb;
@@ -24,7 +59,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getAccounts(ResponseFormat format)
 	{
-		return Accounts.ACCOUNTS.resolveString("", format.toString());
+		return ACCOUNTS.resolveString("", format.toString());
 	}
 
 	/**
@@ -35,7 +70,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getAccountBalances(ResponseFormat format)
 	{
-		return Accounts.ACCOUNTS_BALANCES.resolveString("", format.toString());
+		return ACCOUNTS_BALANCES.resolveString("", format.toString());
 	}
 
 	/**
@@ -47,7 +82,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getAccountByID(ResponseFormat format, String id)
 	{
-		return Accounts.ID.resolveString(id, format.toString());
+		return ID.resolveString(id, format.toString());
 	}
 
 	/**
@@ -59,7 +94,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getAccountBalanceByID(ResponseFormat format, String id)
 	{
-		return Accounts.ID_BALANCES.resolveString(id, ".", format.toString());
+		return ID_BALANCES.resolveString(id, ".", format.toString());
 	}
 
 	public enum Accounts
@@ -107,7 +142,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getOrderByAccountID(ResponseFormat format, String id)
 	{
-		return ORDER_TRADES.GET_ID_ORDERS.resolveString(id, "", format.toString());
+		return GET_ID_ORDERS.resolveString(id, "", format.toString());
 	}
 
 	/**
@@ -119,7 +154,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String postOrderByAccountID(ResponseFormat format, String id)
 	{
-		return ORDER_TRADES.POST_ID_ORDERS.resolveString(id, "", format.toString());
+		return POST_ID_ORDERS.resolveString(id, "", format.toString());
 	}
 
 	/**
@@ -131,14 +166,14 @@ public class ApiCall implements Serializable
 	 */
 	public static String postOrderByAccountIDPreview(ResponseFormat format, String id)
 	{
-		return ORDER_TRADES.POST_ID_ORDERS_PREVIEW.resolveString(id, "", format.toString());
+		return POST_ID_ORDERS_PREVIEW.resolveString(id, "", format.toString());
 	}
 
 	public enum ORDER_TRADES
 	{
-		GET_ID_ORDERS(Verb.GET, "https://api.tradeking.com/v1/accounts/", "/orders", "."), 
-		POST_ID_ORDERS(Verb.POST, "https://api.tradeking.com/v1/accounts/", "/orders", "."), 
-		POST_ID_ORDERS_PREVIEW(Verb.POST, "https://api.tradeking.com/v1/accounts/", "/orders/preview", ".");
+		GET_ID_ORDERS(GET, "https://api.tradeking.com/v1/accounts/", "/orders", "."), 
+		POST_ID_ORDERS(POST, "https://api.tradeking.com/v1/accounts/", "/orders", "."), 
+		POST_ID_ORDERS_PREVIEW(POST, "https://api.tradeking.com/v1/accounts/", "/orders/preview", ".");
 
 		private Verb v;
 		private String[] urlStrings;
@@ -175,7 +210,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getMarketClock(ResponseFormat format)
 	{
-		return MARKET.CLOCK.resolveString("", format.toString());
+		return CLOCK.resolveString("", format.toString());
 	}
 
 	/**
@@ -184,12 +219,12 @@ public class ApiCall implements Serializable
 	 */
 	public static String getQuote(ResponseFormat format)
 	{
-		return MARKET.EXT_QUOTES.resolveString("", format.toString());
+		return EXT_QUOTES.resolveString("", format.toString());
 	}
 
 	public static String getStreamingQuote(ResponseFormat format)
 	{
-		return MARKET.STREAM_EXT_QUOTES.resolveString("", format.toString());
+		return STREAM_EXT_QUOTES.resolveString("", format.toString());
 	}
 
 	/**
@@ -200,7 +235,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String searchNews(ResponseFormat format)
 	{
-		return MARKET.NEWS_SEARCH.resolveString("", format.toString());
+		return NEWS_SEARCH.resolveString("", format.toString());
 	}
 
 	/**
@@ -208,7 +243,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getNews(ResponseFormat format, String newsId)
 	{
-		return MARKET.NEWS_ID.resolveString(newsId, "", format.toString());
+		return NEWS_ID.resolveString(newsId, "", format.toString());
 	}
 
 	/**
@@ -219,7 +254,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String searchOptions(ResponseFormat format)
 	{
-		return MARKET.OPTIONS_SEARCH.resolveString("", format.toString());
+		return OPTIONS_SEARCH.resolveString("", format.toString());
 	}
 
 	/**
@@ -227,7 +262,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getOptionStrikes(ResponseFormat format)
 	{
-		return MARKET.OPTIONS_STRIKES.resolveString("", format.toString());
+		return OPTIONS_STRIKES.resolveString("", format.toString());
 	}
 
 	/**
@@ -238,7 +273,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getOptionExpirations(ResponseFormat format)
 	{
-		return MARKET.OPTIONS_EXPIRATIONS.resolveString("", format.toString());
+		return OPTIONS_EXPIRATIONS.resolveString("", format.toString());
 	}
 
 	/**
@@ -246,7 +281,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getTimeSales(ResponseFormat format)
 	{
-		return MARKET.TIMESALES.resolveString("", format.toString());
+		return TIMESALES.resolveString("", format.toString());
 	}
 
 	public static String getTopList(TopList list, ResponseFormat format)
@@ -256,13 +291,13 @@ public class ApiCall implements Serializable
 
 	public enum TopList
 	{
-		LOSERS_DOLLAR(MARKET.TOPLISTS_LOSERS_DOLLAR), 
-		LOSERS_PERCENTAGE(MARKET.TOPLISTS_LOSERS_PERCENTAGE), 
-		VOLUME(MARKET.TOPLISTS_VOLUME), 
-		ACTIVE(MARKET.TOPLISTS_ACTIVE), 
-		GAINERS_DOLLAR(MARKET.TOPLISTS_GAINERS_DOLLAR_AMT), 
-		GAINERS_PERCENTAGE(MARKET.TOPLISTS_GAINERS_PERCENTAGE), 
-		GAINERS_ACTIVE(MARKET.TOPLISTS_GAINERS_ACTIVE_DOLLAR_AMT);
+		LOSERS_DOLLAR(TOPLISTS_LOSERS_DOLLAR), 
+		LOSERS_PERCENTAGE(TOPLISTS_LOSERS_PERCENTAGE), 
+		VOLUME(TOPLISTS_VOLUME), 
+		ACTIVE(TOPLISTS_ACTIVE), 
+		GAINERS_DOLLAR(TOPLISTS_GAINERS_DOLLAR_AMT), 
+		GAINERS_PERCENTAGE(TOPLISTS_GAINERS_PERCENTAGE), 
+		GAINERS_ACTIVE(TOPLISTS_GAINERS_ACTIVE_DOLLAR_AMT);
 		
 		private MARKET link;
 
@@ -361,7 +396,7 @@ public class ApiCall implements Serializable
 
 		public Verb getVerb()
 		{
-			return Verb.GET;
+			return GET;
 		}
 	}
 
@@ -373,7 +408,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getTKStatus(ResponseFormat format)
 	{
-		return UTILITY.STATUS.resolveString("", format.toString());
+		return STATUS.resolveString("", format.toString());
 	}
 
 	/**
@@ -385,7 +420,7 @@ public class ApiCall implements Serializable
 	 */
 	public static String getTKVersion(ResponseFormat format)
 	{
-		return UTILITY.VERSION.resolveString("", format.toString());
+		return VERSION.resolveString("", format.toString());
 	}
 
 	public enum UTILITY
@@ -416,48 +451,48 @@ public class ApiCall implements Serializable
 
 		public Verb getVerb()
 		{
-			return Verb.GET;
+			return GET;
 		}
 	}
 
 	public static String getWatchlists(ResponseFormat format)
 	{
-		return WATCHLIST.GET_WATCHLISTS.resolveString("", format.toString());
+		return GET_WATCHLISTS.resolveString("", format.toString());
 	}
 
 	public static String postWatchlists(ResponseFormat format)
 	{
-		return WATCHLIST.POST_WATCHLISTS.resolveString("", format.toString());
+		return POST_WATCHLISTS.resolveString("", format.toString());
 	}
 
 	public static String getWatchlistsById(String id, ResponseFormat format)
 	{
-		return WATCHLIST.GET_WATCHLIST_ID.resolveString(id, "", format.toString());
+		return GET_WATCHLIST_ID.resolveString(id, "", format.toString());
 	}
 
 	public static String deleteWatchlistsById(String id, ResponseFormat format)
 	{
-		return WATCHLIST.DELETE_WATCHLISTS_ID.resolveString(id, "", format.toString());
+		return DELETE_WATCHLISTS_ID.resolveString(id, "", format.toString());
 	}
 
 	public static String postWatchlistsBySymbol(String watchList, ResponseFormat format)
 	{
-		return WATCHLIST.POST_SYMBOL_WATCHLIST_ID.resolveString(watchList, "", format.toString());
+		return POST_SYMBOL_WATCHLIST_ID.resolveString(watchList, "", format.toString());
 	}
 
 	public static String deleteSymbolFromWatchList(String watchList, String symbol, ResponseFormat format)
 	{
-		return WATCHLIST.DELETE_SYMBOL_WATCHLIST.resolveString(watchList, symbol, "", format.toString());
+		return DELETE_SYMBOL_WATCHLIST.resolveString(watchList, symbol, "", format.toString());
 	}
 
 	public enum WATCHLIST
 	{
-		GET_WATCHLISTS(Verb.GET, "https://api.tradeking.com/v1/watchlists", "."), 
-		POST_WATCHLISTS(Verb.POST, "https://api.tradeking.com/v1/watchlists", "."), 
-		GET_WATCHLIST_ID(Verb.GET, "https://api.tradeking.com/v1/watchlists/", "", "."), 
-		DELETE_WATCHLISTS_ID(Verb.DELETE, "https://api.tradeking.com/v1/watchlists/", "", "."), 
-		POST_SYMBOL_WATCHLIST_ID(Verb.POST, "https://api.tradeking.com/v1/watchlist/", "/symbols", "."), 
-		DELETE_SYMBOL_WATCHLIST(Verb.DELETE, "https://api.tradeking.com/v1/watchlists/", "/", ".", "");
+		GET_WATCHLISTS(GET, "https://api.tradeking.com/v1/watchlists", "."), 
+		POST_WATCHLISTS(POST, "https://api.tradeking.com/v1/watchlists", "."), 
+		GET_WATCHLIST_ID(GET, "https://api.tradeking.com/v1/watchlists/", "", "."), 
+		DELETE_WATCHLISTS_ID(DELETE, "https://api.tradeking.com/v1/watchlists/", "", "."), 
+		POST_SYMBOL_WATCHLIST_ID(POST, "https://api.tradeking.com/v1/watchlist/", "/symbols", "."), 
+		DELETE_SYMBOL_WATCHLIST(DELETE, "https://api.tradeking.com/v1/watchlists/", "/", ".", "");
 
 		private String[] urlStrings;
 		private Verb verb;

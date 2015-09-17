@@ -70,15 +70,9 @@ public class CandidatesSearchFlowTest {
 			String expirationsJson = foreman.makeApiCall(getOptionsExpirations(json, symbol)).getResponse();
 			logger.debug("Expiration dates for {}: {}", symbol, expirationsJson);
 			
-			/*ObjectMapper mapper = new ObjectMapper();
-			JsonNode expDatesResponse = mapper.readTree(expirationsJson).get("response");*/
-			
 			SimpleDeserializer<ExpirationDate> expDatesDeserializer = new ExpirationDateDeserializer();
 			
-			/*JsonNode dateNodes = expDatesResponse.path("expirationdates").path("date"); */
-			
 			Collection<ExpirationDate> expirDates = expDatesDeserializer.deserialize(/*dateNodes*/expirationsJson, new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}});
-			//assertEquals("Expecting different # of deserialized objects", dateNodes.size(), expirDates.size());
 			logger.info("Expiration dates for {}: {}", symbol, expirDates);
 			
 			
@@ -86,14 +80,10 @@ public class CandidatesSearchFlowTest {
 					
 					String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
 					logger.debug("Strikes for {} for expiration date of {}: {}", symbol, expDate.getCycle(), strikesJson);
-					//JsonNode strikesResponse = mapper.readTree(strikesJson).get("response");
 					
 					SimpleDeserializer<Strike> strikeDeserializer = new StrikesDeserializer();
 					
-					//JsonNode strikesNodes = strikesResponse.path("prices").path("price"); 
-
 					Collection<Strike> strikes = strikeDeserializer.deserialize(/*strikesNodes*/strikesJson, new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);}});
-					//assertEquals("Expecting different # of deserialized objects", strikesNodes.size(), strikes.size());
 					logger.info("Strikes for {} for {} expiration cycle: {}", symbol, expDate.getCycle(), strikes);
 
 				}
@@ -199,6 +189,7 @@ public class CandidatesSearchFlowTest {
 		
 	}
 	
+	@SuppressWarnings("serial")
 	@Test
 	public void pickingRandomExpirationCycle() throws Throwable {
 		
@@ -221,6 +212,7 @@ public class CandidatesSearchFlowTest {
 	}
 
 	
+	@SuppressWarnings("serial")
 	@Test
 	public void updateRandomStrikeInRandomExpirationCycle() throws Throwable {
 		

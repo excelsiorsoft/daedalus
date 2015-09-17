@@ -85,11 +85,7 @@ public class TKResponse implements Serializable {
 		this.response = oAuthResponse.getBody();
 	}
 
-	/*public TKResponse(String req, Integer... limits) {
-		this.response = req;
-	}
 
-	public TKResponse() {}*/
 
 	public int getCallsUsed() {
 		return rateLimitUsed;

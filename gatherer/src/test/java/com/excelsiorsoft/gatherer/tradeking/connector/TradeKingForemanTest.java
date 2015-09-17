@@ -136,7 +136,7 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
 		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(xml, "slw")).getResponse());
-		//System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "SLW")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "SLW")).getResponse());
 		System.out.println("==============================");
 		
 	}	
@@ -201,7 +201,7 @@ public class TradeKingForemanTest {
 		String optionJsonStr = foreman.makeApiCall(getExtQuotes(json, "slw160115P00018000, slw160115P00021000, slw160115P00025000 ", "")).getResponse();
 		System.out.println("several options: "+optionJsonStr);
 
-		Collection<Option> result = new OptionDeserializer().deserialize(/*quotes*/optionJsonStr, new HashMap());
+		Collection<Option> result = new OptionDeserializer().deserialize(optionJsonStr, new HashMap());
 		//assertEquals("Expecting different # of deserialized objects", quotes.size(), result.size());
 		System.out.println("==============================");
 		

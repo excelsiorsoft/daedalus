@@ -25,8 +25,7 @@ public class MarketRequestBuilder extends TKRequest {
 
 	
 
-	private final static Logger LOGGER = LoggerFactory
-			.getLogger(MarketRequestBuilder.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(MarketRequestBuilder.class);
 
 	private static final long serialVersionUID = -7542591696724178699L;
 
@@ -64,7 +63,7 @@ public class MarketRequestBuilder extends TKRequest {
 			}
 		};
 
-		return (MarketRequestBuilder) new MarketRequestBuilder(/*POST,*/ context)
+		return (MarketRequestBuilder) new MarketRequestBuilder(context)
 					.setResourceURL(extQuotes((context)));
 
 	}
@@ -81,13 +80,12 @@ public class MarketRequestBuilder extends TKRequest {
 			}
 		};
 		
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(/*GET,*/ context);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(context);
 		mktReqBuilder.setResourceURL(optionsExpirations(context));
 		return mktReqBuilder;
 	}
 
-	public static MarketRequestBuilder getOptionsStrikes(ResponseFormat format,
-			String symbol) throws Throwable {
+	public static MarketRequestBuilder getOptionsStrikes(ResponseFormat format,	String symbol) throws Throwable {
 
 		@SuppressWarnings("serial")
 		Map<String, Object> context = new HashMap<String, Object>() {
@@ -98,7 +96,7 @@ public class MarketRequestBuilder extends TKRequest {
 			}
 		};
 		
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(/*GET, */context);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(context);
 		mktReqBuilder.setResourceURL(optionsStrikes(context));
 		return mktReqBuilder;
 	}
