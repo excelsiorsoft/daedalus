@@ -12,7 +12,6 @@ import static org.scribe.model.Verb.POST;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.scribe.model.Verb;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,9 +30,8 @@ public class MarketRequestBuilder extends TKRequest {
 
 	private static final long serialVersionUID = -7542591696724178699L;
 
-	private MarketRequestBuilder(/*Verb v,*/ Map<String, Object> context) {
+	private MarketRequestBuilder(Map<String, Object> context) {
 
-		//verb = (Verb) context.get(HTTP_METHOD);
 		params = context;
 	}
 
@@ -120,14 +118,13 @@ public class MarketRequestBuilder extends TKRequest {
 			}
 		};
 		
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(/*POST,*/ context);
-		//MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(GET, context);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(context);
 		mktReqBuilder.setResourceURL(optionsStrikesForSymbolPerExpCycle(context));
 		return mktReqBuilder;
 	}	
 	
 	
-	public static MarketRequestBuilder getTopLosers(TopType typeOfLoser, ResponseFormat format/*, String symbol*/) throws Throwable {
+	public static MarketRequestBuilder getTopLosers(TopType typeOfLoser, ResponseFormat format) throws Throwable {
 
 		@SuppressWarnings("serial")
 		Map<String, Object> context = new HashMap<String, Object>() {
@@ -138,7 +135,7 @@ public class MarketRequestBuilder extends TKRequest {
 			}
 		};
 		
-		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder(/*GET,*/ context);
+		MarketRequestBuilder mktReqBuilder = new MarketRequestBuilder( context);
 		mktReqBuilder.setResourceURL(topLosers(context));
 		return mktReqBuilder;
 	}
