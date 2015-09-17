@@ -91,7 +91,7 @@ public class TradeKingForeman implements Serializable {
 		
 		
 		/*
-		 * TODO: Using params on the scribe request results in an authentication error, use templating solution until fully understood why
+		 * TODO: Using params on the scribe request results in an authentication error, use templating solution until fully understood why.  Suspect - URL Encoding
 		 * 
 		for (Entry<String, String> entry : parameters.entrySet()) {
 			log.info("adding request body param: {}={}", entry.getKey(), entry.getValue() );
