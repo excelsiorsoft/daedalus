@@ -32,7 +32,11 @@ public class MarketRequestBuilder extends TKRequest {
 	private static final long serialVersionUID = -7542591696724178699L;
 
 	private MarketRequestBuilder(/*Verb v,*/ Map<String, Object> context) {
+<<<<<<< HEAD
 		//verb = (Verb) context.get(HTTP_METHOD);
+=======
+		verb = (Verb) context.get(HTTP_METHOD);
+>>>>>>> branch 'master' of https://github.com/excelsiorsoft/daedalus.git
 		params = context;
 	}
 
