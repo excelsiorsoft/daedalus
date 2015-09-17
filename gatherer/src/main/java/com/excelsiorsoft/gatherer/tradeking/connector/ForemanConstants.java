@@ -34,13 +34,7 @@ public enum ForemanConstants implements Serializable {
 	ForemanConstants(String value) {
 		
 		this.value = value == null?"":value;
-		/*if (value == null) {
-			
-			this.value = "";
-		} else {
-			
-			this.value = value;
-		}*/
+
 	}
 
 	@Override

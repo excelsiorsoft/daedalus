@@ -78,7 +78,6 @@ public class TradeKingForeman implements Serializable {
 		final Verb verb = (Verb) parameters.get(HTTP_METHOD);
 		Assert.notNull(verb, "HTTP_METHOD parameter should be present at this point.");
 		
-		//final Verb verb = tkRequest.getVerb();
 		final String resourceURL = tkRequest.getResourceURL(); 
 		
 		//parameters and payload get in the way - for now not using them
