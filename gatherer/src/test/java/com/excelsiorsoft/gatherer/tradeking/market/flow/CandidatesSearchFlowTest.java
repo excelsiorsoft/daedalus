@@ -11,7 +11,9 @@ import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getExtQuotes;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsExpirations;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsStrikes;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getOptionsStrikesForSymbolPerExpCycle;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
 import static com.excelsiorsoft.gatherer.tradeking.market.flow.util.RandomPick.randomFrom;
 
 import java.util.Arrays;
@@ -41,6 +43,7 @@ import com.excelsiorsoft.genesis.json.deserialization.tradeking.ExpirationDateDe
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.OptionDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.SimpleDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.StrikesDeserializer;
+import com.excelsiorsoft.genesis.json.deserialization.tradeking.StrikesPerExpirationDateDeserializer;
 
 @Significant
 @SuppressWarnings("unused")
@@ -246,10 +249,12 @@ public class CandidatesSearchFlowTest {
 				context.put(EXPIRATION_DATE, expDateStr);
 				tableauBuilder.forExpirationCycle(expDateStr);
 				
-				String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
+				//String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
+				String strikesJson = foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, symbol, expDateStr)).getResponse();
 				logger.debug("Strikes for {} for expiration date of {}: {}", symbol, expDateStr, strikesJson);
 				
-				strikes = new StrikesDeserializer().deserialize(strikesJson, context);
+				strikes = new StrikesPerExpirationDateDeserializer().deserialize(strikesJson, context);
+				//strikes = new StrikesDeserializer().deserialize(strikesJson, context);
 				logger.info("{} strikes for {} for {} expiration cycle: {}", strikes.size(), symbol, expDateStr, strikes);
 				
 				tableauBuilder.withStrikes((List<Strike>) strikes);
@@ -265,7 +270,7 @@ public class CandidatesSearchFlowTest {
 
 			logger.info("Built {} option montage:\n\n{}", symbol, montage);
 			
-			for(int i = 0; i<2; i++) {
+			/*for(int i = 0; i<2; i++) {
 				ExpirationDate randomExpDate = randomFrom((List<ExpirationDate>) expirDates);
 				logger.info("randomExpDate: {}:{}", randomExpDate, randomExpDate.getCycle());
 
@@ -278,7 +283,7 @@ public class CandidatesSearchFlowTest {
 				logger.info("--------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 			}
 			
-			logger.info("Resulting montage: {}", montage);
+			logger.info("Resulting montage: {}", montage);*/
 
 		}
 		

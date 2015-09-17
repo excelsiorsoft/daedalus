@@ -165,8 +165,11 @@ public class Option extends /*AbstractTradable*/Instrument implements WithExpira
 	    
 		
 	    private static String occSpecification(OptionSymbologyType symbolType, String underlyingSymbol, /*Date*/String expirationDate, String optionType, double strike) throws Throwable{
-					
-	    		Date _expirationDate = new SimpleDateFormat("yyyy-MM-dd").parse(expirationDate);
+
+	    	Date _expirationDate = expirationDate.contains("-") ? new SimpleDateFormat("yyyy-MM-dd").parse(expirationDate) : new SimpleDateFormat("yyyyMMdd").parse(expirationDate);
+	    		//Date _expirationDate = new SimpleDateFormat("yyyy-MM-dd").parse(expirationDate);
+	    		
+	    		//Date _expirationDate = new SimpleDateFormat("yyyyMMdd").parse(expirationDate);
 	    	
 					String timeString = new SimpleDateFormat("yyMMdd").format(_expirationDate);
 					

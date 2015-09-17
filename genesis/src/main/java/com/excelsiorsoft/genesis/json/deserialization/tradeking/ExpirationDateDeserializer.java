@@ -44,11 +44,14 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 		ExpirationDate expDate = null;
 		final ExpirationDateBuilder builder = builder();
 		
+		String dateStr = expDateFormat == ExpirationDateFormat.SQUIZZED?date.asText().replace("-", ""):date.asText();
+		
+		
 		try{
 			
 			expDate = builder.asOf(timestamp)
 						.forSymbol(symbol) 
-						.forCycle(date.asText())
+						.forCycle(dateStr)
 						.build();
 			
 

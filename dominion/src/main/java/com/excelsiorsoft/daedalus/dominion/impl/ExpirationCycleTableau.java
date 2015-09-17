@@ -2,12 +2,13 @@ package com.excelsiorsoft.daedalus.dominion.impl;
 
 //import static com.excelsiorsoft.daedalus.util.time.DateTimeUtils.nowFromEpoch;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import org.springframework.util.Assert;
 
@@ -15,6 +16,7 @@ import com.excelsiorsoft.daedalus.dominion.WithExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.WithTimestamp;
 //import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
 //import com.excelsiorsoft.daedalus.dominion.impl.Strike.StrikeBuilder;
+import com.excelsiorsoft.daedalus.util.NumericStringComparator;
 
 /**
  * Representation of cacheable structure to house option strikes for a particular symbol on a particular expiration date.
@@ -29,7 +31,9 @@ public class ExpirationCycleTableau implements WithTimestamp, WithExpirationDate
 	private long timestamp; 
 	/*private ExpirationDate expirationCycle;*/
 	private String expirationCycle;
-	private Map<String, Map<String,Option>> strikes = new LinkedHashMap<>(); // strikeName[15.00] -> OptionType[Put/Call] -> Option[market data]
+	private Map<String, Map<String,Option>> strikes = new TreeMap<>(new NumericStringComparator()); // strikeName[15.00] -> OptionType[Put/Call] -> Option[market data]
+	
+	
 	
 	
 	@Override
