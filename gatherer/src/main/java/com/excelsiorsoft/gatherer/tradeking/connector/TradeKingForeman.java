@@ -82,7 +82,6 @@ public class TradeKingForeman implements Serializable {
 		final String resourceURL = tkRequest.getResourceURL(); 
 		
 		//parameters and payload get in the way - for now not using them
-		
 		final String payload = tkRequest.getBody();
 		
 		logger.info("Creating an OAuth request wrapper around {}", tkRequest);

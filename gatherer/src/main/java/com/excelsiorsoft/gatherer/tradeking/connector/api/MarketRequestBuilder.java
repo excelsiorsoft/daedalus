@@ -32,6 +32,7 @@ public class MarketRequestBuilder extends TKRequest {
 	private static final long serialVersionUID = -7542591696724178699L;
 
 	private MarketRequestBuilder(/*Verb v,*/ Map<String, Object> context) {
+
 		//verb = (Verb) context.get(HTTP_METHOD);
 		params = context;
 	}
