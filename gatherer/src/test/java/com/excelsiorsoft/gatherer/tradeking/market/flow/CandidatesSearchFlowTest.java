@@ -229,7 +229,7 @@ public class CandidatesSearchFlowTest {
 			montageBuilder.forSymbol(symbol).asOf(now);
 			
 			//create context
-			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);put(XDATE_FORMAT,ExpirationDateFormat.SQUIZZED);}};
+			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,symbol);put(TIMESTAMP,now);/*put(XDATE_FORMAT,ExpirationDateFormat.SQUIZZED);*/}};
 			
 			logger.info("Building matrix for {} as of {}",symbol, now);
 			
@@ -249,8 +249,7 @@ public class CandidatesSearchFlowTest {
 				context.put(EXPIRATION_DATE, expDateStr);
 				tableauBuilder.forExpirationCycle(expDateStr);
 				
-				//String strikesJson = foreman.makeApiCall(getOptionsStrikes(json, symbol)).getResponse();
-				String strikesJson = foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, symbol, expDateStr)).getResponse();
+				String strikesJson = foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, symbol, /*requires squeezed format*/expDateStr)).getResponse();
 				logger.debug("Strikes for {} for expiration date of {}: {}", symbol, expDateStr, strikesJson);
 				
 				strikes = new StrikesPerExpirationDateDeserializer().deserialize(strikesJson, context);

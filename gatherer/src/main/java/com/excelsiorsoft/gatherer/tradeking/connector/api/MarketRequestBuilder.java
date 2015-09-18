@@ -101,14 +101,14 @@ public class MarketRequestBuilder extends TKRequest {
 		return mktReqBuilder;
 	}
 	
-	public static MarketRequestBuilder getOptionsStrikesForSymbolPerExpCycle(ResponseFormat format, String symbol, String expDate) throws Throwable {
+	public static MarketRequestBuilder getOptionsStrikesForSymbolPerExpCycle(ResponseFormat format, String symbol, /*requires squeezed format*/String expDate) throws Throwable {
 
 		@SuppressWarnings("serial")
 		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
 				put(SYMBOL, symbol);
-				put(EXPIRATION_DATE,"xdate-eq:"+expDate +" AND put_call-eq:call");
+				put(EXPIRATION_DATE,"xdate-eq:"+expDate.replace("-", "") +" AND put_call-eq:call");/*requires squeezed date format*/
 				put(FIELDS,"fids=strikeprice");
 				//put(FIELDS,"fids=exch,strikeprice");
 				//put("xdate","xdate-eq:20160115 AND put_call-eq:call");

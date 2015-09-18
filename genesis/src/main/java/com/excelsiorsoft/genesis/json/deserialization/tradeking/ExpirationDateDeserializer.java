@@ -35,16 +35,16 @@ public class ExpirationDateDeserializer extends AbstractDeserializer<ExpirationD
 	protected ExpirationDate deserializeSingleNode(final JsonNode date, final Map<String, Object> context) throws Throwable {
 		
 		Assert.notNull(context, "Missing a deserialization context.");
-		ExpirationDateFormat expDateFormat = (ExpirationDateFormat) context
+		/*ExpirationDateFormat expDateFormat = (ExpirationDateFormat) context
 				.get(XDATE_FORMAT) == null ? ExpirationDateFormat.SQUIZZED
-				: (ExpirationDateFormat) context.get(XDATE_FORMAT);
+				: (ExpirationDateFormat) context.get(XDATE_FORMAT);*/
 
-		logger.info("will deserialize dates in a "+expDateFormat +" format.");
+		//logger.info("will deserialize dates in a "+expDateFormat +" format.");
 		
 		ExpirationDate expDate = null;
 		final ExpirationDateBuilder builder = builder();
 		
-		String dateStr = expDateFormat == ExpirationDateFormat.SQUIZZED?date.asText().replace("-", ""):date.asText();
+		String dateStr = /*expDateFormat == ExpirationDateFormat.SQUIZZED?date.asText().replace("-", ""):*/date.asText();
 		
 		
 		try{
