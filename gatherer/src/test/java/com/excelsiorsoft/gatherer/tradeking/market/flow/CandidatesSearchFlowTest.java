@@ -220,6 +220,7 @@ public class CandidatesSearchFlowTest {
 	
 	@SuppressWarnings("serial")
 	@Test
+	@Deprecated //replaced by OptionMontageCreatorTest
 	public void buildingOptionMontage() throws Throwable {
 		
 		long now = nowFromEpoch(); //define first - this is an anchor timestamp for the whole underlying structure
