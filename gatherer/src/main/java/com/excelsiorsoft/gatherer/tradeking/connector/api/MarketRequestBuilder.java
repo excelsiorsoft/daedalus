@@ -51,8 +51,7 @@ public class MarketRequestBuilder extends TKRequest {
 
 	}
 
-	public static MarketRequestBuilder getExtQuotes(ResponseFormat format,
-			String symbols, String fields) throws Throwable {
+	public static MarketRequestBuilder getExtQuotes(ResponseFormat format, String symbols, String fields) throws Throwable {
 
 		@SuppressWarnings("serial")
 		Map<String, Object> context = new HashMap<String, Object>() {

@@ -57,7 +57,7 @@ public class CandidatesSearchFlowTest {
 	
 	@BeforeClass
 	public static void setUp(){
-		symbols = Arrays.asList(new String[]{"SLW"});
+		symbols = Arrays.asList(new String[]{"SLW", "NLY"});
 		foreman = new TradeKingForeman();
 	}
 	

@@ -5,6 +5,7 @@ import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.FORMA
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.LOSER_TYPE;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.SYMBOL;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.SYMBOLS;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE;
 import static freemarker.template.ObjectWrapper.BEANS_WRAPPER;
 
 import java.io.StringReader;
@@ -95,7 +96,7 @@ public class UriBuilder {
 	 */
 	public static String optionsStrikesForSymbolPerExpCycle(Map<String, Object> params) throws Throwable {
 
-		return buildUri(MARKET.OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE, params);
+		return buildUri(OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE, params);
 	}	
 	
 	
