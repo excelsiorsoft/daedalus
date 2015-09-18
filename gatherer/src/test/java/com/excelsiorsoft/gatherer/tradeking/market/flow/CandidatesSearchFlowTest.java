@@ -19,6 +19,7 @@ import static com.excelsiorsoft.gatherer.tradeking.market.flow.util.RandomPick.r
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -291,7 +292,7 @@ public class CandidatesSearchFlowTest {
 	
 	
 	@SuppressWarnings({ "serial", "static-access" })
-	private Option buildOption(OptionMontage montage, String expirationDate, String strike, String optionType) throws Throwable {
+	private /*Option*/ void buildOption(OptionMontage montage, String expirationDate, String strike, String... optionType) throws Throwable {
 		
 		String underlying = montage.getSymbol();
 		ExpirationCycleTableau chosenTableau = montage.getTableau(expirationDate);
@@ -299,22 +300,27 @@ public class CandidatesSearchFlowTest {
 		
 		OptionBuilder optionBuilder = OptionBuilder.builder();
 		
-		String optionSymbol = new OptionSymbolBuilder().buildSymbol(underlying, expirationDate, optionType, Double.parseDouble(strike));
+		final String optionTypes = optionType != null ?optionType[0]:"P,C";
 		
+		for(Iterator<String> it = Arrays.asList(optionTypes.split(",")).iterator();it.hasNext();) {
+			
+			String optionSymbol = new OptionSymbolBuilder().buildSymbol(underlying, expirationDate, optionTypes, Double.parseDouble(strike));
+			
+			
+			String quote = foreman.makeApiCall(getExtQuotes(json, optionSymbol/*, ""*/)).getResponse();
+			
+			//create context
+			Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,underlying);put(TIMESTAMP,nowFromEpoch());}};
+					
+			Collection<Option> result = new OptionDeserializer().deserialize(quote, context);
+			logger.info("Deserialized: {}",result);
+			
+			Option option = optionBuilder.withUnderlying(underlying).withExpiration(chosenTableau.getExpirationDate()).ofType(optionTypes).withStrike(strike).build();
+			
+			chosenStrike.put(optionTypes, option);
 		
-		String quote = foreman.makeApiCall(getExtQuotes(json, optionSymbol/*, ""*/)).getResponse();
-		
-		//create context
-		Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,underlying);put(TIMESTAMP,nowFromEpoch());}};
-				
-		Collection<Option> result = new OptionDeserializer().deserialize(quote, context);
-		logger.info("Deserialized: {}",result);
-		
-		Option option = optionBuilder.withUnderlying(underlying).withExpiration(chosenTableau.getExpirationDate()).ofType(optionType).withStrike(strike).build();
-		
-		chosenStrike.put(optionType, option);
-		
-		return option;
+		}
+		//return option;
 		
 	}
 	
