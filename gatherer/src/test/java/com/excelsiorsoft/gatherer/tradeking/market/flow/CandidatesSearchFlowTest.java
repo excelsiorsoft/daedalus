@@ -141,7 +141,7 @@ public class CandidatesSearchFlowTest {
 
 	}
 	
-	@SuppressWarnings("serial")
+	/*@SuppressWarnings("serial")
 	@Test
 	public void buildingOptionMontage() throws Throwable {
 		
@@ -192,7 +192,7 @@ public class CandidatesSearchFlowTest {
 		}
 		
 		
-	}
+	}*/
 	
 	@SuppressWarnings("serial")
 	@Test
@@ -219,7 +219,7 @@ public class CandidatesSearchFlowTest {
 	
 	@SuppressWarnings("serial")
 	@Test
-	public void updateRandomStrikeInRandomExpirationCycle() throws Throwable {
+	public void buildingOptionMontage() throws Throwable {
 		
 		long now = nowFromEpoch(); //define first - this is an anchor timestamp for the whole underlying structure
 		
