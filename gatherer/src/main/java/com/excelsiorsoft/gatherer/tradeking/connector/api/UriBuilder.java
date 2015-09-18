@@ -2,11 +2,8 @@ package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
 
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.*;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.CLOCK;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.EXT_QUOTES;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.OPTIONS_EXPIRATIONS;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.OPTIONS_STRIKES;
+
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.*;
 import static freemarker.template.ObjectWrapper.BEANS_WRAPPER;
 
 import java.io.StringReader;
