@@ -40,6 +40,10 @@ public class Option extends /*AbstractTradable*/Instrument implements WithExpira
 	private Option(){}
 	
 	
+	public OptionType getOptionType() {
+		return optionType;
+	}
+	
 	/**
 	 * @return
 	 * @throws Throwable 
@@ -287,6 +291,9 @@ public class Option extends /*AbstractTradable*/Instrument implements WithExpira
 			return abbreviation;
 		}
 	}
+
+
+	
 
 
 

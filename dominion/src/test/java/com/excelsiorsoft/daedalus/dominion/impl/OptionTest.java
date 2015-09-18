@@ -12,6 +12,7 @@ import com.excelsiorsoft.daedalus.dominion.impl.Exchange;
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.excelsiorsoft.daedalus.dominion.impl.Exchange.ExchangeBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionBuilder;
+import com.excelsiorsoft.daedalus.dominion.impl.Option.OptionType;
 
 /**
  * @author sleyzerzon
@@ -25,6 +26,7 @@ public class OptionTest {
 		Option option = OptionBuilder.builder().withUnderlying("SLW").ofType("C").withExpiration("2017-01-20").withStrike(18.00).build();
 		System.out.println(option);
 		assertNotNull("expect a non-null option",option);
+		assertTrue("",option.getOptionType()==OptionType.CALL);
 		
 	}
 	
