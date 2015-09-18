@@ -1,11 +1,12 @@
 package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
 
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.FORMAT;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.LOSER_TYPE;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.SYMBOL;
-import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.SYMBOLS;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.*;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.CLOCK;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.EXT_QUOTES;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.OPTIONS_EXPIRATIONS;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.OPTIONS_STRIKES;
 import static freemarker.template.ObjectWrapper.BEANS_WRAPPER;
 
 import java.io.StringReader;
@@ -45,7 +46,7 @@ public class UriBuilder {
 	 */	
 	public static String marketClock(Map<String, Object> params) throws Throwable	{
 
-		return buildUri( MARKET.CLOCK, params);
+		return buildUri( CLOCK, params);
 		
 	}
 	
@@ -57,7 +58,7 @@ public class UriBuilder {
 	 */
 	public static String extQuotes(Map<String, Object> params) throws Throwable {
 
-		return buildUri(MARKET.EXT_QUOTES, params);
+		return buildUri(EXT_QUOTES, params);
 	}
 	
 	
@@ -72,7 +73,7 @@ public class UriBuilder {
 	 */
 	public static String optionsExpirations(Map<String, Object> params) throws Throwable {
 
-		return buildUri(MARKET.OPTIONS_EXPIRATIONS, params);
+		return buildUri(OPTIONS_EXPIRATIONS, params);
 	}
 	
 	/**
@@ -85,7 +86,7 @@ public class UriBuilder {
 	 */
 	public static String optionsStrikes(Map<String, Object> params) throws Throwable {
 
-		return buildUri(MARKET.OPTIONS_STRIKES, params);
+		return buildUri(OPTIONS_STRIKES, params);
 	}	
 	
 	
@@ -154,7 +155,7 @@ public class UriBuilder {
 		NEWS_ID("https://api.tradeking.com/v1/market/news/"), 
 		
 		//fields should not be URL encoded, date - should
-		OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE("https://api.tradeking.com/v1/market/options/search.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}&query=${xdate?url}&${fields}"), 
+		OPTIONS_SEARCH_STRIKES_PER_SYMBOL_FOR_EXP_CYCLE("https://api.tradeking.com/v1/market/options/search.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}&query=${"+EXPIRATION_DATE+"?url}&${"+FIELDS+"}"), 
 		OPTIONS_STRIKES("https://api.tradeking.com/v1/market/options/strikes.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
 		OPTIONS_EXPIRATIONS("https://api.tradeking.com/v1/market/options/expirations.${"+FORMAT+"}?symbol=${"+SYMBOL+"?url}"), 
 		TIMESALES("https://api.tradeking.com/v1/market/timesales"), 
