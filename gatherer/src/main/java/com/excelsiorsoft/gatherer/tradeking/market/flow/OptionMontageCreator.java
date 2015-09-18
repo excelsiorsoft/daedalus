@@ -18,15 +18,15 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau;
+import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.ExpirationDate;
 import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage;
-import com.excelsiorsoft.daedalus.dominion.impl.Strike;
-import com.excelsiorsoft.daedalus.dominion.impl.ExpirationCycleTableau.ExpirationCycleTableauBuilder;
 import com.excelsiorsoft.daedalus.dominion.impl.OptionMontage.OptionMontageBuilder;
-import com.excelsiorsoft.gatherer.tradeking.connector.ForemanException;
+import com.excelsiorsoft.daedalus.dominion.impl.Strike;
 import com.excelsiorsoft.gatherer.tradeking.connector.TradeKingForeman;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.ExpirationDateDeserializer;
 import com.excelsiorsoft.genesis.json.deserialization.tradeking.StrikesPerExpirationDateDeserializer;
@@ -41,8 +41,10 @@ public class OptionMontageCreator {
 	
 	private final static Logger logger = LoggerFactory.getLogger(OptionMontageCreator.class);
 	
+	@Autowired
+	private TradeKingForeman foreman;
 	//TODO: needs to be autowired
-	private TradeKingForeman foreman = new TradeKingForeman();
+	//private TradeKingForeman foreman = new TradeKingForeman();
 	
 	@SuppressWarnings("serial")
 	public OptionMontage create(String underlying) throws Throwable {
