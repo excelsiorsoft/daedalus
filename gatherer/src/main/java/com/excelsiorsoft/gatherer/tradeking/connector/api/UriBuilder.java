@@ -2,7 +2,8 @@ package com.excelsiorsoft.gatherer.tradeking.connector.api;
 
 
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.*;
-
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.TopType.BY_DOLLAR_AMOUNT;
+import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.TopType.BY_PERCENTAGE_AMOUNT;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.UriBuilder.MARKET.*;
 import static freemarker.template.ObjectWrapper.BEANS_WRAPPER;
 
@@ -111,11 +112,11 @@ public class UriBuilder {
 	 */
 	public static String topLosers(Map<String, Object> params) throws Throwable {
 	
-		String defaultLosersUri = buildUri(MARKET.TOPLISTS_LOSERS_DOLLAR, params);
+		String defaultLosersUri = buildUri(TOPLISTS_LOSERS_DOLLAR, params);
 		String typeOfTop = (String) params.get(LOSER_TYPE);
 		
-		String result = (typeOfTop.equals(TopType.BY_DOLLAR_AMOUNT)) ? defaultLosersUri 	: 
-						(typeOfTop.equals(TopType.BY_PERCENTAGE_AMOUNT)) ? buildUri(MARKET.TOPLISTS_LOSERS_PERCENTAGE, params)
+		String result = (typeOfTop.equals(BY_DOLLAR_AMOUNT)) ? defaultLosersUri 	: 
+						(typeOfTop.equals(BY_PERCENTAGE_AMOUNT)) ? buildUri(TOPLISTS_LOSERS_PERCENTAGE, params)
 						: defaultLosersUri;
 			
 		return result;
