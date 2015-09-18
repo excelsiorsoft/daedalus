@@ -1,10 +1,10 @@
 package com.excelsiorsoft.gatherer.tradeking.connector;
 
+import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.CONSUMER_KEY;
+import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.CONSUMER_SECRET;
 import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.OAUTH_TOKEN;
 import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.OAUTH_TOKEN_SECRET;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.HTTP_METHOD;
-import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.CONSUMER_KEY;
-import static com.excelsiorsoft.gatherer.tradeking.connector.ForemanConstants.CONSUMER_SECRET;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -18,6 +18,7 @@ import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest;
@@ -32,6 +33,7 @@ import com.excelsiorsoft.gatherer.tradeking.connector.api.TradekingApi;
  * @author sleyzerzon
  *
  */
+@Service("tradekingForeman")
 public class TradeKingForeman implements Serializable {
 
 	private static final long serialVersionUID = -8650965609080965601L;
