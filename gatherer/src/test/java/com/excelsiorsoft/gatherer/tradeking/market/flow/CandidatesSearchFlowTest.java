@@ -302,7 +302,7 @@ public class CandidatesSearchFlowTest {
 		String optionSymbol = new OptionSymbolBuilder().buildSymbol(underlying, expirationDate, optionType, Double.parseDouble(strike));
 		
 		
-		String quote = foreman.makeApiCall(getExtQuotes(json, optionSymbol, "")).getResponse();
+		String quote = foreman.makeApiCall(getExtQuotes(json, optionSymbol/*, ""*/)).getResponse();
 		
 		//create context
 		Map<String, Object> context = new HashMap<String,Object>(){{put(SYMBOL,underlying);put(TIMESTAMP,nowFromEpoch());}};
