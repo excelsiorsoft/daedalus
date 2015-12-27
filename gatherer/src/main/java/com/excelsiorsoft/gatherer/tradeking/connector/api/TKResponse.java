@@ -47,7 +47,7 @@ X-RateLimit-Remaining: 52
 
 <H1>Exceeding Limits</H1>
 
-If you exceed these limits you will receive a rate limit fault along with the same rate limiting headers you would recieve in the response. You will receive this as a response until the limit has expired, at which point you will receive regular responses.
+If you exceed these limits you will receive a rate limit fault along with the same rate limiting headers you would receive in the response. You will receive this as a response until the limit has expired, at which point you will receive regular responses.
  * </pre>
  * 
  * 
@@ -74,7 +74,7 @@ public class TKResponse implements Serializable {
 		rateLimitUsed = limitUsed != null?Integer.parseInt(limitUsed):0;
 		
 		
-		rateLimitExpire = limitExpire != null?Long.parseLong(limitExpire):0;
+		rateLimitExpire = (long) (limitExpire != null?Double.parseDouble(limitExpire):0);
 		
 		
 		rateLimitTotal = limitTotal != null?Integer.parseInt(limitTotal):0;
