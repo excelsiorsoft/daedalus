@@ -81,13 +81,13 @@ public class Option extends /*AbstractTradable*/Instrument implements WithExpira
 				.append(", optionType=")
 				.append(optionType)
 				.append(", expirationDate=")
-				.append(expirationDate != null?/*new SimpleDateFormat("EEE MMM dd, yyyy").format(*/expirationDate/*)*/:"")
+				.append(expirationDate != null?expirationDate:"")
 				.append(", underlying=")
 				.append(underlying)
 				.append(", strike=")
 				.append(strike)
-				/*.append(", tradableOnExchanges=")
-				.append(tradableOnExchanges)*/
+//				.append(", tradableOnExchanges=")
+//				.append(tradableOnExchanges)
 				.append("]");
 		return builder.toString();
 	}
