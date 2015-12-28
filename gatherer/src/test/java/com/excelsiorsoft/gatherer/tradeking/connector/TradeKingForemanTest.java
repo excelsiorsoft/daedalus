@@ -8,7 +8,7 @@ import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBu
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder.getTopLosers;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.json;
 import static com.excelsiorsoft.gatherer.tradeking.connector.api.ResponseFormat.xml;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -98,8 +98,14 @@ public class TradeKingForemanTest {
 		System.out.println("market/options/expirations call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getOptionsExpirations(xml, "slw ")).getResponse());
-		System.out.println(foreman.makeApiCall(getOptionsExpirations(json, "slw ")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsExpirations(xml, "slw")).getResponse());
+		
+		
+		String response = foreman.makeApiCall(getOptionsExpirations(xml, "slw ")).getResponse();
+		System.out.println(response);
+		assertFalse("TK response contains error",response.contains("<error>"));
+		
+		System.out.println(foreman.makeApiCall(getOptionsExpirations(json, "slw")).getResponse());
 		System.out.println("==============================");
 		
 	}
