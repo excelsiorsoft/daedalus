@@ -74,7 +74,7 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
-				put(SYMBOL, symbol);
+				put(SYMBOL, symbol.trim());
 				put(HTTP_METHOD, GET);
 			}
 		};
@@ -90,7 +90,7 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
-				put(SYMBOL, symbol);
+				put(SYMBOL, symbol.trim());
 				put(HTTP_METHOD, GET);
 			}
 		};
@@ -106,7 +106,7 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
-				put(SYMBOL, symbol);
+				put(SYMBOL, symbol.trim());
 				put(EXPIRATION_DATE,"xdate-eq:"+expDate.replace("-", "") +" AND put_call-eq:call");/*requires squeezed date format*/
 				put(FIELDS,"fids=strikeprice");
 				//put(FIELDS,"fids=exch,strikeprice");

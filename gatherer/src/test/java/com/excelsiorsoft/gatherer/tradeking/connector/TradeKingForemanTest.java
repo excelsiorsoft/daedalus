@@ -98,14 +98,16 @@ public class TradeKingForemanTest {
 		System.out.println("market/options/expirations call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getOptionsExpirations(xml, "slw")).getResponse());
+		//System.out.println(foreman.makeApiCall(getOptionsExpirations(xml, "slw")).getResponse());
 		
 		
 		String response = foreman.makeApiCall(getOptionsExpirations(xml, "slw ")).getResponse();
 		System.out.println(response);
-		assertFalse("TK response contains error",response.contains("<error>"));
+		assertTrue("TK response doesn't contains exp <date> tag",response.contains("<date>"));
 		
-		System.out.println(foreman.makeApiCall(getOptionsExpirations(json, "slw")).getResponse());
+		response = foreman.makeApiCall(getOptionsExpirations(json, "slw ")).getResponse();
+		System.out.println(response);
+		assertTrue("TK response doesn't contains exp <date> tag",response.contains("\"date\""));
 		System.out.println("==============================");
 		
 	}
@@ -128,8 +130,14 @@ public class TradeKingForemanTest {
 		System.out.println("market/options/strikes call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getOptionsStrikes(xml, "slw")).getResponse());
-		System.out.println(foreman.makeApiCall(getOptionsStrikes(json, "slw")).getResponse());
+		
+		String response = foreman.makeApiCall(getOptionsStrikes(xml, "slw")).getResponse();
+		System.out.println(response);
+		assertTrue("TK response doesn't contains exp <price> tag",response.contains("<price>"));
+		
+		response = foreman.makeApiCall(getOptionsStrikes(json, "slw ")).getResponse();
+		System.out.println(response);
+		assertTrue("TK response doesn't contains exp <price> tag",response.contains("\"price\""));
 		System.out.println("==============================");
 		
 	}
