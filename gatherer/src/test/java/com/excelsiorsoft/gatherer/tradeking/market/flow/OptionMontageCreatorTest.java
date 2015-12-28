@@ -34,7 +34,7 @@ public class OptionMontageCreatorTest {
 			results.add(cut.create(underlying));
 		}
 		
-		assertTrue("", results.size()==symbols.size());
+		assertTrue("sizes don't match", results.size()==symbols.size());
 	}
 
 }
