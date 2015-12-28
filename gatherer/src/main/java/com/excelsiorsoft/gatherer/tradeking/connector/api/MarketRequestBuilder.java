@@ -74,7 +74,7 @@ public class MarketRequestBuilder extends TKRequest {
 		Map<String, Object> context = new HashMap<String, Object>() {
 			{
 				put(FORMAT, format.toString());
-				put(SYMBOL, symbol);
+				put(SYMBOL, symbol.trim());
 				put(HTTP_METHOD, GET);
 			}
 		};
