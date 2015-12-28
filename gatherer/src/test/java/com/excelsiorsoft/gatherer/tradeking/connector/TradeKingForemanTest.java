@@ -14,9 +14,13 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.excelsiorsoft.daedalus.dominion.impl.Option;
 import com.excelsiorsoft.daedalus.util.Significant;
+import com.excelsiorsoft.gatherer.Application;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.MarketRequestBuilder;
 import com.excelsiorsoft.gatherer.tradeking.connector.api.TKRequest.TopType;
 import com.excelsiorsoft.gatherer.tradeking.parser.XmlHandler;
@@ -25,8 +29,9 @@ import com.excelsiorsoft.genesis.json.deserialization.tradeking.OptionDeserializ
 
 
 @Significant
+/*@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes=Application.class)*/
 public class TradeKingForemanTest {
-
 	
 	
 	@Test
@@ -131,7 +136,7 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
 		
-		String response = foreman.makeApiCall(getOptionsStrikes(xml, "slw")).getResponse();
+		String response = foreman.makeApiCall(getOptionsStrikes(xml, "SLW ")).getResponse();
 		System.out.println(response);
 		assertTrue("TK response doesn't contains exp <price> tag",response.contains("<price>"));
 		
@@ -151,7 +156,7 @@ public class TradeKingForemanTest {
 		TradeKingForeman foreman = new TradeKingForeman();
 
 		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(xml, "slw", "20160115")).getResponse());
-		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "SLW", "20160115")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "SLW ", "20160115")).getResponse());
 		System.out.println("==============================");
 		
 	}	
