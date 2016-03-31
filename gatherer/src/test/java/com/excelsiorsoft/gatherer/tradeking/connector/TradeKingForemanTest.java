@@ -159,6 +159,22 @@ public class TradeKingForemanTest {
 		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "SLW ", "20180119")).getResponse());
 		System.out.println("==============================");
 		
+	}
+	
+	@Test
+	public void marketOptionsStrikesForSymbolPerExpirationCycleApiCall_NLY() throws Throwable {
+		
+		//Experiencing strange behavior described here: http://community.tradeking.com/groups/tradeking-api/forum/topics/11355-missing-data-for-a-particular-query/forum_posts
+		
+		System.out.println("market/options/search call...");
+		System.out.println("==============================");
+		TradeKingForeman foreman = new TradeKingForeman();
+
+		//System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(xml, "slw", "20180119")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "NLY ", "20160506")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "NLY ", "20160513")).getResponse()); //<-- missing data, why?
+		System.out.println("==============================");
+		
 	}	
 	
 	
