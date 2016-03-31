@@ -68,9 +68,9 @@ public class TradeKingForemanTest {
 		System.out.println("market/ext/quotes call...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println(foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getResponse());
-		System.out.println("single option: "+foreman.makeApiCall(getExtQuotes(json, "slw160115P00020000", "")).getResponse());
-		System.out.println("several options: "+foreman.makeApiCall(getExtQuotes(json, "slw160115P00020000, slw160115P00021000 ", "")).getResponse());
+		System.out.println(foreman.makeApiCall(getExtQuotes(xml, "slw, slw180119P00017000, slw180119P00020000 ", "")).getResponse());
+		System.out.println("single option: "+foreman.makeApiCall(getExtQuotes(json, "slw180119P00020000", "")).getResponse());
+		System.out.println("several options: "+foreman.makeApiCall(getExtQuotes(json, "slw180119P00017000, slw180119P00020000", "")).getResponse());
 		//System.out.println(foreman.makeAPICall(getExtQuotes(XML, "gasl, gasl150918C00004000 ", "")).toString());
 		System.out.println("==============================");
 		
@@ -82,17 +82,17 @@ public class TradeKingForemanTest {
 		System.out.println("exploring TK API response ...");
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
-		System.out.println("Calls remaining: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsRemaining());
-		System.out.println("Calls used: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsUsed());
-		System.out.println("Rate limit expiration: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getRateLimitExpiration());
-		System.out.println("Total calls allowed: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getTotalCallsAllowed());
+		System.out.println("Calls remaining: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw180119P00017000, slw180119P00020000 ", "")).getCallsRemaining());
+		System.out.println("Calls used: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw180119P00017000, slw180119P00020000 ", "")).getCallsUsed());
+		System.out.println("Rate limit expiration: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw180119P00017000, slw180119P00020000 ", "")).getRateLimitExpiration());
+		System.out.println("Total calls allowed: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw180119P00017000, slw180119P00020000 ", "")).getTotalCallsAllowed());
 		
 		System.out.println("\n..... repeating .....\n");
 		
-		System.out.println("Calls remaining: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsRemaining());
-		System.out.println("Calls used: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getCallsUsed());
-		System.out.println("Rate limit expiration: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getRateLimitExpiration());
-		System.out.println("Total calls allowed: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw160115P00020000, slw160115P00021000 ", "")).getTotalCallsAllowed());
+		System.out.println("Calls remaining: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw180119P00017000, slw180119P00020000 ", "")).getCallsRemaining());
+		System.out.println("Calls used: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw180119P00017000, slw180119P00020000 ", "")).getCallsUsed());
+		System.out.println("Rate limit expiration: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw180119P00017000, slw180119P00020000 ", "")).getRateLimitExpiration());
+		System.out.println("Total calls allowed: " + foreman.makeApiCall(getExtQuotes(xml, "slw, slw180119P00017000, slw180119P00020000 ", "")).getTotalCallsAllowed());
 		System.out.println("==============================");
 	}	
 	
@@ -155,8 +155,8 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 		TradeKingForeman foreman = new TradeKingForeman();
 
-		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(xml, "slw", "20160115")).getResponse());
-		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "SLW ", "20160115")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(xml, "slw", "20180119")).getResponse());
+		System.out.println(foreman.makeApiCall(getOptionsStrikesForSymbolPerExpCycle(json, "SLW ", "20180119")).getResponse());
 		System.out.println("==============================");
 		
 	}	
@@ -218,7 +218,7 @@ public class TradeKingForemanTest {
 		System.out.println("==============================");
 
 		
-		String optionJsonStr = foreman.makeApiCall(getExtQuotes(json, "slw160115P00018000, slw160115P00021000, slw160115P00025000 ", "")).getResponse();
+		String optionJsonStr = foreman.makeApiCall(getExtQuotes(json, "slw180119P00017000, slw160115P00020000, slw160115P00025000 ", "")).getResponse();
 		System.out.println("several options: "+optionJsonStr);
 
 		Collection<Option> result = new OptionDeserializer().deserialize(optionJsonStr, new HashMap());
